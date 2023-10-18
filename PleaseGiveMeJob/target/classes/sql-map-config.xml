@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.portfolio.myfirst.Mapper.StarbucksVO" alias="starbucks"></typeAlias>
+		<typeAlias type="com.portfolio.myfirst.Mapper.FirstVO" alias="first"></typeAlias>
+		<typeAlias type="com.portfolio.myfirst.Mapper.InstagramVO" alias="insta"></typeAlias>
+		<typeAlias type="com.portfolio.myfirst.Mapper.UserInfoVO" alias="userinfo"></typeAlias>
+		<typeAlias type="com.portfolio.myfirst.Mapper.StoryVO" alias="story"></typeAlias>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappings/starbucks-mapping.xml" />
+		<mapper resource="mappings/instagram-mapping.xml" />
+	</mappers>
+</configuration>

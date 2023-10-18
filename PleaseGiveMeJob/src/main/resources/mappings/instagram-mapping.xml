@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mapper DTD 선언 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 자체가 DAO 분리되어 나온 개념이기 때문에 namespace는 DAO 명을 따라가는 경우가 일반적임 -->
+<mapper namespace="InstagramDAO">
+ 	<select id="getStoryList" parameterType="userinfo" resultType="userinfo">
+		SELECT idx
+ 			 , user_name
+ 			 , regdate
+ 			 , img_path
+ 			 , IFNULL (( select 1 from instagram.story_log sl where view_user_idx = 99 and story_idx = A.idx ), 0) as view_yn 
+		  FROM instagram.user_info A		  	 
+ 	</select>
+ 	<select id="getStory" parameterType="story" resultType="story">
+ 		SELECT idx
+	 		 , content
+	 		 , regdate
+	 		 , img_path
+	 		 , user_idx
+	      FROM instagram.story	 
+	     WHERE user_idx = #{user_idx}
+ 	</select>
+ 	<insert id="setViewStory" parameterType="story">
+ 		INSERT INTO instagram.story_log
+			( 
+				story_user_idx
+				, view_user_idx
+				, regdate
+				, story_idx
+			)
+		VALUES(	
+				#{user_idx}
+				, 99	<!-- 로그인기능 구현 후 수정 필요 -->
+				, now()
+				, (				
+				  select MIN(idx) from instagram.story s 
+				   where user_idx = #{user_idx}
+				     and idx not in (select story_idx from instagram.story_log sl where view_user_idx = 99 and user_idx = #{user_idx}) 
+				   group by user_idx 
+				)
+				
+			)
+		 		
+ 	</insert>
+</mapper>
