@@ -43,8 +43,6 @@ public class InstagramController {
 		hashMap.put("list", story); //null
 		
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(hashMap);
-		System.out.println("json String =============================================" + json);
-		
 		return json;
 	}
 
@@ -60,8 +58,6 @@ public class InstagramController {
 		hashMap.put("list", story); //null
 		
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(hashMap);
-		System.out.println("json String =============================================" + json);
-		
 		return json;
 	}
 }
