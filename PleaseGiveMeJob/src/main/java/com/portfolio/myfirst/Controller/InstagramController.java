@@ -28,7 +28,7 @@ public class InstagramController {
 	
 	@RequestMapping(value="/instagram.do")
 	public ModelAndView instagramMain(ModelAndView mav) {		
-		mav.setViewName("/instagram/main");
+		mav.setViewName("/instagram/login");
 		return mav;
 	}
 

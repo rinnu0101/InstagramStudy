@@ -1,0 +1,309 @@
+body {
+  min-width: 1920px;
+  min-height: 923px;
+}
+
+/*리스트 기본 스타일 속성 초기화*/
+li, ul, ol {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*구획 나누기*/
+#main{
+    background-image: url('example_Profile.png');
+  }
+
+
+#main_logo{
+  width: 287px;
+  height: 32px;
+  padding: 25 12 16 12px;
+  margin-bottom: 19px;
+  cursor: pointer;
+}
+
+#main_logo img{
+  width: 103px;
+  height: 29px;
+  padding-top: 7px;
+}
+
+#main_left{
+    width : 335px;
+    height: 100%;
+    border-right : 1px solid #DBDBDB;
+    float: left;
+}
+
+#left_area{
+    width : 311px;
+    height: 895px;
+    padding: 8 12 20 12px;
+}
+
+#main_middle{
+  margin-left: 335px;
+  width: 1567px;
+  height: 100%;
+  overflow: hidden;
+}
+
+#profile_middle_area{
+  width: 935px;
+  height: 100%;
+  padding: 30 20 0 20px;
+  margin: 0 auto;
+}
+
+/*메인 메뉴*/
+#main_menu{
+    width: 311px;
+    height: 747px;
+    margin-top: 27px;
+}
+
+.main_menu_profile{
+    width: 25px;
+    height: 25px;
+    border-radius: 70%;
+    object-fit: cover;
+}
+
+.main_menu_icon{
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+#main_menu ul li{
+    width: 287px;
+    height: 24px;
+    padding: 12px;
+    margin: 8 0px;
+    cursor: pointer;
+}
+#main_menu ul li:hover{
+    background-color: #F2F2F2;
+    border-radius: 8px;
+}
+
+#main_menu ul li img{
+  float: left;
+}
+#main_menu ul li:hover > .main_menu_icon{
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+#main_menu ul li:hover > .main_menu_profile{
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+
+#main_menu ul li div{
+  padding-left: 40px;
+  padding-top: 3px;
+}  
+
+/*메뉴 더 보기*/
+#main_moreMenu{
+  width: 311px;
+  height: 56px;
+}
+
+#main_moreMenu ul li{
+    width: 287px;
+    height: 24px;
+    padding: 12px;
+    margin: 8 0px;
+    cursor: pointer;
+}
+#main_moreMenu ul li:hover{
+  background-color: #F2F2F2;
+  border-radius: 8px;
+}
+
+#main_moreMenu ul li img:hover{
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+#main_moreMenu ul li img{
+  float: left;
+}
+
+#main_moreMenu ul li div{
+  padding-left: 40px;
+  padding-top: 3px;
+}
+
+/*프로필 상단*/
+#profile_Top{
+  width: 935px;
+  height: 150px;
+  margin-bottom: 44px;
+}
+
+#profile_TopImgArea{
+  width: 290px;
+  height: 150px;
+  margin: 0 auto;
+  float: left;
+}
+
+#profile_TopImg{
+  width: 150px;
+  height: 150px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+#profile_TopInfo{
+  width: 615px;
+  height: 150px;
+  margin-left: 30px;
+  float: left;
+}
+
+#Info_ID{
+  width: 615px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#Info_ID_name{
+  width: auto;
+  height: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#Info_ID_option img{
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  margin: 5 0 0 5px;
+  cursor: pointer;
+}
+
+#Info_Account{
+  width: 615px;
+  height: 18px;
+  margin-bottom: 20px;
+}
+
+#Info_Account ul li{
+  width: 78px;
+  height: 18px;
+  float: left;
+  margin-right: 40px;
+}
+
+#Info_Text{
+  width: 615px;
+  height: auto;
+}
+
+#Info_Text1{
+  width: 615px;
+  height: 18px;
+  font-weight: bolder;
+}
+
+#Info_Text2{
+  width: 615px;
+  height: auto;
+}
+
+/*프로필 피드*/
+#profile_feedMenu{
+  width: 935px;
+  height: 52px;
+  border-top: 1px solid #DBDBDB;
+}
+
+#feedMenu_log{
+  width: 57px;
+  height: 51px;
+  font-size: 12px;
+  font-weight: bold;
+  border-top: 1px solid black;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile_feedContents{
+  white-space: 935px;
+  height: auto;
+}
+
+.feedContents_line{
+  width: 940px;
+  height: 309px;
+  margin-bottom: 4px;
+}
+
+.feedContents_log{
+  width: 309px;
+  height: 309px;
+  margin-right: 4px;
+  float: left;
+}
+
+.feedContents_PIS{
+  width: 309px;
+  height: 309px;
+  margin-right: 4px;
+  margin-top: -309px;
+  float: left;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  visibility: hidden;
+}
+
+.log_heart{
+  width: 50px;
+  height: 20px;
+  margin-right: 10px;
+  font-weight: bolder;
+  color: white;
+  float: left;
+}
+
+.log_comment{
+  width: 50px;
+  height: 20px;
+  font-weight: bolder;
+  color: white;
+  float: left;
+}
+
+.log_PIS_icon{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  object-fit: cover;
+  float: left;
+}
+
+.log_img img{
+  width: 309px;
+  height: 309px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.feedContents_log:hover > .log_img {
+  filter: brightness(0.7);
+}
+
+.feedContents_log:hover > .feedContents_PIS{
+  visibility: visible;
+}

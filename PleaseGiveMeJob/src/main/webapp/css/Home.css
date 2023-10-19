@@ -1,0 +1,464 @@
+body {
+  min-width: 1920px;
+  min-height: 923px;
+}
+
+/*리스트 기본 스타일 속성 초기화*/
+li, ul, ol {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*구획 나누기*/
+  #main{
+      background-image: url('example_Home.png');
+    }
+
+
+  #main_logo{
+    width: 287px;
+    height: 32px;
+    padding: 25px 12px 16px 12px;
+    margin-bottom: 19px;
+    cursor: pointer;
+  }
+
+  #main_logo img{
+    width: 103px;
+    height: 29px;
+    padding-top: 7px;
+  }
+
+  #main_left{
+      width : 335px;
+      height: 100%;
+      border-right : 1px solid #DBDBDB;
+      float: left;
+  }
+
+  #left_area{
+      width : 311px;
+      height: 895px;
+      padding: 8px 12px 20px 12px;
+  }
+
+  #main_middle{
+    margin-left: 335px;
+    width: 1567px;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  #middle_area{
+    width: 1013px;
+    padding-top: 40px;
+    margin: 0 auto;
+  }
+
+  #main_right{
+    width: 310px;
+    height: 880px;
+    padding-left: 72px;
+    float: left;
+  }
+
+  #main_information_area{
+    width: 287px;
+    height: 111px;
+    padding : 0px 11px 0px 11px;
+    margin: 0px 0px 8px 0px;
+    font-size: 12px;
+    color: #C7C7C7;
+  }
+
+/*메인 메뉴*/
+  #main_menu{
+      width: 311px;
+      height: 747px;
+      margin-top: 27px;
+  }
+
+  .main_menu_profile{
+    width: 25px;
+    height: 25px;
+    border-radius: 70%;
+    object-fit: cover;
+  }
+
+  .main_menu_icon{
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+  }
+
+  #main_menu ul li{
+      width: 287px;
+      height: 24px;
+      padding: 12px;
+      margin: 8px 0px;
+      cursor: pointer;
+  }
+  #main_menu ul li:hover{
+      background-color: #F2F2F2;
+      border-radius: 8px;
+  }
+
+  #main_menu ul li img{
+    float: left;
+  }
+  #main_menu ul li:hover > .main_menu_icon{
+    transform: scale(1.1);
+    transition: transform.2s;
+  }
+  #main_menu ul li:hover > .main_menu_profile{
+    transform: scale(1.1);
+    transition: transform.2s;
+  }
+
+  #main_menu ul li div{
+    padding-left: 40px;
+    padding-top: 3px;
+  }  
+
+/*메뉴 더 보기*/
+  #main_moreMenu{
+    width: 311px;
+    height: 56px;
+  }
+
+  #main_moreMenu ul li{
+      width: 287px;
+      height: 24px;
+      padding: 12px;
+      margin: 8px 0px;
+      cursor: pointer;
+  }
+  #main_moreMenu ul li:hover{
+    background-color: #F2F2F2;
+    border-radius: 8px;
+  }
+
+  #main_moreMenu ul li img:hover{
+    transform: scale(1.1);
+    transition: transform.2s;
+  }
+  #main_moreMenu ul li img{
+    float: left;
+  }
+
+  #main_moreMenu ul li div{
+    padding-left: 40px;
+    padding-top: 3px;
+  }  
+
+/*메인 콘텐츠*/
+  #main_contents{
+      width: 630px;
+      float: left;
+  }
+
+/*스토리*/
+  #main_contents_story{
+    width: 630px;
+    height: 85px;
+    padding: 8px 0px 8px 3px;
+    overflow: hidden;
+  }
+
+  .story_friend_ul{
+    width: 50000px;
+  }
+
+  .story_friend_ul li{
+    width: 66px;
+    height: 85px;
+    margin-right: 14px;
+    float: left;
+  }
+
+  .story_profile_img{
+    width: 66px;
+    height: 66px;
+    border-radius: 70%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .story_accountName{
+    width: 66px;
+    height: 16px;
+    font-size: 12px;
+    padding-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;  /*... 만들기*/
+    white-space: nowrap; 	/*줄바뀜 방지*/
+    cursor: pointer;
+  }
+
+ /*피드*/
+  #main_contents_feed{
+    width: 630px;
+    height: 100%;
+    margin-top: 5px;
+  }
+
+  .feed_component{
+    width: 470px;
+    height: auto;
+    padding-top: 40px;
+    padding-bottom:15px;
+    border-bottom: 1px solid black;
+    margin: 0 auto;
+  }
+
+  .comp_account{
+    width: 466px;
+    height: 34px;
+    padding: 0px 0px 12px 4px;
+  }
+
+  .feed_profile{
+    width: 32px;
+    height: 32px;
+    border-radius: 70%;
+    object-fit: cover;
+    float: left;
+    cursor: pointer;
+  }
+
+  .comp_account_name{
+    width: 390px;
+    height: 18px;
+    padding-top: 7px;
+    margin-left: 7px;
+    cursor: pointer;
+    float: left;
+  }
+
+  .comp_account_option{
+    width: 34px;
+    height: 34px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .comp_option_icon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    float: right;
+    cursor: pointer;
+  }
+
+  .comp_post{
+    width: 468px;
+    height: 312px;
+    border : 1px solid #DBDBDB;
+    border-radius: 5px;
+  }
+
+  .post{
+    width: 468px;
+    height: 312px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .comp_PIS{
+    width: 470px;
+    height: 40px;
+    margin: 4px 0px;
+  }
+
+  .comp_PIS_L{
+    width: 235px;
+    height: 40px;
+    float: left;
+  }
+  .comp_PIS_icon{
+    width: 24px;
+    height: 24px;
+    padding: 8px 8px 8px 8px;
+    object-fit: cover;
+    float: left;
+    cursor: pointer;
+  }
+  .comp_PIS_icon:hover{
+    opacity: 0.5;
+  }
+  
+  .comp_PIS_R{
+    width: 235px;
+    height: 40px;
+    margin-left: 235px;
+  }
+  .comp_bookmark_icon{
+    width: 24px;
+    height: 24px;
+    padding: 8px;
+    object-fit: cover;
+    float: right;
+    cursor: pointer;
+  }
+  .comp_bookmark_icon:hover{
+    opacity: 0.5;
+  }
+
+  .comp_like{
+    width: 470px;
+    height: 18px;
+  }
+
+  .comp_text{
+    width: 470px;
+    height: 36px;
+  }
+
+  .comp_comment{
+    width: 470px;
+    height: 18px;
+  }
+
+  .comp_comment_writing{
+    width: 470px;
+    height: 18px;
+  }
+
+/*계정 추천 영역*/
+  #main_recommend{
+    width: 310px;
+    height: 430px;
+    margin-top: 18px;
+  }
+
+  #recommend_myAccount{
+    width: 288px;
+    height: 44px;
+    padding: 0 11 0 11px;
+  }
+
+  .myAccount_img_class{
+    width: 44px;
+    height: 44px;
+    border-radius: 70%;
+    object-fit: cover;
+    cursor: pointer;
+    float: left;
+  }
+
+  .Account_ID{
+    width: 195px;
+    height: 44px;
+    margin: 5 0 0 10px;
+    float: left;
+  }
+
+  #Account_myID{
+    width: 195px;
+    height: 18px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #Account_myIntro{
+    width: 195px;
+    height: 18px;
+    font-size: 14px;
+  }
+
+  #myAccount_switch{
+    width: 36px;
+    height: 44px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: #0095F6;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+  }
+
+  #recommend_otherAccount{
+    width: 310px;
+    height: 350px;
+    margin : 24 0 8 0px;
+  }
+
+  .recommend_randomList{
+    margin-left: 10px;
+  }
+
+  .recommend_randomList li{
+    display: flex;
+    align-items: center;
+  }
+
+  .otherAccount_img_class{
+    width: 44px;
+    height: 44px;
+    border-radius: 70%;
+    object-fit: cover;
+    cursor: pointer;
+    float: left;
+  }
+
+  .Account_otherID{
+    width: 179px;
+    height: 17px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-bottom: 5px;
+  }
+
+  .Account_otherIntro{
+    width: 179px;
+    height: 17px;
+    font-size: 12px;
+    color: #737373;
+  }
+
+  .otherAccount_follow{
+    width: 36px;
+    height: 44px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: #0095F6;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+  }
+
+  #recommend_otherAccount_seeAllList{
+    width: 288px;
+    height: 11px;
+    padding: 4 11 4 11px;
+    font-size: 12px;
+  }
+
+  #seeAllList_btn{
+    width: 55px;
+    height: 16px;
+    font-size: 12px;
+    font-weight: bolder;
+    float: right;
+    cursor: pointer;
+  }
+
+  #recommend_otherAccount_list{
+    width: 310px;
+    height: 300px;
+    padding: 8 0 8 0px;
+  }
+
+  #recommend_otherAccount_list ul li{
+    width: 310px;
+    height: 60px;
+  }

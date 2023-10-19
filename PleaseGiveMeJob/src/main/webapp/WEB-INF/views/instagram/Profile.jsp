@@ -1,0 +1,313 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- css 리셋 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        <!-- 제이쿼리 불러오기 -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <!-- 스타일시트 적용 -->
+        <link rel="stylesheet" href="css/Profile.css">
+        <link rel="stylesheet" href="css/LayerPopup.css">
+        <!-- 공통js 적용 -->
+        <script src="js/common.js"></script>
+        <script>
+            //레이어팝업 함수
+            function fnLayerPopupOpen()
+            {
+                var oWidth = $("#layerPopup").outerWidth();
+                var cWidth = $("#feed_layerPopup_contents").width();
+                var ml = (oWidth-cWidth)/2;
+
+                var oHeight = $("#layerPopup").outerHeight();
+                var cHeight = $("#feed_layerPopup_contents").height();
+                var mt = (oHeight-cHeight)/2;
+
+                $("#feed_layerPopup_contents").css("margin-left", ml);
+                $("#feed_layerPopup_contents").css("margin-top", mt);
+                $("#layerPopup").show();
+            }
+
+            function fnLayerPopupClose()
+            {
+                $("#layerPopup").hide();
+            }
+        </script>
+    </head>
+
+    <body>
+        <!-- 프로필 피드 레이어팝업 html-->
+        <div id="layerPopup">
+            <div id="feed_layerPopup_bg" onclick="fnLayerPopupClose();">
+                <div class="layerPopupClose_btn">
+                    <img src="img\icon\close_WT.png">
+                </div>
+            </div>
+
+            <!-- 레이어팝업 좌우버튼-->
+            <div class="Next_btn_L">
+                <img class="Next_btn" src="img\icon\next_WT_L.png">
+            </div>
+            <div class="Next_btn_R">
+                <img class="Next_btn" src="img\icon\next_WT_R.png">
+            </div>
+
+            <!-- 피드 레이어팝업 콘텐츠 html-->
+            <div id="feed_layerPopup_contents">
+                <div id="FP_contents_img">
+                    <ul>
+                        <!-- todo : 클릭한 post의 img 뜨게하기-->
+                        <li>
+                            <img src="img\feed_img\feed1.jpg">
+                        </li>
+                    </ul>
+                </div>
+                <div id="FP_contents_post">
+                    <div id="FPCP_account">
+                        <div id="FPCP_account_area">
+                            <div class="FPCP_account_profile">
+                                <img src="img\profile_img\my_profile.jpg">
+                            </div>
+                            <div class="FPCP_account_ID">
+                                asdfasdfasdfasdf
+                            </div>
+                        </div>
+                        <div id="FPCP_account_option">
+                            <img src="img\icon\option.png"/>
+                        </div>
+                    </div>
+                    <div id="FPCP_body">
+                        <div id="FPCP_body_log">
+                            <div class="FPCP_account_profile">
+                                <img src="img\profile_img\my_profile.jpg">
+                            </div>
+                            <div class="FPCP_account_ID">
+                                asdfasdfasdfasdf
+                            </div>
+                            <div class="FPCP_text">
+                                본문 텍스트 영역
+                            </div>
+                        </div>
+                        <div class="FPCP_body_comment">
+                            <div class="FPCP_account_profile">
+                                <img src="img\profile_img\1.jpg">
+                            </div>
+                            <div class="FPCP_account_ID">
+                                lkjlkjlkjlkj
+                            </div>
+                            <div class="FPCP_text">
+                                댓글 텍스트 영역
+                            </div>
+                        </div>
+                    </div>
+                    <div id="FPCP_PIS">
+                        <div id="FPCP_PIS_btn">
+                            <div class="FPCP_PIS_btn_L">
+                                <ul>
+                                    <li><img class='FPCP_PIS_btn_icon' src="img\icon\notice.png"/></li>
+                                    <li><img class='FPCP_PIS_btn_icon' src="img\icon\comment.png"/></li>
+                                </ul>
+                            </div>
+                            <div class="FPCP_PIS_btn_R">
+                                <ul>
+                                    <li><img class='FPCP_PIS_btn_icon' src="img\icon\bookmark.png"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="FPCP_PIS_like">
+                            <span></span>님 외 <span></span>명이 좋아합니다
+                        </div>
+                        <div id="FPCP_PIS_date">업로드일자</div>
+                    </div>
+                    <div id="FPCP_reply">
+                        <div id="FPCP_reply_emoji">
+                            <img src="img\icon\emoji.png">
+                        </div>
+                        <div id="FPCP_reply_text">                            
+                            <input type="text" placeholder="댓글 달기"/>
+                        </div>
+                        <div id="FPCP_reply_btn">
+                            <!-- todo : 텍스트 없으면 비활성화-->
+                            게시
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메인페이지 html-->
+        <div id="main">
+            <div id="main_left">
+                <div id="left_area">
+                    <div id="main_logo">
+                        <img onclick="goPage('logo');" src="img\icon\logo.png">
+                    </div>
+    
+                    <div id="main_menu">
+                        <ul>
+                            <li onclick="goPage('home');">
+                                <img class='main_menu_icon' src="img\icon\home.png"/>
+                                <div id="menu_home">홈</div>
+                            </li>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\search.png"/>
+                                <div id="menu_search">검색</div>
+                            </li>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\explore.png"/>
+                                <div id="menu_explore">탐색 탭</div>
+                            </li>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\reels.png"/>
+                                <div id="menu_reels">릴스</div>
+                            </li>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\direct.png"/>
+                                <div id="menu_direct">메시지</div>
+                            </li>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\notice.png"/>
+                                <div id="menu_notice">알림</div>
+                            </li>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\upload.png"/>
+                                <div id="menu_upload">만들기</div>
+                            </li>
+                            <li onclick="goPage('profile');">
+                                <img class='main_menu_profile' src="img\profile_img\my_profile.jpg"/>
+                                <!-- todo : 
+                                    - DB에서 내 프로필 이미지 가져오기
+                                    - 프로필 이미지 없으면 "icon\profile.png" 자동으로 띄우기 -->
+                                <div id="menu_profile">프로필</div>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div id="main_moreMenu">
+                        <ul>
+                            <li>
+                                <img class='main_menu_icon' src="img\icon\moreMenu.png"/>
+                                <div id="moreMenu">
+                                    <!-- todo : 더보기 내 메뉴 구현하기 -->
+                                    더 보기
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main_middle">
+                <div id="profile_middle_area">
+                    <div id="profile_Top">
+                        <div id="profile_TopImgArea">
+                            <!-- todo : 내 계정에서만 클릭 활성화, 프로필사진 바꾸기 등 기능 넣기 -->
+                            <div style="text-align: center;">
+                                <img id='profile_TopImg' src="img\profile_img\my_profile.jpg">
+                            </div>
+                        </div>
+                        <div id="profile_TopInfo">
+                            <div id="Info_ID">
+                                <!-- todo : 내ID불러오기 -->
+                                <div id="Info_ID_name">계정ID</div>
+                                <div id="Info_ID_option">
+                                    <img src="img\icon\setting.png"/>
+                                </div>
+                            </div>
+                            <div id="Info_Account">
+                                <ul>
+                                    <!-- todo : 게시물, 팔로워, 팔로우 숫자 불러오기 -->
+                                    <li>
+                                        게시물<span></span>
+                                    </li>
+                                    <li>
+                                        <div id="follower" style="cursor: pointer;">
+                                            팔로워<span></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div id="follow" style="cursor: pointer;">
+                                            팔로우<span></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="Info_Text">
+                                <div id="Info_Text1">한줄소개글</div>
+                                <div id="Info_Text2">상세설명글</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="profile_feedMenu">
+                        <div id="feedMenu_log">
+                            <img style="width: 12px; height: 12px; object-fit: cover; margin-right: 5px;" src="img\icon\grid.png"/>
+                            게시물
+                        </div>
+                    </div>
+
+                    <div id="profile_feedContents">
+                        <ul class="feedContents_line">
+                            <li onclick="fnLayerPopupOpen();">
+                                <div class="feedContents_log">
+                                    <div class="log_img">
+                                        <img src="img\feed_img\feed1.jpg">
+                                    </div>
+                                    <div class="feedContents_PIS">
+                                        <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
+                                        <div class="log_heart">
+                                            <img class="log_PIS_icon" src="img\icon\notice_w.png"/>
+                                            <span>0</span>
+                                        </div>
+                                        <div class="log_comment">
+                                            <img class="log_PIS_icon" src="img\icon\comment_w.png"/>
+                                            <span>0</span>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </li>
+                            <li onclick="fnLayerPopupOpen();">
+                                <div class="feedContents_log">
+                                    <div class="log_img">
+                                        <img src="img\feed_img\feed2.jpg">
+                                    </div>
+                                    <div class="feedContents_PIS">
+                                        <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
+                                        <div class="log_heart">
+                                            <img class="log_PIS_icon" src="img\icon\notice_w.png"/>
+                                            <span>0</span>
+                                        </div>
+                                        <div class="log_comment">
+                                            <img class="log_PIS_icon" src="img\icon\comment_w.png"/>
+                                            <span>0</span>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </li>
+                            <li onclick="fnLayerPopupOpen();">
+                                <div class="feedContents_log">
+                                    <div class="log_img">
+                                        <img src="img\feed_img\feed3.jpg">
+                                    </div>
+                                    <div class="feedContents_PIS">
+                                        <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
+                                        <div class="log_heart">
+                                            <img class="log_PIS_icon" src="img\icon\notice_w.png"/>
+                                            <span>0</span>
+                                        </div>
+                                        <div class="log_comment">
+                                            <img class="log_PIS_icon" src="img\icon\comment_w.png"/>
+                                            <span>0</span>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
