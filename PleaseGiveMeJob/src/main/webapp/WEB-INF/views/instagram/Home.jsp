@@ -75,16 +75,16 @@
         <div id="layerPopup">
             <div id="story_layerPopup_bg" onclick="fnLayerPopupClose();">
                 <div class="layerPopupClose_btn">
-                    <img src="img\icon\close_WT.png">
+                    <img src="images\icon\close_WT.png">
                 </div>
             </div>
 
             <!-- 스토리 레이어팝업 좌우버튼-->
             <div class="Story_Next_btn_L">
-                <img class="Story_Next_btn" src="img\icon\next_WT_L.png">
+                <img class="Story_Next_btn" src="images\icon\next_WT_L.png">
             </div>
             <div class="Story_Next_btn_R">
-                <img class="Story_Next_btn" src="img\icon\next_WT_R.png">
+                <img class="Story_Next_btn" src="images\icon\next_WT_R.png">
             </div>
 
             <!-- 스토리 레이어팝업 콘텐츠 html-->
@@ -96,12 +96,12 @@
                     <div class="SP_contents_account">
                         <div class="SP_account_profile">
                             <!-- todo : 클릭한 story 계정의 프로필 img 뜨게하기-->
-                            <img class='SP_profile_img' src="img\profile_img\1.jpg">
+                            <img class='SP_profile_img' src="images\profile_img\1.jpg">
                         </div>
                         <div class="SP_account_ID">asdfasdfasdf</div>
                         <div class="SP_contents_play">
-                            <img class="SP_contents_play_btn" src="img\icon\play.png">
-                            <img class="SP_contents_stop_btn" src="img\icon\stop.png" style="display: none;">
+                            <img class="SP_contents_play_btn" src="images\icon\play.png">
+                            <img class="SP_contents_stop_btn" src="images\icon\stop.png" style="display: none;">
                         </div>
                     </div>
                 </div>
@@ -116,10 +116,10 @@
                             </div>                            
                         </div>
                         <div class="SP_reaction_like">
-                            <img class="SP_reaction_btn" src="img\icon\notice_lw.png">
+                            <img class="SP_reaction_btn" src="images\icon\notice_lw.png">
                         </div>
                         <div class="SP_reaction_direct">
-                            <img class="SP_reaction_btn" src="img\icon\direct_w.png">
+                            <img class="SP_reaction_btn" src="images\icon\direct_w.png">
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                     <ul>
                         <!-- todo : 클릭한 story의 img 뜨게하기-->
                         <li>
-                            <img src="img\stroy_img\a.jpg">
+                            <img src="images\stroy_img\a.jpg">
                         </li>
                     </ul>
                 </div>
@@ -141,41 +141,41 @@
             <div id="main_left">
                 <div id="left_area">
                     <div id="main_logo">
-                        <img onclick="goPage('logo');" src="img\icon\logo.png">
+                        <img onclick="goPage('logo');" src="images\icon\logo.png">
                     </div>
     
                     <div id="main_menu">
                         <ul>
                             <li onclick="goPage('home');">
-                                <img class='main_menu_icon' src="img\icon\home.png"/>
+                                <img class='main_menu_icon' src="images\icon\home.png"/>
                                 <div id="menu_home">홈</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\search.png"/>
+                                <img class='main_menu_icon' src="images\icon\search.png"/>
                                 <div id="menu_search">검색</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\explore.png"/>
+                                <img class='main_menu_icon' src="images\icon\explore.png"/>
                                 <div id="menu_explore">탐색 탭</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\reels.png"/>
+                                <img class='main_menu_icon' src="images\icon\reels.png"/>
                                 <div id="menu_reels">릴스</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\direct.png"/>
+                                <img class='main_menu_icon' src="images\icon\direct.png"/>
                                 <div id="menu_direct">메시지</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\notice.png"/>
+                                <img class='main_menu_icon' src="images\icon\notice.png"/>
                                 <div id="menu_notice">알림</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\upload.png"/>
+                                <img class='main_menu_icon' src="images\icon\upload.png"/>
                                 <div id="menu_upload">만들기</div>
                             </li>
                             <li onclick="goPage('profile');">
-                                <img class='main_menu_profile' src="img\profile_img\my_profile.jpg"/>
+                                <img class='main_menu_profile' src="images\profile_img\my_profile.jpg"/>
                                 <!-- todo : 
                                     - DB에서 내 프로필 이미지 가져오기
                                     - 프로필 이미지 없으면 "icon\profile.png" 자동으로 띄우기 -->
@@ -187,7 +187,7 @@
                     <div id="main_moreMenu">
                         <ul>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\moreMenu.png"/>
+                                <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                                 <div id="moreMenu">
                                     <!-- todo : 더보기 내 메뉴 구현하기 -->
                                     더 보기
@@ -206,7 +206,7 @@
                                 <!-- todo : ul width auto 처리하기 -->
                                 <li onclick="fnLayerPopupOpen();">
                                     <div class="story_profile">
-                                        <img class='story_profile_img' src="img\profile_img\1.jpg">
+                                        <img class='story_profile_img' src="images\profile_img\1.jpg">
                                     </div>
                                     <div class="story_accountName">asdfasdfasdfasdf</div>
                                 </li>
@@ -228,31 +228,31 @@
                                 <div class="comp_account">
                                     <div class="comp_account_img">
                                         <!-- todo : 계정 이미지&계정명 DB에서 받아오도록 하기 -->
-                                        <img class='feed_profile' src="img\profile_img\my_profile.jpg">
+                                        <img class='feed_profile' src="images\profile_img\my_profile.jpg">
                                         <div class="comp_account_name">계정명</div>
                                         <div class="comp_account_option">
-                                            <img class='comp_option_icon' src="img\icon\option.png"/>
+                                            <img class='comp_option_icon' src="images\icon\option.png"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="comp_post">
                                     <ul>
                                         <li>
-                                            <img class='post' src="img\feed_img\feed1.jpg">
+                                            <img class='post' src="images\feed_img\feed1.jpg">
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="comp_PIS">
                                     <div class="comp_PIS_L">
                                         <ul>
-                                            <li><img class='comp_PIS_icon' src="img\icon\notice.png"/></li>
-                                            <li><img class='comp_PIS_icon' src="img\icon\comment.png"/></li>
-                                            <li><img class='comp_PIS_icon' src="img\icon\direct.png"/></li>
+                                            <li><img class='comp_PIS_icon' src="images\icon\notice.png"/></li>
+                                            <li><img class='comp_PIS_icon' src="images\icon\comment.png"/></li>
+                                            <li><img class='comp_PIS_icon' src="images\icon\direct.png"/></li>
                                         </ul>
                                     </div>
                                     <div class="comp_PIS_R">
                                         <ul>
-                                            <li><img class='comp_bookmark_icon' src="img\icon\bookmark.png"/></li>
+                                            <li><img class='comp_bookmark_icon' src="images\icon\bookmark.png"/></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -284,7 +284,7 @@
                         <div id="main_recommend">
                             <div id="recommend_myAccount">
                                 <div class="myAccount_img">
-                                    <img class='myAccount_img_class' src="img\profile_img\my_profile.jpg">
+                                    <img class='myAccount_img_class' src="images\profile_img\my_profile.jpg">
                                 </div>
                                 <div class="Account_ID">
                                     <div id="Account_myID">계정명</div>
@@ -303,7 +303,7 @@
                                         <!-- todo : 어떤 기준으로 랜덤하게 계정을 추천할 것인가? -->
                                         <li>
                                             <div class="otherAccount_img">
-                                                <img class='otherAccount_img_class' src="img\profile_img\1.jpg">
+                                                <img class='otherAccount_img_class' src="images\profile_img\1.jpg">
                                             </div>
                                             <div class="Account_ID">
                                                 <div class="Account_otherID">계정명</div>

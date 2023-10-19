@@ -28,9 +28,40 @@ public class InstagramController {
 	
 	@RequestMapping(value="/instagram.do")
 	public ModelAndView instagramMain(ModelAndView mav) {		
-		mav.setViewName("/instagram/login");
+		mav.setViewName("/instagram/Login");
 		return mav;
 	}
+	
+	@RequestMapping(value="/join.do")
+	public ModelAndView instagramJoin(ModelAndView mav) {		
+		mav.setViewName("/instagram/Join");
+		return mav;
+	}
+	
+	@RequestMapping(value="/home.do")
+	public ModelAndView instagramHome(ModelAndView mav) {		
+		mav.setViewName("/instagram/Home");
+		return mav;
+	}
+	
+	@RequestMapping(value="/profile.do")
+	public ModelAndView instagramProfile(ModelAndView mav) {		
+		mav.setViewName("/instagram/Profile");
+		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//나중에 갖다쓰기
 
 	@RequestMapping(value="/getStoryList.do", produces = "application/text; charset=utf8")
 	@ResponseBody

@@ -16,7 +16,7 @@
             var arrImgPath = [2, 3, 4 ,1];
             var roof = 0;
             setInterval(function() {
-                $(".screenshot_img").attr("src", "img/login_img/screenshot" + arrImgPath[roof] + ".png");
+                $(".screenshot_img").attr("src", "images/login_img/screenshot" + arrImgPath[roof] + ".png");
                 roof = roof + 1;
                 roof = roof == 4 ? 0 : roof;
             }, 3020);
@@ -32,17 +32,17 @@
                             <div class="screenshot">
                                 <ul>
                                     <li>
-                                        <img class="screenshot_img" src="img\login_img\screenshot1.png">
+                                        <img class="screenshot_img" src="images\login_img\screenshot1.png">
                                     </li>
                                 </ul>
                             </div>
-                            <img class="phones_img" src="img\login_img\home-phones.png">
+                            <img class="phones_img" src="images\login_img\home-phones.png">
                         </div>
                     </div>
                     <div class="info_area">
                         <div class="info_login">
                             <div class="login_logo">
-                                <img class="login_logo_img" src="img\icon\logo.png">
+                                <img class="login_logo_img" src="images\icon\logo.png">
                             </div>
                             <div class="login_ID">
                                 <input type="text" placeholder="전화번호, 사용자 이름 또는 이메일"/>
@@ -57,7 +57,7 @@
                                 -------------------- 또는 --------------------
                             </div>
                             <div class="login_fb">
-                                <img class="login_fb_icon" src="img\icon\fb_logo.png">
+                                <img class="login_fb_icon" src="images\icon\fb_logo.png">
                                 Facebook으로 로그인
                             </div>
                             <div class="login_forgot">
@@ -72,10 +72,10 @@
                             <div class="download_text">앱을 다운로드하세요.</div>
                             <div class="download_btn">
                                 <div id="googleplay_btn">
-                                    <img id='googleplay_btn_img' src="img\login_img\googleplay_btn.png"/>
+                                    <img id='googleplay_btn_img' src="images\login_img\googleplay_btn.png"/>
                                 </div>
                                 <div id="microsoft_btn">
-                                    <img id='microsoft_btn_img' src="img\login_img\microsoft_btn.png"/>
+                                    <img id='microsoft_btn_img' src="images\login_img\microsoft_btn.png"/>
                                 </div>
                             </div>
                         </div>

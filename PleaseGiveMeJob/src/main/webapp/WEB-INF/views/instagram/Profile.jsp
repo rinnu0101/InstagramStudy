@@ -41,16 +41,16 @@
         <div id="layerPopup">
             <div id="feed_layerPopup_bg" onclick="fnLayerPopupClose();">
                 <div class="layerPopupClose_btn">
-                    <img src="img\icon\close_WT.png">
+                    <img src="images\icon\close_WT.png">
                 </div>
             </div>
 
             <!-- 레이어팝업 좌우버튼-->
             <div class="Next_btn_L">
-                <img class="Next_btn" src="img\icon\next_WT_L.png">
+                <img class="Next_btn" src="images\icon\next_WT_L.png">
             </div>
             <div class="Next_btn_R">
-                <img class="Next_btn" src="img\icon\next_WT_R.png">
+                <img class="Next_btn" src="images\icon\next_WT_R.png">
             </div>
 
             <!-- 피드 레이어팝업 콘텐츠 html-->
@@ -59,7 +59,7 @@
                     <ul>
                         <!-- todo : 클릭한 post의 img 뜨게하기-->
                         <li>
-                            <img src="img\feed_img\feed1.jpg">
+                            <img src="images\feed_img\feed1.jpg">
                         </li>
                     </ul>
                 </div>
@@ -67,20 +67,20 @@
                     <div id="FPCP_account">
                         <div id="FPCP_account_area">
                             <div class="FPCP_account_profile">
-                                <img src="img\profile_img\my_profile.jpg">
+                                <img src="images\profile_img\my_profile.jpg">
                             </div>
                             <div class="FPCP_account_ID">
                                 asdfasdfasdfasdf
                             </div>
                         </div>
                         <div id="FPCP_account_option">
-                            <img src="img\icon\option.png"/>
+                            <img src="images\icon\option.png"/>
                         </div>
                     </div>
                     <div id="FPCP_body">
                         <div id="FPCP_body_log">
                             <div class="FPCP_account_profile">
-                                <img src="img\profile_img\my_profile.jpg">
+                                <img src="images\profile_img\my_profile.jpg">
                             </div>
                             <div class="FPCP_account_ID">
                                 asdfasdfasdfasdf
@@ -91,7 +91,7 @@
                         </div>
                         <div class="FPCP_body_comment">
                             <div class="FPCP_account_profile">
-                                <img src="img\profile_img\1.jpg">
+                                <img src="images\profile_img\1.jpg">
                             </div>
                             <div class="FPCP_account_ID">
                                 lkjlkjlkjlkj
@@ -105,13 +105,13 @@
                         <div id="FPCP_PIS_btn">
                             <div class="FPCP_PIS_btn_L">
                                 <ul>
-                                    <li><img class='FPCP_PIS_btn_icon' src="img\icon\notice.png"/></li>
-                                    <li><img class='FPCP_PIS_btn_icon' src="img\icon\comment.png"/></li>
+                                    <li><img class='FPCP_PIS_btn_icon' src="images\icon\notice.png"/></li>
+                                    <li><img class='FPCP_PIS_btn_icon' src="images\icon\comment.png"/></li>
                                 </ul>
                             </div>
                             <div class="FPCP_PIS_btn_R">
                                 <ul>
-                                    <li><img class='FPCP_PIS_btn_icon' src="img\icon\bookmark.png"/></li>
+                                    <li><img class='FPCP_PIS_btn_icon' src="images\icon\bookmark.png"/></li>
                                 </ul>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                     </div>
                     <div id="FPCP_reply">
                         <div id="FPCP_reply_emoji">
-                            <img src="img\icon\emoji.png">
+                            <img src="images\icon\emoji.png">
                         </div>
                         <div id="FPCP_reply_text">                            
                             <input type="text" placeholder="댓글 달기"/>
@@ -141,41 +141,41 @@
             <div id="main_left">
                 <div id="left_area">
                     <div id="main_logo">
-                        <img onclick="goPage('logo');" src="img\icon\logo.png">
+                        <img onclick="goPage('logo');" src="images\icon\logo.png">
                     </div>
     
                     <div id="main_menu">
                         <ul>
                             <li onclick="goPage('home');">
-                                <img class='main_menu_icon' src="img\icon\home.png"/>
+                                <img class='main_menu_icon' src="images\icon\home.png"/>
                                 <div id="menu_home">홈</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\search.png"/>
+                                <img class='main_menu_icon' src="images\icon\search.png"/>
                                 <div id="menu_search">검색</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\explore.png"/>
+                                <img class='main_menu_icon' src="images\icon\explore.png"/>
                                 <div id="menu_explore">탐색 탭</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\reels.png"/>
+                                <img class='main_menu_icon' src="images\icon\reels.png"/>
                                 <div id="menu_reels">릴스</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\direct.png"/>
+                                <img class='main_menu_icon' src="images\icon\direct.png"/>
                                 <div id="menu_direct">메시지</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\notice.png"/>
+                                <img class='main_menu_icon' src="images\icon\notice.png"/>
                                 <div id="menu_notice">알림</div>
                             </li>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\upload.png"/>
+                                <img class='main_menu_icon' src="images\icon\upload.png"/>
                                 <div id="menu_upload">만들기</div>
                             </li>
                             <li onclick="goPage('profile');">
-                                <img class='main_menu_profile' src="img\profile_img\my_profile.jpg"/>
+                                <img class='main_menu_profile' src="images\profile_img\my_profile.jpg"/>
                                 <!-- todo : 
                                     - DB에서 내 프로필 이미지 가져오기
                                     - 프로필 이미지 없으면 "icon\profile.png" 자동으로 띄우기 -->
@@ -187,7 +187,7 @@
                     <div id="main_moreMenu">
                         <ul>
                             <li>
-                                <img class='main_menu_icon' src="img\icon\moreMenu.png"/>
+                                <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                                 <div id="moreMenu">
                                     <!-- todo : 더보기 내 메뉴 구현하기 -->
                                     더 보기
@@ -204,7 +204,7 @@
                         <div id="profile_TopImgArea">
                             <!-- todo : 내 계정에서만 클릭 활성화, 프로필사진 바꾸기 등 기능 넣기 -->
                             <div style="text-align: center;">
-                                <img id='profile_TopImg' src="img\profile_img\my_profile.jpg">
+                                <img id='profile_TopImg' src="images\profile_img\my_profile.jpg">
                             </div>
                         </div>
                         <div id="profile_TopInfo">
@@ -212,7 +212,7 @@
                                 <!-- todo : 내ID불러오기 -->
                                 <div id="Info_ID_name">계정ID</div>
                                 <div id="Info_ID_option">
-                                    <img src="img\icon\setting.png"/>
+                                    <img src="images\icon\setting.png"/>
                                 </div>
                             </div>
                             <div id="Info_Account">
@@ -242,7 +242,7 @@
 
                     <div id="profile_feedMenu">
                         <div id="feedMenu_log">
-                            <img style="width: 12px; height: 12px; object-fit: cover; margin-right: 5px;" src="img\icon\grid.png"/>
+                            <img style="width: 12px; height: 12px; object-fit: cover; margin-right: 5px;" src="images\icon\grid.png"/>
                             게시물
                         </div>
                     </div>
@@ -252,16 +252,16 @@
                             <li onclick="fnLayerPopupOpen();">
                                 <div class="feedContents_log">
                                     <div class="log_img">
-                                        <img src="img\feed_img\feed1.jpg">
+                                        <img src="images\feed_img\feed1.jpg">
                                     </div>
                                     <div class="feedContents_PIS">
                                         <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
                                         <div class="log_heart">
-                                            <img class="log_PIS_icon" src="img\icon\notice_w.png"/>
+                                            <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
                                             <span>0</span>
                                         </div>
                                         <div class="log_comment">
-                                            <img class="log_PIS_icon" src="img\icon\comment_w.png"/>
+                                            <img class="log_PIS_icon" src="images\icon\comment_w.png"/>
                                             <span>0</span>
                                         </div>                                    
                                     </div>
@@ -270,16 +270,16 @@
                             <li onclick="fnLayerPopupOpen();">
                                 <div class="feedContents_log">
                                     <div class="log_img">
-                                        <img src="img\feed_img\feed2.jpg">
+                                        <img src="images\feed_img\feed2.jpg">
                                     </div>
                                     <div class="feedContents_PIS">
                                         <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
                                         <div class="log_heart">
-                                            <img class="log_PIS_icon" src="img\icon\notice_w.png"/>
+                                            <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
                                             <span>0</span>
                                         </div>
                                         <div class="log_comment">
-                                            <img class="log_PIS_icon" src="img\icon\comment_w.png"/>
+                                            <img class="log_PIS_icon" src="images\icon\comment_w.png"/>
                                             <span>0</span>
                                         </div>                                    
                                     </div>
@@ -288,16 +288,16 @@
                             <li onclick="fnLayerPopupOpen();">
                                 <div class="feedContents_log">
                                     <div class="log_img">
-                                        <img src="img\feed_img\feed3.jpg">
+                                        <img src="images\feed_img\feed3.jpg">
                                     </div>
                                     <div class="feedContents_PIS">
                                         <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
                                         <div class="log_heart">
-                                            <img class="log_PIS_icon" src="img\icon\notice_w.png"/>
+                                            <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
                                             <span>0</span>
                                         </div>
                                         <div class="log_comment">
-                                            <img class="log_PIS_icon" src="img\icon\comment_w.png"/>
+                                            <img class="log_PIS_icon" src="images\icon\comment_w.png"/>
                                             <span>0</span>
                                         </div>                                    
                                     </div>

@@ -23,14 +23,26 @@
                 ,   'user_nickname' : $(".join_nickname").find("input").val()
                 ,   'user_pw' : $(".join_PW").find("input").val()
                 }
-
-                console.log(joinInfo);
-
+                
                 // var user_id = $(".join_ID").find("input").val();
                 // var user_name = $(".join_name").find("input").val();
                 // var user_nickname = $(".join_nickname").find("input").val();
                 // var user_pw = $(".join_PW").find("input").val();
                 // console.log(user_id, user_name, user_nickname, user_pw);
+
+                console.log(joinInfo);
+                
+                //GET
+                //"/setJoinInfo.do?user_id=123&user_name=123..."
+                //url에 모든 정보가 노출되어 보안 취약
+                
+           		//POST
+                $.ajax({
+                	url : "/setJoinInfo.do",
+                	type : "POST",
+                	data : joinInfo
+                });
+                
             }
         </script>
     </head>
@@ -41,11 +53,11 @@
                 <div id="join_area">
                     <div id="join_info">
                         <div class="login_logo">
-                            <img class="login_logo_img" src="img\icon\logo.png">
+                            <img class="login_logo_img" src="images\icon\logo.png">
                         </div>
                         <div id="join_text">친구들의 사진과 동영상을 보려면</br>지금 가입하세요.</div>
                         <div class="login_fb_btn">
-                            <img class="login_fb_icon" src="img\icon\fb_logo_wt.png">
+                            <img class="login_fb_icon" src="images\icon\fb_logo_wt.png">
                             Facebook으로 로그인
                         </div>
                         <div class="login_info_text">
@@ -63,28 +75,26 @@
                         <div class="join_PW">
                             <input type="password" placeholder="비밀번호"/>
                         </div>
-                        <div class="login_btn" onclick="fnInputJoinInfo();">
-                            회원가입
-                        </div>
-                        <div id="join_info_text">
-                            저희 서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram에 업로드했을 수도 있습니다.
+					<div class="login_btn" onclick="fnInputJoinInfo();">회원가입</div>
+					<div id="join_info_text">
+                            	저희 서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram에 업로드했을 수도 있습니다.
                             <div id="join_info_more">
-                                더 알아보기
+                            	더 알아보기
                             </div>
                         </div>
                     </div>
                     <div class="join_login">
-                        계정이 있으신가요?
+                        	계정이 있으신가요?
                         <div id="join_login_btn" onclick="goPage('login');">로그인</div>
                     </div>
                     <div class="info_download">
                         <div class="download_text">앱을 다운로드하세요.</div>
                         <div class="download_btn">
                             <div id="googleplay_btn">
-                                <img id='googleplay_btn_img' src="img\login_img\googleplay_btn.png"/>
+                                <img id='googleplay_btn_img' src="images\login_img\googleplay_btn.png"/>
                             </div>
                             <div id="microsoft_btn">
-                                <img id='microsoft_btn_img' src="img\login_img\microsoft_btn.png"/>
+                                <img id='microsoft_btn_img' src="images\login_img\microsoft_btn.png"/>
                             </div>
                         </div>
                     </div>
