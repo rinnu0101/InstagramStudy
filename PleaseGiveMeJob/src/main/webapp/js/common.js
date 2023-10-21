@@ -14,7 +14,7 @@ var goPage = function(type)
     }
     if(type == "login")
     {
-        window.location.href = "/intagram.do"
+        window.location.href = "/instagram.do"
     }
     if(type == "join")
     {

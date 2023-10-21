@@ -12,17 +12,18 @@
         <link rel="stylesheet" href="css/Join.css">
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
-        <!-- 회원가입정보 입력하기 -->
+        
         <script>
+        	<!-- 회원가입 정보 입력하기 -->
             function fnInputJoinInfo()
             {
                 var joinInfo =
-                {
-                    'user_id' : $(".join_ID").find("input").val()
-                ,   'user_name' : $(".join_name").find("input").val()
-                ,   'user_nickname' : $(".join_nickname").find("input").val()
-                ,   'user_pw' : $(".join_PW").find("input").val()
-                }
+	                {
+	                    'user_id' : $(".join_ID").find("input").val()
+	                ,   'user_name' : $(".join_name").find("input").val()
+	                ,   'user_nickname' : $(".join_nickname").find("input").val()
+	                ,   'user_pw' : $(".join_PW").find("input").val()
+	                }
                 
                 // var user_id = $(".join_ID").find("input").val();
                 // var user_name = $(".join_name").find("input").val();

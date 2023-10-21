@@ -11,8 +11,9 @@
         <link rel="stylesheet" href="css/Login.css">
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
-        <!-- 스마트폰 화면 roof -->
+        
         <script>
+        	<!-- 스마트폰 화면 roof -->
             var arrImgPath = [2, 3, 4 ,1];
             var roof = 0;
             setInterval(function() {
@@ -20,6 +21,24 @@
                 roof = roof + 1;
                 roof = roof == 4 ? 0 : roof;
             }, 3020);
+            
+            <!-- 로그인 정보 입력하기 -->
+            function fnInputLoginInfo(){
+            	var loginInfo =
+            		{
+            			'user_id' : $(".login_ID").find("input").val()
+    	            ,   'user_pw' : $(".login_PW").find("input").val()
+            		}
+            	
+            	console.log(loginInfo);
+            	
+            	//POST
+                $.ajax({
+                	url : "/setLoginInfo.do",
+                	type : "POST",
+                	data : loginInfo
+                });
+            }
         </script>
     </head>
 
@@ -50,8 +69,8 @@
                             <div class="login_PW">
                                 <input type="password" placeholder="비밀번호"/>
                             </div>
-                            <div class="login_btn">
-                                로그인
+                            <div class="login_btn" onclick="fnInputLoginInfo();">
+                                	로그인
                             </div>
                             <div class="login_info_text">
                                 -------------------- 또는 --------------------

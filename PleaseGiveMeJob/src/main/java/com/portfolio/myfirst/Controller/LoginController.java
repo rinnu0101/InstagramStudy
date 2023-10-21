@@ -33,4 +33,15 @@ public class LoginController {
 		
 		return "";
 	}
+	
+	@RequestMapping(value="/setLoginInfo.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String setLoginInfo(UserInfoVO vo) throws JsonProcessingException {
+	//자바에서 JSON 객체로 변환해주는 라이브러리
+		
+		System.out.println(vo.getUser_id());
+		System.out.println(vo.getUser_pw());
+		
+		return "";
+	}
 }
