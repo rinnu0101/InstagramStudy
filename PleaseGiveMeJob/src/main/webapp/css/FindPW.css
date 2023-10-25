@@ -1,0 +1,179 @@
+body {
+    min-width: 1903px;
+    min-height: 923px;
+    /* background-image: url('example_FindPW.png') */
+}
+
+/*리스트 기본 스타일 속성 초기화*/
+li, ul, ol {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*구획 나누기*/
+#main{
+    min-width: 1903px;
+    min-height: 923px;
+}
+
+.top_bar{
+    width: 100%;
+    height: 59px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    border-bottom: 1px solid #DBDBDB
+}
+
+/*상단 로고 영역*/
+.logo_area{
+    width: 952px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.logo_img{
+    width: 467px;
+    height: 36px;
+}
+
+.logo_img img{
+    width: 103px;
+    height: 29px;
+    margin-top: 7px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/*중간 비밀번호 찾기 영역*/
+.middle_area{
+    width: 1903px;
+    height: 700px;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.findPW_area{
+    width: 388px;
+    height: 553px;
+    border: 1px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lock_img_area{
+    width: 388px;
+    height: 96px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.lock_img_area img{
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+}
+
+.info_text_top{
+    width: 300px;
+    height: 13px;
+    margin: 0px 44px 16px 44px;
+    font-size: 16px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.info_text_bottom{
+    width: 300px;
+    height: 47px;
+    margin: 0px 44px 16px 44px;
+    font-size: 14px;
+    color: #737373;
+    text-align: center;
+}
+
+.find_clue{
+    width: 300px;
+    height: 40px;
+    margin: 0px 44px 16px 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.find_clue input{
+    width: 300px;
+    height: 38px;
+    padding-left: 8px;
+    font-size: 12px;
+    border: 1px solid #DBDBDB;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+}
+
+#find_PW_btn{
+    width: 300px;
+    height: 32px;
+    margin: 0px 44px 16px 44px;
+    border-radius: 10px;
+    background-color: #4CB5F9;
+    font-size: 14px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#reset_PW{
+    width: 300px;
+    height: 16px;
+    margin-top: 12px;
+    font-size: 12px;
+    text-align: center;
+    color: #00376B;
+    cursor: pointer;
+}
+
+.join_info_text{
+    width: 300px;
+    height: 15px;
+    margin: 16px 44px 16px 44px;
+    font-size: 12px;
+    text-align: center;
+    color: #737373;
+}
+
+#join_new{
+    width: 300px;
+    height: 18px;
+    margin: 0px 44px 16px 44px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bolder;
+    color: #262626;
+    cursor: pointer;
+}
+
+#back_to_login_btn{
+    width: 388px;
+    height: 14px;
+    margin-top: 68px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #DBDBDB;
+    background-color: #FAFAFA;
+    font-size: 14px;
+    font-weight: bolder;
+    text-align: center;
+    color: #262626;
+    cursor: pointer;
+}

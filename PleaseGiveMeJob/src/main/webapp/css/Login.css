@@ -202,6 +202,16 @@ li, ul, ol {
     object-fit: cover;
 }
 
+.pw_miss{
+    width: 268px;
+    height: 18px;
+    margin: 10px 40px 10px 40px;
+    font-size: 14px;
+    text-align: center;
+    color: #ED4956;
+    display: none;
+}
+
 .login_forgot{
     margin-top: 20px;
     font-size: 12px;

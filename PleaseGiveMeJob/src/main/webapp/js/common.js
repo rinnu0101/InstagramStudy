@@ -20,4 +20,8 @@ var goPage = function(type)
     {
         window.location.href = "/join.do"
     }
+    if(type == "findPW")
+    {
+        window.location.href = "/findPW.do"
+    }
 }

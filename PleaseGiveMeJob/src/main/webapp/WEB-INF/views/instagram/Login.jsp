@@ -71,6 +71,8 @@
                             </div>
                             <div class="login_btn" onclick="fnInputLoginInfo();">
                                 	로그인
+                                	<!-- todo : 로그인버튼 클릭시 DB값이 틀리면 pw_miss 클래스 보이게 한 후
+                                				info_login height 400px / login_forgot margin-top 0px로 수정 -->
                             </div>
                             <div class="login_info_text">
                                 -------------------- 또는 --------------------
@@ -79,12 +81,15 @@
                                 <img class="login_fb_icon" src="images\icon\fb_logo.png">
                                 Facebook으로 로그인
                             </div>
-                            <div class="login_forgot">
-                                비밀번호를 잊으셨나요?
+                            <div class="pw_miss">
+                                	잘못된 비밀번호입니다. 다시 확인하세요.
+                            </div>
+                            <div class="login_forgot" onclick="goPage('findPW');">
+                                	비밀번호를 잊으셨나요?
                             </div>
                         </div>
                         <div class="info_join">
-                            계정이 없으신가요?
+                            	계정이 없으신가요?
                             <div id="join_btn" onclick="goPage('join');">가입하기</div>
                         </div>
                         <div class="info_download">

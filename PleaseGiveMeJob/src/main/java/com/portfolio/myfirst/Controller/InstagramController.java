@@ -50,6 +50,12 @@ public class InstagramController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/findPW.do")
+	public ModelAndView instagramFindPW(ModelAndView mav) {		
+		mav.setViewName("/instagram/FindPW");
+		return mav;
+	}
+	
 	
 	
 	
