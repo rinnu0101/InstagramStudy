@@ -31,8 +31,7 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public UserInfoVO getFindPwInfo(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		UserInfoVO result = vo;
-		return result;
+		return LoginDAO.getFindPwInfo(vo);
 	}
 
 }
