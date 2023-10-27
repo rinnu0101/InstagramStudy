@@ -19,12 +19,13 @@ import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 import com.portfolio.myfirst.Service.InstagramService;
+import com.portfolio.myfirst.Service.LoginService;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
-	InstagramService Service;
+	LoginService Service;
 	
 	@RequestMapping(value="/setJoinInfo.do", produces = "application/text; charset=utf8")
 	@ResponseBody
@@ -34,14 +35,23 @@ public class LoginController {
 		return "";
 	}
 	
-	@RequestMapping(value="/setLoginInfo.do", produces = "application/text; charset=utf8")
+	@RequestMapping(value="/getLoginInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String setLoginInfo(UserInfoVO vo) throws JsonProcessingException {
-	//자바에서 JSON 객체로 변환해주는 라이브러리
-		
+	public UserInfoVO getLoginInfo(UserInfoVO vo) throws JsonProcessingException {
+		//자바에서 JSON 객체로 변환해주는 라이브러리
 		//System.out.println(vo.getUser_id());
 		//System.out.println(vo.getUser_pw());
-		
-		return "";
+		System.out.println("컨트롤러 시작");
+		UserInfoVO result = Service.getLoginInfo(vo);
+		System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping(value="/getFindPwInfo.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public UserInfoVO getFindPwInfo(UserInfoVO vo) throws JsonProcessingException {
+		UserInfoVO result = Service.getFindPwInfo(vo);
+		System.out.println(result);
+		return result;
 	}
 }

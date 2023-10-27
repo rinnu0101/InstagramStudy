@@ -10,5 +10,6 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/instagram-mapping.xml" />
+		<mapper resource="mappings/Login-mapping.xml" />
 	</mappers>
 </configuration>

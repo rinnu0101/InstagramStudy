@@ -25,20 +25,36 @@
             <!-- 로그인 정보 입력하기 -->
             function fnInputLoginInfo(){
             	var loginInfo =
-            		{
-            			'user_id' : $(".login_ID").find("input").val()
-    	            ,   'user_pw' : $(".login_PW").find("input").val()
-            		}
-            	
-            	console.log(loginInfo);
+	           		{
+	           			'user_id' : $(".login_ID").find("input").val()
+	   	            ,   'user_pw' : $(".login_PW").find("input").val()
+	           		};
             	
             	//POST
                 $.ajax({
-                	url : "/setLoginInfo.do",
+                	url : "/getLoginInfo.do",
                 	type : "POST",
-                	data : loginInfo
+                	data : loginInfo,
+                	success : function(p)
+		            {
+                	   if(p==""){
+                		   $(".pw_miss").show();
+                		   $(".info_login").css("height", "400px");
+                		   $(".login_forgot").css("margin-top", "0px");
+                	   }
+                	   else{
+                		   alert("로그인 성공");
+                	   }
+ 		               console.log(p);
+		               console.log("성공");
+		            },
+	               	error : function(p)
+	               	{
+			           console.log("실패");		                  
+	               	}
                 });
             }
+            
         </script>
     </head>
 
@@ -82,7 +98,7 @@
                                 Facebook으로 로그인
                             </div>
                             <div class="pw_miss">
-                                	잘못된 비밀번호입니다. 다시 확인하세요.
+                                	계정 정보를 다시 확인하세요.
                             </div>
                             <div class="login_forgot" onclick="goPage('findPW');">
                                 	비밀번호를 잊으셨나요?

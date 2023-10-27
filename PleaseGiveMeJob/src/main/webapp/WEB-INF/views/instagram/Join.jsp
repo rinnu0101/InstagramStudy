@@ -41,9 +41,17 @@
                 $.ajax({
                 	url : "/setJoinInfo.do",
                 	type : "POST",
-                	data : joinInfo
+                	data : joinInfo,
+                	success : function(p)
+		            {
+ 		               console.log(p);
+		               console.log("성공");
+		            },
+	               	error : function(p)
+	               	{
+			           console.log("실패");		                  
+	               	}
                 });
-                
             }
         </script>
     </head>

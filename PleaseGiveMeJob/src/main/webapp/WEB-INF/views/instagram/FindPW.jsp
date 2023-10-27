@@ -11,6 +11,34 @@
         <link rel="stylesheet" href="css/FindPW.css">
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
+        
+        <script>
+        <!-- 비밀번호찾기 정보 입력하기 -->
+        function fnInputFindPWInfo()
+        {
+            var findPwInfo =
+                {
+                    'user_id' : $(".find_clue").find("input").val()
+                }
+
+            console.log(findPwInfo);
+            
+       		//POST
+            $.ajax({
+	            	url : "/getFindPwInfo.do",
+	            	type : "POST",
+	            	data : findPwInfo,
+	            	success : function(p)
+		            {
+			           console.log(p);
+		               console.log("성공");
+		            },
+	               	error : function(p)
+	               	{
+			           console.log("실패");		                  
+	               	}
+	            });
+        </script>
     </head>
 
     <body>
@@ -38,7 +66,7 @@
                     <div class="find_clue">
                         <input type="text" placeholder="이메일, 전화번호, 사용자 이름"/>
                     </div>
-                    <div id="find_PW_btn">
+                    <div id="find_PW_btn" onclick="fnInputFindPWInfo();">
                         <!-- todo : find_clue 영역 비어있을때는 비활성화되어있다가 영역 입력되면 활성화하기 -->
                         <!-- todo : 로그인 링크 보내기 기능 추가 -->
                         	로그인 링크 보내기
