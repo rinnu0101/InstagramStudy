@@ -9,7 +9,7 @@ import com.portfolio.myfirst.Mapper.UserInfoVO;
 public interface LoginService {
 	public UserInfoVO getLoginInfo(UserInfoVO vo);
 
-	public UserInfoVO setJoinInfo(UserInfoVO vo);
+	public String setJoinInfo(UserInfoVO vo);
 
 	public UserInfoVO getFindPwInfo(UserInfoVO vo);
 }

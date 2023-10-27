@@ -17,6 +17,36 @@
 		   AND USER_PW = #{user_pw}
  	</select>
  	
+ 	<insert id="setJoinInfo" parameterType="userinfo">
+		INSERT INTO INSTAGRAM.USER_INFO
+		(
+			USER_ID
+			, USER_NAME
+			, USER_NICKNAME
+			, USER_PW
+			, REGDATE
+		)
+		VALUES
+		(
+			#{user_id}
+			, #{user_name}
+			, #{user_nickname}
+			, #{user_pw}
+			, NOW()
+		)
+ 	</insert>
+ 	
+ 	<select id="getUserDuplCheck" parameterType="userinfo" resultType="userinfo">
+		SELECT USER_IDX
+			 , USER_ID
+			 , USER_NAME
+			 , USER_NICKNAME
+			 , USER_PW
+			 , REGDATE
+		  FROM INSTAGRAM.USER_INFO
+		 WHERE USER_ID = #{user_id}
+ 	</select>
+ 	
  	<select id="getFindPwInfo" parameterType="userinfo" resultType="userinfo">
 		SELECT USER_IDX
 			 , USER_ID

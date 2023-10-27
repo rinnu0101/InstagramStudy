@@ -22,9 +22,22 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public UserInfoVO setJoinInfo(UserInfoVO vo) {
+	public String setJoinInfo(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		UserInfoVO result = vo;
+		String result = "";
+		
+		// ID 중복확인
+		UserInfoVO chk = LoginDAO.getUserDuplCheck(vo);
+		if(chk == null)
+		{
+			// 회원가입 insert
+			LoginDAO.setJoinInfo(vo);
+			result = "OK";
+		}
+		else {
+			result = "FAIL";
+		}
+		
 		return result;
 	}
 	

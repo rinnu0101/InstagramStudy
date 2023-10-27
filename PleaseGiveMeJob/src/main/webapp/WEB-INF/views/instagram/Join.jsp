@@ -44,8 +44,19 @@
                 	data : joinInfo,
                 	success : function(p)
 		            {
- 		               console.log(p);
-		               console.log("성공");
+              			console.log(p);
+		               	console.log("성공");
+		               	if(p == "OK")
+	            	   	{
+		               		alert("회원가입에 성공하셨습니다.");
+		               		window.location.href = "/instagram.do";
+	            	   	}
+		               	else
+		               	{
+		            	   	alert("이미 가입된 ID입니다.");
+		            	   	$(".join_ID").find("input").focus();
+		               		$(".join_ID").find("input").css("color", "red");
+		               	}
 		            },
 	               	error : function(p)
 	               	{

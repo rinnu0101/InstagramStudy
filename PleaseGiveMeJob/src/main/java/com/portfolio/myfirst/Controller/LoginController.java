@@ -31,8 +31,8 @@ public class LoginController {
 	@ResponseBody
 	public String setJoinInfo(UserInfoVO vo) throws JsonProcessingException {
 	//자바에서 JSON 객체로 변환해주는 라이브러리
-		
-		return "";
+				
+		return Service.setJoinInfo(vo);
 	}
 	
 	@RequestMapping(value="/getLoginInfo.do", produces = "application/json; charset=utf8")

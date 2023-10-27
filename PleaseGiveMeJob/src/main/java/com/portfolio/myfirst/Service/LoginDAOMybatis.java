@@ -26,6 +26,13 @@ public class LoginDAOMybatis extends SqlSessionDaoSupport {
 		return getSqlSession().selectOne("LoginDAO.getLoginInfo", vo);		
 	}
 	
+	public void setJoinInfo(UserInfoVO vo) {
+		getSqlSession().insert("LoginDAO.setJoinInfo", vo);		
+	}
+	public UserInfoVO getUserDuplCheck(UserInfoVO vo) {
+		return getSqlSession().selectOne("LoginDAO.getUserDuplCheck", vo);		
+	}
+	
 	
 	public UserInfoVO getFindPwInfo(UserInfoVO vo) {
 		return getSqlSession().selectOne("LoginDAO.getFindPwInfo", vo);		
