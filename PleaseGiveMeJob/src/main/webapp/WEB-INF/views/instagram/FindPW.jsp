@@ -30,14 +30,22 @@
 	            	data : findPwInfo,
 	            	success : function(p)
 		            {
-			           console.log(p);
-		               console.log("성공");
+		            	if(p==""){
+		            		alert("계정명을 다시 확인하세요.");
+		            		}
+		            	else{
+		            		alert("해당 계정으로 비밀번호를 발송하였습니다.");
+		            		}
+			            console.log(p);
+		                console.log("성공");
+		                
 		            },
 	               	error : function(p)
 	               	{
 			           console.log("실패");		                  
 	               	}
 	            });
+        }
         </script>
     </head>
 
