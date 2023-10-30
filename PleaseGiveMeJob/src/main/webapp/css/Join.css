@@ -103,68 +103,131 @@ li, ul, ol {
     width: 266px;
     height: 36px;
     margin-top: 10px;
-}
-.join_ID input{
-    width: 266px;
-    height: 36px;
-    padding-left: 8px;
-    font-size: 12px;
+    float: left;
     border: 1px solid #DBDBDB;
     border-radius: 5px;
     background-color: #FAFAFA;
+}
+.join_ID input{
+    width: 220px;
+    height: 34px;
+    padding-left: 8px;
+    font-size: 12px;
+    float: left;
     display: flex;
     align-items: center;
+    background-color: #FAFAFA;
+    border: none;
+    outline: none;
 }
 
 .join_name{
     width: 266px;
     height: 36px;
     margin-top: 10px;
-}
-.join_name input{
-    width: 266px;
-    height: 36px;
-    padding-left: 8px;
-    font-size: 12px;
+    float: left;
     border: 1px solid #DBDBDB;
     border-radius: 5px;
     background-color: #FAFAFA;
+}
+.join_name input{
+    width: 220px;
+    height: 34px;
+    padding-left: 8px;
+    font-size: 12px;
+    float: left;
     display: flex;
     align-items: center;
+    background-color: #FAFAFA;
+    border: none;
+    outline: none;
 }
 
 .join_nickname{
     width: 266px;
     height: 36px;
     margin-top: 10px;
-}
-.join_nickname input{
-    width: 266px;
-    height: 36px;
-    padding-left: 8px;
-    font-size: 12px;
+    float: left;
     border: 1px solid #DBDBDB;
     border-radius: 5px;
     background-color: #FAFAFA;
+}
+.join_nickname input{
+    width: 220px;
+    height: 34px;
+    padding-left: 8px;
+    font-size: 12px;
+    float: left;
     display: flex;
     align-items: center;
+    background-color: #FAFAFA;
+    border: none;
+    outline: none;
 }
 
 .join_PW{
     width: 266px;
     height: 36px;
     margin-top: 10px;
-}
-.join_PW input{
-    width: 266px;
-    height: 36px;
-    padding-left: 8px;
-    font-size: 12px;
+    float: left;
     border: 1px solid #DBDBDB;
     border-radius: 5px;
     background-color: #FAFAFA;
+}
+.join_PW input{
+    width: 220px;
+    height: 34px;
+    padding-left: 8px;
+    font-size: 12px;
+    float: left;
     display: flex;
     align-items: center;
+    background-color: #FAFAFA;
+    border: none;
+    outline: none;
+}
+
+.confirm{
+    width: 36px;
+    height: 36px;
+    float: left;
+}
+.confirm_check{
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    position: absolute;
+    object-fit: cover;
+    float: left;
+    display: none;
+}
+.confirm_error{
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    position: absolute;
+    object-fit: cover;
+    float: left;
+    display: none;
+}
+.confirm_show{
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    position: absolute;
+    object-fit: cover;
+    float: left;
+    display: none;
+    cursor: pointer;
+}
+.confirm_hide{
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    position: absolute;
+    object-fit: cover;
+    float: left;
+    cursor: pointer;
 }
 
 .login_btn{

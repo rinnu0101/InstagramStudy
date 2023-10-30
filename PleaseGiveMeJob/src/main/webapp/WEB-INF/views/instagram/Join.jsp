@@ -64,6 +64,70 @@
 	               	}
                 });
             }
+            
+            var fnValidation = function(obj)
+            {
+            	//1. focus out 시점에 함수 호출
+            	var type = $(obj).attr("vtype");
+            	var value = $(obj).val();
+            	
+            	if(value.indexOf('-') != -1)
+            	{
+            		value = value.replace(/-/gi, "");
+            		$(obj).val(value);
+            	}
+            	
+            	//2. 값이 있을 경우에만 validation 체크
+            	if(!value) return false;
+            	
+            	if(type == "id")
+            	{
+	            	//case 1. 영문이 포함되어 있을 경우 이메일 유효성 검사
+	            	const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+	            	if(pattern.test(value) === true)
+	            	{
+	            		alert("이메일주소당");
+	            		$(".join_ID").find(".confirm").find(".confirm_check").show();
+	            		$(".join_ID").find(".confirm").find(".confirm_error").hide();
+	            	}
+	            	else if(!isNaN(value))
+            		{
+            			if(Math.sign(value)==1)
+            			{            				
+	            			//case 2. 숫자만 있을 경우 10~11자리인지 체크
+	            			if(10 <= value.length && value.length <= 11)
+	            			{
+	            				alert("휴대폰번호당");
+	            				$(".join_ID").find(".confirm").find(".confirm_check").show();
+	            				$(".join_ID").find(".confirm").find(".confirm_error").hide();
+	            			}
+            			}
+            		}
+	            	else
+            		{
+	            		//case 3. 나머지는 모두 오류
+            			alert("id는 휴대폰번호 또는 이메일주소만 가능합니다.");
+            			$(".join_ID").find(".confirm").find(".confirm_check").hide();
+            			$(".join_ID").find(".confirm").find(".confirm_error").show();
+            		}
+            	}
+            }
+            
+            var fnPwToggle = function(p)
+            {
+            	if(p)
+            	{
+            		 $(".join_PW").find("input").attr("type", "text");
+            		 $(".join_PW").find(".confirm").find(".confirm_hide").hide();
+            		 $(".join_PW").find(".confirm").find(".confirm_show").show();
+            	}
+            	else
+            	{
+           		 	 $(".join_PW").find("input").attr("type", "password");
+           		 	 $(".join_PW").find(".confirm").find(".confirm_show").hide();
+           		 	 $(".join_PW").find(".confirm").find(".confirm_hide").show();
+            	} 
+            }
         </script>
     </head>
 
@@ -84,7 +148,11 @@
                             ----------------------- 또는 -----------------------
                         </div>
                         <div class="join_ID">
-                            <input type="text" placeholder="휴대폰 번호 또는 이메일 주소"/>
+                            <input type="text" placeholder="휴대폰 번호 또는 이메일 주소" vtype="id" onfocusout="fnValidation(this)"/>
+                            <div class="confirm">
+                                <img class="confirm_check" src="images\icon\check.png">
+                                <img class="confirm_error" src="images\icon\error.png">
+                            </div>
                         </div>
                         <div class="join_name">
                             <input type="text" placeholder="성명"/>
@@ -94,6 +162,10 @@
                         </div>
                         <div class="join_PW">
                             <input type="password" placeholder="비밀번호"/>
+                            <div class="confirm">
+                                <img class="confirm_show" onclick="fnPwToggle(false);" src="images\icon\show.png">
+                                <img class="confirm_hide" onclick="fnPwToggle(true);" src="images\icon\hide.png">
+                            </div>
                         </div>
 					<div class="login_btn" onclick="fnInputJoinInfo();">회원가입</div>
 					<div id="join_info_text">
