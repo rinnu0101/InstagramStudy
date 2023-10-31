@@ -36,7 +36,7 @@
 		)
  	</insert>
  	
- 	<select id="getUserDuplCheck" parameterType="userinfo" resultType="userinfo">
+ 	<select id="getIdDuplCheck" parameterType="userinfo" resultType="userinfo">
 		SELECT USER_IDX
 			 , USER_ID
 			 , USER_NAME
@@ -45,6 +45,17 @@
 			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_ID = #{user_id}
+ 	</select>
+ 	
+ 	<select id="getNicknameDuplCheck" parameterType="userinfo" resultType="userinfo">
+		SELECT USER_IDX
+			 , USER_ID
+			 , USER_NAME
+			 , USER_NICKNAME
+			 , USER_PW
+			 , REGDATE
+		  FROM INSTAGRAM.USER_INFO
+		 WHERE USER_NICKNAME = #{user_nickname}
  	</select>
  	
  	<select id="getFindPwInfo" parameterType="userinfo" resultType="userinfo">

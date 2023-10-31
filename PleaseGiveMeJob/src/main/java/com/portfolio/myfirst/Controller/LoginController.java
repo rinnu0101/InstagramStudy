@@ -31,14 +31,24 @@ public class LoginController {
 	@ResponseBody
 	public String setJoinInfo(UserInfoVO vo) throws JsonProcessingException {
 	//자바에서 JSON 객체로 변환해주는 라이브러리
-				
 		return Service.setJoinInfo(vo);
+	}
+	@RequestMapping(value="/getIdDuplCheck.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getIdDuplCheck(UserInfoVO vo) throws JsonProcessingException {
+		//자바에서 JSON 객체로 변환해주는 라이브러리
+			return Service.getIdDuplCheck(vo);
+	}
+	@RequestMapping(value="/getNicknameDuplCheck.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getNicknameDuplCheck(UserInfoVO vo) throws JsonProcessingException {
+		//자바에서 JSON 객체로 변환해주는 라이브러리
+			return Service.getNicknameDuplCheck(vo);
 	}
 	
 	@RequestMapping(value="/getLoginInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public UserInfoVO getLoginInfo(UserInfoVO vo) throws JsonProcessingException {
-		//자바에서 JSON 객체로 변환해주는 라이브러리
 		//System.out.println(vo.getUser_id());
 		//System.out.println(vo.getUser_pw());
 		System.out.println("컨트롤러 시작");

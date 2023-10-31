@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
-<html>
     <head>
         <!-- css 리셋 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
@@ -14,17 +13,34 @@
         <script src="js/common.js"></script>
         
         <script>
-        	<!-- 회원가입 정보 입력하기 -->
+        
+        	var chkID = false;
+        	var chkNN = false;
+        	//회원가입 정보 입력하기
             function fnInputJoinInfo()
             {
-                var joinInfo =
+            	var joinInfo =
 	                {
 	                    'user_id' : $(".join_ID").find("input").val()
 	                ,   'user_name' : $(".join_name").find("input").val()
 	                ,   'user_nickname' : $(".join_nickname").find("input").val()
 	                ,   'user_pw' : $(".join_PW").find("input").val()
 	                }
-                
+
+            	if(!chkID)
+           		{
+            		return false;
+           		}
+            	
+            	if(!chkNN)
+           		{
+            		return false;
+           		}
+            	
+            	//값 4개 체크 if문 각 4개
+            	
+            	
+            	
                 // var user_id = $(".join_ID").find("input").val();
                 // var user_name = $(".join_name").find("input").val();
                 // var user_nickname = $(".join_nickname").find("input").val();
@@ -53,18 +69,17 @@
 	            	   	}
 		               	else
 		               	{
-		            	   	alert("이미 가입된 ID입니다.");
-		            	   	$(".join_ID").find("input").focus();
-		               		$(".join_ID").find("input").css("color", "red");
+		            	   	alert("회원정보를 다시 확인하세요.");
 		               	}
 		            },
 	               	error : function(p)
 	               	{
-			           console.log("실패");		                  
+			           console.log("회원가입실패");		                  
 	               	}
                 });
             }
             
+            //회원가입 정보 유효성 검사
             var fnValidation = function(obj)
             {
             	//1. focus out 시점에 함수 호출
@@ -80,13 +95,49 @@
             	//2. 값이 있을 경우에만 validation 체크
             	if(!value) return false;
             	
+            	//ID 유효성 검사
             	if(type == "id")
             	{
+            		var idInfo =
+	                {
+               			'user_id' : $(".join_ID").find("input").val(),
+	                }
+            		
+            		//ID 중복확인
+            		$.ajax({
+                    	url : "/getIdDuplCheck.do",
+                    	type : "POST",
+                    	data : idInfo,
+                    	success : function(p)
+    		            {
+                  			console.log(p);
+    		               	if(p == "ID_FAIL")
+    	            	   	{
+    		               		chkID = false;
+    		               		alert("중복된 ID를 입력하셨습니다. 다시 확인하세요.");
+    		               		$(".join_ID").find("input").css("color", "red");
+    		               		$(".join_ID").find(".confirm").find(".confirm_check").hide();
+    	            			$(".join_ID").find(".confirm").find(".confirm_error").show();
+    		               		return false;
+    	            	   	}
+    		               	else
+    		               	{
+    		               		chkID = true;
+    		               		//$(".join_ID").find(".confirm").find(".confirm_check").show();
+    		            		//$(".join_ID").find(".confirm").find(".confirm_error").hide();
+    		               	}
+    		            },
+    	               	error : function(p)
+    	               	{
+    			           console.log("ID체크실패");		                  
+    	               	}
+                    });
+            		
 	            	//case 1. 영문이 포함되어 있을 경우 이메일 유효성 검사
 	            	const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 	            	if(pattern.test(value) === true)
 	            	{
-	            		alert("이메일주소당");
+	            		//alert("이메일주소");
 	            		$(".join_ID").find(".confirm").find(".confirm_check").show();
 	            		$(".join_ID").find(".confirm").find(".confirm_error").hide();
 	            	}
@@ -95,9 +146,9 @@
             			if(Math.sign(value)==1)
             			{            				
 	            			//case 2. 숫자만 있을 경우 10~11자리인지 체크
-	            			if(10 <= value.length && value.length <= 11)
+	            			if((10 <= value.length) && (value.length <= 11))
 	            			{
-	            				alert("휴대폰번호당");
+	            				//alert("휴대폰번호");
 	            				$(".join_ID").find(".confirm").find(".confirm_check").show();
 	            				$(".join_ID").find(".confirm").find(".confirm_error").hide();
 	            			}
@@ -106,13 +157,53 @@
 	            	else
             		{
 	            		//case 3. 나머지는 모두 오류
+	            		chkID = false;
             			alert("id는 휴대폰번호 또는 이메일주소만 가능합니다.");
             			$(".join_ID").find(".confirm").find(".confirm_check").hide();
             			$(".join_ID").find(".confirm").find(".confirm_error").show();
             		}
             	}
+            	
+            	//닉네임 유효성 검사
+            	if(type == "nickname")
+           		{
+            		var nicknameInfo =
+	                {
+               			'user_nickname' : $(".join_nickname").find("input").val()
+	                }
+            		
+            		//닉네임 중복확인
+            		$.ajax({
+                    	url : "/getNicknameDuplCheck.do",
+                    	type : "POST",
+                    	data : nicknameInfo,
+                    	success : function(p)
+    		            {
+                  			console.log(p);
+    		               	if(p == "NN_FAIL")
+    	            	   	{
+    		               		alert("중복된 닉네임을 입력하셨습니다. 다시 확인하세요.");
+    		               		$(".join_nickname").find("input").css("color", "red");
+    		               		$(".join_nickname").find(".confirm").find(".confirm_check").hide();
+    	            			$(".join_nickname").find(".confirm").find(".confirm_error").show();
+    		               		
+    	            	   	}
+    		               	else
+    		               	{
+    		               		chkNN = true;
+    		               		$(".join_nickname").find(".confirm").find(".confirm_check").show();
+    		            		$(".join_nickname").find(".confirm").find(".confirm_error").hide();
+    		               	}
+    		            },
+    	               	error : function(p)
+    	               	{
+    			           console.log("닉네임체크실패");		                  
+    	               	}
+                    });
+           		}
             }
             
+            //비밀번호 체크 btn
             var fnPwToggle = function(p)
             {
             	if(p)
@@ -158,7 +249,11 @@
                             <input type="text" placeholder="성명"/>
                         </div>
                         <div class="join_nickname">
-                            <input type="text" placeholder="사용자 이름"/>
+                            <input type="text" placeholder="닉네임" vtype="nickname" onfocusout="fnValidation(this)"/>
+                            <div class="confirm">
+                                <img class="confirm_check" src="images\icon\check.png">
+                                <img class="confirm_error" src="images\icon\error.png">
+                            </div>
                         </div>
                         <div class="join_PW">
                             <input type="password" placeholder="비밀번호"/>

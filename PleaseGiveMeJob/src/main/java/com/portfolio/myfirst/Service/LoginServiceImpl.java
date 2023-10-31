@@ -1,12 +1,8 @@
 package com.portfolio.myfirst.Service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.myfirst.Mapper.InstagramVO;
-import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 
 @Service("LoginService")
@@ -26,18 +22,58 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		String result = "";
 		
-		// ID 중복확인
-		UserInfoVO chk = LoginDAO.getUserDuplCheck(vo);
-		if(chk == null)
+		// 회원정보 중복확인
+		UserInfoVO chkID = LoginDAO.getIdDuplCheck(vo);
+		UserInfoVO chkNN = LoginDAO.getNicknameDuplCheck(vo);
+		if((chkID == null) && (chkNN == null))
 		{
 			// 회원가입 insert
 			LoginDAO.setJoinInfo(vo);
 			result = "OK";
 		}
-		else {
+		else
+		{
 			result = "FAIL";
 		}
-		
+				
+		return result;
+	}
+	
+	@Override
+	public String getIdDuplCheck(UserInfoVO vo) {
+		// TODO Auto-generated method stub
+		String result = "";
+
+		// ID 중복확인
+		UserInfoVO chkID = LoginDAO.getIdDuplCheck(vo);
+		if(chkID == null)
+		{
+			result = "OK";
+		}
+		else
+		{
+			result = "ID_FAIL";
+		}
+				
+		return result;
+	}
+	
+	@Override
+	public String getNicknameDuplCheck(UserInfoVO vo) {
+		// TODO Auto-generated method stub
+		String result = "";
+
+		// 닉네임 중복확인
+		UserInfoVO chkNN = LoginDAO.getNicknameDuplCheck(vo);
+		if(chkNN == null)
+		{
+			result = "OK";
+		}
+		else
+		{
+			result = "NN_FAIL";
+		}
+				
 		return result;
 	}
 	
