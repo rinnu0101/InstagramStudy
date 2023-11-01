@@ -29,11 +29,11 @@ public class LoginServiceImpl implements LoginService{
 		{
 			// 회원가입 insert
 			LoginDAO.setJoinInfo(vo);
-			result = "OK";
+			result = "JOIN_OK";
 		}
 		else
 		{
-			result = "FAIL";
+			result = "JOIN_FAIL";
 		}
 				
 		return result;
@@ -48,7 +48,7 @@ public class LoginServiceImpl implements LoginService{
 		UserInfoVO chkID = LoginDAO.getIdDuplCheck(vo);
 		if(chkID == null)
 		{
-			result = "OK";
+			result = "ID_OK";
 		}
 		else
 		{
@@ -67,7 +67,7 @@ public class LoginServiceImpl implements LoginService{
 		UserInfoVO chkNN = LoginDAO.getNicknameDuplCheck(vo);
 		if(chkNN == null)
 		{
-			result = "OK";
+			result = "NN_OK";
 		}
 		else
 		{

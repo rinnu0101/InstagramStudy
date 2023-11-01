@@ -37,9 +37,7 @@
             		return false;
            		}
             	
-            	//값 4개 체크 if문 각 4개
-            	
-            	
+            	//todo 값 4개 체크 if문 각 4개
             	
                 // var user_id = $(".join_ID").find("input").val();
                 // var user_name = $(".join_name").find("input").val();
@@ -62,7 +60,7 @@
 		            {
               			console.log(p);
 		               	console.log("성공");
-		               	if(p == "OK")
+		               	if(p == "JOIN_OK")
 	            	   	{
 		               		alert("회원가입에 성공하셨습니다.");
 		               		window.location.href = "/instagram.do";
@@ -120,12 +118,13 @@
     	            			$(".join_ID").find(".confirm").find(".confirm_error").show();
     		               		return false;
     	            	   	}
-    		               	else
+    		               	/* else
     		               	{
     		               		chkID = true;
-    		               		//$(".join_ID").find(".confirm").find(".confirm_check").show();
-    		            		//$(".join_ID").find(".confirm").find(".confirm_error").hide();
-    		               	}
+    		               		$(".join_ID").find("input").css("color", "black");
+    		               		$(".join_ID").find(".confirm").find(".confirm_check").show();
+    		            		$(".join_ID").find(".confirm").find(".confirm_error").hide();
+    		               	} */
     		            },
     	               	error : function(p)
     	               	{
@@ -138,19 +137,33 @@
 	            	if(pattern.test(value) === true)
 	            	{
 	            		//alert("이메일주소");
+	            		$(".join_ID").find("input").css("color", "black");
 	            		$(".join_ID").find(".confirm").find(".confirm_check").show();
 	            		$(".join_ID").find(".confirm").find(".confirm_error").hide();
 	            	}
 	            	else if(!isNaN(value))
             		{
+	            		//양수 체크
             			if(Math.sign(value)==1)
-            			{            				
-	            			//case 2. 숫자만 있을 경우 10~11자리인지 체크
-	            			if((10 <= value.length) && (value.length <= 11))
+            			{
+            				//case 2. 숫자만 있을 경우 휴대폰번호 유효성 체크
+            				var phoneNumberPattern = /^01([0-9])-?([0-9]{3,4})-?([0-9]{4})$/;
+            				var phoneNumber = value;
+            				
+	            			if(phoneNumberPattern.test(phoneNumber))
 	            			{
 	            				//alert("휴대폰번호");
+	            				chkID = true;
+	            				$(".join_ID").find("input").css("color", "black");
 	            				$(".join_ID").find(".confirm").find(".confirm_check").show();
 	            				$(".join_ID").find(".confirm").find(".confirm_error").hide();
+	            			}
+	            			else
+	            			{
+	            			    alert("id는 휴대폰번호 또는 이메일주소만 가능합니다.");
+	            			    $(".join_ID").find("input").css("color", "red");
+    		               		$(".join_ID").find(".confirm").find(".confirm_check").hide();
+    	            			$(".join_ID").find(".confirm").find(".confirm_error").show();
 	            			}
             			}
             		}
@@ -159,6 +172,7 @@
 	            		//case 3. 나머지는 모두 오류
 	            		chkID = false;
             			alert("id는 휴대폰번호 또는 이메일주소만 가능합니다.");
+            			$(".join_ID").find("input").css("color", "red");
             			$(".join_ID").find(".confirm").find(".confirm_check").hide();
             			$(".join_ID").find(".confirm").find(".confirm_error").show();
             		}
