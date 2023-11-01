@@ -19,14 +19,7 @@
         	//회원가입 정보 입력하기
             function fnInputJoinInfo()
             {
-            	var joinInfo =
-	                {
-	                    'user_id' : $(".join_ID").find("input").val()
-	                ,   'user_name' : $(".join_name").find("input").val()
-	                ,   'user_nickname' : $(".join_nickname").find("input").val()
-	                ,   'user_pw' : $(".join_PW").find("input").val()
-	                }
-
+        		// ID&닉네임 중복체크 오류방지
             	if(!chkID)
            		{
             		return false;
@@ -37,14 +30,42 @@
             		return false;
            		}
             	
-            	//todo 값 4개 체크 if문 각 4개
-            	
-                // var user_id = $(".join_ID").find("input").val();
-                // var user_name = $(".join_name").find("input").val();
-                // var user_nickname = $(".join_nickname").find("input").val();
-                // var user_pw = $(".join_PW").find("input").val();
-                // console.log(user_id, user_name, user_nickname, user_pw);
+            	// 회원정보 공백 체크
+            	var user_id = $(".join_ID").find("input").val();
+                var user_name = $(".join_name").find("input").val();
+                var user_nickname = $(".join_nickname").find("input").val();
+                var user_pw = $(".join_PW").find("input").val();
+                
+                if(!user_id)
+                {
+                	alert("ID를 입력해주세요");
+                	return false;
+                }
+                if(!user_name)
+                {
+                	alert("성명을 입력해주세요");
+                	return false;
+                }
+                if(!user_nickname)
+                {
+                	alert("닉네임을 입력해주세요");
+                	return false;
+                }
+                if(!user_pw)
+                {
+                	alert("비밀번호를 입력해주세요");
+                	return false;
+                }
 
+                // 회원정보 입력 ajax json
+            	var joinInfo =
+	                {
+	                    'user_id' : $(".join_ID").find("input").val()
+	                ,   'user_name' : $(".join_name").find("input").val()
+	                ,   'user_nickname' : $(".join_nickname").find("input").val()
+	                ,   'user_pw' : $(".join_PW").find("input").val()
+	                }
+            	
                 console.log(joinInfo);
                 
                 //GET
