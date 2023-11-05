@@ -13,6 +13,27 @@
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
         <script>
+	      	//새 게시물 레이어팝업 함수
+	        function fnUploadOpen()
+	        {
+	            var oWidth = $("#upload").outerWidth();
+	            var cWidth = $("#upload_layerPopup_contents").width();
+	            var ml = (oWidth-cWidth)/2;
+	
+	            var oHeight = $("#upload").outerHeight();
+	            var cHeight = $("#upload_layerPopup_contents").height();
+	            var mt = (oHeight-cHeight)/2;
+	
+	            $("#upload_layerPopup_contents").css("margin-left", ml);
+	            $("#upload_layerPopup_contents").css("margin-top", mt);
+	            $("#upload").show();
+	        }
+	
+	        function fnUploadClose()
+	        {
+	            $("#upload").hide();
+	        }
+        
             //레이어팝업 함수
             function fnLayerPopupOpen()
             {
@@ -33,10 +54,61 @@
             {
                 $("#layerPopup").hide();
             }
-        </script>
+		</script>
     </head>
 
     <body>
+    	<!-- 새 게시물 업로드 레이어팝업 html-->
+        <div id="upload">
+            <div id="upload_layerPopup_bg" onclick="fnUploadClose();">
+                <div class="layerPopupClose_btn">
+                    <img src="images\icon\close_WT.png">
+                </div>
+            </div>
+
+            <!-- 새 게시물 업로드 레이어팝업 콘텐츠 html-->
+            <div id="upload_layerPopup_contents">
+                <div id="upload_top">
+                    <div id="upload_backstep">
+                        <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
+                    </div>
+                    <div id="new_upload">
+                        	새 게시물 만들기
+                    </div>
+                    <div id="upload_btn">
+                        	공유하기
+                    </div>
+                </div>
+                <div id="upload_main">
+                    <div id="upload_contents"></div>
+                    <div id="upload_options">
+                        <div id="upload_profile">
+                            <div id="upload_profile_img">
+                                <img src="images\profile_img\my_profile.jpg">
+                                <!-- todo : 계정 이미지 불러오기 -->
+                            </div>
+                            <div id="upload_profile_id">
+                                asdfasdfasdfasdf
+                                <!-- todo : 계정 ID 불러오기 -->
+                            </div>
+                        </div>
+                        <div id="upload_text">
+                            <textarea  placeholder="문구를 입력하세요..."></textarea>
+                        </div>
+                        <div id="upload_emoji">
+                            <div id="upload_emoji_btn">
+                                <img src="images\icon\emoji.png">
+                            </div>
+                            <div id="upload_text_charnum"></div>
+                        </div>
+                        <div id="upload_file">
+                            <!-- todo : 파일업로드 구현 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	        
         <!-- 프로필 피드 레이어팝업 html-->
         <div id="layerPopup">
             <div id="feed_layerPopup_bg" onclick="fnLayerPopupClose();">
@@ -86,7 +158,7 @@
                                 asdfasdfasdfasdf
                             </div>
                             <div class="FPCP_text">
-                                본문 텍스트 영역
+                             	   본문 텍스트 영역
                             </div>
                         </div>
                         <div class="FPCP_body_comment">
@@ -97,7 +169,7 @@
                                 lkjlkjlkjlkj
                             </div>
                             <div class="FPCP_text">
-                                댓글 텍스트 영역
+                             	   댓글 텍스트 영역
                             </div>
                         </div>
                     </div>
@@ -129,7 +201,7 @@
                         </div>
                         <div id="FPCP_reply_btn">
                             <!-- todo : 텍스트 없으면 비활성화-->
-                            게시
+                      	      게시
                         </div>
                     </div>
                 </div>
@@ -154,14 +226,14 @@
                                 <img class='main_menu_icon' src="images\icon\search.png"/>
                                 <div id="menu_search">검색</div>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <img class='main_menu_icon' src="images\icon\explore.png"/>
                                 <div id="menu_explore">탐색 탭</div>
-                            </li>
-                            <li>
+                            </li> -->
+                            <!-- <li>
                                 <img class='main_menu_icon' src="images\icon\reels.png"/>
                                 <div id="menu_reels">릴스</div>
-                            </li>
+                            </li> -->
                             <li>
                                 <img class='main_menu_icon' src="images\icon\direct.png"/>
                                 <div id="menu_direct">메시지</div>
@@ -170,7 +242,7 @@
                                 <img class='main_menu_icon' src="images\icon\notice.png"/>
                                 <div id="menu_notice">알림</div>
                             </li>
-                            <li>
+                            <li onclick="fnUploadOpen();">
                                 <img class='main_menu_icon' src="images\icon\upload.png"/>
                                 <div id="menu_upload">만들기</div>
                             </li>

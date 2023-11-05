@@ -14,7 +14,28 @@
         <script src="js/common.js"></script>
         
         <script>
-            //레이어팝업 함수
+        	//새 게시물 레이어팝업 함수
+	        function fnUploadOpen()
+	        {
+	            var oWidth = $("#upload").outerWidth();
+	            var cWidth = $("#upload_layerPopup_contents").width();
+	            var ml = (oWidth-cWidth)/2;
+	
+	            var oHeight = $("#upload").outerHeight();
+	            var cHeight = $("#upload_layerPopup_contents").height();
+	            var mt = (oHeight-cHeight)/2;
+	
+	            $("#upload_layerPopup_contents").css("margin-left", ml);
+	            $("#upload_layerPopup_contents").css("margin-top", mt);
+	            $("#upload").show();
+	        }
+	
+	        function fnUploadClose()
+	        {
+	            $("#upload").hide();
+	        }
+	        
+      		//스토리 레이어팝업 함수
             function fnLayerPopupOpen()
             {
                 var oWidth = $("#layerPopup").outerWidth();
@@ -71,6 +92,57 @@
     </head>
 
     <body>
+    	<!-- 새 게시물 업로드 레이어팝업 html-->
+        <div id="upload">
+            <div id="upload_layerPopup_bg" onclick="fnUploadClose();">
+                <div class="layerPopupClose_btn">
+                    <img src="images\icon\close_WT.png">
+                </div>
+            </div>
+
+            <!-- 새 게시물 업로드 레이어팝업 콘텐츠 html-->
+            <div id="upload_layerPopup_contents">
+                <div id="upload_top">
+                    <div id="upload_backstep">
+                        <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
+                    </div>
+                    <div id="new_upload">
+                        	새 게시물 만들기
+                    </div>
+                    <div id="upload_btn">
+                        	공유하기
+                    </div>
+                </div>
+                <div id="upload_main">
+                    <div id="upload_contents"></div>
+                    <div id="upload_options">
+                        <div id="upload_profile">
+                            <div id="upload_profile_img">
+                                <img src="images\profile_img\my_profile.jpg">
+                                <!-- todo : 계정 이미지 불러오기 -->
+                            </div>
+                            <div id="upload_profile_id">
+                                asdfasdfasdfasdf
+                                <!-- todo : 계정 ID 불러오기 -->
+                            </div>
+                        </div>
+                        <div id="upload_text">
+                            <textarea  placeholder="문구를 입력하세요..."></textarea>
+                        </div>
+                        <div id="upload_emoji">
+                            <div id="upload_emoji_btn">
+                                <img src="images\icon\emoji.png">
+                            </div>
+                            <div id="upload_text_charnum"></div>
+                        </div>
+                        <div id="upload_file">
+                            <!-- todo : 파일업로드 구현 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    	
         <!-- 스토리 레이어팝업 html-->
         <div id="layerPopup">
             <div id="story_layerPopup_bg" onclick="fnLayerPopupClose();">
@@ -154,14 +226,14 @@
                                 <img class='main_menu_icon' src="images\icon\search.png"/>
                                 <div id="menu_search">검색</div>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <img class='main_menu_icon' src="images\icon\explore.png"/>
                                 <div id="menu_explore">탐색 탭</div>
-                            </li>
-                            <li>
+                            </li> -->
+                            <!-- <li>
                                 <img class='main_menu_icon' src="images\icon\reels.png"/>
                                 <div id="menu_reels">릴스</div>
-                            </li>
+                            </li> -->
                             <li>
                                 <img class='main_menu_icon' src="images\icon\direct.png"/>
                                 <div id="menu_direct">메시지</div>
@@ -170,7 +242,7 @@
                                 <img class='main_menu_icon' src="images\icon\notice.png"/>
                                 <div id="menu_notice">알림</div>
                             </li>
-                            <li>
+                            <li onclick="fnUploadOpen();">
                                 <img class='main_menu_icon' src="images\icon\upload.png"/>
                                 <div id="menu_upload">만들기</div>
                             </li>
@@ -190,7 +262,7 @@
                                 <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                                 <div id="moreMenu">
                                     <!-- todo : 더보기 내 메뉴 구현하기 -->
-                                    더 보기
+                                    	더 보기
                                 </div>
                             </li>
                         </ul>
@@ -222,6 +294,14 @@
                                 <li>친구11</li>
                                 <li>친구12</li>
                             </ul>
+                            <div class="story_arrow">
+                                <a href="javascript:;" class="prev" onclick="fnMoveStorySlide(this);">
+                                    <img class='story_arrow_img' src="images\icon\next_WT_L.png">
+                                </a>
+                                <a href="javascript:;" class="next" onclick="fnMoveStorySlide(this);">
+                                    <img class='story_arrow_img' src="images\icon\next_WT_R.png">
+                                </a>
+                            </div>
                         </div>
                         <div id="main_contents_feed">
                             <div class="feed_component">
@@ -257,23 +337,23 @@
                                     </div>
                                 </div>
                                 <div class="comp_like">
-                                    좋아요 <span></span>개
+                                    	좋아요 <span></span>개
                                 </div>
                                 <div class="comp_text">
                                     <!-- todo
                                         - 계정명 DB에서 받아오도록 하기
                                         - 본문 1줄 이상 길어지면 [더 보기]버튼 활성화하여 접어두기 -->
-                                    본문 텍스트 영역
+                                   	 본문 텍스트 영역
                                 </div>
                                 <div class="comp_comment">
                                     <!-- todo
                                         - 댓글 1개 발생시 [댓글 1개 보기]버튼 활성화, 클릭시 팝업 피드에서 댓글 확인
                                         - 댓글 1개 이상 길어지면 [댓글 N개 모두 보기]버튼으로 변경하기
                                         - 댓글 작성자 계정명 기록하기 -->
-                                        댓글 읽기 영역
+                                        	댓글 읽기 영역
                                 </div>
                                 <div class="comp_comment_writing">
-                                    댓글 쓰기 영역
+                                    	댓글 쓰기 영역
                                 </div>
                             </div>
                         
@@ -294,7 +374,7 @@
                             </div>
                             <div id="recommend_otherAccount">
                                 <div id="recommend_otherAccount_seeAllList">
-                                    회원님을 위한 추천
+                                   	 회원님을 위한 추천
                                     <!-- todo : 모두보기 버튼 만들기 -->
                                     <div id="seeAllList_btn">모두 보기</div>
                                 </div>
@@ -320,12 +400,51 @@
                             </div>
                         </div>
                         <div id="main_information_area">
-                            약관 및 정보 텍스트 영역
+                            	약관 및 정보 텍스트 영역
                         </div>
                     </div>
                 </div>
             </div>            
-        </div>
-        
+        </div>        
     </body>
 </html>
+
+<script>
+    //스토리 슬라이드 적용
+    var story = $('#main_contents_story');
+    var storySlider = story.find('.story_friend_ul');
+    var storySlideLis = storySlider.find('li')
+    var storyLisBtn = story.find('.arrow');
+
+    //스토리 ul 너비 계산
+    var liWidth = storySlideLis[0].clientWidth;
+    var sliderWidth = liWidth * storySlideLis.length;
+    storySlider.css("width", sliderWidth + "px");
+
+    let currentIdx = 0; // 슬라이드 현재 번호
+    let translate = 0; // 슬라이드 위치 값
+    let showStoryCnt = 7;
+
+    function fnMoveStorySlide(obj)
+    {
+        var target = $(obj).attr("class");
+        if (target == 'next')
+        {
+            if (currentIdx + showStoryCnt != storySlideLis.length)
+            {
+                translate -= liWidth;
+                storySlider.animate({marginLeft : translate});
+                currentIdx += 1;
+            }
+        }
+        else if (target == 'prev')
+        {
+            if (currentIdx != 0)
+            {
+                translate += liWidth;
+                storySlider.animate({marginLeft : translate});
+                currentIdx -= 1;
+            }
+        }
+    }
+</script>

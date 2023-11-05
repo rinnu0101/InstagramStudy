@@ -19,7 +19,7 @@ li, ul, ol {
 #main_logo{
   width: 287px;
   height: 32px;
-  padding: 25 12 16 12px;
+  padding: 25px 12px 16px 12px;
   margin-bottom: 19px;
   cursor: pointer;
 }
@@ -40,7 +40,7 @@ li, ul, ol {
 #left_area{
     width : 311px;
     height: 895px;
-    padding: 8 12 20 12px;
+    padding: 8px 12px 20px 12px;
 }
 
 #main_middle{
@@ -53,7 +53,7 @@ li, ul, ol {
 #profile_middle_area{
   width: 935px;
   height: 100%;
-  padding: 30 20 0 20px;
+  padding: 30px 20px 0px 20px;
   margin: 0 auto;
 }
 
@@ -81,7 +81,7 @@ li, ul, ol {
     width: 287px;
     height: 24px;
     padding: 12px;
-    margin: 8 0px;
+    margin: 8px 0px;
     cursor: pointer;
 }
 #main_menu ul li:hover{
@@ -116,7 +116,7 @@ li, ul, ol {
     width: 287px;
     height: 24px;
     padding: 12px;
-    margin: 8 0px;
+    margin: 8px 0px;
     cursor: pointer;
 }
 #main_moreMenu ul li:hover{
@@ -184,7 +184,7 @@ li, ul, ol {
   width: 20px;
   height: 20px;
   object-fit: cover;
-  margin: 5 0 0 5px;
+  margin: 5px 0px 0px 5px;
   cursor: pointer;
 }
 
