@@ -114,7 +114,33 @@
                     </div>
                 </div>
                 <div id="upload_main">
-                    <div id="upload_contents"></div>
+                    <div id="upload_contents">
+                    	<ul class="upload_contents_ul">
+                            <li>
+                            	<img class='upload_contents_img' src="images\feed_img\feed1.jpg">
+                            </li>
+                            <li>
+                            	<img class='upload_contents_img' src="images\feed_img\feed2.jpg">
+                            </li>
+                            <li>
+                            	<img class='upload_contents_img' src="images\feed_img\feed3.jpg">
+                            </li>
+                            <li>
+                            	<img class='upload_contents_img' src="images\feed_img\feed4.jpg">
+                            </li>
+                            <li>
+                            	<img class='upload_contents_img' src="images\feed_img\feed5.jpg">
+                            </li>
+                        </ul>
+                        <div class="upload_contents_arrow">
+                            <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
+                                <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
+                            </a>
+                            <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
+                                <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
+                            </a>
+                        </div>
+                    </div>
                     <div id="upload_options">
                         <div id="upload_profile">
                             <div id="upload_profile_img">
@@ -414,36 +440,76 @@
     var story = $('#main_contents_story');
     var storySlider = story.find('.story_friend_ul');
     var storySlideLis = storySlider.find('li')
-    var storyLisBtn = story.find('.arrow');
+    var storyLisBtn = story.find('.story_arrow');
 
     //스토리 ul 너비 계산
-    var liWidth = storySlideLis[0].clientWidth;
-    var sliderWidth = liWidth * storySlideLis.length;
-    storySlider.css("width", sliderWidth + "px");
+    var storyLiWidth = storySlideLis[0].clientWidth;
+    var storySliderWidth = storyLiWidth * storySlideLis.length;
+    storySlider.css("width", storySliderWidth + "px");
 
-    let currentIdx = 0; // 슬라이드 현재 번호
-    let translate = 0; // 슬라이드 위치 값
-    let showStoryCnt = 7;
+    let storyIdx = 0; // 슬라이드 현재 번호
+    let storyTrs = 0; // 슬라이드 위치 값
+    let showStoryCnt = 7; //화면 내 보이는 li 수
 
     function fnMoveStorySlide(obj)
     {
         var target = $(obj).attr("class");
         if (target == 'next')
         {
-            if (currentIdx + showStoryCnt != storySlideLis.length)
+            if (storyIdx + showStoryCnt != storySlideLis.length)
             {
-                translate -= liWidth;
-                storySlider.animate({marginLeft : translate});
-                currentIdx += 1;
+                storyTrs -= storyLiWidth;
+                storySlider.animate({marginLeft : storyTrs});
+                storyIdx += 1;
             }
         }
         else if (target == 'prev')
         {
-            if (currentIdx != 0)
+            if (storyIdx != 0)
             {
-                translate += liWidth;
-                storySlider.animate({marginLeft : translate});
-                currentIdx -= 1;
+                storyTrs += storyLiWidth;
+                storySlider.animate({marginLeft : storyTrs});
+                storyIdx -= 1;
+            }
+        }
+    }
+</script>
+
+<script>
+    //새 게시물 슬라이드 적용
+    var upload = $('#upload_contents');
+    var uploadSlider = upload.find('.upload_contents_ul');
+    var uploadSlideLis = uploadSlider.find('li')
+    var uploadLisBtn = upload.find('.upload_contents_arrow');
+
+    let uploadIdx = 0; // 슬라이드 현재 번호
+    let uploadTrs = 0; // 슬라이드 위치 값
+    let uploadCnt = 1; //화면 내 보이는 li 수
+
+    function fnMoveUploadSlide(obj)
+    {
+        //새 게시물 ul 너비 계산
+        var uploadLiWidth = uploadSlideLis[0].clientWidth;
+        var uploadSliderWidth = uploadLiWidth * uploadSlideLis.length;
+        uploadSlider.css("width", uploadSliderWidth + "px");
+
+        var target = $(obj).attr("class");
+        if (target == 'next')
+        {
+            if (uploadIdx + uploadCnt != uploadSlideLis.length)
+            {
+                uploadTrs -= uploadLiWidth;
+                uploadSlider.animate({marginLeft : uploadTrs});
+                uploadIdx += 1;
+            }
+        }
+        else if (target == 'prev')
+        {
+            if (uploadIdx != 0)
+            {
+                uploadTrs += uploadLiWidth;
+                uploadSlider.animate({marginLeft : uploadTrs});
+                uploadIdx -= 1;
             }
         }
     }

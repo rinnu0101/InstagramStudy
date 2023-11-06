@@ -582,6 +582,35 @@ textarea{
   height: 704px;
   border-right: 1px solid #DBDBDB;
   float: left;
+  overflow: hidden;
+}
+
+.upload_contents_ul li{
+  width: 704px;
+  height: 704px;
+  float: left;
+}
+
+.upload_contents_ul li img{
+  width: 704px;
+  height: 704px;
+}
+
+.upload_contents_arrow{
+  width: 685px;
+  height: 670px;
+  margin: 0px 10px 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+}
+
+.upload_arrow_img{
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 #upload_options{
