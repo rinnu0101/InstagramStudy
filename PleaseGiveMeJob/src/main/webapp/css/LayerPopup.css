@@ -585,6 +585,39 @@ textarea{
   overflow: hidden;
 }
 
+#file_insert{
+  width: 704px;
+  height: 704px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.file_insert_info{
+  width: 400px;
+  height: 30px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file_insert_btn{
+  width: 130px;
+  height: 35px;
+  margin-top: 15px;
+  border-radius: 5px;
+  background-color: #0095F6;
+  font-size: 14px;
+  font-weight: bolder;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .upload_contents_ul li{
   width: 704px;
   height: 704px;

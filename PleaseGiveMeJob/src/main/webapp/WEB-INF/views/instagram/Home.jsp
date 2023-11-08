@@ -115,7 +115,32 @@
                 </div>
                 <div id="upload_main">
                     <div id="upload_contents">
-                    	<ul class="upload_contents_ul">
+                    	<div id="file_insert">
+	                    	<div class="file_insert_info">
+	                    		사진과 동영상을 여기에 끌어다 놓으세요
+	                    	</div>
+	                    	<div class="file_insert_btn" onclick="fnFileSelect();">
+	                    		컴퓨터에서 선택
+	                    	</div>
+	                    	<div style="display:none;">
+                                <input id="input_file" type="file" multiple="multiple" />
+	                    	</div>
+                    	</div>
+                    	<!-- upload file li 받는 ul -->
+                    	<ul class="upload_contents_ul" style="display:none;">
+                        </ul>
+                        <!-- li 슬라이드 버튼 -->
+                        <!-- todo : li 수량이 2개 이상일 때만 버튼 show, 맨 왼쪽/오른쪽 도달시 한쪽 버튼 hide -->
+                        <div class="upload_contents_arrow" style="display:none;">
+                            <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
+                                <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
+                            </a>
+                            <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
+                                <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
+                            </a>
+                        </div>
+                    	<!-- todo : 파일 선택 후 활성화 -->
+                    	<!-- <ul class="upload_contents_ul">
                             <li>
                             	<img class='upload_contents_img' src="images\feed_img\feed1.jpg">
                             </li>
@@ -139,7 +164,7 @@
                             <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
                                 <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div id="upload_options">
                         <div id="upload_profile">
@@ -476,15 +501,29 @@
 </script>
 
 <script>
+	$(document).ready(function()
+    {
+        // input file 파일 첨부시 fileCheck 함수 실행
+        $("#input_file").on("change", fnPrintFileLi);
+    });
+	    
     //새 게시물 슬라이드 적용
-    var upload = $('#upload_contents');
-    var uploadSlider = upload.find('.upload_contents_ul');
-    var uploadSlideLis = uploadSlider.find('li')
-    var uploadLisBtn = upload.find('.upload_contents_arrow');
+    var upload; //= $('#upload_contents');
+    var uploadSlider; //= upload.find('.upload_contents_ul');
+    var uploadSlideLis; //= uploadSlider.find('li')
+    var uploadLisBtn; //= upload.find('.upload_contents_arrow');
 
     let uploadIdx = 0; // 슬라이드 현재 번호
     let uploadTrs = 0; // 슬라이드 위치 값
     let uploadCnt = 1; //화면 내 보이는 li 수
+    
+    function fnMoveInit()
+    {        
+        upload = $('#upload_contents');
+        uploadSlider = upload.find('.upload_contents_ul');
+        uploadSlideLis = uploadSlider.find('li');
+        uploadLisBtn = upload.find('.upload_contents_arrow');
+    }
 
     function fnMoveUploadSlide(obj)
     {
@@ -512,5 +551,62 @@
                 uploadIdx -= 1;
             }
         }
+    }
+    
+    function fnFileSelect()
+    {
+        $('#input_file').click();
+    }
+    
+ 	// 파일 현재 필드 숫자 totalCount랑 비교값
+    var fileCount = 0;
+    // 해당 숫자를 수정하여 전체 업로드 갯수를 정한다
+    var totalCount = 10;
+    // 파일 고유넘버
+    var fileNum = 0;
+    // 첨부파일 배열
+    var content_files = new Array();
+    
+    function fnPrintFileLi(e)
+    {
+        var files = e.target.files;
+
+        //파일 배열 담기
+        var filesArr = Array.prototype.slice.call(files);
+
+        // 파일 개수 확인 및 제한
+        if (fileCount + filesArr.length > totalCount) {
+            $.alert('파일은 최대 '+totalCount+'개까지 업로드 할 수 있습니다.');
+            return;
+        } else {
+            fileCount = fileCount + filesArr.length;
+        }
+            
+        //로딩시작
+        // 각각의 파일 배열담기 및 기타
+        filesArr.forEach(function (f) {     
+            var reader = new FileReader();
+            reader.onload = function (e) { 
+                content_files.push(f);
+                $('.upload_contents_ul').append(            
+                    '<li><img class="upload_contents_img" src="' + e.target.result + '"></li>'
+                );
+                      
+                fileNum ++;
+                if(fileCount == fileNum)
+                {
+                    //로딩끝
+                    $("#file_insert").hide();
+                    $(".upload_contents_ul").show();
+                    $(".upload_contents_arrow").show();
+                    fnMoveInit();
+                }
+            };
+            reader.readAsDataURL(f);
+        });
+        console.log(content_files);
+
+        //초기화 한다.
+        $("#input_file").val("");
     }
 </script>
