@@ -170,11 +170,44 @@ li, ul, ol {
   width: 50000px;
 } */
 
-.story_friend_ul li{
+.story_upload{
   width: 80px;
   height: 85px;
   padding-right: 14px;
   float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.story_upload_btn{
+  width: 80px;
+  height: 65px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.story_upload_btn_img{
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.story_upload_btn_img:hover{
+  opacity: 0.5;
+}
+
+.story_friend_ul li{
+  width: 80px;
+  height: 85px;
+  padding-right: 12px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .story_profile_img{
@@ -188,21 +221,30 @@ li, ul, ol {
 .story_accountName{
   width: 66px;
   height: 16px;
-  font-size: 12px;
   padding-top: 5px;
+  font-size: 12px;
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;  /*... 만들기*/
   white-space: nowrap; 	/*줄바뀜 방지*/
   cursor: pointer;
 }
 
-.story_arrow{
-  width: 630px;
+.story_arrow_prev{
+  width: 20px;
   height: 65px;
   margin: 0px 5px 0px 5px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  position: absolute;
+}
+.story_arrow_next{
+  width: 20px;
+  height: 65px;
+  margin: 0px 5px 0px 5px;
+  right: 680px;
+  display: flex;
+  align-items: center;
   position: absolute;
 }
 

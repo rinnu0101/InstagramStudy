@@ -16,51 +16,52 @@
 	      	//새 게시물 레이어팝업 함수
 	        function fnUploadOpen()
 	        {
-	            var oWidth = $("#upload").outerWidth();
+	            var oWidth = $("#upload_feed").outerWidth();
 	            var cWidth = $("#upload_layerPopup_contents").width();
 	            var ml = (oWidth-cWidth)/2;
 	
-	            var oHeight = $("#upload").outerHeight();
+	            var oHeight = $("#upload_feed").outerHeight();
 	            var cHeight = $("#upload_layerPopup_contents").height();
 	            var mt = (oHeight-cHeight)/2;
 	
 	            $("#upload_layerPopup_contents").css("margin-left", ml);
 	            $("#upload_layerPopup_contents").css("margin-top", mt);
-	            $("#upload").show();
+	            $("#upload_feed").show();
 	        }
 	
 	        function fnUploadClose()
 	        {
-	            $("#upload").hide();
+	            $("#upload_feed").hide();
 	        }
         
             //레이어팝업 함수
             function fnLayerPopupOpen()
             {
-                var oWidth = $("#layerPopup").outerWidth();
+                var oWidth = $("#layerPopup_feed").outerWidth();
                 var cWidth = $("#feed_layerPopup_contents").width();
                 var ml = (oWidth-cWidth)/2;
 
-                var oHeight = $("#layerPopup").outerHeight();
+                var oHeight = $("#layerPopup_feed").outerHeight();
                 var cHeight = $("#feed_layerPopup_contents").height();
                 var mt = (oHeight-cHeight)/2;
 
                 $("#feed_layerPopup_contents").css("margin-left", ml);
                 $("#feed_layerPopup_contents").css("margin-top", mt);
-                $("#layerPopup").show();
+                $("#layerPopup_feed").show();
             }
 
             function fnLayerPopupClose()
             {
-                $("#layerPopup").hide();
+                $("#layerPopup_feed").hide();
+                fnFileReset();
             }
 		</script>
     </head>
 
     <body>
     	<!-- 새 게시물 업로드 레이어팝업 html-->
-        <div id="upload">
-            <div id="upload_layerPopup_bg" onclick="fnUploadClose();">
+        <div id="upload_feed">
+            <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
                 <div class="layerPopupClose_btn">
                     <img src="images\icon\close_WT.png">
                 </div>
@@ -110,7 +111,7 @@
         </div>
 	        
         <!-- 프로필 피드 레이어팝업 html-->
-        <div id="layerPopup">
+        <div id="layerPopup_feed">
             <div id="feed_layerPopup_bg" onclick="fnLayerPopupClose();">
                 <div class="layerPopupClose_btn">
                     <img src="images\icon\close_WT.png">
@@ -262,7 +263,7 @@
                                 <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                                 <div id="moreMenu">
                                     <!-- todo : 더보기 내 메뉴 구현하기 -->
-                                    더 보기
+                                    	더 보기
                                 </div>
                             </li>
                         </ul>
@@ -291,16 +292,16 @@
                                 <ul>
                                     <!-- todo : 게시물, 팔로워, 팔로우 숫자 불러오기 -->
                                     <li>
-                                        게시물<span></span>
+                                        	게시물<span></span>
                                     </li>
                                     <li>
                                         <div id="follower" style="cursor: pointer;">
-                                            팔로워<span></span>
+                                           	 팔로워<span></span>
                                         </div>
                                     </li>
                                     <li>
                                         <div id="follow" style="cursor: pointer;">
-                                            팔로우<span></span>
+                                            	팔로우<span></span>
                                         </div>
                                     </li>
                                 </ul>
@@ -315,7 +316,7 @@
                     <div id="profile_feedMenu">
                         <div id="feedMenu_log">
                             <img style="width: 12px; height: 12px; object-fit: cover; margin-right: 5px;" src="images\icon\grid.png"/>
-                            게시물
+                        	    게시물
                         </div>
                     </div>
 

@@ -8,8 +8,8 @@ textarea{
   resize: none;
 }
 
-/*레이어팝업 css*/
-#layerPopup {
+/*피드 레이어팝업*/
+#layerPopup_feed {
   display: none;
   position: fixed;
   position: absolute;
@@ -20,7 +20,6 @@ textarea{
   z-index: 100;
 }
 
-/*피드 레이어팝업*/
 #feed_layerPopup_bg{
   width: 100%;
   height: 100%;
@@ -285,6 +284,17 @@ textarea{
 }
 
 /*스토리 레이어팝업*/
+#layerPopup_story {
+  display: none;
+  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
 #story_layerPopup_bg{
   width: 100%;
   height: 100%;
@@ -494,7 +504,7 @@ textarea{
 }
 
 /*새 게시물 레이어팝업*/
-#upload {
+#upload_feed {
   display: none;
   position: fixed;
   position: absolute;
@@ -505,7 +515,7 @@ textarea{
   z-index: 100;
 }
 
-#upload_layerPopup_bg{
+.upload_layerPopup_bg{
   width: 100%;
   height: 100%;
   background-color: black;
@@ -586,7 +596,7 @@ textarea{
 }
 
 #file_insert{
-  width: 704px;
+	width: 704px;
   height: 704px;
   display: flex;
   align-items: center;
@@ -595,8 +605,8 @@ textarea{
 }
 
 .file_insert_info{
-  width: 400px;
-  height: 30px;
+	width: 400px;
+	height: 30px;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -604,7 +614,7 @@ textarea{
 }
 
 .file_insert_btn{
-  width: 130px;
+	width: 130px;
   height: 35px;
   margin-top: 15px;
   border-radius: 5px;
@@ -706,4 +716,64 @@ textarea{
 
 #upload_emoji_btn img:hover{
   opacity: 0.5;
+}
+
+/*새 게시물 레이어팝업*/
+#upload_story {
+  display: none;
+  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+#upload_story_contents{
+  width: 450px;
+  height: 800px;
+  margin: 20px 20px 20px 20px;
+  border-radius: 20px;
+  background-color: white;
+  z-index: 10;
+  position: absolute;
+  float: left;
+  overflow: hidden;
+}
+
+#story_file_insert{
+	width: 450px;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.upload_story_contents_ul{
+  width: 450px;
+  height: 800px;
+  float: left;
+}
+
+.upload_story_contents_ul li{
+  width: 450px;
+  height: 800px;
+  float: left;
+}
+
+.upload_story_contents_ul li img{
+  width: 450px;
+  height: 800px;
+}
+
+.upload_story_arrow{
+  width: 430px;
+  height: 780px;
+  margin: 0px 10px 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
 }

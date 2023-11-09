@@ -14,46 +14,70 @@
         <script src="js/common.js"></script>
         
         <script>
-        	//새 게시물 레이어팝업 함수
+	      	//새 게시물 레이어팝업 함수
 	        function fnUploadOpen()
 	        {
-	            var oWidth = $("#upload").outerWidth();
+	            var oWidth = $("#upload_feed").outerWidth();
 	            var cWidth = $("#upload_layerPopup_contents").width();
 	            var ml = (oWidth-cWidth)/2;
 	
-	            var oHeight = $("#upload").outerHeight();
+	            var oHeight = $("#upload_feed").outerHeight();
 	            var cHeight = $("#upload_layerPopup_contents").height();
 	            var mt = (oHeight-cHeight)/2;
 	
 	            $("#upload_layerPopup_contents").css("margin-left", ml);
 	            $("#upload_layerPopup_contents").css("margin-top", mt);
-	            $("#upload").show();
+	            $("#upload_feed").show();
 	        }
 	
 	        function fnUploadClose()
 	        {
-	            $("#upload").hide();
+	            $("#upload_feed").hide();
+	            fnFileReset();
 	        }
-	        
-      		//스토리 레이어팝업 함수
+	
+	        //새 스토리 레이어팝업 함수
+	        function fnStoryUpload()
+	        {
+	            var oWidth = $("#upload_story").outerWidth();
+	            var cWidth = $("#upload_story_contents").width();
+	            var ml = (oWidth-cWidth)/2;
+	
+	            var oHeight = $("#upload_story").outerHeight();
+	            var cHeight = $("#upload_story_contents").height();
+	            var mt = (oHeight-cHeight)/2;
+	
+	            $("#upload_story_contents").css("margin-left", ml);
+	            $("#upload_story_contents").css("margin-top", mt);
+	            $("#upload_story").show();
+	        }
+	
+	        function fnStoryUploadClose()
+	        {
+	            $("#upload_story").hide();
+	            fnStoryFileReset();
+	        }
+
+
+            //스토리 레이어팝업 함수
             function fnLayerPopupOpen()
             {
-                var oWidth = $("#layerPopup").outerWidth();
+                var oWidth = $("#layerPopup_story").outerWidth();
                 var cWidth = $("#story_layerPopup_contents").width();
                 var ml = (oWidth-cWidth)/2;
 
-                var oHeight = $("#layerPopup").outerHeight();
+                var oHeight = $("#layerPopup_story").outerHeight();
                 var cHeight = $("#story_layerPopup_contents").height();
                 var mt = (oHeight-cHeight)/2;
 
                 $("#story_layerPopup_contents").css("margin-left", ml);
                 $("#story_layerPopup_contents").css("margin-top", mt);
-                $("#layerPopup").show();
+                $("#layerPopup_story").show();
             }
 
             function fnLayerPopupClose()
             {
-                $("#layerPopup").hide();
+                $("#layerPopup_story").hide();
             }
 
             //스토리 재생, 멈춤 버튼 이미지 변경
@@ -86,15 +110,13 @@
                     $(".SP_contents_stop_btn").show();
                 }
             }
-
-
         </script>
     </head>
 
     <body>
     	<!-- 새 게시물 업로드 레이어팝업 html-->
-        <div id="upload">
-            <div id="upload_layerPopup_bg" onclick="fnUploadClose();">
+        <div id="upload_feed">
+            <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
                 <div class="layerPopupClose_btn">
                     <img src="images\icon\close_WT.png">
                 </div>
@@ -115,18 +137,18 @@
                 </div>
                 <div id="upload_main">
                     <div id="upload_contents">
-                    	<div id="file_insert">
+                        <div id="file_insert">
 	                    	<div class="file_insert_info">
 	                    		사진과 동영상을 여기에 끌어다 놓으세요
 	                    	</div>
 	                    	<div class="file_insert_btn" onclick="fnFileSelect();">
 	                    		컴퓨터에서 선택
 	                    	</div>
-	                    	<div style="display:none;">
-                                <input id="input_file" type="file" multiple="multiple" />
-	                    	</div>
+                            <div style="display: none;">
+                                <input id="input_file_feed" type="file" multiple="multiple"/>
+                            </div>
                     	</div>
-                    	<!-- upload file li 받는 ul -->
+                        <!-- upload file li 받는 ul -->
                     	<ul class="upload_contents_ul" style="display:none;">
                         </ul>
                         <!-- li 슬라이드 버튼 -->
@@ -139,7 +161,7 @@
                                 <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
                             </a>
                         </div>
-                    	<!-- todo : 파일 선택 후 활성화 -->
+                        <!-- todo : 파일 선택 후 활성화 -->
                     	<!-- <ul class="upload_contents_ul">
                             <li>
                             	<img class='upload_contents_img' src="images\feed_img\feed1.jpg">
@@ -193,9 +215,46 @@
                 </div>
             </div>
         </div>
+
+        <!-- 새 스토리 업로드 레이어팝업 html-->
+        <div id="upload_story">
+            <div class="upload_layerPopup_bg" onclick="fnStoryUploadClose();">
+                <div class="layerPopupClose_btn">
+                    <img src="images\icon\close_WT.png">
+                </div>
+            </div>
+
+            <!-- 새 스토리 콘텐츠 html-->
+            <div id="upload_story_contents">
+                <div id="story_file_insert">
+                    <div class="file_insert_info">
+                        	사진과 동영상을 여기에 끌어다 놓으세요
+                    </div>
+                    <div class="file_insert_btn" onclick="fnStoryFileSelect();">
+                        	컴퓨터에서 선택
+                    </div>
+                    <div style="display:none;">
+                        <input id="input_file_story" type="file" multiple="multiple" />
+                    </div>
+                </div>
+                <!-- upload file li 받는 ul -->
+                <ul class="upload_story_contents_ul" style="display:none;">
+                </ul>
+                <!-- li 슬라이드 버튼 -->
+                <!-- todo : li 수량이 2개 이상일 때만 버튼 show, 맨 왼쪽/오른쪽 도달시 한쪽 버튼 hide -->
+                <div class="upload_story_arrow" style="display:none;">
+                    <a href="javascript:;" class="prev" onclick="fnStoryMoveUploadSlide(this);">
+                        <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
+                    </a>
+                    <a href="javascript:;" class="next" onclick="fnStoryMoveUploadSlide(this);">
+                        <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
+                    </a>
+                </div>
+            </div>
+        </div>
     	
         <!-- 스토리 레이어팝업 html-->
-        <div id="layerPopup">
+        <div id="layerPopup_story">
             <div id="story_layerPopup_bg" onclick="fnLayerPopupClose();">
                 <div class="layerPopupClose_btn">
                     <img src="images\icon\close_WT.png">
@@ -326,7 +385,12 @@
                     <div id="main_contents">
                         <div id="main_contents_story">
                             <ul class="story_friend_ul">
-                                <!-- todo : ul width auto 처리하기 -->
+                                <li class="story_upload" onclick="fnStoryUpload();">
+                                    <div class="story_upload_btn">
+                                        <img class='story_upload_btn_img' src="images\icon\upload.png">
+                                    </div>
+                                    <div class="story_accountName">새 스토리</div>
+                                </li>
                                 <li onclick="fnLayerPopupOpen();">
                                     <div class="story_profile">
                                         <img class='story_profile_img' src="images\profile_img\1.jpg">
@@ -345,14 +409,24 @@
                                 <li>친구11</li>
                                 <li>친구12</li>
                             </ul>
-                            <div class="story_arrow">
+                            <div class="story_arrow_prev">
+                                <a href="javascript:;" class="prev" onclick="fnMoveStorySlide(this);">
+                                    <img class='story_arrow_img' src="images\icon\next_WT_L.png">
+                                </a>
+                            </div>
+                            <div class="story_arrow_next">
+                                <a href="javascript:;" class="next" onclick="fnMoveStorySlide(this);">
+                                    <img class='story_arrow_img' src="images\icon\next_WT_R.png">
+                                </a>
+                            </div>
+                            <!-- <div class="story_arrow">
                                 <a href="javascript:;" class="prev" onclick="fnMoveStorySlide(this);">
                                     <img class='story_arrow_img' src="images\icon\next_WT_L.png">
                                 </a>
                                 <a href="javascript:;" class="next" onclick="fnMoveStorySlide(this);">
                                     <img class='story_arrow_img' src="images\icon\next_WT_R.png">
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                         <div id="main_contents_feed">
                             <div class="feed_component">
@@ -498,13 +572,15 @@
             }
         }
     }
-</script>
 
-<script>
 	$(document).ready(function()
     {
-        // input file 파일 첨부시 fileCheck 함수 실행
-        $("#input_file").on("change", fnPrintFileLi);
+        // 피드 파일 첨부시 fnPrintFileLiFeed 함수 실행
+        $("#input_file_feed").on("change", fnPrintFileLiFeed);
+
+        // 스토리 파일 첨부시 fnPrintFileLiStory 함수 실행
+        $("#input_file_story").on("change", fnPrintFileLiStory);
+
     });
 	    
     //새 게시물 슬라이드 적용
@@ -555,7 +631,7 @@
     
     function fnFileSelect()
     {
-        $('#input_file').click();
+        $('#input_file_feed').click();
     }
     
  	// 파일 현재 필드 숫자 totalCount랑 비교값
@@ -567,7 +643,7 @@
     // 첨부파일 배열
     var content_files = new Array();
     
-    function fnPrintFileLi(e)
+    function fnPrintFileLiFeed(e)
     {
         var files = e.target.files;
 
@@ -589,7 +665,7 @@
             reader.onload = function (e) { 
                 content_files.push(f);
                 $('.upload_contents_ul').append(            
-                    '<li><img class="upload_contents_img" src="' + e.target.result + '"></li>'
+                    '<li><img class="upload_contents_img" src="' + e.target.result + '" style="object-fit: cover;"></li>'
                 );
                       
                 fileNum ++;
@@ -607,6 +683,137 @@
         console.log(content_files);
 
         //초기화 한다.
-        $("#input_file").val("");
+        $("#input_file_feed").val("");
+    }
+    
+    //파일 업로드 초기화
+    function fnFileReset()
+    {
+        fileCount = 0;
+        totalCount = 10;
+        fileNum = 0;
+		content_files = new Array();
+		
+		$("#file_insert").show();
+        $(".upload_contents_ul").hide();
+        $(".upload_contents_arrow").hide();
+        $('.upload_contents_ul').html("");
+    }
+
+    //새 스토리 슬라이드 적용
+    var S_upload;
+    var S_uploadSlider;
+    var S_uploadSlideLis;
+    var S_uploadLisBtn;
+
+    let S_uploadIdx = 0; // 슬라이드 현재 번호
+    let S_uploadTrs = 0; // 슬라이드 위치 값
+    let S_uploadCnt = 1; //화면 내 보이는 li 수
+
+    function fnStoryMoveInit()
+    {        
+        S_upload = $('#upload_story_contents');
+        S_uploadSlider = S_upload.find('.upload_story_contents_ul');
+        S_uploadSlideLis = S_uploadSlider.find('li');
+        S_uploadLisBtn = S_upload.find('.upload_story_arrow');
+    }
+
+    function fnStoryMoveUploadSlide(obj)
+    {
+        //새 스토리 ul 너비 계산
+        var uploadLiWidth = S_uploadSlideLis[0].clientWidth;
+        var uploadSliderWidth = uploadLiWidth * S_uploadSlideLis.length;
+        S_uploadSlider.css("width", uploadSliderWidth + "px");
+
+        var target = $(obj).attr("class");
+        if (target == 'next')
+        {
+            if (S_uploadIdx + S_uploadCnt != S_uploadSlideLis.length)
+            {
+                S_uploadTrs -= uploadLiWidth;
+                S_uploadSlider.animate({marginLeft : S_uploadTrs});
+                S_uploadIdx += 1;
+            }
+        }
+        else if (target == 'prev')
+        {
+            if (S_uploadIdx != 0)
+            {
+                S_uploadTrs += uploadLiWidth;
+                S_uploadSlider.animate({marginLeft : S_uploadTrs});
+                S_uploadIdx -= 1;
+            }
+        }
+    }
+
+    function fnStoryFileSelect()
+    {
+        $('#input_file_story').click();
+    }
+
+    // 파일 현재 필드 숫자 totalCount랑 비교값
+    var S_fileCount = 0;
+    // 해당 숫자를 수정하여 전체 업로드 갯수를 정한다
+    var S_totalCount = 10;
+    // 파일 고유넘버
+    var S_fileNum = 0;
+    // 첨부파일 배열
+    var S_content_files = new Array();
+
+    function fnPrintFileLiStory(e)
+    {
+        var files = e.target.files;
+
+        //파일 배열 담기
+        var filesArr = Array.prototype.slice.call(files);
+
+        // 파일 개수 확인 및 제한
+        if (S_fileCount + filesArr.length > S_totalCount) {
+            $.alert('파일은 최대 '+S_totalCount+'개까지 업로드 할 수 있습니다.');
+            return;
+        } else {
+            S_fileCount = S_fileCount + filesArr.length;
+        }
+            
+        //로딩시작
+        // 각각의 파일 배열담기 및 기타
+        filesArr.forEach(function (f) {     
+            var reader = new FileReader();
+            reader.onload = function (e) { 
+                S_content_files.push(f);
+                $('.upload_story_contents_ul').append(            
+                    '<li><img class="upload_story_img" src="' + e.target.result + '" style="object-fit: cover;"></li>'
+                );
+                      
+                S_fileNum ++;
+                if(S_fileCount == S_fileNum)
+                {
+                    //로딩끝
+                    $("#story_file_insert").hide();
+                    $(".upload_story_contents_ul").show();
+                    $(".upload_story_arrow").show();
+                    fnStoryMoveInit();
+                }
+            };
+            reader.readAsDataURL(f);
+        });
+        console.log(S_content_files);
+
+        //초기화 한다.
+        $("#input_file_story").val("");
+    }
+    
+    //파일 업로드 초기화
+    function fnStoryFileReset()
+    {
+        S_fileCount = 0;
+        S_totalCount = 10;
+        S_fileNum = 0;
+		S_content_files = new Array();
+		
+		$("#story_file_insert").show();
+        $(".upload_story_contents_ul").hide();
+        $(".upload_story_arrow").hide();
+        $('.upload_story_contents_ul').html("");
     }
 </script>
