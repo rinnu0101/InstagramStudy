@@ -7,6 +7,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
@@ -20,6 +21,7 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 
+	//인스타 스토리 가져오기
 	public List<UserInfoVO> getStoryList(UserInfoVO vo) {
 		return getSqlSession().selectList("InstagramDAO.getStoryList", vo);
 	}
@@ -28,5 +30,10 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	}
 	public void setViewStory(StoryVO vo) {
 		getSqlSession().insert("InstagramDAO.setViewStory", vo);
+	}
+	
+	//새 피드 저장하기
+	public void setSaveNewFeed(FeedListVO vo) {
+		getSqlSession().insert("InstagramDAO.setSaveNewFeed", vo);		
 	}
 }

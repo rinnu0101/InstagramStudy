@@ -5,6 +5,7 @@
 
 <!-- mapper 자체가 DAO 분리되어 나온 개념이기 때문에 namespace는 DAO 명을 따라가는 경우가 일반적임 -->
 <mapper namespace="InstagramDAO">
+	<!-- 인스타 스토리 가져오기 -->
  	<select id="getStoryList" parameterType="userinfo" resultType="userinfo">
 		SELECT idx
  			 , user_name
@@ -44,4 +45,23 @@
 			)
 		 		
  	</insert>
+ 	
+ 	<!-- 새 피드 저장하기 -->
+ 	<insert id="setSaveNewFeed" parameterType="feedlist">
+	 	INSERT INTO instagram.feed_list
+			(
+				user_idx
+				, feed_contents
+				, regdate
+				, use_yn
+			)
+		VALUES
+			(
+				#{user_idx}
+				, #{feed_contents}
+				, NOW()
+				, "Y"
+			) 	
+ 	</insert>
+ 	
 </mapper>

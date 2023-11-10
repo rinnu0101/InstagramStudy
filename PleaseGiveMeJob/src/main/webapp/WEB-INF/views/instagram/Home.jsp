@@ -14,6 +14,32 @@
         <script src="js/common.js"></script>
         
         <script>
+	      	//새 게시물 저장 함수
+	        function fnSaveNewFeed()
+	        {
+	            var saveNewFeed =
+	           		{
+	           			'feed_contents' : $("#upload_text").find("textarea").val()
+	           		};
+	
+	            $.ajax({
+	                url : "/setSaveNewFeed.do",
+	            	type : "POST",
+	            	data : saveNewFeed,
+	            	success : function(p)
+	                {
+	            		if(p == "OK")
+            			{
+	 		               console.log("성공");	            			
+            			}
+		            },
+	               	error : function(p)
+	               	{
+			           console.log("실패");		                  
+	               	}
+	            });
+	        }
+        
 	      	//새 게시물 레이어팝업 함수
 	        function fnUploadOpen()
 	        {
@@ -131,7 +157,7 @@
                     <div id="new_upload">
                         	새 게시물 만들기
                     </div>
-                    <div id="upload_btn">
+                    <div id="upload_btn" onclick="fnSaveNewFeed();">
                         	공유하기
                     </div>
                 </div>

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
@@ -39,42 +40,58 @@ import com.portfolio.myfirst.Mapper.UserInfoVO;
 import com.portfolio.myfirst.Service.InstagramService;
 import com.portfolio.myfirst.Service.LoginService;
 
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+
 @Controller
 public class LoginController {
 
 	@Autowired
-	LoginService Service;
-	
+	LoginService Service;	
+		
 	@RequestMapping(value="/setJoinInfo.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String setJoinInfo(UserInfoVO vo) throws JsonProcessingException {
-	//ÀÚ¹Ù¿¡¼­ JSON °´Ã¼·Î º¯È¯ÇØÁÖ´Â ¶óÀÌºê·¯¸®
+	//ìë°”ì—ì„œ JSON ê°ì²´ë¡œ ë³€í™˜í•´ì£¼ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬
 		return Service.setJoinInfo(vo);
 	}
 	@RequestMapping(value="/getIdDuplCheck.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getIdDuplCheck(UserInfoVO vo) throws JsonProcessingException {
-		//ÀÚ¹Ù¿¡¼­ JSON °´Ã¼·Î º¯È¯ÇØÁÖ´Â ¶óÀÌºê·¯¸®
-			return Service.getIdDuplCheck(vo);
+		//ìë°”ì—ì„œ JSON ê°ì²´ë¡œ ë³€í™˜í•´ì£¼ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬
+		return Service.getIdDuplCheck(vo);
 	}
 	@RequestMapping(value="/getNicknameDuplCheck.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getNicknameDuplCheck(UserInfoVO vo) throws JsonProcessingException {
-		//ÀÚ¹Ù¿¡¼­ JSON °´Ã¼·Î º¯È¯ÇØÁÖ´Â ¶óÀÌºê·¯¸®
+		//ìë°”ì—ì„œ JSON ê°ì²´ë¡œ ë³€í™˜í•´ì£¼ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬
 			return Service.getNicknameDuplCheck(vo);
 	}
-	
+
 	@RequestMapping(value="/getLoginInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public UserInfoVO getLoginInfo(UserInfoVO vo) throws JsonProcessingException {
+	public UserInfoVO getLoginInfo(UserInfoVO vo, HttpServletRequest request) throws JsonProcessingException {
 		//System.out.println(vo.getUser_id());
 		//System.out.println(vo.getUser_pw());
-		System.out.println("ÄÁÆ®·Ñ·¯ ½ÃÀÛ");
+		System.out.println("ì»¨íŠ¸ë¡¤ëŸ¬ ì‹œì‘");
 		UserInfoVO result = Service.getLoginInfo(vo);
+		
+		if(result.getUser_id() != null)
+		{
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user_id", result.getUser_id()); 
+			session.setAttribute("user_idx", result.getUser_idx()); 
+		}
 		System.out.println(result);
 		return result;
 	}
-	
+
 	@RequestMapping(value="/getFindPwInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public UserInfoVO getFindPwInfo(UserInfoVO vo) throws JsonProcessingException {
@@ -93,32 +110,32 @@ public class LoginController {
 		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
 		String fileRoot;
 		try {
-			// ÆÄÀÏÀÌ ÀÖÀ»¶§ Åº´Ù.
+			// íŒŒì¼ì´ ìˆì„ë•Œ íƒ„ë‹¤.
 			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
 				
 				for(MultipartFile file:multipartFile) {
 					fileRoot = "D:/uploads/";
 					System.out.println(fileRoot);
 					
-					String originalFileName = file.getOriginalFilename();	//¿À¸®Áö³¯ ÆÄÀÏ¸í
-					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//ÆÄÀÏ È®ÀåÀÚ
-					String savedFileName = UUID.randomUUID() + extension;	//ÀúÀåµÉ ÆÄÀÏ ¸í
+					String originalFileName = file.getOriginalFilename();	//ì˜¤ë¦¬ì§€ë‚  íŒŒì¼ëª…
+					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//íŒŒì¼ í™•ì¥ì
+					String savedFileName = UUID.randomUUID() + extension;	//ì €ì¥ë  íŒŒì¼ ëª…
 					
 					File targetFile = new File(fileRoot + savedFileName);	
 					try {
 						InputStream fileStream = file.getInputStream();
-						FileUtils.copyInputStreamToFile(fileStream, targetFile); //ÆÄÀÏ ÀúÀå
+						FileUtils.copyInputStreamToFile(fileStream, targetFile); //íŒŒì¼ ì €ì¥
 						
 					} catch (Exception e) {
-						//ÆÄÀÏ»èÁ¦
-						FileUtils.deleteQuietly(targetFile);	//ÀúÀåµÈ ÇöÀç ÆÄÀÏ »èÁ¦
+						//íŒŒì¼ì‚­ì œ
+						FileUtils.deleteQuietly(targetFile);	//ì €ì¥ëœ í˜„ì¬ íŒŒì¼ ì‚­ì œ
 						e.printStackTrace();
 						break;
 					}
 				}
 				strResult = "{ \"result\":\"OK\" }";
 			}
-			// ÆÄÀÏ ¾Æ¹«°Íµµ Ã·ºÎ ¾ÈÇßÀ»¶§ Åº´Ù.(°Ô½ÃÆÇÀÏ¶§, ¾÷·Îµå ¾øÀÌ ±ÛÀ» µî·ÏÇÏ´Â°æ¿ì)
+			// íŒŒì¼ ì•„ë¬´ê²ƒë„ ì²¨ë¶€ ì•ˆí–ˆì„ë•Œ íƒ„ë‹¤.(ê²Œì‹œíŒì¼ë•Œ, ì—…ë¡œë“œ ì—†ì´ ê¸€ì„ ë“±ë¡í•˜ëŠ”ê²½ìš°)
 			else
 				strResult = "{ \"result\":\"OK\" }";
 		}catch(Exception e){

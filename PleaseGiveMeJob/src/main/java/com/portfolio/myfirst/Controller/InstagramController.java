@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
@@ -39,7 +42,8 @@ public class InstagramController {
 	}
 	
 	@RequestMapping(value="/home.do")
-	public ModelAndView instagramHome(ModelAndView mav) {		
+	public ModelAndView instagramHome(ModelAndView mav, HttpSession session) {	
+		String loginUserId = (String) session.getAttribute("user_id");
 		mav.setViewName("/instagram/Home");
 		return mav;
 	}
@@ -56,6 +60,15 @@ public class InstagramController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/setSaveNewFeed.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String setSaveNewFeed(FeedListVO vo, HttpSession session) throws JsonProcessingException {
+	//자바에서 JSON 객체로 변환해주는 라이브러리
+		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+		vo.setUser_idx(user_idx);
+		Service.setSaveNewFeed(vo);
+		return "OK";
+	}
 	
 	
 	
