@@ -777,3 +777,21 @@ textarea{
   justify-content: space-between;
   position: absolute;
 }
+
+#upload_story_btn{
+  width: 100px;
+  height: 40px;
+  margin-top: 730px;
+  margin-left: 175px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bolder;
+  color: black;
+  background-color: white;
+  z-index: 15;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

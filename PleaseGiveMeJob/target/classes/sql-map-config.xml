@@ -8,6 +8,7 @@
 		<typeAlias type="com.portfolio.myfirst.Mapper.UserInfoVO" alias="userinfo"></typeAlias>
 		<typeAlias type="com.portfolio.myfirst.Mapper.StoryVO" alias="story"></typeAlias>
 		<typeAlias type="com.portfolio.myfirst.Mapper.FeedListVO" alias="feedlist"></typeAlias>
+		<typeAlias type="com.portfolio.myfirst.Mapper.StoryListVO" alias="storylist"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/instagram-mapping.xml" />

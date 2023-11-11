@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
+import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 import com.portfolio.myfirst.Service.InstagramService;
@@ -60,6 +61,7 @@ public class InstagramController {
 		return mav;
 	}
 	
+	//새 게시물 저장
 	@RequestMapping(value="/setSaveNewFeed.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String setSaveNewFeed(FeedListVO vo, HttpSession session) throws JsonProcessingException {
@@ -68,6 +70,17 @@ public class InstagramController {
 		vo.setUser_idx(user_idx);
 		Service.setSaveNewFeed(vo);
 		return "OK";
+	}
+	
+	//새 스토리 저장
+	@RequestMapping(value="/setSaveNewStory.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String setSaveNewStory(StoryListVO vo, HttpSession session) throws JsonProcessingException {
+	//자바에서 JSON 객체로 변환해주는 라이브러리
+		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+		vo.setUser_idx(user_idx);
+		Service.setSaveNewStory(vo);
+		return "OK";s
 	}
 	
 	

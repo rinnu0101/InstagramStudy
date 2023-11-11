@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
+import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 
@@ -15,4 +16,7 @@ public interface InstagramService {
 	
 	//새 피드 저장하기
 	public void setSaveNewFeed(FeedListVO vo);
+	
+	//새 스토리 저장하기
+	public void setSaveNewStory(StoryListVO vo);
 }

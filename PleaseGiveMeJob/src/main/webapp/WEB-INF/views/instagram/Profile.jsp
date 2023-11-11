@@ -12,50 +12,7 @@
         <link rel="stylesheet" href="css/LayerPopup.css">
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
-        <script>
-	      	//새 게시물 레이어팝업 함수
-	        function fnUploadOpen()
-	        {
-	            var oWidth = $("#upload_feed").outerWidth();
-	            var cWidth = $("#upload_layerPopup_contents").width();
-	            var ml = (oWidth-cWidth)/2;
-	
-	            var oHeight = $("#upload_feed").outerHeight();
-	            var cHeight = $("#upload_layerPopup_contents").height();
-	            var mt = (oHeight-cHeight)/2;
-	
-	            $("#upload_layerPopup_contents").css("margin-left", ml);
-	            $("#upload_layerPopup_contents").css("margin-top", mt);
-	            $("#upload_feed").show();
-	        }
-	
-	        function fnUploadClose()
-	        {
-	            $("#upload_feed").hide();
-	        }
         
-            //레이어팝업 함수
-            function fnLayerPopupOpen()
-            {
-                var oWidth = $("#layerPopup_feed").outerWidth();
-                var cWidth = $("#feed_layerPopup_contents").width();
-                var ml = (oWidth-cWidth)/2;
-
-                var oHeight = $("#layerPopup_feed").outerHeight();
-                var cHeight = $("#feed_layerPopup_contents").height();
-                var mt = (oHeight-cHeight)/2;
-
-                $("#feed_layerPopup_contents").css("margin-left", ml);
-                $("#feed_layerPopup_contents").css("margin-top", mt);
-                $("#layerPopup_feed").show();
-            }
-
-            function fnLayerPopupClose()
-            {
-                $("#layerPopup_feed").hide();
-                fnFileReset();
-            }
-		</script>
     </head>
 
     <body>
@@ -76,12 +33,37 @@
                     <div id="new_upload">
                         	새 게시물 만들기
                     </div>
-                    <div id="upload_btn">
+                    <div id="upload_btn" onclick="fnSaveNewFeed();">
                         	공유하기
                     </div>
                 </div>
                 <div id="upload_main">
-                    <div id="upload_contents"></div>
+                    <div id="upload_contents">
+                    	<div id="file_insert">
+	                    	<div class="file_insert_info">
+	                    		사진과 동영상을 여기에 끌어다 놓으세요
+	                    	</div>
+	                    	<div class="file_insert_btn" onclick="fnFileSelect();">
+	                    		컴퓨터에서 선택
+	                    	</div>
+                            <div style="display: none;">
+                                <input id="input_file_feed" type="file" multiple="multiple"/>
+                            </div>
+                    	</div>
+                        <!-- upload file li 받는 ul -->
+                    	<ul class="upload_contents_ul" style="display:none;">
+                        </ul>
+                        <!-- li 슬라이드 버튼 -->
+                        <!-- todo : li 수량이 2개 이상일 때만 버튼 show, 맨 왼쪽/오른쪽 도달시 한쪽 버튼 hide -->
+                        <div class="upload_contents_arrow" style="display:none;">
+                            <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
+                                <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
+                            </a>
+                            <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
+                                <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
+                            </a>
+                        </div>
+                    </div>
                     <div id="upload_options">
                         <div id="upload_profile">
                             <div id="upload_profile_img">
@@ -380,7 +362,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </body>
 </html>
+
+<script src="js/upload.js"></script>
+<script>	    
+    $(document).ready(function(){
+        init();
+    });
+</script>

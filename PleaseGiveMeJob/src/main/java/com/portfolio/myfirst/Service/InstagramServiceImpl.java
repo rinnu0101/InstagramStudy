@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
+import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 
@@ -30,5 +31,10 @@ public class InstagramServiceImpl implements InstagramService{
 	//새 피드 저장하기
 	public void setSaveNewFeed(FeedListVO vo) {
 		InstagramDAO.setSaveNewFeed(vo);		
+	}
+	
+	//새 스토리 저장하기
+	public void setSaveNewStory(StoryListVO vo) {
+		InstagramDAO.setSaveNewStory(vo);		
 	}
 }

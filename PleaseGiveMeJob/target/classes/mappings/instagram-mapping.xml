@@ -64,4 +64,20 @@
 			) 	
  	</insert>
  	
+ 	<!-- 새 스토리 저장하기 -->
+ 	<insert id="setSaveNewStory" parameterType="storylist">
+	 	INSERT INTO instagram.story_list
+			(
+				user_idx
+				, regdate
+				, use_yn
+			)
+		VALUES
+			(
+				#{user_idx}
+				, NOW()
+				, #{use_yn}
+			);
+ 	</insert>
+ 	
 </mapper>
