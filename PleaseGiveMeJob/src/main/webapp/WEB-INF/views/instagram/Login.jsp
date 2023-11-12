@@ -151,7 +151,8 @@
                     </div>
                 </div>
             </div>
-           	<!-- 파일 업로드 테스트 -->
+            
+           	<!-- 파일 업로드 테스트 --> 
             <!-- <form action="fileTest.do" method="post">
 	            <input type="file" name="uploadFiles" multiple="multiple">
 	            <input type="submit" value="전달">
@@ -176,17 +177,16 @@
             <div class="main_footer"></div>
         </div>
     </body>
+    
 	<!-- 파일업로드 test -->
-	<!-- <script>
+	<script>
 	$(document).ready(function()
-			// input file 파일 첨부시 fileCheck 함수 실행
-			{
-				$("#input_file").on("change", fileCheck);
-			});
+	// input file 파일 첨부시 fileCheck 함수 실행
+	{
+		$("#input_file").on("change", fileCheck);
+	});
 	
-	/**
-	 * 첨부파일로직
-	 */
+	/* 첨부파일로직 */
 	$(function () {
 	    $('#btn-upload').click(function (e) {
 	        e.preventDefault();
@@ -282,5 +282,5 @@
 	   	    });
 	   	    return false;
 		}
-	</script> -->
+	</script>
 </html>

@@ -42,27 +42,37 @@ function fnUploadClose()
 //새 게시물 저장 함수
 function fnSaveNewFeed()
 {
-    var saveNewFeed =
-   		{
-   			'feed_contents' : $("#upload_text").find("textarea").val()
-   		};
+    //파일 업로드
+    var form = $("form")[0];
+    var formData = new FormData(form);
+    
+    for (var x = 0; x < content_files.length; x++)
+    {
+        formData.append("feed_file", content_files[x]);
+    }
+
+    //본문 텍스트 업로드
+    formData.append("feed_contents", $("#upload_text").find("textarea").val());
 
     $.ajax({
-        url : "/setSaveNewFeed.do",
-    	type : "POST",
-    	data : saveNewFeed,
-    	success : function(p)
-        {
-    		if(p == "OK")
-			{
-               console.log("성공");	            			
-			}
+        type: "POST",
+        enctype: "multipart/form-data",
+        //url: "/file-upload.do",
+        url: "/setSaveNewFeed.do",
+        data : formData,
+        processData: false,
+        contentType: false,
+        success: function (p) {
+          if(p == "OK"){
+              alert("파일업로드 성공");
+       } else
+           alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
         },
-       	error : function(p)
-       	{
-           console.log("실패");		                  
-       	}
-    });
+        error: function (xhr, status, error) {
+            alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+            return false;
+        }
+      });
 }
 
 //새 스토리 레이어팝업 함수

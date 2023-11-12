@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- css ∏Æº¬ -->
+        <!-- css Î¶¨ÏÖã -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <!-- ¡¶¿Ãƒı∏Æ ∫“∑Øø¿±‚ -->
+        <!-- Ï†úÏù¥ÏøºÎ¶¨ Î∂àÎü¨Ïò§Í∏∞ -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- Ω∫≈∏¿œΩ√∆Æ ¿˚øÎ -->
+        <!-- Ïä§ÌÉÄÏùºÏãúÌä∏ Ï†ÅÏö© -->
         <link rel="stylesheet" href="css/Home.css">
         <link rel="stylesheet" href="css/LayerPopup.css">
         
@@ -16,7 +16,10 @@
     </head>
 
     <body>
-    	<!-- ªı ∞‘Ω√π∞ æ˜∑ŒµÂ ∑π¿ÃæÓ∆Àæ˜ html-->
+	    <!-- ÌååÏùº Ï†ÑÏÜ°Ïö© form -->
+    	<form name="tempForm" id="tempForm"></form>
+    
+    	<!-- ÏÉà Í≤åÏãúÎ¨º ÏóÖÎ°úÎìú Î†àÏù¥Ïñ¥ÌåùÏóÖ html-->
         <div id="upload_feed">
             <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
                 <div class="layerPopupClose_btn">
@@ -24,37 +27,37 @@
                 </div>
             </div>
 
-            <!-- ªı ∞‘Ω√π∞ æ˜∑ŒµÂ ∑π¿ÃæÓ∆Àæ˜ ƒ‹≈Ÿ√˜ html-->
+            <!-- ÏÉà Í≤åÏãúÎ¨º ÏóÖÎ°úÎìú Î†àÏù¥Ïñ¥ÌåùÏóÖ ÏΩòÌÖêÏ∏† html-->
             <div id="upload_layerPopup_contents">
                 <div id="upload_top">
                     <div id="upload_backstep">
                         <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
                     </div>
                     <div id="new_upload">
-                        	ªı ∞‘Ω√π∞ ∏∏µÈ±‚
+                        	ÏÉà Í≤åÏãúÎ¨º ÎßåÎì§Í∏∞
                     </div>
                     <div id="upload_btn" onclick="fnSaveNewFeed();">
-                        	∞¯¿Ø«œ±‚
+                        	Í≥µÏú†ÌïòÍ∏∞
                     </div>
                 </div>
                 <div id="upload_main">
                     <div id="upload_contents">
                         <div id="file_insert">
 	                    	<div class="file_insert_info">
-	                    		ªÁ¡¯∞˙ µøøµªÛ¿ª ø©±‚ø° ≤¯æÓ¥Ÿ ≥ı¿∏ººø‰
+	                    		ÏÇ¨ÏßÑÍ≥º ÎèôÏòÅÏÉÅÏùÑ Ïó¨Í∏∞Ïóê ÎÅåÏñ¥Îã§ ÎÜìÏúºÏÑ∏Ïöî
 	                    	</div>
 	                    	<div class="file_insert_btn" onclick="fnFileSelect();">
-	                    		ƒƒ«ª≈Õø°º≠ º±≈√
+	                    		Ïª¥Ìì®ÌÑ∞ÏóêÏÑú ÏÑ†ÌÉù
 	                    	</div>
                             <div style="display: none;">
                                 <input id="input_file_feed" type="file" multiple="multiple"/>
                             </div>
                     	</div>
-                        <!-- upload file li πﬁ¥¬ ul -->
+                        <!-- upload file li Î∞õÎäî ul -->
                     	<ul class="upload_contents_ul" style="display:none;">
                         </ul>
-                        <!-- li ΩΩ∂Û¿ÃµÂ πˆ∆∞ -->
-                        <!-- todo : li ºˆ∑Æ¿Ã 2∞≥ ¿ÃªÛ¿œ ∂ß∏∏ πˆ∆∞ show, ∏« øﬁ¬ /ø¿∏•¬  µµ¥ﬁΩ√ «—¬  πˆ∆∞ hide -->
+                        <!-- li Ïä¨ÎùºÏù¥Îìú Î≤ÑÌäº -->
+                        <!-- todo : li ÏàòÎüâÏù¥ 2Í∞ú Ïù¥ÏÉÅÏùº ÎïåÎßå Î≤ÑÌäº show, Îß® ÏôºÏ™Ω/Ïò§Î•∏Ï™Ω ÎèÑÎã¨Ïãú ÌïúÏ™Ω Î≤ÑÌäº hide -->
                         <div class="upload_contents_arrow" style="display:none;">
                             <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
                                 <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
@@ -63,7 +66,7 @@
                                 <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
                             </a>
                         </div>
-                        <!-- todo : ∆ƒ¿œ º±≈√ »ƒ »∞º∫»≠ -->
+                        <!-- todo : ÌååÏùº ÏÑ†ÌÉù ÌõÑ ÌôúÏÑ±Ìôî -->
                     	<!-- <ul class="upload_contents_ul">
                             <li>
                             	<img class='upload_contents_img' src="images\feed_img\feed1.jpg">
@@ -94,15 +97,15 @@
                         <div id="upload_profile">
                             <div id="upload_profile_img">
                                 <img src="images\profile_img\my_profile.jpg">
-                                <!-- todo : ∞Ë¡§ ¿ÃπÃ¡ˆ ∫“∑Øø¿±‚ -->
+                                <!-- todo : Í≥ÑÏ†ï Ïù¥ÎØ∏ÏßÄ Î∂àÎü¨Ïò§Í∏∞ -->
                             </div>
                             <div id="upload_profile_id">
                                 asdfasdfasdfasdf
-                                <!-- todo : ∞Ë¡§ ID ∫“∑Øø¿±‚ -->
+                                <!-- todo : Í≥ÑÏ†ï ID Î∂àÎü¨Ïò§Í∏∞ -->
                             </div>
                         </div>
                         <div id="upload_text">
-                            <textarea  placeholder="πÆ±∏∏¶ ¿‘∑¬«œººø‰..."></textarea>
+                            <textarea  placeholder="Î¨∏Íµ¨Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî..."></textarea>
                         </div>
                         <div id="upload_emoji">
                             <div id="upload_emoji_btn">
@@ -111,14 +114,14 @@
                             <div id="upload_text_charnum"></div>
                         </div>
                         <div id="upload_file">
-                            <!-- todo : ∆ƒ¿œæ˜∑ŒµÂ ±∏«ˆ -->
+                            <!-- todo : ÌååÏùºÏóÖÎ°úÎìú Íµ¨ÌòÑ -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ªı Ω∫≈‰∏Æ æ˜∑ŒµÂ ∑π¿ÃæÓ∆Àæ˜ html-->
+        <!-- ÏÉà Ïä§ÌÜ†Î¶¨ ÏóÖÎ°úÎìú Î†àÏù¥Ïñ¥ÌåùÏóÖ html-->
         <div id="upload_story">
             <div class="upload_layerPopup_bg" onclick="fnStoryUploadClose();">
                 <div class="layerPopupClose_btn">
@@ -126,24 +129,24 @@
                 </div>
             </div>
 
-            <!-- ªı Ω∫≈‰∏Æ ƒ‹≈Ÿ√˜ html-->
+            <!-- ÏÉà Ïä§ÌÜ†Î¶¨ ÏΩòÌÖêÏ∏† html-->
             <div id="upload_story_contents">
                 <div id="story_file_insert">
                     <div class="file_insert_info">
-                        	ªÁ¡¯∞˙ µøøµªÛ¿ª ø©±‚ø° ≤¯æÓ¥Ÿ ≥ı¿∏ººø‰
+                        	ÏÇ¨ÏßÑÍ≥º ÎèôÏòÅÏÉÅÏùÑ Ïó¨Í∏∞Ïóê ÎÅåÏñ¥Îã§ ÎÜìÏúºÏÑ∏Ïöî
                     </div>
                     <div class="file_insert_btn" onclick="fnStoryFileSelect();">
-                        	ƒƒ«ª≈Õø°º≠ º±≈√
+                        	Ïª¥Ìì®ÌÑ∞ÏóêÏÑú ÏÑ†ÌÉù
                     </div>
                     <div style="display:none;">
                         <input id="input_file_story" type="file" multiple="multiple" />
                     </div>
                 </div>
-                <!-- upload file li πﬁ¥¬ ul -->
+                <!-- upload file li Î∞õÎäî ul -->
                 <ul class="upload_story_contents_ul" style="display:none;">
                 </ul>
-                <!-- li ΩΩ∂Û¿ÃµÂ πˆ∆∞ -->
-                <!-- todo : li ºˆ∑Æ¿Ã 2∞≥ ¿ÃªÛ¿œ ∂ß∏∏ πˆ∆∞ show, ∏« øﬁ¬ /ø¿∏•¬  µµ¥ﬁΩ√ «—¬  πˆ∆∞ hide -->
+                <!-- li Ïä¨ÎùºÏù¥Îìú Î≤ÑÌäº -->
+                <!-- todo : li ÏàòÎüâÏù¥ 2Í∞ú Ïù¥ÏÉÅÏùº ÎïåÎßå Î≤ÑÌäº show, Îß® ÏôºÏ™Ω/Ïò§Î•∏Ï™Ω ÎèÑÎã¨Ïãú ÌïúÏ™Ω Î≤ÑÌäº hide -->
                 <div class="upload_story_arrow" style="display:none;">
                     <a href="javascript:;" class="prev" onclick="fnStoryMoveUploadSlide(this);">
                         <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
@@ -153,12 +156,12 @@
                     </a>
                 </div>
                 <div id="upload_story_btn" style="display:none;" onclick="fnSaveNewStory();">
-                    	≥ª Ω∫≈‰∏Æ
+                    	ÎÇ¥ Ïä§ÌÜ†Î¶¨
                 </div>
             </div>
         </div>
     	
-        <!-- Ω∫≈‰∏Æ ∑π¿ÃæÓ∆Àæ˜ html-->
+        <!-- Ïä§ÌÜ†Î¶¨ Î†àÏù¥Ïñ¥ÌåùÏóÖ html-->
         <div id="layerPopup_story">
             <div id="story_layerPopup_bg" onclick="fnLayerPopupClose();">
                 <div class="layerPopupClose_btn">
@@ -166,7 +169,7 @@
                 </div>
             </div>
 
-            <!-- Ω∫≈‰∏Æ ∑π¿ÃæÓ∆Àæ˜ ¡¬øÏπˆ∆∞-->
+            <!-- Ïä§ÌÜ†Î¶¨ Î†àÏù¥Ïñ¥ÌåùÏóÖ Ï¢åÏö∞Î≤ÑÌäº-->
             <div class="Story_Next_btn_L">
                 <img class="Story_Next_btn" src="images\icon\next_WT_L.png">
             </div>
@@ -174,15 +177,15 @@
                 <img class="Story_Next_btn" src="images\icon\next_WT_R.png">
             </div>
 
-            <!-- Ω∫≈‰∏Æ ∑π¿ÃæÓ∆Àæ˜ ƒ‹≈Ÿ√˜ html-->
+            <!-- Ïä§ÌÜ†Î¶¨ Î†àÏù¥Ïñ¥ÌåùÏóÖ ÏΩòÌÖêÏ∏† html-->
             <div id="story_layerPopup_contents">
                 <div class="SP_contents_header">
                     <div class="SP_contents_length">
-                        <!-- todo : Ω∫≈‰∏Æ ∞πºˆø° µ˚∂Û ƒ≠ ¿œ¡§«œ∞‘ ≥™¥≤¡Æ ¡ı∞°«œ¥¬ πŸ ª˝º∫-->
+                        <!-- todo : Ïä§ÌÜ†Î¶¨ Í∞ØÏàòÏóê Îî∞Îùº Ïπ∏ ÏùºÏ†ïÌïòÍ≤å ÎÇòÎà†Ï†∏ Ï¶ùÍ∞ÄÌïòÎäî Î∞î ÏÉùÏÑ±-->
                     </div>
                     <div class="SP_contents_account">
                         <div class="SP_account_profile">
-                            <!-- todo : ≈¨∏Ø«— story ∞Ë¡§¿« «¡∑Œ«  img ∂ﬂ∞‘«œ±‚-->
+                            <!-- todo : ÌÅ¥Î¶≠Ìïú story Í≥ÑÏ†ïÏùò ÌîÑÎ°úÌïÑ img Îú®Í≤åÌïòÍ∏∞-->
                             <img class='SP_profile_img' src="images\profile_img\1.jpg">
                         </div>
                         <div class="SP_account_ID">asdfasdfasdf</div>
@@ -194,12 +197,12 @@
                 </div>
                 <div class="SP_contents_reaction">
                     <div class="SP_reaction_effect">
-                        <!-- todo : ¿Ã∏¡ˆ ¥©∏£∏È ¿Ã∆Â∆Æ ±∏«ˆ-->
+                        <!-- todo : Ïù¥Î™®ÏßÄ ÎàÑÎ•¥Î©¥ Ïù¥ÌéôÌä∏ Íµ¨ÌòÑ-->
                     </div>
                     <div class="SP_contents_reaction_area">
                         <div class="SP_reaction_reply">
                             <div class="SP_reaction_reply_text">
-                                <input type="text" placeholder="¥‘ø°∞‘ ¥‰¿Â«œ±‚..."/>
+                                <input type="text" placeholder="ÎãòÏóêÍ≤å ÎãµÏû•ÌïòÍ∏∞..."/>
                             </div>                            
                         </div>
                         <div class="SP_reaction_like">
@@ -212,7 +215,7 @@
                 </div>
                 <div class="SP_contents_img">
                     <ul>
-                        <!-- todo : ≈¨∏Ø«— story¿« img ∂ﬂ∞‘«œ±‚-->
+                        <!-- todo : ÌÅ¥Î¶≠Ìïú storyÏùò img Îú®Í≤åÌïòÍ∏∞-->
                         <li>
                             <img src="images\stroy_img\a.jpg">
                         </li>
@@ -223,7 +226,7 @@
 
         
 
-        <!-- ∏ﬁ¿Œ∆‰¿Ã¡ˆ html-->
+        <!-- Î©îÏù∏ÌéòÏù¥ÏßÄ html-->
         <div id="main">
             <div id="main_left">
                 <div id="left_area">
@@ -235,38 +238,38 @@
                         <ul>
                             <li onclick="goPage('home');">
                                 <img class='main_menu_icon' src="images\icon\home.png"/>
-                                <div id="menu_home">»®</div>
+                                <div id="menu_home">Ìôà</div>
                             </li>
                             <li>
                                 <img class='main_menu_icon' src="images\icon\search.png"/>
-                                <div id="menu_search">∞Àªˆ</div>
+                                <div id="menu_search">Í≤ÄÏÉâ</div>
                             </li>
                             <!-- <li>
                                 <img class='main_menu_icon' src="images\icon\explore.png"/>
-                                <div id="menu_explore">≈Ωªˆ ≈«</div>
+                                <div id="menu_explore">ÌÉêÏÉâ ÌÉ≠</div>
                             </li> -->
                             <!-- <li>
                                 <img class='main_menu_icon' src="images\icon\reels.png"/>
-                                <div id="menu_reels">∏±Ω∫</div>
+                                <div id="menu_reels">Î¶¥Ïä§</div>
                             </li> -->
                             <li>
                                 <img class='main_menu_icon' src="images\icon\direct.png"/>
-                                <div id="menu_direct">∏ﬁΩ√¡ˆ</div>
+                                <div id="menu_direct">Î©îÏãúÏßÄ</div>
                             </li>
                             <li>
                                 <img class='main_menu_icon' src="images\icon\notice.png"/>
-                                <div id="menu_notice">æÀ∏≤</div>
+                                <div id="menu_notice">ÏïåÎ¶º</div>
                             </li>
                             <li onclick="fnUploadOpen();">
                                 <img class='main_menu_icon' src="images\icon\upload.png"/>
-                                <div id="menu_upload">∏∏µÈ±‚</div>
+                                <div id="menu_upload">ÎßåÎì§Í∏∞</div>
                             </li>
                             <li onclick="goPage('profile');">
                                 <img class='main_menu_profile' src="images\profile_img\my_profile.jpg"/>
                                 <!-- todo : 
-                                    - DBø°º≠ ≥ª «¡∑Œ«  ¿ÃπÃ¡ˆ ∞°¡Æø¿±‚
-                                    - «¡∑Œ«  ¿ÃπÃ¡ˆ æ¯¿∏∏È "icon\profile.png" ¿⁄µø¿∏∑Œ ∂ÁøÏ±‚ -->
-                                <div id="menu_profile">«¡∑Œ« </div>
+                                    - DBÏóêÏÑú ÎÇ¥ ÌîÑÎ°úÌïÑ Ïù¥ÎØ∏ÏßÄ Í∞ÄÏ†∏Ïò§Í∏∞
+                                    - ÌîÑÎ°úÌïÑ Ïù¥ÎØ∏ÏßÄ ÏóÜÏúºÎ©¥ "icon\profile.png" ÏûêÎèôÏúºÎ°ú ÎùÑÏö∞Í∏∞ -->
+                                <div id="menu_profile">ÌîÑÎ°úÌïÑ</div>
                             </li>
                         </ul>
                     </div>
@@ -276,8 +279,8 @@
                             <li>
                                 <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                                 <div id="moreMenu">
-                                    <!-- todo : ¥ı∫∏±‚ ≥ª ∏ﬁ¥∫ ±∏«ˆ«œ±‚ -->
-                                    	¥ı ∫∏±‚
+                                    <!-- todo : ÎçîÎ≥¥Í∏∞ ÎÇ¥ Î©îÎâ¥ Íµ¨ÌòÑÌïòÍ∏∞ -->
+                                    	Îçî Î≥¥Í∏∞
                                 </div>
                             </li>
                         </ul>
@@ -294,7 +297,7 @@
                                     <div class="story_upload_btn">
                                         <img class='story_upload_btn_img' src="images\icon\upload.png">
                                     </div>
-                                    <div class="story_accountName">ªı Ω∫≈‰∏Æ</div>
+                                    <div class="story_accountName">ÏÉà Ïä§ÌÜ†Î¶¨</div>
                                 </li>
                                 <li onclick="fnLayerPopupOpen();">
                                     <div class="story_profile">
@@ -302,17 +305,17 @@
                                     </div>
                                     <div class="story_accountName">asdfasdfasdfasdf</div>
                                 </li>
-                                <li>ƒ£±∏2</li>
-                                <li>ƒ£±∏3</li>
-                                <li>ƒ£±∏4</li>
-                                <li>ƒ£±∏5</li>
-                                <li>ƒ£±∏6</li>
-                                <li>ƒ£±∏7</li>
-                                <li>ƒ£±∏8</li>
-                                <li>ƒ£±∏9</li>
-                                <li>ƒ£±∏10</li>
-                                <li>ƒ£±∏11</li>
-                                <li>ƒ£±∏12</li>
+                                <li>ÏπúÍµ¨2</li>
+                                <li>ÏπúÍµ¨3</li>
+                                <li>ÏπúÍµ¨4</li>
+                                <li>ÏπúÍµ¨5</li>
+                                <li>ÏπúÍµ¨6</li>
+                                <li>ÏπúÍµ¨7</li>
+                                <li>ÏπúÍµ¨8</li>
+                                <li>ÏπúÍµ¨9</li>
+                                <li>ÏπúÍµ¨10</li>
+                                <li>ÏπúÍµ¨11</li>
+                                <li>ÏπúÍµ¨12</li>
                             </ul>
                             <div class="story_arrow_prev">
                                 <a href="javascript:;" class="prev" onclick="fnMoveStorySlide(this);">
@@ -337,9 +340,9 @@
                             <div class="feed_component">
                                 <div class="comp_account">
                                     <div class="comp_account_img">
-                                        <!-- todo : ∞Ë¡§ ¿ÃπÃ¡ˆ&∞Ë¡§∏Ì DBø°º≠ πﬁæ∆ø¿µµ∑œ «œ±‚ -->
+                                        <!-- todo : Í≥ÑÏ†ï Ïù¥ÎØ∏ÏßÄ&Í≥ÑÏ†ïÎ™Ö DBÏóêÏÑú Î∞õÏïÑÏò§ÎèÑÎ°ù ÌïòÍ∏∞ -->
                                         <img class='feed_profile' src="images\profile_img\my_profile.jpg">
-                                        <div class="comp_account_name">∞Ë¡§∏Ì</div>
+                                        <div class="comp_account_name">Í≥ÑÏ†ïÎ™Ö</div>
                                         <div class="comp_account_option">
                                             <img class='comp_option_icon' src="images\icon\option.png"/>
                                         </div>
@@ -367,23 +370,23 @@
                                     </div>
                                 </div>
                                 <div class="comp_like">
-                                    	¡¡æ∆ø‰ <span></span>∞≥
+                                    	Ï¢ãÏïÑÏöî <span></span>Í∞ú
                                 </div>
                                 <div class="comp_text">
                                     <!-- todo
-                                        - ∞Ë¡§∏Ì DBø°º≠ πﬁæ∆ø¿µµ∑œ «œ±‚
-                                        - ∫ªπÆ 1¡Ÿ ¿ÃªÛ ±ÊæÓ¡ˆ∏È [¥ı ∫∏±‚]πˆ∆∞ »∞º∫»≠«œø© ¡¢æÓµŒ±‚ -->
-                                   	 ∫ªπÆ ≈ÿΩ∫∆Æ øµø™
+                                        - Í≥ÑÏ†ïÎ™Ö DBÏóêÏÑú Î∞õÏïÑÏò§ÎèÑÎ°ù ÌïòÍ∏∞
+                                        - Î≥∏Î¨∏ 1Ï§Ñ Ïù¥ÏÉÅ Í∏∏Ïñ¥ÏßÄÎ©¥ [Îçî Î≥¥Í∏∞]Î≤ÑÌäº ÌôúÏÑ±ÌôîÌïòÏó¨ Ï†ëÏñ¥ÎëêÍ∏∞ -->
+                                   	 Î≥∏Î¨∏ ÌÖçÏä§Ìä∏ ÏòÅÏó≠
                                 </div>
                                 <div class="comp_comment">
                                     <!-- todo
-                                        - ¥Ò±€ 1∞≥ πﬂª˝Ω√ [¥Ò±€ 1∞≥ ∫∏±‚]πˆ∆∞ »∞º∫»≠, ≈¨∏ØΩ√ ∆Àæ˜ ««µÂø°º≠ ¥Ò±€ »Æ¿Œ
-                                        - ¥Ò±€ 1∞≥ ¿ÃªÛ ±ÊæÓ¡ˆ∏È [¥Ò±€ N∞≥ ∏µŒ ∫∏±‚]πˆ∆∞¿∏∑Œ ∫Ø∞Ê«œ±‚
-                                        - ¥Ò±€ ¿€º∫¿⁄ ∞Ë¡§∏Ì ±‚∑œ«œ±‚ -->
-                                        	¥Ò±€ ¿–±‚ øµø™
+                                        - ÎåìÍ∏Ä 1Í∞ú Î∞úÏÉùÏãú [ÎåìÍ∏Ä 1Í∞ú Î≥¥Í∏∞]Î≤ÑÌäº ÌôúÏÑ±Ìôî, ÌÅ¥Î¶≠Ïãú ÌåùÏóÖ ÌîºÎìúÏóêÏÑú ÎåìÍ∏Ä ÌôïÏù∏
+                                        - ÎåìÍ∏Ä 1Í∞ú Ïù¥ÏÉÅ Í∏∏Ïñ¥ÏßÄÎ©¥ [ÎåìÍ∏Ä NÍ∞ú Î™®Îëê Î≥¥Í∏∞]Î≤ÑÌäºÏúºÎ°ú Î≥ÄÍ≤ΩÌïòÍ∏∞
+                                        - ÎåìÍ∏Ä ÏûëÏÑ±Ïûê Í≥ÑÏ†ïÎ™Ö Í∏∞Î°ùÌïòÍ∏∞ -->
+                                        	ÎåìÍ∏Ä ÏùΩÍ∏∞ ÏòÅÏó≠
                                 </div>
                                 <div class="comp_comment_writing">
-                                    	¥Ò±€ æ≤±‚ øµø™
+                                    	ÎåìÍ∏Ä Ïì∞Í∏∞ ÏòÅÏó≠
                                 </div>
                             </div>
                         
@@ -397,40 +400,40 @@
                                     <img class='myAccount_img_class' src="images\profile_img\my_profile.jpg">
                                 </div>
                                 <div class="Account_ID">
-                                    <div id="Account_myID">∞Ë¡§∏Ì</div>
-                                    <div id="Account_myIntro">∞Ë¡§«—¡Ÿº“∞≥</div>
+                                    <div id="Account_myID">Í≥ÑÏ†ïÎ™Ö</div>
+                                    <div id="Account_myIntro">Í≥ÑÏ†ïÌïúÏ§ÑÏÜåÍ∞ú</div>
                                 </div>
-                                <div id="myAccount_switch">¿¸»Ø</div>
+                                <div id="myAccount_switch">Ï†ÑÌôò</div>
                             </div>
                             <div id="recommend_otherAccount">
                                 <div id="recommend_otherAccount_seeAllList">
-                                   	 »∏ø¯¥‘¿ª ¿ß«— √ﬂ√µ
-                                    <!-- todo : ∏µŒ∫∏±‚ πˆ∆∞ ∏∏µÈ±‚ -->
-                                    <div id="seeAllList_btn">∏µŒ ∫∏±‚</div>
+                                   	 ÌöåÏõêÎãòÏùÑ ÏúÑÌïú Ï∂îÏ≤ú
+                                    <!-- todo : Î™®ÎëêÎ≥¥Í∏∞ Î≤ÑÌäº ÎßåÎì§Í∏∞ -->
+                                    <div id="seeAllList_btn">Î™®Îëê Î≥¥Í∏∞</div>
                                 </div>
                                 <div id="recommend_otherAccount_list">
                                     <ul class="recommend_randomList">
-                                        <!-- todo : æÓ∂≤ ±‚¡ÿ¿∏∑Œ ∑£¥˝«œ∞‘ ∞Ë¡§¿ª √ﬂ√µ«“ ∞Õ¿Œ∞°? -->
+                                        <!-- todo : Ïñ¥Îñ§ Í∏∞Ï§ÄÏúºÎ°ú ÎûúÎç§ÌïòÍ≤å Í≥ÑÏ†ïÏùÑ Ï∂îÏ≤úÌï† Í≤ÉÏù∏Í∞Ä? -->
                                         <li>
                                             <div class="otherAccount_img">
                                                 <img class='otherAccount_img_class' src="images\profile_img\1.jpg">
                                             </div>
                                             <div class="Account_ID">
-                                                <div class="Account_otherID">∞Ë¡§∏Ì</div>
-                                                <div class="Account_otherIntro">∞Ë¡§«—¡Ÿº“∞≥</div>
+                                                <div class="Account_otherID">Í≥ÑÏ†ïÎ™Ö</div>
+                                                <div class="Account_otherIntro">Í≥ÑÏ†ïÌïúÏ§ÑÏÜåÍ∞ú</div>
                                             </div>
-                                            <div class="otherAccount_follow">∆»∑ŒøÏ</div>
+                                            <div class="otherAccount_follow">ÌåîÎ°úÏö∞</div>
                                         </li>
-                                        <li>∞Ë¡§√ﬂ√µ2</li>
-                                        <li>∞Ë¡§√ﬂ√µ3</li>
-                                        <li>∞Ë¡§√ﬂ√µ4</li>
-                                        <li>∞Ë¡§√ﬂ√µ5</li>
+                                        <li>Í≥ÑÏ†ïÏ∂îÏ≤ú2</li>
+                                        <li>Í≥ÑÏ†ïÏ∂îÏ≤ú3</li>
+                                        <li>Í≥ÑÏ†ïÏ∂îÏ≤ú4</li>
+                                        <li>Í≥ÑÏ†ïÏ∂îÏ≤ú5</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div id="main_information_area">
-                            	æ‡∞¸ π◊ ¡§∫∏ ≈ÿΩ∫∆Æ øµø™
+                            	ÏïΩÍ¥Ä Î∞è Ï†ïÎ≥¥ ÌÖçÏä§Ìä∏ ÏòÅÏó≠
                         </div>
                     </div>
                 </div>
@@ -440,7 +443,7 @@
 </html>
 <script src="js/upload.js"></script>
 <script>	    
-    //Ω∫≈‰∏Æ ¿Áª˝, ∏ÿ√„ πˆ∆∞ ¿ÃπÃ¡ˆ ∫Ø∞Ê
+    //Ïä§ÌÜ†Î¶¨ Ïû¨ÏÉù, Î©àÏ∂§ Î≤ÑÌäº Ïù¥ÎØ∏ÏßÄ Î≥ÄÍ≤Ω
     $(document).ready(function(){
         init();
     });
