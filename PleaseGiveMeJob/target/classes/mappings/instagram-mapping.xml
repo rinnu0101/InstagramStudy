@@ -77,7 +77,29 @@
 				#{user_idx}
 				, NOW()
 				, #{use_yn}
-			);
+			)
  	</insert>
+ 	
+ 	<select id="getNewStoryIdx" parameterType="storylist" resultType="int">
+		SELECT MAX(story_idx) FROM instagram.story_list
+		 WHERE user_idx = #{user_idx}  	 
+ 	</select>
+ 	
+ 	<!-- 새 스토리 이미지 파일 저장하기 -->
+ 	<insert id="setSaveNewStoryFile" parameterType="storyphoto">
+	 	INSERT INTO instagram.story_photo
+			(
+				story_idx
+				, file_name
+				, file_path
+			)
+		VALUES
+			(
+				#{story_idx}
+				, #{file_name}
+				, NULL
+			)
+ 	</insert>
+ 	
  	
 </mapper>

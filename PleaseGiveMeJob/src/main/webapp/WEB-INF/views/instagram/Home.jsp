@@ -442,8 +442,7 @@
     </body>
 </html>
 <script src="js/upload.js"></script>
-<script>	    
-    //스토리 재생, 멈춤 버튼 이미지 변경
+<script>
     $(document).ready(function(){
         init();
     });

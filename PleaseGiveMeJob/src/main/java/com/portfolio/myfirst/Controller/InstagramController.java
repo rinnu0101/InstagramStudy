@@ -29,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
+import com.portfolio.myfirst.Mapper.StoryPhotoVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 import com.portfolio.myfirst.Service.InstagramService;
@@ -129,17 +130,64 @@ public class InstagramController {
 	}
 	
 	//새 스토리 저장
-	@RequestMapping(value="/setSaveNewStory.do", produces = "application/text; charset=utf8")
+	/*
+	 * @RequestMapping(value="/setSaveNewStory.do", produces =
+	 * "application/text; charset=utf8")
+	 * 
+	 * @ResponseBody public String setSaveNewStory(StoryListVO vo, HttpSession
+	 * session) throws JsonProcessingException { //자바에서 JSON 객체로 변환해주는 라이브러리 int
+	 * user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+	 * vo.setUser_idx(user_idx); Service.setSaveNewStory(vo); return "OK"; }
+	 */	
 	@ResponseBody
-	public String setSaveNewStory(StoryListVO vo, HttpSession session) throws JsonProcessingException {
-	//자바에서 JSON 객체로 변환해주는 라이브러리
+	@RequestMapping(value = "/setSaveNewStory.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public String setSaveNewStory(
+			@RequestParam("story_file") List<MultipartFile> multipartFile
+			, HttpSession session
+			, HttpServletRequest request)
+	{
+		StoryListVO vo = new StoryListVO();
 		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
 		vo.setUser_idx(user_idx);
 		Service.setSaveNewStory(vo);
+		int story_idx = Service.getNewStoryIdx(vo);
+		String fileRoot;
+		try {
+			// 파일이 있을때 탄다.
+			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+				
+				for(MultipartFile file : multipartFile) {
+					fileRoot = "D:\\uploads\\story\\";
+					
+					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+
+					System.out.println(fileRoot + savedFileName);
+					File targetFile = new File(fileRoot + savedFileName);	
+					try {
+						InputStream fileStream = file.getInputStream();
+						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+						
+						//DB에 파일정보 저장하기
+						StoryPhotoVO vo2 = new StoryPhotoVO();
+						vo2.setFile_name(savedFileName);
+						vo2.setStory_idx(story_idx);
+						Service.setSaveNewStoryFile(vo2);
+						
+					} catch (Exception e) {
+						//파일삭제
+						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+						e.printStackTrace();
+						break;
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return "OK";
 	}
-	
-	
 	
 	
 	

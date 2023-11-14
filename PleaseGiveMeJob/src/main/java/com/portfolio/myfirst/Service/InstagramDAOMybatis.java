@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
+import com.portfolio.myfirst.Mapper.StoryPhotoVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 
@@ -41,5 +42,13 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	//새 스토리 저장하기
 	public void setSaveNewStory(StoryListVO vo) {
 		getSqlSession().insert("InstagramDAO.setSaveNewStory", vo);		
+	}
+	public int getNewStoryIdx(StoryListVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getNewStoryIdx", vo);		
+	}
+	
+	//새 스토리 파일 저장하기
+	public void setSaveNewStoryFile(StoryPhotoVO vo) {
+		getSqlSession().insert("InstagramDAO.setSaveNewStoryFile", vo);		
 	}
 }
