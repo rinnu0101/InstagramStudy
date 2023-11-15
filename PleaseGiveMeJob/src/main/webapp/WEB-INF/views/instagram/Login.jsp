@@ -43,7 +43,7 @@
                 		   $(".login_forgot").css("margin-top", "0px");
                 	   }
                 	   else{
-                		   alert("로그인 성공");
+                		   //alert("로그인 성공");
                 		   window.location.href = "/home.do";
                 	   }
  		               console.log(p);

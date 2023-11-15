@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.myfirst.Mapper.FeedListVO;
+import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -91,10 +92,11 @@ public class InstagramController {
 			, HttpServletRequest request)
 	{
 		FeedListVO vo = new FeedListVO();
-		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));		
 		vo.setUser_idx(user_idx);
 		vo.setFeed_contents(feed_contents);
 		Service.setSaveNewFeed(vo);
+		int feed_idx = Service.getNewFeedIdx(vo);
 		
 		String fileRoot;
 		try {
@@ -113,7 +115,12 @@ public class InstagramController {
 					try {
 						InputStream fileStream = file.getInputStream();
 						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-						//todo : DB에 파일정보 저장하기
+						
+						//DB에 파일정보 저장하기
+						FeedPhotoVO vo2 = new FeedPhotoVO();
+						vo2.setFeed_idx(feed_idx);
+						vo2.setFile_name(savedFileName);
+						Service.setSaveNewFeedFile(vo2);
 						
 					} catch (Exception e) {
 						//파일삭제
@@ -171,8 +178,8 @@ public class InstagramController {
 						
 						//DB에 파일정보 저장하기
 						StoryPhotoVO vo2 = new StoryPhotoVO();
-						vo2.setFile_name(savedFileName);
 						vo2.setStory_idx(story_idx);
+						vo2.setFile_name(savedFileName);
 						Service.setSaveNewStoryFile(vo2);
 						
 					} catch (Exception e) {

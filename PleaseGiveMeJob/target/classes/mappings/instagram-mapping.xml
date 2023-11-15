@@ -40,8 +40,7 @@
 				   where user_idx = #{user_idx}
 				     and idx not in (select story_idx from instagram.story_log sl where view_user_idx = 99 and user_idx = #{user_idx}) 
 				   group by user_idx 
-				)
-				
+				)				
 			)
 		 		
  	</insert>
@@ -60,8 +59,29 @@
 				#{user_idx}
 				, #{feed_contents}
 				, NOW()
-				, "Y"
+				, 'Y'
 			) 	
+ 	</insert>
+ 	
+ 	<select id="getNewFeedIdx" parameterType="feedlist" resultType="int">
+		SELECT MAX(feed_idx) FROM instagram.feed_list
+		 WHERE user_idx = #{user_idx} 	 
+ 	</select>
+ 	
+ 	<!-- 새  피드 이미지 파일 저장하기 -->
+ 	<insert id="setSaveNewFeedFile" parameterType="feedphoto">
+	 	INSERT INTO instagram.feed_photo
+			(
+				feed_idx
+				, file_name
+				, file_path
+			)
+		VALUES
+			(
+				#{feed_idx}
+				, #{file_name}
+				, NULL
+			);
  	</insert>
  	
  	<!-- 새 스토리 저장하기 -->

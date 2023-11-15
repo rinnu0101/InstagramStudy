@@ -127,8 +127,7 @@ function fnSaveNewStory()
         }
       });
 
-    //USE YN 처리
-    //formData.append("use_yn", );
+    //todo : USE YN 처리
 
     // var saveNewStory =
    	// 	{

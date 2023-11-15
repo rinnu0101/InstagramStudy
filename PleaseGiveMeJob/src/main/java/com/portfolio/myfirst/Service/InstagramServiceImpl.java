@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.portfolio.myfirst.Mapper.FeedListVO;
+import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -33,16 +34,23 @@ public class InstagramServiceImpl implements InstagramService{
 	public void setSaveNewFeed(FeedListVO vo) {
 		InstagramDAO.setSaveNewFeed(vo);		
 	}
+	public int getNewFeedIdx(FeedListVO vo) {
+		return InstagramDAO.getNewFeedIdx(vo);		
+	}
+	
+	//새 피드 이미지 파일 저장하기
+	public void setSaveNewFeedFile(FeedPhotoVO vo) {
+		InstagramDAO.setSaveNewFeedFile(vo);		
+	}
 	
 	//새 스토리 저장하기
 	public void setSaveNewStory(StoryListVO vo) {
 		InstagramDAO.setSaveNewStory(vo);		
 	}
-
-	@Override
 	public int getNewStoryIdx(StoryListVO vo) {
 		return InstagramDAO.getNewStoryIdx(vo);		
 	}
+	
 	//새 스토리 이미지 파일 저장하기
 	public void setSaveNewStoryFile(StoryPhotoVO vo) {
 		InstagramDAO.setSaveNewStoryFile(vo);		

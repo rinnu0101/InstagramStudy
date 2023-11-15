@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.portfolio.myfirst.Mapper.FeedListVO;
+import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -37,6 +38,14 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	//새 피드 저장하기
 	public void setSaveNewFeed(FeedListVO vo) {
 		getSqlSession().insert("InstagramDAO.setSaveNewFeed", vo);		
+	}
+	public int getNewFeedIdx(FeedListVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getNewFeedIdx", vo);		
+	}
+	
+	//새 피드 파일 저장하기
+	public void setSaveNewFeedFile(FeedPhotoVO vo) {
+		getSqlSession().insert("InstagramDAO.setSaveNewFeedFile", vo);		
 	}
 	
 	//새 스토리 저장하기
