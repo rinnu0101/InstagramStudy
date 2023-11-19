@@ -40,6 +40,7 @@ public class InstagramController {
 	
 	@Autowired
 	InstagramService Service;
+
 	
 	@RequestMapping(value="/instagram.do")
 	public ModelAndView instagramMain(ModelAndView mav) {		
@@ -235,5 +236,13 @@ public class InstagramController {
 		
 		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(hashMap);
 		return json;
+	}
+	
+
+
+	@RequestMapping(value="/getFeedTemp.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<FeedListVO> getFeedTemp() {
+		return Service.getFeedTemp();
 	}
 }

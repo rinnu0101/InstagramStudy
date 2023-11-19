@@ -29,4 +29,8 @@ public interface InstagramService {
 	
 	//새 스토리 이미지 파일 저장하기
 	public void setSaveNewStoryFile(StoryPhotoVO vo);
+	
+	//홈 피드 리스트 가져오기
+	public List<FeedListVO> getFeedTemp();
+	
 }

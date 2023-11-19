@@ -317,7 +317,35 @@ li, ul, ol {
   height: 312px;
   border : 1px solid #DBDBDB;
   border-radius: 5px;
+  overflow : hidden;
 }
+.comp_post ul{
+	width: 4680px;
+	height: 312px;
+}
+.comp_post li{
+	float : left;
+}
+
+.comp_PIS_feed {
+  width: 470px;
+  height: 40px;
+  margin: 4px 0px;
+}
+
+.feed_contents_arrow{
+  width: 468px;
+  height: 312px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  margin-top:-312px;
+}
+
+
+
+
 
 .post{
   width: 468px;

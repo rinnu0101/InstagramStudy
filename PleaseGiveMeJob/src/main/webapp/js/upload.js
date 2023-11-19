@@ -15,6 +15,27 @@ function init()
     $("#input_file_story").on("change", fnPrintFileLiStory);    
 }
 
+//프로필&홈 화면에서의 피드 레이어팝업 함수
+function fnPopFeed()
+{
+    var oWidth = $("#layerPopup_feed").outerWidth();
+    var cWidth = $("#feed_layerPopup_contents").width();
+    var ml = (oWidth-cWidth)/2;
+
+    var oHeight = $("#layerPopup_feed").outerHeight();
+    var cHeight = $("#feed_layerPopup_contents").height();
+    var mt = (oHeight-cHeight)/2;
+
+    $("#feed_layerPopup_contents").css("margin-left", ml);
+    $("#feed_layerPopup_contents").css("margin-top", mt);
+    $("#layerPopup_feed").show();
+}
+
+function fnPopFeedClose()
+{
+    $("#layerPopup_feed").hide();
+}
+
 //새 게시물 레이어팝업 함수
 function fnUploadOpen()
 {

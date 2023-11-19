@@ -226,6 +226,7 @@
     		               	else
     		               	{
     		               		chkNN = true;
+    		               		$(".join_nickname").find("input").css("color", "black");
     		               		$(".join_nickname").find(".confirm").find(".confirm_check").show();
     		            		$(".join_nickname").find(".confirm").find(".confirm_error").hide();
     		               	}

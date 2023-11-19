@@ -50,9 +50,14 @@ public class InstagramServiceImpl implements InstagramService{
 	public int getNewStoryIdx(StoryListVO vo) {
 		return InstagramDAO.getNewStoryIdx(vo);		
 	}
-	
+
 	//새 스토리 이미지 파일 저장하기
 	public void setSaveNewStoryFile(StoryPhotoVO vo) {
 		InstagramDAO.setSaveNewStoryFile(vo);		
+	}
+	
+	//홈 피드 리스트 가져오기
+	public List<FeedListVO> getFeedTemp() {
+		return InstagramDAO.getFeedTemp();		
 	}
 }
