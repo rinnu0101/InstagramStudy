@@ -18,6 +18,10 @@ public class FeedListVO {
 	private String file_names;
 
 	//USER_INFO
-	private String user_nickname; 
+	private String user_nickname;
+	
+	//FEED_LIKE
+	private String like_type; 
+	private int like_count;
 }
  

@@ -83,8 +83,26 @@ textarea{
   width: 875px;
   height: 875px;
   float: left;
+  overflow: hidden;
 }
 
+#FP_contents_img ul{
+	width: 8750px;
+	height: 875px;
+}
+#FP_contents_img ul li{
+	float : left;
+}
+
+.feed_pop_contents_arrow{
+  width: 875px;
+  height: 875px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  margin-top:-875px;
+}
 #FP_contents_img ul li img{
   width: 875px;
   height: 875px;

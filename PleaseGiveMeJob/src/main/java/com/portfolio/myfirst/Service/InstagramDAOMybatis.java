@@ -7,6 +7,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
@@ -66,4 +67,17 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("InstagramDAO.getFeedTemp", null);		
 	}
 	
+	//선택한 홈 피드 팝업
+	public FeedListVO getFeedPopup(FeedListVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getFeedPopup", vo);		
+	}
+	
+	//피드 좋아요 추가
+	public void setInsertFeedLike(FeedLikeVO vo) {
+		getSqlSession().insert("InstagramDAO.setInsertFeedLike", vo);
+	}
+	//피드 좋아요 삭제
+	public void setDeleteFeedLike(FeedLikeVO vo) {
+		getSqlSession().insert("InstagramDAO.setDeleteFeedLike", vo);
+	}
 }

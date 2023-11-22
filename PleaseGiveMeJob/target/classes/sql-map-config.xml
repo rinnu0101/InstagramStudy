@@ -12,7 +12,7 @@
 		<typeAlias type="com.portfolio.myfirst.Mapper.StoryListVO" alias="storylist"></typeAlias>
 		<typeAlias type="com.portfolio.myfirst.Mapper.StoryPhotoVO" alias="storyphoto"></typeAlias>
 		<typeAlias type="com.portfolio.myfirst.Mapper.JsonArrayVO" alias="jsonarray"></typeAlias>
-		
+		<typeAlias type="com.portfolio.myfirst.Mapper.FeedLikeVO" alias="feedlike"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/instagram-mapping.xml" />

@@ -2,6 +2,7 @@ package com.portfolio.myfirst.Service;
 
 import java.util.List;
 
+import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
@@ -33,4 +34,9 @@ public interface InstagramService {
 	//홈 피드 리스트 가져오기
 	public List<FeedListVO> getFeedTemp();
 	
+	//선택한 홈 피드 팝업
+	public FeedListVO getFeedPopup(FeedListVO vo);
+	
+	//피드 좋아요 처리
+	public void setLikeClick(FeedLikeVO vo);
 }

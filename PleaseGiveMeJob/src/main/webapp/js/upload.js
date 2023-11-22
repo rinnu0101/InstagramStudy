@@ -28,7 +28,6 @@ function fnPopFeed()
 
     $("#feed_layerPopup_contents").css("margin-left", ml);
     $("#feed_layerPopup_contents").css("margin-top", mt);
-    $("#layerPopup_feed").show();
 }
 
 function fnPopFeedClose()

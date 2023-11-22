@@ -109,10 +109,10 @@
                                 <img class="login_logo_img" src="images\icon\logo.png">
                             </div>
                             <div class="login_ID">
-                                <input type="text" placeholder="전화번호, 사용자 이름 또는 이메일"/>
+                                <input type="text" value="01039379000" placeholder="전화번호, 사용자 이름 또는 이메일"/>
                             </div>
                             <div class="login_PW">
-                                <input type="password" placeholder="비밀번호"/>
+                                <input type="password" value="930101" placeholder="비밀번호"/>
                             </div>
                             <div class="login_btn" onclick="fnInputLoginInfo();">
                                 	로그인

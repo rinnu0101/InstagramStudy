@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- ÇÁ·ÎÇÊ ÇÇµå ·¹ÀÌ¾îÆË¾÷ html-->
+<!-- í”„ë¡œí•„ í”¼ë“œ ë ˆì´ì–´íŒì—… html-->
 <div id="layerPopup_feed">
     <div id="feed_layerPopup_bg" onclick="fnPopFeedClose();">
         <div class="layerPopupClose_btn">
@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <!-- ·¹ÀÌ¾îÆË¾÷ ÁÂ¿ì¹öÆ°-->
+    <!-- ë ˆì´ì–´íŒì—… ì¢Œìš°ë²„íŠ¼-->
     <div class="Next_btn_L">
         <img class="Next_btn" src="images\icon\next_WT_L.png">
     </div>
@@ -17,15 +17,22 @@
         <img class="Next_btn" src="images\icon\next_WT_R.png">
     </div>
 
-    <!-- ÇÇµå ·¹ÀÌ¾îÆË¾÷ ÄÜÅÙÃ÷ html-->
+    <!-- í”¼ë“œ ë ˆì´ì–´íŒì—… ì½˜í…ì¸  html-->
     <div id="feed_layerPopup_contents">
         <div id="FP_contents_img">
-            <ul>
-                <!-- todo : Å¬¸¯ÇÑ postÀÇ img ¶ß°ÔÇÏ±â-->
-                <li>
-                    <img src="images\feed_img\feed1.jpg">
+            <ul id="popFileList">
+                <li v-for="file_path in feed_pop_info.file_names">
+                    <img class='post' :src="'images/feed_img/' + file_path">
                 </li>
             </ul>
+            <div class="feed_pop_contents_arrow">
+                <a href="javascript:;" class="prev">
+                    <img class='upload_arrow_img' v-if="feed_pop_info.file_length != 1 && feed_pop_info.file_index != 0" src="images\icon\next_WT_L.png"  @click="fnPopMovefeedSlide('prev')">
+                </a>
+                <a href="javascript:;" class="next">
+                    <img class='upload_arrow_img' v-if="feed_pop_info.file_length != (feed_pop_info.file_index + 1)"  src="images\icon\next_WT_R.png" @click="fnPopMovefeedSlide('next')">
+                </a>
+            </div>
         </div>
         <div id="FP_contents_post">
             <div id="FPCP_account">
@@ -34,7 +41,7 @@
                         <img src="images\profile_img\my_profile.jpg">
                     </div>
                     <div class="FPCP_account_ID">
-                        asdfasdfasdfasdf
+                        {{feed_pop_info.user_nickname}}
                     </div>
                 </div>
                 <div id="FPCP_account_option">
@@ -47,10 +54,10 @@
                         <img src="images\profile_img\my_profile.jpg">
                     </div>
                     <div class="FPCP_account_ID">
-                        asdfasdfasdfasdf
+                        {{feed_pop_info.user_nickname}}
                     </div>
                     <div class="FPCP_text">
-                     	   º»¹® ÅØ½ºÆ® ¿µ¿ª
+                        {{feed_pop_info.feed_contents}}
                     </div>
                 </div>
                 <div class="FPCP_body_comment">
@@ -58,10 +65,10 @@
                         <img src="images\profile_img\1.jpg">
                     </div>
                     <div class="FPCP_account_ID">
-                        lkjlkjlkjlkj
+                        	ëŒ“ê¸€ ì•„ì´ë””(ê°œë°œí•„ìš”)
                     </div>
                     <div class="FPCP_text">
-                     	   ´ñ±Û ÅØ½ºÆ® ¿µ¿ª
+                     	   ëŒ“ê¸€ í…ìŠ¤íŠ¸ ì˜ì—­
                     </div>
                 </div>
             </div>
@@ -69,7 +76,10 @@
                 <div id="FPCP_PIS_btn">
                     <div class="FPCP_PIS_btn_L">
                         <ul>
-                            <li><img class='FPCP_PIS_btn_icon' src="images\icon\notice.png"/></li>
+                            <li @click="fnPopLikeClick(feed_pop_info.feed_idx, feed_pop_info.like_type);">
+                            	<img class='FPCP_PIS_btn_icon' :src="feed_pop_info.like_type == null ? 'images\\icon\\notice.png' 
+																						 : 'images\\icon\\notice_r.png'">
+                            </li>
                             <li><img class='FPCP_PIS_btn_icon' src="images\icon\comment.png"/></li>
                         </ul>
                     </div>
@@ -79,21 +89,26 @@
                         </ul>
                     </div>
                 </div>
-                <div id="FPCP_PIS_like">
-                    <span></span>´Ô ¿Ü <span></span>¸íÀÌ ÁÁ¾ÆÇÕ´Ï´Ù
+                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count > 1">
+                    <span></span>ë‹˜ ì™¸ <span>{{feed_pop_info.like_count - 1}}</span>ëª…ì´ ì¢‹ì•„í•©ë‹ˆë‹¤
                 </div>
-                <div id="FPCP_PIS_date">¾÷·ÎµåÀÏÀÚ</div>
+                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count == 1">
+                    <span>"todo : ë‹‰ë„¤ì„ë¶ˆëŸ¬ì˜¤ê¸°"</span>ë‹˜ì´ ì¢‹ì•„í•©ë‹ˆë‹¤
+                </div>
+                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count <= 0">
+                </div>
+                <div id="FPCP_PIS_date">{{feed_pop_info.regdate}} ëª‡ì¼ì „ í•œì‹œê°„ì „ ê°œë°œí•„ìš”</div>
             </div>
             <div id="FPCP_reply">
                 <div id="FPCP_reply_emoji">
                     <img src="images\icon\emoji.png">
                 </div>
                 <div id="FPCP_reply_text">                            
-                    <input type="text" placeholder="´ñ±Û ´Ş±â"/>
+                    <input type="text" placeholder="ëŒ“ê¸€ ë‹¬ê¸°"/>
                 </div>
                 <div id="FPCP_reply_btn">
-                    <!-- todo : ÅØ½ºÆ® ¾øÀ¸¸é ºñÈ°¼ºÈ­-->
-              	      °Ô½Ã
+                    <!-- todo : í…ìŠ¤íŠ¸ ì—†ìœ¼ë©´ ë¹„í™œì„±í™”-->
+              	      ê²Œì‹œ
                 </div>
             </div>
         </div>

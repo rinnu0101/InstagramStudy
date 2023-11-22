@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
@@ -105,7 +106,7 @@ public class InstagramController {
 			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
 				
 				for(MultipartFile file:multipartFile) {
-					fileRoot = "D:\\uploads\\feed\\";
+					fileRoot = "C:\\mygit\\PleaseGiveMeJob\\src\\main\\webapp\\images\\feed_img\\";
 					
 					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
 					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
@@ -165,7 +166,7 @@ public class InstagramController {
 			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
 				
 				for(MultipartFile file : multipartFile) {
-					fileRoot = "D:\\uploads\\story\\";
+					fileRoot = "C:\\mygit\\PleaseGiveMeJob\\src\\main\\webapp\\images\\stroy_img\\";
 					
 					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
 					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
@@ -197,14 +198,29 @@ public class InstagramController {
 		return "OK";
 	}
 	
+	//피드 좋아요 처리
+	@RequestMapping(value="/setLikeClick.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String setLikeClick(FeedLikeVO vo, HttpSession session) throws JsonProcessingException {
+		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));		
+		vo.setUser_idx(user_idx);
+		Service.setLikeClick(vo);
+		return "OK";
+	}
+
+	//홈 피드 리스트 가져오기
+	@RequestMapping(value="/getFeedTemp.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<FeedListVO> getFeedTemp() {
+		return Service.getFeedTemp();
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	//선택한 피드 팝업
+	@RequestMapping(value="/getFeedPopup.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public FeedListVO getFeedPopup(FeedListVO vo) {
+		return Service.getFeedPopup(vo);
+	}
 	
 	
 	//나중에 갖다쓰기
@@ -240,9 +256,7 @@ public class InstagramController {
 	
 
 
-	@RequestMapping(value="/getFeedTemp.do", produces = "application/json; charset=utf8")
-	@ResponseBody
-	public List<FeedListVO> getFeedTemp() {
-		return Service.getFeedTemp();
-	}
+	
+	
+	
 }

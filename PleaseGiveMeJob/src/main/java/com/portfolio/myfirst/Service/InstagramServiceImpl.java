@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
@@ -59,5 +60,25 @@ public class InstagramServiceImpl implements InstagramService{
 	//홈 피드 리스트 가져오기
 	public List<FeedListVO> getFeedTemp() {
 		return InstagramDAO.getFeedTemp();		
+	}
+	
+	//선택한 홈 피드 팝업
+	public FeedListVO getFeedPopup(FeedListVO vo) {
+		return InstagramDAO.getFeedPopup(vo);		
+	}
+	
+	//피드 좋아요 처리
+	public void setLikeClick(FeedLikeVO vo) {
+		int type = vo.getLike_type();
+		if(type != 1)
+		{
+			//좋아요 추가
+			InstagramDAO.setInsertFeedLike(vo);
+		}
+		else
+		{
+			//좋아요 삭제
+			InstagramDAO.setDeleteFeedLike(vo);
+		}
 	}
 }

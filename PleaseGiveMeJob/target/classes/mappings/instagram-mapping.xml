@@ -121,28 +121,84 @@
 			)
  	</insert>
  	
- 	
- 	<resultMap id="userMap" type="FeedList">
-        <id property="feed_idx" column="feed_idx" />
-        <result property="feed_contents" column="feed_contents"/>
-        <collection property="jsonarray" ofType="JsonArray">
-            <result property="file_name" column="file_name" />
-        </collection>
-    </resultMap>
  	<!-- 홈 피드 리스트 가져오기 -->
  	<select id="getFeedTemp" parameterType="feedlist" resultType="feedlist">
-	   SELECT FL.FEED_IDX 
+   	   SELECT FL.FEED_IDX 
 			, FL.FEED_CONTENTS 
 			, FL.REGDATE 
-			, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
-			, UI.USER_NICKNAME
-		 FROM FEED_LIST FL
-		INNER JOIN FEED_PHOTO FP
-		ON FL.FEED_IDX = FP.FEED_IDX 
-		INNER JOIN USER_INFO UI 
-		ON FL.USER_IDX = UI.USER_IDX 
+			, FL.FILE_NAMES
+			, FL.USER_NICKNAME
+			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
+			, COUNT(FL2.LIKE_TYPE) AS LIKE_COUNT
+		FROM (
+		   SELECT FL.FEED_IDX 
+				, FL.FEED_CONTENTS 
+				, FL.REGDATE 
+				, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
+				, UI.USER_NICKNAME
+			 FROM FEED_LIST FL
+			INNER JOIN FEED_PHOTO FP
+			ON FL.FEED_IDX = FP.FEED_IDX 
+			INNER JOIN USER_INFO UI 
+			ON FL.USER_IDX = UI.USER_IDX
+			GROUP BY FL.FEED_IDX 
+		) FL
+		LEFT JOIN FEED_LIKE FL2 
+		ON FL.FEED_IDX = FL2.FEED_IDX 
 		GROUP BY FL.FEED_IDX 
-		ORDER BY FL.REGDATE DESC
+		ORDER BY FL.REGDATE desc			
  	</select>
+ 	
+ 	<!-- 선택한 홈 피드 팝업 -->
+ 	<select id="getFeedPopup" parameterType="feedlist" resultType="feedlist">
+   	   SELECT FL.FEED_IDX 
+			, FL.FEED_CONTENTS 
+			, FL.REGDATE 
+			, FL.FILE_NAMES
+			, FL.USER_NICKNAME
+			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
+			, COUNT(FL2.LIKE_TYPE) AS LIKE_COUNT
+		FROM (
+		   SELECT FL.FEED_IDX 
+				, FL.FEED_CONTENTS 
+				, FL.REGDATE 
+				, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
+				, UI.USER_NICKNAME
+			 FROM FEED_LIST FL
+			INNER JOIN FEED_PHOTO FP
+			ON FL.FEED_IDX = FP.FEED_IDX 
+			INNER JOIN USER_INFO UI 
+			ON FL.USER_IDX = UI.USER_IDX
+			WHERE FL.FEED_IDX = #{feed_idx}
+			GROUP BY FL.FEED_IDX 
+		) FL
+		LEFT JOIN FEED_LIKE FL2 
+		ON FL.FEED_IDX = FL2.FEED_IDX 
+		GROUP BY FL.FEED_IDX 
+		ORDER BY FL.REGDATE desc
+ 	</select>
+ 	
+ 	<!-- 피드 좋아요 저장 -->
+ 	<insert id="setInsertFeedLike" parameterType="feedlike">
+	 	INSERT INTO instagram.feed_like
+			(
+				feed_idx
+				, user_idx
+				, like_type
+			)
+		VALUES
+			(
+				#{feed_idx}
+				, #{user_idx}
+				, 1
+			)
+ 	</insert>
+ 	
+ 	<!-- 피드 좋아요 삭제 -->
+ 	<delete id="setDeleteFeedLike" parameterType="feedlike">
+	 	DELETE FROM instagram.feed_like
+		WHERE feed_idx = #{feed_idx}
+		  AND user_idx = #{user_idx}
+ 	</delete>
  	
 </mapper>

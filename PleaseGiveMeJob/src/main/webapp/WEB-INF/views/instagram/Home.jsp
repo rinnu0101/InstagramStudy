@@ -372,8 +372,25 @@
 											</a>
 										</div>
 	                                </div>
+	                                <div class="comp_PIS">
+	                                    <div class="comp_PIS_L">
+	                                        <ul>
+	                                            <li @click="fnLikeClick(f.feed_idx, f.like_type, index);">
+													<img class="comp_PIS_icon" :src="f.like_type == null ? 'images\\icon\\notice.png' 
+																										 : 'images\\icon\\notice_r.png'">
+												</li>
+	                                            <li @click="fnFeedPopup(f.feed_idx);"><img class="comp_PIS_icon" src="images\icon\comment.png"></li>
+	                                            <li><img class="comp_PIS_icon" src="images\icon\direct.png"></li>
+	                                        </ul>
+	                                    </div>
+	                                    <div class="comp_PIS_R">
+	                                        <ul>
+	                                            <li><img class="comp_bookmark_icon" src="images\icon\bookmark.png"></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
 	                                <div class="comp_like">
-	                                    	좋아요 <span></span>개
+	                                    	좋아요 <span>{{f.like_count}}</span>개
 	                                </div>
 	                                <div class="comp_text">
 	                                    <!-- todo
@@ -446,12 +463,15 @@
         </div>     
     </body>
 </html>
+<!-- 파일 업로드 js 적용 -->
 <script src="js/upload.js"></script>
+<!-- 화면 초기화 및 기본 기능 적용 -->
 <script>
     $(document).ready(function(){
         init();
     });
 </script>
+<!-- vue.js 적용  -->
 <script type="module">
     import { createApp } from 'vue'
     createApp({
@@ -459,7 +479,8 @@
             return {
 				feed_list : [],
 				feed_show : false,
-				file_margin : []
+				file_margin : [],
+				feed_pop_info : {}
             }
         },
 		mounted: function() 
@@ -468,6 +489,7 @@
 			this.fnGetFeedList();
 		},			
 		methods: {
+			//홈 화면의 피드 리스트 불러오기 처리함수
 			fnGetFeedList: function(){						
 				//POST
 				$.ajax({
@@ -495,6 +517,7 @@
 					}
 				});
 			},
+			//홈 화면 피드의 사진 슬라이드 처리 함수 
 			fnMovefeedSlide: function(index, target)
 			{
 				var f = this.feed_list[index];
@@ -516,6 +539,116 @@
 						$("#file_" + index).animate({marginLeft : trs});
 					}
 				}
+			},
+			//홈 화면의 피드 좋아요 처리 함수
+			fnLikeClick: function(feed_idx, like_type, index)
+			{
+				$.ajax({
+					url : "/setLikeClick.do",
+					type : "POST",
+					data : {
+						"feed_idx" : feed_idx,
+						"like_type" : !like_type ? "0" : like_type,
+					},
+					context: this,
+					success : function(p)
+					{
+
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+				if(this.feed_list[index].like_type == null)
+				{
+					this.feed_list[index].like_count = this.feed_list[index].like_count + 1;
+				}
+				else
+				{
+					this.feed_list[index].like_count = this.feed_list[index].like_count - 1;
+				}
+				this.feed_list[index].like_type = this.feed_list[index].like_type == null ? "1" : null;
+			},
+			//선택 피드 팝업 함수
+			fnFeedPopup : function(feed_idx)
+			{			
+				$.ajax({
+					url : "/getFeedPopup.do",
+					type : "POST",
+					data : {
+						"feed_idx" : feed_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						$("#popFileList").css("margin-left", "0px");
+						p.file_names = JSON.parse(p.file_names);
+						p.file_index = 0;
+						p.file_length = p.file_names.length;
+						this.feed_pop_info = p;
+						$("#layerPopup_feed").show();
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+				fnPopFeed();
+			},
+			//팝업 피드의 사진 슬라이드 처리 함수
+			fnPopMovefeedSlide : function(target)
+			{
+				var f = this.feed_pop_info;
+				if (target == 'next')
+				{
+					if (f.file_index != f.file_length)
+					{
+						f.file_index = f.file_index + 1;
+						var trs = (875 * f.file_index) * -1;
+						$("#popFileList").animate({marginLeft : trs});
+					}
+				}
+				else if (target == 'prev')
+				{
+					if (f.file_index != 0)
+					{
+						f.file_index = f.file_index -1;
+						var trs = (875 * f.file_index) * -1;
+						$("#popFileList").animate({marginLeft : trs});
+					}
+				}
+			},
+			//팝업 피드의 좋아요 처리 함수
+			fnPopLikeClick: function(feed_idx, like_type)
+			{
+				var f = this.feed_pop_info;
+				$.ajax({
+					url : "/setLikeClick.do",
+					type : "POST",
+					data : {
+						"feed_idx" : f.feed_idx,
+						"like_type" : !f.like_type ? "0" : f.like_type,
+					},
+					context: this,
+					success : function(p)
+					{
+
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+				if(f.like_type == null)
+				{
+					f.like_count = f.like_count + 1;
+				}
+				else
+				{
+					f.like_count = f.like_count - 1;
+				}
+				f.like_type = f.like_type == null ? "1" : null;
 			}
 		}
     }).mount('#app');
