@@ -480,7 +480,8 @@
 				feed_list : [],
 				feed_show : false,
 				file_margin : [],
-				feed_pop_info : {}
+				feed_pop_info : {},
+				now_feed_idx : 0
             }
         },
 		mounted: function() 
@@ -573,6 +574,7 @@
 			//선택 피드 팝업 함수
 			fnFeedPopup : function(feed_idx)
 			{			
+				this.now_feed_idx = feed_idx;
 				$.ajax({
 					url : "/getFeedPopup.do",
 					type : "POST",
@@ -583,9 +585,22 @@
 					success : function(p)
 					{
 						$("#popFileList").css("margin-left", "0px");
+						//DB에서 파일 정보 가져오기
 						p.file_names = JSON.parse(p.file_names);
 						p.file_index = 0;
 						p.file_length = p.file_names.length;
+						//댓글 배열에 값 있을때만 feed_reply_list 띄우기
+						var jsonReply = JSON.parse(p.feed_reply_list);
+						if(jsonReply[0].user_idx != null)
+						{
+							p.feed_reply_list = jsonReply.sort(function(a, b)
+												{ return a.feed_reply_idx - b.feed_reply_idx });
+						}
+						else
+						{
+							p.feed_reply_list = [];
+						}
+						//feed_pop_info에 DB에서 가져온 모든 p값을 넣어준다
 						this.feed_pop_info = p;
 						$("#layerPopup_feed").show();
 					},
@@ -649,7 +664,32 @@
 					f.like_count = f.like_count - 1;
 				}
 				f.like_type = f.like_type == null ? "1" : null;
-			}
+			},
+			fnSaveReply : function()
+			{
+				var reply = $("#FPCP_reply_text").find("input").val();
+				this.feed_pop_info.feed_reply_list.push({ "feed_reply_contents" : reply , "user_nickname" : "테스트" });
+				$("#FPCP_reply_text").find("input").val("");
+				//ajax Insert 처리
+				$.ajax({
+					url : "/setFeedReply.do",
+					type : "POST",
+					data : {
+						"feed_idx" : this.now_feed_idx,
+						"feed_reply_contents" : reply,
+					},
+					context: this,
+					success : function(p)
+					{
+
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+
+			}	
 		}
     }).mount('#app');
 </script>

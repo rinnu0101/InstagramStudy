@@ -158,24 +158,37 @@
 			, FL.USER_NICKNAME
 			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
 			, COUNT(FL2.LIKE_TYPE) AS LIKE_COUNT
+			, FL.FEED_REPLY_LIST
 		FROM (
 		   SELECT FL.FEED_IDX 
 				, FL.FEED_CONTENTS 
 				, FL.REGDATE 
 				, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
+				, JSON_ARRAYAGG(
+					JSON_OBJECT(
+				        'feed_reply_idx', FR.FEED_REPLY_IDX ,
+				        'user_idx', FR.USER_IDX ,
+				        'feed_reply_contents', FR.FEED_REPLY_CONTENTS,
+				        'user_nickname', UI2.USER_NICKNAME
+			      	)
+				) AS FEED_REPLY_LIST
 				, UI.USER_NICKNAME
 			 FROM FEED_LIST FL
 			INNER JOIN FEED_PHOTO FP
 			ON FL.FEED_IDX = FP.FEED_IDX 
 			INNER JOIN USER_INFO UI 
 			ON FL.USER_IDX = UI.USER_IDX
+			LEFT JOIN FEED_REPLY FR 
+			ON FL.FEED_IDX = FR.FEED_IDX	
+			LEFT JOIN USER_INFO UI2
+			ON UI2.USER_IDX = FR.USER_IDX 			
 			WHERE FL.FEED_IDX = #{feed_idx}
 			GROUP BY FL.FEED_IDX 
 		) FL
 		LEFT JOIN FEED_LIKE FL2 
 		ON FL.FEED_IDX = FL2.FEED_IDX 
 		GROUP BY FL.FEED_IDX 
-		ORDER BY FL.REGDATE desc
+		ORDER BY FL.REGDATE DESC
  	</select>
  	
  	<!-- 피드 좋아요 저장 -->
@@ -200,5 +213,23 @@
 		WHERE feed_idx = #{feed_idx}
 		  AND user_idx = #{user_idx}
  	</delete>
+ 	
+ 	<!-- 피드 댓글 저장 -->
+ 	<insert id="setFeedReply" parameterType="feedreply">
+	 	INSERT INTO instagram.feed_reply
+			(
+				feed_idx
+				, user_idx
+				, feed_reply_contents
+				, pidx
+			)
+		VALUES
+			(
+				#{feed_idx}
+				, #{user_idx}
+				, #{feed_reply_contents}
+				, 0
+			);
+	</insert>
  	
 </mapper>

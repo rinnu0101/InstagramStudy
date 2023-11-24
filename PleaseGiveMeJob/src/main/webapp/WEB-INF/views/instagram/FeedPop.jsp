@@ -61,15 +61,19 @@
                     </div>
                 </div>
                 <div class="FPCP_body_comment">
-                    <div class="FPCP_account_profile">
-                        <img src="images\profile_img\1.jpg">
-                    </div>
-                    <div class="FPCP_account_ID">
-                        	댓글 아이디(개발필요)
-                    </div>
-                    <div class="FPCP_text">
-                     	   댓글 텍스트 영역
-                    </div>
+                	<ul>
+                		<li v-for="(r, index) in feed_pop_info.feed_reply_list"> 
+		                    <div class="FPCP_account_profile">
+		                        <img src="images\profile_img\1.jpg">
+		                    </div>
+		                    <div class="FPCP_account_ID">
+		                     	{{ r.user_nickname }}
+		                    </div>
+		                    <div class="FPCP_text">
+		                    	{{ r.feed_reply_contents }}
+		                    </div>
+	                    </li>
+                    </ul>
                 </div>
             </div>
             <div id="FPCP_PIS">
@@ -106,7 +110,7 @@
                 <div id="FPCP_reply_text">                            
                     <input type="text" placeholder="댓글 달기"/>
                 </div>
-                <div id="FPCP_reply_btn">
+                <div id="FPCP_reply_btn" @click="fnSaveReply();">
                     <!-- todo : 텍스트 없으면 비활성화-->
               	      게시
                 </div>

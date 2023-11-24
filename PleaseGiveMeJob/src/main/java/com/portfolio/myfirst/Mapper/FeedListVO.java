@@ -23,5 +23,8 @@ public class FeedListVO {
 	//FEED_LIKE
 	private String like_type; 
 	private int like_count;
+	
+	//FEED_REPLY
+	private String feed_reply_list;
 }
  

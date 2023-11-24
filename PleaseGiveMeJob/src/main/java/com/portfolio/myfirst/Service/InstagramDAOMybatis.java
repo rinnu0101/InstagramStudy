@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
+import com.portfolio.myfirst.Mapper.FeedReplyVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -79,5 +80,10 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	//피드 좋아요 삭제
 	public void setDeleteFeedLike(FeedLikeVO vo) {
 		getSqlSession().insert("InstagramDAO.setDeleteFeedLike", vo);
+	}
+	
+	//피드 댓글 저장
+	public void setFeedReply(FeedReplyVO vo) {
+		getSqlSession().insert("InstagramDAO.setFeedReply", vo);
 	}
 }

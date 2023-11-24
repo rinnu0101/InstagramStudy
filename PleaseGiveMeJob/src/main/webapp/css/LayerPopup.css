@@ -175,6 +175,8 @@ textarea{
   width: 467px;
   height: 619px;
   padding: 16px 16px 16px 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #FPCP_body_log{
@@ -183,11 +185,12 @@ textarea{
 }
 
 .FPCP_text{
-  width: auto;
+  width: 455px;
   height: auto;
   font-size: 14px;
   float: left;
   margin: 7px 0px 20px 10px;
+  word-break: break-all;
 }
 
 .FPCP_body_comment{
@@ -196,6 +199,25 @@ textarea{
   margin-top: 60px;
 }
 
+.FPCP_body_comment ul li
+{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    flex-shrink: 1;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    min-width: 0;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    vertical-align: baseline;
+}
 #FPCP_PIS{
   width: 499px;
   height: 110px;

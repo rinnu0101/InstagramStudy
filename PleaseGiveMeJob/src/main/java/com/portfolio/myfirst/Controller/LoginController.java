@@ -54,19 +54,22 @@ public class LoginController {
 
 	@Autowired
 	LoginService Service;	
-		
+	
+	//회원가입 정보 저장하기
 	@RequestMapping(value="/setJoinInfo.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String setJoinInfo(UserInfoVO vo) throws JsonProcessingException {
 	//자바에서 JSON 객체로 변환해주는 라이브러리
 		return Service.setJoinInfo(vo);
 	}
+	//ID 중복 체크
 	@RequestMapping(value="/getIdDuplCheck.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getIdDuplCheck(UserInfoVO vo) throws JsonProcessingException {
 		//자바에서 JSON 객체로 변환해주는 라이브러리
 		return Service.getIdDuplCheck(vo);
 	}
+	//닉네임 중복 체크
 	@RequestMapping(value="/getNicknameDuplCheck.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getNicknameDuplCheck(UserInfoVO vo) throws JsonProcessingException {
@@ -74,6 +77,7 @@ public class LoginController {
 			return Service.getNicknameDuplCheck(vo);
 	}
 
+	//로그인 정보 가져오기
 	@RequestMapping(value="/getLoginInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public UserInfoVO getLoginInfo(UserInfoVO vo, HttpServletRequest request) throws JsonProcessingException {
@@ -92,6 +96,7 @@ public class LoginController {
 		return result;
 	}
 
+	//비밀번호 찾기
 	@RequestMapping(value="/getFindPwInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public UserInfoVO getFindPwInfo(UserInfoVO vo) throws JsonProcessingException {

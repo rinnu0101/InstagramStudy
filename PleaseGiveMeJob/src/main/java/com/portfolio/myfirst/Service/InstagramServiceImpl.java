@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
+import com.portfolio.myfirst.Mapper.FeedReplyVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -80,5 +81,10 @@ public class InstagramServiceImpl implements InstagramService{
 			//좋아요 삭제
 			InstagramDAO.setDeleteFeedLike(vo);
 		}
+	}
+	
+	//피드 댓글 저장
+	public void setFeedReply(FeedReplyVO vo) {
+		InstagramDAO.setFeedReply(vo);		
 	}
 }

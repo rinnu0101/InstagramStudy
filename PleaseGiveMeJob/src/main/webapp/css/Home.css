@@ -1,6 +1,7 @@
 body {
   min-width: 1920px;
   min-height: 923px;
+  overflow:hidden;
 }
 
 /*리스트 기본 스타일 속성 초기화*/
@@ -45,9 +46,10 @@ li, ul, ol {
 
 #main_middle{
   margin-left: 335px;
-  width: 1567px;
-  height: 100%;
-  overflow: hidden;
+  width: 1584px;
+  height: 920px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #middle_area{

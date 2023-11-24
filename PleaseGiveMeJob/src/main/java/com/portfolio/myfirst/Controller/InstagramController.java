@@ -29,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
+import com.portfolio.myfirst.Mapper.FeedReplyVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -222,9 +223,25 @@ public class InstagramController {
 		return Service.getFeedPopup(vo);
 	}
 	
+	//피드 댓글 저장
+	@RequestMapping(value="/setFeedReply.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String setFeedReply(FeedReplyVO vo, HttpSession session) throws JsonProcessingException {
+		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));		
+		vo.setUser_idx(user_idx);
+		Service.setFeedReply(vo);
+		return "OK";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//나중에 갖다쓰기
-
 	@RequestMapping(value="/getStoryList.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String getStoryList(UserInfoVO vo) throws JsonProcessingException {
