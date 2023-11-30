@@ -8,6 +8,7 @@
         <!-- 제이쿼리 불러오기 -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <!-- 스타일시트 적용 -->
+        <link rel="stylesheet" href="css/LeftMenu.css">
         <link rel="stylesheet" href="css/Home.css">
         <link rel="stylesheet" href="css/LayerPopup.css">
         
@@ -28,6 +29,7 @@
 	    
 	        <!-- 피드 공통 팝업 추가 -->
 	        <jsp:include page="FeedPop.jsp"></jsp:include>
+	        
 	    	<!-- 새 게시물 업로드 레이어팝업 html-->
 	        <div id="upload_feed">
 	            <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
@@ -237,66 +239,10 @@
 	
 	        <!-- 메인페이지 html-->
 	        <div id="main">
-	            <div id="main_left">
-	                <div id="left_area">
-	                    <div id="main_logo">
-	                        <img onclick="goPage('logo');" src="images\icon\logo.png">
-	                    </div>
+	            <!-- 좌측 공통 메뉴영역 추가 -->
+	        	<jsp:include page="LeftMenu.jsp"></jsp:include>
 	    
-	                    <div id="main_menu">
-	                        <ul>
-	                            <li onclick="goPage('home');">
-	                                <img class='main_menu_icon' src="images\icon\home.png"/>
-	                                <div id="menu_home">홈</div>
-	                            </li>
-	                            <li>
-	                                <img class='main_menu_icon' src="images\icon\search.png"/>
-	                                <div id="menu_search">검색</div>
-	                            </li>
-	                            <!-- <li>
-	                                <img class='main_menu_icon' src="images\icon\explore.png"/>
-	                                <div id="menu_explore">탐색 탭</div>
-	                            </li> -->
-	                            <!-- <li>
-	                                <img class='main_menu_icon' src="images\icon\reels.png"/>
-	                                <div id="menu_reels">릴스</div>
-	                            </li> -->
-	                            <li>
-	                                <img class='main_menu_icon' src="images\icon\direct.png"/>
-	                                <div id="menu_direct">메시지</div>
-	                            </li>
-	                            <li>
-	                                <img class='main_menu_icon' src="images\icon\notice.png"/>
-	                                <div id="menu_notice">알림</div>
-	                            </li>
-	                            <li onclick="fnUploadOpen();">
-	                                <img class='main_menu_icon' src="images\icon\upload.png"/>
-	                                <div id="menu_upload">만들기</div>
-	                            </li>
-	                            <li onclick="goPage('profile');">
-	                                <img class='main_menu_profile' src="images\profile_img\my_profile.jpg"/>
-	                                <!-- todo : 
-	                                    - DB에서 내 프로필 이미지 가져오기
-	                                    - 프로필 이미지 없으면 "icon\profile.png" 자동으로 띄우기 -->
-	                                <div id="menu_profile">프로필</div>
-	                            </li>
-	                        </ul>
-	                    </div>
-	    
-	                    <div id="main_moreMenu">
-	                        <ul>
-	                            <li>
-	                                <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
-	                                <div id="moreMenu">
-	                                    <!-- todo : 더보기 내 메뉴 구현하기 -->
-	                                    	더 보기
-	                                </div>
-	                            </li>
-	                        </ul>
-	                    </div>
-	                </div>
-	            </div>
-	    
+	    		<!-- 메인 피드 영역 -->
 	            <div id="main_middle">
 	                <div id="middle_area">
 	                    <div id="main_contents">
@@ -463,14 +409,10 @@
         </div>     
     </body>
 </html>
+
 <!-- 파일 업로드 js 적용 -->
 <script src="js/upload.js"></script>
-<!-- 화면 초기화 및 기본 기능 적용 -->
-<script>
-    $(document).ready(function(){
-        init();
-    });
-</script>
+
 <!-- vue.js 적용  -->
 <script type="module">
     import { createApp } from 'vue'

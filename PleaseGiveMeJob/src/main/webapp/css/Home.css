@@ -16,34 +16,6 @@ li, ul, ol {
   background-image: url('example_Home.png');
 }
 
-
-#main_logo{
-  width: 287px;
-  height: 32px;
-  padding: 25px 12px 16px 12px;
-  margin-bottom: 19px;
-  cursor: pointer;
-}
-
-#main_logo img{
-  width: 103px;
-  height: 29px;
-  padding-top: 7px;
-}
-
-#main_left{
-    width : 335px;
-    height: 100%;
-    border-right : 1px solid #DBDBDB;
-    float: left;
-}
-
-#left_area{
-    width : 311px;
-    height: 895px;
-    padding: 8px 12px 20px 12px;
-}
-
 #main_middle{
   margin-left: 335px;
   width: 1584px;
@@ -73,86 +45,6 @@ li, ul, ol {
   font-size: 12px;
   color: #C7C7C7;
 }
-
-/*메인 메뉴*/
-#main_menu{
-    width: 311px;
-    height: 747px;
-    margin-top: 27px;
-}
-
-.main_menu_profile{
-  width: 25px;
-  height: 25px;
-  border-radius: 70%;
-  object-fit: cover;
-}
-
-.main_menu_icon{
-  width: 25px;
-  height: 25px;
-  object-fit: cover;
-}
-
-#main_menu ul li{
-    width: 287px;
-    height: 24px;
-    padding: 12px;
-    margin: 8px 0px;
-    cursor: pointer;
-}
-#main_menu ul li:hover{
-    background-color: #F2F2F2;
-    border-radius: 8px;
-}
-
-#main_menu ul li img{
-  float: left;
-}
-#main_menu ul li:hover > .main_menu_icon{
-  transform: scale(1.1);
-  transition: transform.2s;
-}
-#main_menu ul li:hover > .main_menu_profile{
-  transform: scale(1.1);
-  transition: transform.2s;
-}
-
-#main_menu ul li div{
-  padding-left: 40px;
-  padding-top: 3px;
-}  
-
-/*메뉴 더 보기*/
-#main_moreMenu{
-  width: 311px;
-  height: 56px;
-}
-
-#main_moreMenu ul li{
-    width: 287px;
-    height: 24px;
-    padding: 12px;
-    margin: 8px 0px;
-    cursor: pointer;
-}
-#main_moreMenu ul li:hover{
-  background-color: #F2F2F2;
-  border-radius: 8px;
-}
-
-#main_moreMenu ul li img:hover{
-  transform: scale(1.1);
-  transition: transform.2s;
-}
-#main_moreMenu ul li img{
-  float: left;
-}
-
-#main_moreMenu ul li div{
-  padding-left: 40px;
-  padding-top: 3px;
-}  
 
 /*메인 콘텐츠*/
 #main_contents{

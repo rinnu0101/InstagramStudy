@@ -1,5 +1,8 @@
 package com.portfolio.myfirst.Mapper;
 
+import lombok.Data;
+
+@Data
 public class InstagramVO {
 	private int idx;
 	private String content;	

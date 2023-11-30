@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- css ¸®¼Â -->
+        <!-- css ë¦¬ì…‹ -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <!-- Á¦ÀÌÄõ¸® ºÒ·¯¿À±â -->
+        <!-- ì œì´ì¿¼ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸° -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- ½ºÅ¸ÀÏ½ÃÆ® Àû¿ë -->
+        <!-- ìŠ¤íƒ€ì¼ì‹œíŠ¸ ì ìš© -->
         <link rel="stylesheet" href="css/Login.css">
-        <!-- °øÅëjs Àû¿ë -->
+        <!-- ê³µí†µjs ì ìš© -->
         <script src="js/common.js"></script>
         
         <script>
-        	<!-- ½º¸¶Æ®Æù È­¸é roof -->
+        	<!-- ìŠ¤ë§ˆíŠ¸í° í™”ë©´ roof -->
             var arrImgPath = [2, 3, 4 ,1];
             var roof = 0;
             setInterval(function() {
@@ -22,7 +22,7 @@
                 roof = roof == 4 ? 0 : roof;
             }, 3020);
             
-            <!-- ·Î±×ÀÎ Á¤º¸ ÀÔ·ÂÇÏ±â -->
+            <!-- ë¡œê·¸ì¸ ì •ë³´ ì…ë ¥í•˜ê¸° -->
             function fnInputLoginInfo(){
             	var loginInfo =
 	           		{
@@ -43,15 +43,15 @@
                 		   $(".login_forgot").css("margin-top", "0px");
                 	   }
                 	   else{
-                		   //alert("·Î±×ÀÎ ¼º°ø");
+                		   //alert("ë¡œê·¸ì¸ ì„±ê³µ");
                 		   window.location.href = "/home.do";
                 	   }
  		               console.log(p);
-		               console.log("¼º°ø");
+		               console.log("ì„±ê³µ");
 		            },
 	               	error : function(p)
 	               	{
-			           console.log("½ÇÆĞ");		                  
+			           console.log("ì‹¤íŒ¨");		                  
 	               	}
                 });
             }
@@ -70,15 +70,15 @@
                 		   $(".login_forgot").css("margin-top", "0px");
                 	   }
                 	   else{
-                		   alert("·Î±×ÀÎ ¼º°ø");
+                		   alert("ë¡œê·¸ì¸ ì„±ê³µ");
                 		   window.location.href = "/home.do";
                 	   }
  		               console.log(p);
-		               console.log("¼º°ø");
+		               console.log("ì„±ê³µ");
 		            },
 	               	error : function(p)
 	               	{
-			           console.log("½ÇÆĞ");		                  
+			           console.log("ì‹¤íŒ¨");		                  
 	               	}
                 });
             	
@@ -109,36 +109,36 @@
                                 <img class="login_logo_img" src="images\icon\logo.png">
                             </div>
                             <div class="login_ID">
-                                <input type="text" value="01039379000" placeholder="ÀüÈ­¹øÈ£, »ç¿ëÀÚ ÀÌ¸§ ¶Ç´Â ÀÌ¸ŞÀÏ"/>
+                                <input type="text" value="01039379000" placeholder="ì „í™”ë²ˆí˜¸, ì‚¬ìš©ì ì´ë¦„ ë˜ëŠ” ì´ë©”ì¼"/>
                             </div>
                             <div class="login_PW">
-                                <input type="password" value="930101" placeholder="ºñ¹Ğ¹øÈ£"/>
+                                <input type="password" value="930101" placeholder="ë¹„ë°€ë²ˆí˜¸"/>
                             </div>
                             <div class="login_btn" onclick="fnInputLoginInfo();">
-                                	·Î±×ÀÎ
-                                	<!-- todo : ·Î±×ÀÎ¹öÆ° Å¬¸¯½Ã DB°ªÀÌ Æ²¸®¸é pw_miss Å¬·¡½º º¸ÀÌ°Ô ÇÑ ÈÄ
-                                				info_login height 400px / login_forgot margin-top 0px·Î ¼öÁ¤ -->
+                                	ë¡œê·¸ì¸
+                                	<!-- todo : ë¡œê·¸ì¸ë²„íŠ¼ í´ë¦­ì‹œ DBê°’ì´ í‹€ë¦¬ë©´ pw_miss í´ë˜ìŠ¤ ë³´ì´ê²Œ í•œ í›„
+                                				info_login height 400px / login_forgot margin-top 0pxë¡œ ìˆ˜ì • -->
                             </div>
                             <div class="login_info_text">
-                                -------------------- ¶Ç´Â --------------------
+                                -------------------- ë˜ëŠ” --------------------
                             </div>
                             <div class="login_fb">
                                 <img class="login_fb_icon" src="images\icon\fb_logo.png">
-                                FacebookÀ¸·Î ·Î±×ÀÎ
+                                Facebookìœ¼ë¡œ ë¡œê·¸ì¸
                             </div>
                             <div class="pw_miss">
-                                	°èÁ¤ Á¤º¸¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.
+                                	ê³„ì • ì •ë³´ë¥¼ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.
                             </div>
                             <div class="login_forgot" onclick="goPage('findPW');">
-                                	ºñ¹Ğ¹øÈ£¸¦ ÀØÀ¸¼Ì³ª¿ä?
+                                	ë¹„ë°€ë²ˆí˜¸ë¥¼ ìŠìœ¼ì…¨ë‚˜ìš”?
                             </div>
                         </div>
                         <div class="info_join">
-                            	°èÁ¤ÀÌ ¾øÀ¸½Å°¡¿ä?
-                            <div id="join_btn" onclick="goPage('join');">°¡ÀÔÇÏ±â</div>
+                            	ê³„ì •ì´ ì—†ìœ¼ì‹ ê°€ìš”?
+                            <div id="join_btn" onclick="goPage('join');">ê°€ì…í•˜ê¸°</div>
                         </div>
                         <div class="info_download">
-                            <div class="download_text">¾ÛÀ» ´Ù¿î·ÎµåÇÏ¼¼¿ä.</div>
+                            <div class="download_text">ì•±ì„ ë‹¤ìš´ë¡œë“œí•˜ì„¸ìš”.</div>
                             <div class="download_btn">
                                 <div id="googleplay_btn">
                                     <img id='googleplay_btn_img' src="images\login_img\googleplay_btn.png"/>
@@ -152,25 +152,25 @@
                 </div>
             </div>
             
-           	<!-- ÆÄÀÏ ¾÷·Îµå Å×½ºÆ® --> 
+           	<!-- íŒŒì¼ ì—…ë¡œë“œ í…ŒìŠ¤íŠ¸ --> 
             <!-- <form action="fileTest.do" method="post">
 	            <input type="file" name="uploadFiles" multiple="multiple">
-	            <input type="submit" value="Àü´Ş">
+	            <input type="submit" value="ì „ë‹¬">
             </form>
             
             <div class="container">
-			  <h2>ÆÄÀÏ¾÷·Îµå</h2>
+			  <h2>íŒŒì¼ì—…ë¡œë“œ</h2>
 			  <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
-			  	<button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">ÆÄÀÏ Ãß°¡</button>
+			  	<button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">íŒŒì¼ ì¶”ê°€</button>
 			  	<input id="input_file" multiple="multiple" type="file" style="display:none;">
-			  	<span style="font-size:10px; color: gray;">¡ØÃ·ºÎÆÄÀÏÀº ÃÖ´ë 10°³±îÁö µî·ÏÀÌ °¡´ÉÇÕ´Ï´Ù.</span>
+			  	<span style="font-size:10px; color: gray;">â€»ì²¨ë¶€íŒŒì¼ì€ ìµœëŒ€ 10ê°œê¹Œì§€ ë“±ë¡ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.</span>
 			  	<div class="data_file_txt" id="data_file_txt" style="margin:40px;">
-					<span>Ã·ºÎ ÆÄÀÏ</span>
+					<span>ì²¨ë¶€ íŒŒì¼</span>
 					<br />
 					<div id="articlefileChange">
 					</div>
 				</div>
-			  	<button type="submit" style="border: 1px solid #ddd; outline: none;">Àü¼Û</button>
+			  	<button type="submit" style="border: 1px solid #ddd; outline: none;">ì „ì†¡</button>
 			  </form>
 			</div> -->
             
@@ -178,15 +178,15 @@
         </div>
     </body>
     
-	<!-- ÆÄÀÏ¾÷·Îµå test -->
+	<!-- íŒŒì¼ì—…ë¡œë“œ test -->
 	<script>
 	$(document).ready(function()
-	// input file ÆÄÀÏ Ã·ºÎ½Ã fileCheck ÇÔ¼ö ½ÇÇà
+	// input file íŒŒì¼ ì²¨ë¶€ì‹œ fileCheck í•¨ìˆ˜ ì‹¤í–‰
 	{
 		$("#input_file").on("change", fileCheck);
 	});
 	
-	/* Ã·ºÎÆÄÀÏ·ÎÁ÷ */
+	/* ì²¨ë¶€íŒŒì¼ë¡œì§ */
 	$(function () {
 	    $('#btn-upload').click(function (e) {
 	        e.preventDefault();
@@ -194,30 +194,30 @@
 	    });
 	});
 	
-	// ÆÄÀÏ ÇöÀç ÇÊµå ¼ıÀÚ totalCount¶û ºñ±³°ª
+	// íŒŒì¼ í˜„ì¬ í•„ë“œ ìˆ«ì totalCountë‘ ë¹„êµê°’
 	var fileCount = 0;
-	// ÇØ´ç ¼ıÀÚ¸¦ ¼öÁ¤ÇÏ¿© ÀüÃ¼ ¾÷·Îµå °¹¼ö¸¦ Á¤ÇÑ´Ù.
+	// í•´ë‹¹ ìˆ«ìë¥¼ ìˆ˜ì •í•˜ì—¬ ì „ì²´ ì—…ë¡œë“œ ê°¯ìˆ˜ë¥¼ ì •í•œë‹¤.
 	var totalCount = 10;
-	// ÆÄÀÏ °íÀ¯³Ñ¹ö
+	// íŒŒì¼ ê³ ìœ ë„˜ë²„
 	var fileNum = 0;
-	// Ã·ºÎÆÄÀÏ ¹è¿­
+	// ì²¨ë¶€íŒŒì¼ ë°°ì—´
 	var content_files = new Array();
 	
 	function fileCheck(e) {
 	    var files = e.target.files;
 	    
-	    // ÆÄÀÏ ¹è¿­ ´ã±â
+	    // íŒŒì¼ ë°°ì—´ ë‹´ê¸°
 	    var filesArr = Array.prototype.slice.call(files);
 	    
-	    // ÆÄÀÏ °³¼ö È®ÀÎ ¹× Á¦ÇÑ
+	    // íŒŒì¼ ê°œìˆ˜ í™•ì¸ ë° ì œí•œ
 	    if (fileCount + filesArr.length > totalCount) {
-	      $.alert('ÆÄÀÏÀº ÃÖ´ë '+totalCount+'°³±îÁö ¾÷·Îµå ÇÒ ¼ö ÀÖ½À´Ï´Ù.');
+	      $.alert('íŒŒì¼ì€ ìµœëŒ€ '+totalCount+'ê°œê¹Œì§€ ì—…ë¡œë“œ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.');
 	      return;
 	    } else {
 	    	 fileCount = fileCount + filesArr.length;
 	    }
 	    
-	    // °¢°¢ÀÇ ÆÄÀÏ ¹è¿­´ã±â ¹× ±âÅ¸
+	    // ê°ê°ì˜ íŒŒì¼ ë°°ì—´ë‹´ê¸° ë° ê¸°íƒ€
 	    filesArr.forEach(function (f) {
 	      var reader = new FileReader();
 	      reader.onload = function (e) {
@@ -233,11 +233,11 @@
 	      reader.readAsDataURL(f);
 	    });
 	    console.log(content_files);
-	    //ÃÊ±âÈ­ ÇÑ´Ù.
+	    //ì´ˆê¸°í™” í•œë‹¤.
 	    $("#input_file").val("");
 	  }
 	
-	// ÆÄÀÏ ºÎºĞ »èÁ¦ ÇÔ¼ö
+	// íŒŒì¼ ë¶€ë¶„ ì‚­ì œ í•¨ìˆ˜
 	function fileDelete(fileNum){
 	    var no = fileNum.replace(/[^0-9]/g, "");
 	    content_files[no].is_delete = true;
@@ -247,20 +247,20 @@
 	}
 	
 	/*
-	 * Æû submit ·ÎÁ÷
+	 * í¼ submit ë¡œì§
 	 */
 		function registerAction(){
 			
 		var form = $("form")[0];        
 	 	var formData = new FormData(form);
 			for (var x = 0; x < content_files.length; x++) {
-				// »èÁ¦ ¾ÈÇÑ°Í¸¸ ´ã¾Æ ÁØ´Ù. 
+				// ì‚­ì œ ì•ˆí•œê²ƒë§Œ ë‹´ì•„ ì¤€ë‹¤. 
 				if(!content_files[x].is_delete){
 					 formData.append("article_file", content_files[x]);
 				}
 			}
 	   /*
-	   * ÆÄÀÏ¾÷·Îµå multiple ajaxÃ³¸®
+	   * íŒŒì¼ì—…ë¡œë“œ multiple ajaxì²˜ë¦¬
 	   */    
 		$.ajax({
 	   	      type: "POST",
@@ -271,12 +271,12 @@
 	   	      contentType: false,
 	   	      success: function (data) {
 	   	    	if(JSON.parse(data)['result'] == "OK"){
-	   	    		alert("ÆÄÀÏ¾÷·Îµå ¼º°ø");
+	   	    		alert("íŒŒì¼ì—…ë¡œë“œ ì„±ê³µ");
 				} else
-					alert("¼­¹ö³» ¿À·ù·Î Ã³¸®°¡ Áö¿¬µÇ°íÀÖ½À´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä");
+					alert("ì„œë²„ë‚´ ì˜¤ë¥˜ë¡œ ì²˜ë¦¬ê°€ ì§€ì—°ë˜ê³ ìˆìŠµë‹ˆë‹¤. ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”");
 	   	      },
 	   	      error: function (xhr, status, error) {
-	   	    	alert("¼­¹ö¿À·ù·Î Áö¿¬µÇ°íÀÖ½À´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+	   	    	alert("ì„œë²„ì˜¤ë¥˜ë¡œ ì§€ì—°ë˜ê³ ìˆìŠµë‹ˆë‹¤. ì ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 	   	     return false;
 	   	      }
 	   	    });

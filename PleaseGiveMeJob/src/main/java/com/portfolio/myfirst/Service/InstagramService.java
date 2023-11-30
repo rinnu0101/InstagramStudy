@@ -11,6 +11,7 @@ import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
+import com.portfolio.myfirst.Mapper.UserPhotoVO;
 
 public interface InstagramService {
 	//인스타 스토리 가져오기
@@ -43,4 +44,10 @@ public interface InstagramService {
 	
 	//피드 댓글 저장
 	public void setFeedReply(FeedReplyVO vo);
+	
+	//프로필 정보 저장(&수정)
+	public String setProfileInfo(UserInfoVO vo);
+	
+	//프로필 이미지 저장
+	public void setProfileImgFile(UserPhotoVO vo);
 }

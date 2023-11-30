@@ -1,3 +1,8 @@
+<!-- 화면 초기화 및 기본 기능 적용 -->
+$(document).ready(function(){
+    init();
+});
+
 function init()
 { 
     //스토리 재생, 멈춤 버튼 이미지 변경
@@ -13,6 +18,9 @@ function init()
 
     // 스토리 파일 첨부시 fnPrintFileLiStory 함수 실행
     $("#input_file_story").on("change", fnPrintFileLiStory);    
+    
+    // 프로필 이미지 파일 첨부시 fnProfileImgPrint 함수 실행
+    $("#input_file_Profile").on("change", fnProfileImgPrint);    
 }
 
 //프로필&홈 화면에서의 피드 레이어팝업 함수

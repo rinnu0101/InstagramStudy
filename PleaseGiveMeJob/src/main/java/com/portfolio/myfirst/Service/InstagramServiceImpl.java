@@ -14,11 +14,15 @@ import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
+import com.portfolio.myfirst.Mapper.UserPhotoVO;
 
 @Service("InstagramService")
 public class InstagramServiceImpl implements InstagramService{
 	@Autowired
 	private InstagramDAOMybatis InstagramDAO;
+
+	@Autowired
+	private LoginDAOMybatis LoginDAO;
 
 	//인스타 스토리 가져오기
 	public List<UserInfoVO> getStoryList(UserInfoVO vo) {
@@ -86,5 +90,31 @@ public class InstagramServiceImpl implements InstagramService{
 	//피드 댓글 저장
 	public void setFeedReply(FeedReplyVO vo) {
 		InstagramDAO.setFeedReply(vo);		
+	}
+	
+	//프로필 정보 저장(&수정)
+	public String setProfileInfo(UserInfoVO vo) {
+		
+		String result = "OK";
+		UserInfoVO check = new UserInfoVO();
+		if("Y".equals(vo.getUser_nickname_chg())) {
+			check = LoginDAO.getNicknameDuplCheck(vo);
+		}
+		
+		if(check == null)
+		{		
+			InstagramDAO.setProfileInfo(vo);
+		}
+		else
+		{
+			result = "DUPL";
+		}
+		
+		return result;
+	}
+	
+	//프로필 이미지 저장
+	public void setProfileImgFile(UserPhotoVO vo) {
+		InstagramDAO.setProfileImgFile(vo);		
 	}
 }

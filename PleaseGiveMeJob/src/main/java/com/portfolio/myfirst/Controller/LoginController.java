@@ -74,7 +74,7 @@ public class LoginController {
 	@ResponseBody
 	public String getNicknameDuplCheck(UserInfoVO vo) throws JsonProcessingException {
 		//자바에서 JSON 객체로 변환해주는 라이브러리
-			return Service.getNicknameDuplCheck(vo);
+		return Service.getNicknameDuplCheck(vo);
 	}
 
 	//로그인 정보 가져오기
@@ -90,7 +90,9 @@ public class LoginController {
 		{
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user_id", result.getUser_id()); 
-			session.setAttribute("user_idx", result.getUser_idx()); 
+			session.setAttribute("user_idx", result.getUser_idx());
+			session.setAttribute("user_name", result.getUser_name());
+			session.setAttribute("user_nickname", result.getUser_nickname());
 		}
 		System.out.println(result);
 		return result;

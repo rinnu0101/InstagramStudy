@@ -229,7 +229,29 @@
 				, #{user_idx}
 				, #{feed_reply_contents}
 				, 0
-			);
+			)
 	</insert>
+	
+	<!-- 프로필 정보 저장(&수정) -->
+	<update id="setProfileInfo" parameterType="userinfo">
+		UPDATE instagram.user_info
+		SET user_intro = #{user_intro}
+			, user_info = #{user_info}
+			<if test='"Y".equals(user_nickname_chg)'>
+				, user_nickname = #{user_nickname}
+			</if>
+			<if test='"Y".equals(user_pw_chg)'>
+				, user_pw = #{user_pw}
+			</if>
+		WHERE user_idx= #{user_idx}
+	</update>
+	
+	<!-- 프로필 이미지 저장 -->
+	<insert id="setProfileImgFile" parameterType="userinfo">
+	 	<!-- 기존값 없을때는 insert -->
+	</insert>
+	<update id="setProfileImgFile" parameterType="userinfo">
+	 	<!-- 기존값 있을때는 update -->
+	</update>
  	
 </mapper>

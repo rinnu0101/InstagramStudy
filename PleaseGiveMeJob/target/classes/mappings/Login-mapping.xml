@@ -12,6 +12,8 @@
 			 , USER_NAME
 			 , USER_NICKNAME
 			 , USER_PW
+			 , USER_INTRO
+			 , USER_INFO
 			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_ID = #{user_id}
@@ -26,6 +28,8 @@
 			, USER_NAME
 			, USER_NICKNAME
 			, USER_PW
+			, USER_INTRO
+			, USER_INFO
 			, REGDATE
 		)
 		VALUES
@@ -34,6 +38,8 @@
 			, #{user_name}
 			, #{user_nickname}
 			, #{user_pw}
+			, NULL
+			, NULL
 			, NOW()
 		)
  	</insert>
@@ -44,6 +50,8 @@
 			 , USER_NAME
 			 , USER_NICKNAME
 			 , USER_PW
+			 , USER_INTRO
+			 , USER_INFO
 			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_ID = #{user_id}
@@ -55,6 +63,8 @@
 			 , USER_NAME
 			 , USER_NICKNAME
 			 , USER_PW
+			 , USER_INTRO
+			 , USER_INFO
 			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_NICKNAME = #{user_nickname}
@@ -66,6 +76,8 @@
 			 , USER_NAME
 			 , USER_NICKNAME
 			 , USER_PW
+			 , USER_INTRO
+			 , USER_INFO
 			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_ID = #{user_id}

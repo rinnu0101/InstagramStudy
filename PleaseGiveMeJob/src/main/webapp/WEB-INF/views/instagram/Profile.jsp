@@ -1,22 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- css ∏Æº¬ -->
+        <!-- css Î¶¨ÏÖã -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <!-- ¡¶¿Ãƒı∏Æ ∫“∑Øø¿±‚ -->
+        <!-- Ï†úÏù¥ÏøºÎ¶¨ Î∂àÎü¨Ïò§Í∏∞ -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- Ω∫≈∏¿œΩ√∆Æ ¿˚øÎ -->
+        <!-- Ïä§ÌÉÄÏùºÏãúÌä∏ Ï†ÅÏö© -->
+        <link rel="stylesheet" href="css/LeftMenu.css">
         <link rel="stylesheet" href="css/Profile.css">
         <link rel="stylesheet" href="css/LayerPopup.css">
-        <!-- ∞¯≈Îjs ¿˚øÎ -->
+        <!-- Í≥µÌÜµjs Ï†ÅÏö© -->
         <script src="js/common.js"></script>
         
     </head>
 
     <body>
-    	<!-- ªı ∞‘Ω√π∞ æ˜∑ŒµÂ ∑π¿ÃæÓ∆Àæ˜ html-->
+    	<!-- ÏÉà Í≤åÏãúÎ¨º ÏóÖÎ°úÎìú Î†àÏù¥Ïñ¥ÌåùÏóÖ html-->
         <div id="upload_feed">
             <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
                 <div class="layerPopupClose_btn">
@@ -24,37 +25,37 @@
                 </div>
             </div>
 
-            <!-- ªı ∞‘Ω√π∞ æ˜∑ŒµÂ ∑π¿ÃæÓ∆Àæ˜ ƒ‹≈Ÿ√˜ html-->
+            <!-- ÏÉà Í≤åÏãúÎ¨º ÏóÖÎ°úÎìú Î†àÏù¥Ïñ¥ÌåùÏóÖ ÏΩòÌÖêÏ∏† html-->
             <div id="upload_layerPopup_contents">
                 <div id="upload_top">
                     <div id="upload_backstep">
                         <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
                     </div>
                     <div id="new_upload">
-                        	ªı ∞‘Ω√π∞ ∏∏µÈ±‚
+                        	ÏÉà Í≤åÏãúÎ¨º ÎßåÎì§Í∏∞
                     </div>
                     <div id="upload_btn" onclick="fnSaveNewFeed();">
-                        	∞¯¿Ø«œ±‚
+                        	Í≥µÏú†ÌïòÍ∏∞
                     </div>
                 </div>
                 <div id="upload_main">
                     <div id="upload_contents">
                     	<div id="file_insert">
 	                    	<div class="file_insert_info">
-	                    		ªÁ¡¯∞˙ µøøµªÛ¿ª ø©±‚ø° ≤¯æÓ¥Ÿ ≥ı¿∏ººø‰
+	                    		ÏÇ¨ÏßÑÍ≥º ÎèôÏòÅÏÉÅÏùÑ Ïó¨Í∏∞Ïóê ÎÅåÏñ¥Îã§ ÎÜìÏúºÏÑ∏Ïöî
 	                    	</div>
 	                    	<div class="file_insert_btn" onclick="fnFileSelect();">
-	                    		ƒƒ«ª≈Õø°º≠ º±≈√
+	                    		Ïª¥Ìì®ÌÑ∞ÏóêÏÑú ÏÑ†ÌÉù
 	                    	</div>
                             <div style="display: none;">
                                 <input id="input_file_feed" type="file" multiple="multiple"/>
                             </div>
                     	</div>
-                        <!-- upload file li πﬁ¥¬ ul -->
+                        <!-- upload file li Î∞õÎäî ul -->
                     	<ul class="upload_contents_ul" style="display:none;">
                         </ul>
-                        <!-- li ΩΩ∂Û¿ÃµÂ πˆ∆∞ -->
-                        <!-- todo : li ºˆ∑Æ¿Ã 2∞≥ ¿ÃªÛ¿œ ∂ß∏∏ πˆ∆∞ show, ∏« øﬁ¬ /ø¿∏•¬  µµ¥ﬁΩ√ «—¬  πˆ∆∞ hide -->
+                        <!-- li Ïä¨ÎùºÏù¥Îìú Î≤ÑÌäº -->
+                        <!-- todo : li ÏàòÎüâÏù¥ 2Í∞ú Ïù¥ÏÉÅÏùº ÎïåÎßå Î≤ÑÌäº show, Îß® ÏôºÏ™Ω/Ïò§Î•∏Ï™Ω ÎèÑÎã¨Ïãú ÌïúÏ™Ω Î≤ÑÌäº hide -->
                         <div class="upload_contents_arrow" style="display:none;">
                             <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
                                 <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
@@ -68,15 +69,15 @@
                         <div id="upload_profile">
                             <div id="upload_profile_img">
                                 <img src="images\profile_img\my_profile.jpg">
-                                <!-- todo : ∞Ë¡§ ¿ÃπÃ¡ˆ ∫“∑Øø¿±‚ -->
+                                <!-- todo : Í≥ÑÏ†ï Ïù¥ÎØ∏ÏßÄ Î∂àÎü¨Ïò§Í∏∞ -->
                             </div>
                             <div id="upload_profile_id">
                                 asdfasdfasdfasdf
-                                <!-- todo : ∞Ë¡§ ID ∫“∑Øø¿±‚ -->
+                                <!-- todo : Í≥ÑÏ†ï ID Î∂àÎü¨Ïò§Í∏∞ -->
                             </div>
                         </div>
                         <div id="upload_text">
-                            <textarea  placeholder="πÆ±∏∏¶ ¿‘∑¬«œººø‰..."></textarea>
+                            <textarea  placeholder="Î¨∏Íµ¨Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî..."></textarea>
                         </div>
                         <div id="upload_emoji">
                             <div id="upload_emoji_btn">
@@ -85,115 +86,60 @@
                             <div id="upload_text_charnum"></div>
                         </div>
                         <div id="upload_file">
-                            <!-- todo : ∆ƒ¿œæ˜∑ŒµÂ ±∏«ˆ -->
+                            <!-- todo : ÌååÏùºÏóÖÎ°úÎìú Íµ¨ÌòÑ -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- ««µÂ ∞¯≈Î ∆Àæ˜ √ﬂ∞° -->
+        <!-- ÌîºÎìú Í≥µÌÜµ ÌåùÏóÖ Ï∂îÍ∞Ä -->
         <jsp:include page="FeedPop.jsp"></jsp:include>
-        <!-- ∏ﬁ¿Œ∆‰¿Ã¡ˆ html-->
+        
+        <!-- Î©îÏù∏ÌéòÏù¥ÏßÄ html-->
         <div id="main">
-            <div id="main_left">
-                <div id="left_area">
-                    <div id="main_logo">
-                        <img onclick="goPage('logo');" src="images\icon\logo.png">
-                    </div>
-    
-                    <div id="main_menu">
-                        <ul>
-                            <li onclick="goPage('home');">
-                                <img class='main_menu_icon' src="images\icon\home.png"/>
-                                <div id="menu_home">»®</div>
-                            </li>
-                            <li>
-                                <img class='main_menu_icon' src="images\icon\search.png"/>
-                                <div id="menu_search">∞Àªˆ</div>
-                            </li>
-                            <!-- <li>
-                                <img class='main_menu_icon' src="images\icon\explore.png"/>
-                                <div id="menu_explore">≈Ωªˆ ≈«</div>
-                            </li> -->
-                            <!-- <li>
-                                <img class='main_menu_icon' src="images\icon\reels.png"/>
-                                <div id="menu_reels">∏±Ω∫</div>
-                            </li> -->
-                            <li>
-                                <img class='main_menu_icon' src="images\icon\direct.png"/>
-                                <div id="menu_direct">∏ﬁΩ√¡ˆ</div>
-                            </li>
-                            <li>
-                                <img class='main_menu_icon' src="images\icon\notice.png"/>
-                                <div id="menu_notice">æÀ∏≤</div>
-                            </li>
-                            <li onclick="fnUploadOpen();">
-                                <img class='main_menu_icon' src="images\icon\upload.png"/>
-                                <div id="menu_upload">∏∏µÈ±‚</div>
-                            </li>
-                            <li onclick="goPage('profile');">
-                                <img class='main_menu_profile' src="images\profile_img\my_profile.jpg"/>
-                                <!-- todo : 
-                                    - DBø°º≠ ≥ª «¡∑Œ«  ¿ÃπÃ¡ˆ ∞°¡Æø¿±‚
-                                    - «¡∑Œ«  ¿ÃπÃ¡ˆ æ¯¿∏∏È "icon\profile.png" ¿⁄µø¿∏∑Œ ∂ÁøÏ±‚ -->
-                                <div id="menu_profile">«¡∑Œ« </div>
-                            </li>
-                        </ul>
-                    </div>
-    
-                    <div id="main_moreMenu">
-                        <ul>
-                            <li>
-                                <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
-                                <div id="moreMenu">
-                                    <!-- todo : ¥ı∫∏±‚ ≥ª ∏ﬁ¥∫ ±∏«ˆ«œ±‚ -->
-                                    	¥ı ∫∏±‚
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <!-- Ï¢åÏ∏° Í≥µÌÜµ Î©îÎâ¥ÏòÅÏó≠ Ï∂îÍ∞Ä -->
+	        <jsp:include page="LeftMenu.jsp"></jsp:include>
 
+			<!-- Î©îÏù∏ ÌîÑÎ°úÌïÑ ÏòÅÏó≠ -->
             <div id="main_middle">
                 <div id="profile_middle_area">
                     <div id="profile_Top">
                         <div id="profile_TopImgArea">
-                            <!-- todo : ≥ª ∞Ë¡§ø°º≠∏∏ ≈¨∏Ø »∞º∫»≠, «¡∑Œ« ªÁ¡¯ πŸ≤Ÿ±‚ µÓ ±‚¥… ≥÷±‚ -->
+                            <!-- todo : ÎÇ¥ Í≥ÑÏ†ïÏóêÏÑúÎßå ÌÅ¥Î¶≠ ÌôúÏÑ±Ìôî, ÌîÑÎ°úÌïÑÏÇ¨ÏßÑ Î∞îÍæ∏Í∏∞ Îì± Í∏∞Îä• ÎÑ£Í∏∞ -->
                             <div style="text-align: center;">
                                 <img id='profile_TopImg' src="images\profile_img\my_profile.jpg">
                             </div>
                         </div>
                         <div id="profile_TopInfo">
                             <div id="Info_ID">
-                                <!-- todo : ≥ªID∫“∑Øø¿±‚ -->
-                                <div id="Info_ID_name">∞Ë¡§ID</div>
-                                <div id="Info_ID_option">
+                                <!-- todo : ÎÇ¥IDÎ∂àÎü¨Ïò§Í∏∞ -->
+                                <div id="Info_ID_name">Í≥ÑÏ†ïID</div>
+                                <div id="Info_ID_option" onclick="goPage('profileChange');">
                                     <img src="images\icon\setting.png"/>
                                 </div>
                             </div>
                             <div id="Info_Account">
                                 <ul>
-                                    <!-- todo : ∞‘Ω√π∞, ∆»∑Œøˆ, ∆»∑ŒøÏ º˝¿⁄ ∫“∑Øø¿±‚ -->
+                                    <!-- todo : Í≤åÏãúÎ¨º, ÌåîÎ°úÏõå, ÌåîÎ°úÏö∞ Ïà´Ïûê Î∂àÎü¨Ïò§Í∏∞ -->
                                     <li>
-                                        	∞‘Ω√π∞<span></span>
+                                        	Í≤åÏãúÎ¨º<span></span>
                                     </li>
                                     <li>
                                         <div id="follower" style="cursor: pointer;">
-                                           	 ∆»∑Œøˆ<span></span>
+                                           	 ÌåîÎ°úÏõå<span></span>
                                         </div>
                                     </li>
                                     <li>
                                         <div id="follow" style="cursor: pointer;">
-                                            	∆»∑ŒøÏ<span></span>
+                                            	ÌåîÎ°úÏö∞<span></span>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div id="Info_Text">
-                                <div id="Info_Text1">«—¡Ÿº“∞≥±€</div>
-                                <div id="Info_Text2">ªÛººº≥∏Ì±€</div>
+                                <div id="Info_Text1">ÌïúÏ§ÑÏÜåÍ∞úÍ∏Ä</div>
+                                <div id="Info_Text2">ÏÉÅÏÑ∏ÏÑ§Î™ÖÍ∏Ä</div>
                             </div>
                         </div>
                     </div>
@@ -201,7 +147,7 @@
                     <div id="profile_feedMenu">
                         <div id="feedMenu_log">
                             <img style="width: 12px; height: 12px; object-fit: cover; margin-right: 5px;" src="images\icon\grid.png"/>
-                        	    ∞‘Ω√π∞
+                        	    Í≤åÏãúÎ¨º
                         </div>
                     </div>
 
@@ -213,7 +159,7 @@
                                         <img src="images\feed_img\feed1.jpg">
                                     </div>
                                     <div class="feedContents_PIS">
-                                        <!-- todo : ¡¡æ∆ø‰, ¥Ò±€ º˝¿⁄ ∫“∑Øø¿±‚ -->
+                                        <!-- todo : Ï¢ãÏïÑÏöî, ÎåìÍ∏Ä Ïà´Ïûê Î∂àÎü¨Ïò§Í∏∞ -->
                                         <div class="log_heart">
                                             <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
                                             <span>0</span>
@@ -231,7 +177,7 @@
                                         <img src="images\feed_img\feed2.jpg">
                                     </div>
                                     <div class="feedContents_PIS">
-                                        <!-- todo : ¡¡æ∆ø‰, ¥Ò±€ º˝¿⁄ ∫“∑Øø¿±‚ -->
+                                        <!-- todo : Ï¢ãÏïÑÏöî, ÎåìÍ∏Ä Ïà´Ïûê Î∂àÎü¨Ïò§Í∏∞ -->
                                         <div class="log_heart">
                                             <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
                                             <span>0</span>
@@ -249,7 +195,7 @@
                                         <img src="images\feed_img\feed3.jpg">
                                     </div>
                                     <div class="feedContents_PIS">
-                                        <!-- todo : ¡¡æ∆ø‰, ¥Ò±€ º˝¿⁄ ∫“∑Øø¿±‚ -->
+                                        <!-- todo : Ï¢ãÏïÑÏöî, ÎåìÍ∏Ä Ïà´Ïûê Î∂àÎü¨Ïò§Í∏∞ -->
                                         <div class="log_heart">
                                             <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
                                             <span>0</span>
@@ -270,8 +216,3 @@
 </html>
 
 <script src="js/upload.js"></script>
-<script>	    
-    $(document).ready(function(){
-        init();
-    });
-</script>

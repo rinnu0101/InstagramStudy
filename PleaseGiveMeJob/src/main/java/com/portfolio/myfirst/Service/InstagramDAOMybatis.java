@@ -16,6 +16,7 @@ import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
+import com.portfolio.myfirst.Mapper.UserPhotoVO;
 
 @Repository
 public class InstagramDAOMybatis extends SqlSessionDaoSupport {
@@ -85,5 +86,14 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	//피드 댓글 저장
 	public void setFeedReply(FeedReplyVO vo) {
 		getSqlSession().insert("InstagramDAO.setFeedReply", vo);
+	}
+
+	//프로필 정보 저장(&수정)
+	public void setProfileInfo(UserInfoVO vo) {
+		getSqlSession().update("InstagramDAO.setProfileInfo", vo);
+	}
+	//프로필 이미지 저장
+	public void setProfileImgFile(UserPhotoVO vo) {
+		getSqlSession().insert("InstagramDAO.setProfileImgFile", vo);		
 	}
 }

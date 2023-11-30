@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- css ¸®¼Â -->
+        <!-- css ë¦¬ì…‹ -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <!-- Á¦ÀÌÄõ¸® ºÒ·¯¿À±â -->
+        <!-- ì œì´ì¿¼ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸° -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- ½ºÅ¸ÀÏ½ÃÆ® Àû¿ë -->
+        <!-- ìŠ¤íƒ€ì¼ì‹œíŠ¸ ì ìš© -->
         <link rel="stylesheet" href="css/FindPW.css">
-        <!-- °øÅëjs Àû¿ë -->
+        <!-- ê³µí†µjs ì ìš© -->
         <script src="js/common.js"></script>
         
         <script>
-        <!-- ºñ¹Ð¹øÈ£Ã£±â Á¤º¸ ÀÔ·ÂÇÏ±â -->
+        <!-- ë¹„ë°€ë²ˆí˜¸ì°¾ê¸° ì •ë³´ ìž…ë ¥í•˜ê¸° -->
         function fnInputFindPWInfo()
         {
             var findPwInfo =
@@ -31,18 +31,18 @@
 	            	success : function(p)
 		            {
 		            	if(p==""){
-		            		alert("°èÁ¤¸íÀ» ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
+		            		alert("ê³„ì •ëª…ì„ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
 		            		}
 		            	else{
-		            		alert("ÇØ´ç °èÁ¤À¸·Î ºñ¹Ð¹øÈ£¸¦ ¹ß¼ÛÇÏ¿´½À´Ï´Ù.");
+		            		alert("í•´ë‹¹ ê³„ì •ìœ¼ë¡œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°œì†¡í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		            		}
 			            console.log(p);
-		                console.log("¼º°ø");
+		                console.log("ì„±ê³µ");
 		                
 		            },
 	               	error : function(p)
 	               	{
-			           console.log("½ÇÆÐ");		                  
+			           console.log("ì‹¤íŒ¨");		                  
 	               	}
 	            });
         }
@@ -64,33 +64,33 @@
                         <img src="images\icon\lock.png">
                     </div>
                     <div class="info_text_top">
-                        	·Î±×ÀÎ¿¡ ¹®Á¦°¡ ÀÖ³ª¿ä?
+                        	ë¡œê·¸ì¸ì— ë¬¸ì œê°€ ìžˆë‚˜ìš”?
                     </div>
                     <div class="info_text_bottom">
-                        	ÀÌ¸ÞÀÏ ÁÖ¼Ò, ÀüÈ­¹øÈ£ ¶Ç´Â »ç¿ëÀÚ ÀÌ¸§À»</br>
-                        	ÀÔ·ÂÇÏ½Ã¸é °èÁ¤¿¡ ´Ù½Ã ¾×¼¼½ºÇÒ ¼ö ÀÖ´Â</br>
-                        	¸µÅ©¸¦ º¸³»µå¸³´Ï´Ù.
+                        	ì´ë©”ì¼ ì£¼ì†Œ, ì „í™”ë²ˆí˜¸ ë˜ëŠ” ì‚¬ìš©ìž ì´ë¦„ì„</br>
+                        	ìž…ë ¥í•˜ì‹œë©´ ê³„ì •ì— ë‹¤ì‹œ ì•¡ì„¸ìŠ¤í•  ìˆ˜ ìžˆëŠ”</br>
+                        	ë§í¬ë¥¼ ë³´ë‚´ë“œë¦½ë‹ˆë‹¤.
                     </div>
                     <div class="find_clue">
-                        <input type="text" placeholder="ÀÌ¸ÞÀÏ, ÀüÈ­¹øÈ£, »ç¿ëÀÚ ÀÌ¸§"/>
+                        <input type="text" placeholder="ì´ë©”ì¼, ì „í™”ë²ˆí˜¸, ì‚¬ìš©ìž ì´ë¦„"/>
                     </div>
                     <div id="find_PW_btn" onclick="fnInputFindPWInfo();">
-                        <!-- todo : find_clue ¿µ¿ª ºñ¾îÀÖÀ»¶§´Â ºñÈ°¼ºÈ­µÇ¾îÀÖ´Ù°¡ ¿µ¿ª ÀÔ·ÂµÇ¸é È°¼ºÈ­ÇÏ±â -->
-                        <!-- todo : ·Î±×ÀÎ ¸µÅ© º¸³»±â ±â´É Ãß°¡ -->
-                        	·Î±×ÀÎ ¸µÅ© º¸³»±â
+                        <!-- todo : find_clue ì˜ì—­ ë¹„ì–´ìžˆì„ë•ŒëŠ” ë¹„í™œì„±í™”ë˜ì–´ìžˆë‹¤ê°€ ì˜ì—­ ìž…ë ¥ë˜ë©´ í™œì„±í™”í•˜ê¸° -->
+                        <!-- todo : ë¡œê·¸ì¸ ë§í¬ ë³´ë‚´ê¸° ê¸°ëŠ¥ ì¶”ê°€ -->
+                        	ë¡œê·¸ì¸ ë§í¬ ë³´ë‚´ê¸°
                     </div>
                     <div id="reset_PW">
-                        <!-- todo : ºñ¹Ð¹øÈ£ Àç¼³Á¤ ±â´É Ãß°¡ -->
-                        	ºñ¹Ð¹øÈ£¸¦ Àç¼³Á¤ÇÒ ¼ö ¾ø³ª¿ä?
+                        <!-- todo : ë¹„ë°€ë²ˆí˜¸ ìž¬ì„¤ì • ê¸°ëŠ¥ ì¶”ê°€ -->
+                        	ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž¬ì„¤ì •í•  ìˆ˜ ì—†ë‚˜ìš”?
                     </div>
                     <div class="join_info_text">
-                        --------------------------- ¶Ç´Â ---------------------------
+                        --------------------------- ë˜ëŠ” ---------------------------
                     </div>
                     <div id="join_new" onclick="goPage('join');">
-                        	»õ °èÁ¤ ¸¸µé±â
+                        	ìƒˆ ê³„ì • ë§Œë“¤ê¸°
                     </div>
                     <div id="back_to_login_btn" onclick="goPage('login');">
-                        	·Î±×ÀÎÀ¸·Î µ¹¾Æ°¡±â
+                        	ë¡œê·¸ì¸ìœ¼ë¡œ ëŒì•„ê°€ê¸°
                     </div>
                 </div>
             </div>

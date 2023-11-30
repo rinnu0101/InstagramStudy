@@ -4,24 +4,28 @@ var goPage = function(type)
     {
         window.location.href = "/home.do"
     }
-    if(type == "home")
+    else if(type == "home")
     {
         window.location.href = "/home.do"
     }
-    if(type == "profile")
+    else if(type == "profile")
     {
         window.location.href = "/profile.do"
     }
-    if(type == "login")
+    else if(type == "login")
     {
         window.location.href = "/instagram.do"
     }
-    if(type == "join")
+    else if(type == "join")
     {
         window.location.href = "/join.do"
     }
-    if(type == "findPW")
+    else if(type == "findPW")
     {
         window.location.href = "/findPW.do"
+    }
+    else if(type == "profileChange")
+    {
+        window.location.href = "/profileChange.do"
     }
 }

@@ -35,6 +35,7 @@ import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
 import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
+import com.portfolio.myfirst.Mapper.UserPhotoVO;
 import com.portfolio.myfirst.Service.InstagramService;
 
 @Controller
@@ -69,6 +70,12 @@ public class InstagramController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/profileChange.do")
+	public ModelAndView profileChange(ModelAndView mav) {		
+		mav.setViewName("/instagram/ProfileChange");
+		return mav;
+	}
+	
 	@RequestMapping(value="/findPW.do")
 	public ModelAndView instagramFindPW(ModelAndView mav) {		
 		mav.setViewName("/instagram/FindPW");
@@ -83,7 +90,7 @@ public class InstagramController {
 	 * 
 	 * @ResponseBody public String setSaveNewFeed(FeedListVO vo, HttpSession
 	 * session) throws JsonProcessingException { //자바에서 JSON 객체로 변환해주는 라이브러리 int
-	 * user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+	 * user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
 	 * vo.setUser_idx(user_idx); Service.setSaveNewFeed(vo); return "OK"; }
 	 */
 	@ResponseBody
@@ -95,7 +102,7 @@ public class InstagramController {
 			, HttpServletRequest request)
 	{
 		FeedListVO vo = new FeedListVO();
-		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));		
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
 		vo.setUser_idx(user_idx);
 		vo.setFeed_contents(feed_contents);
 		Service.setSaveNewFeed(vo);
@@ -146,7 +153,7 @@ public class InstagramController {
 	 * 
 	 * @ResponseBody public String setSaveNewStory(StoryListVO vo, HttpSession
 	 * session) throws JsonProcessingException { //자바에서 JSON 객체로 변환해주는 라이브러리 int
-	 * user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+	 * user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
 	 * vo.setUser_idx(user_idx); Service.setSaveNewStory(vo); return "OK"; }
 	 */	
 	@ResponseBody
@@ -157,7 +164,7 @@ public class InstagramController {
 			, HttpServletRequest request)
 	{
 		StoryListVO vo = new StoryListVO();
-		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
 		vo.setUser_idx(user_idx);
 		Service.setSaveNewStory(vo);
 		int story_idx = Service.getNewStoryIdx(vo);
@@ -203,7 +210,7 @@ public class InstagramController {
 	@RequestMapping(value="/setLikeClick.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String setLikeClick(FeedLikeVO vo, HttpSession session) throws JsonProcessingException {
-		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));		
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
 		vo.setUser_idx(user_idx);
 		Service.setLikeClick(vo);
 		return "OK";
@@ -227,10 +234,81 @@ public class InstagramController {
 	@RequestMapping(value="/setFeedReply.do", produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String setFeedReply(FeedReplyVO vo, HttpSession session) throws JsonProcessingException {
-		int user_idx = Integer.parseInt((String)session.getAttribute("user_idx"));		
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
 		vo.setUser_idx(user_idx);
 		Service.setFeedReply(vo);
 		return "OK";
+	}
+	
+	//프로필 정보 저장 (&변경)
+	@ResponseBody
+	@RequestMapping(value = "/setProfileInfo.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	public String setProfileInfo(
+			@RequestParam("file") MultipartFile file
+			, @RequestParam("profile_img_chg") String profile_img_chg
+			, @RequestParam("user_nickname_chg") String user_nickname_chg
+			, @RequestParam("user_pw_chg") String user_pw_chg
+			, @RequestParam("user_nickname") String user_nickname
+			, @RequestParam("user_pw") String user_pw
+			, HttpSession session
+			, HttpServletRequest request)
+	{
+		String result = "OK";
+		UserInfoVO vo = new UserInfoVO();
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
+		vo.setUser_idx(user_idx);
+		vo.setUser_nickname(user_nickname);
+		vo.setUser_pw(user_pw);
+		vo.setUser_nickname_chg(user_nickname_chg);
+		vo.setUser_pw_chg(user_pw_chg);
+		
+		if("Y".equals(user_nickname_chg) || "Y".equals(user_pw_chg))
+		{
+			result = Service.setProfileInfo(vo);
+			
+			if("Y".equals(user_nickname_chg))
+			{
+				session.setAttribute("user_nickname", user_nickname);
+			}
+		}
+		
+		if("Y".equals(profile_img_chg))
+		{
+			String fileRoot;
+			try {
+				// 파일이 있을때 탄다.
+				if(file != null) {
+					
+					fileRoot = "C:\\mygit\\PleaseGiveMeJob\\src\\main\\webapp\\images\\profile_img\\";
+					
+					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
+					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+	
+					System.out.println(fileRoot + savedFileName);
+					File targetFile = new File(fileRoot + savedFileName);	
+					try {
+						InputStream fileStream = file.getInputStream();
+						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+						
+						//DB에 파일정보 저장하기
+						UserPhotoVO vo2 = new UserPhotoVO();
+						vo2.setUser_idx(user_idx);
+						vo2.setFile_name(savedFileName);
+						Service.setProfileImgFile(vo2);
+						
+					} catch (Exception e) {
+						//파일삭제
+						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+						e.printStackTrace();
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 	
 	

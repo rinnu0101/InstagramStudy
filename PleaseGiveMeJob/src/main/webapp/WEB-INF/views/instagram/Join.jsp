@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- css ¸®¼Â -->
+        <!-- css ë¦¬ì…‹ -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <!-- Á¦ÀÌÄõ¸® ºÒ·¯¿À±â -->
+        <!-- ì œì´ì¿¼ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸° -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- ½ºÅ¸ÀÏ½ÃÆ® Àû¿ë -->
+        <!-- ìŠ¤íƒ€ì¼ì‹œíŠ¸ ì ìš© -->
         <link rel="stylesheet" href="css/Join.css">
-        <!-- °øÅëjs Àû¿ë -->
+        <!-- ê³µí†µjs ì ìš© -->
         <script src="js/common.js"></script>
         
         <script>
         
         	var chkID = false;
         	var chkNN = false;
-        	//È¸¿ø°¡ÀÔ Á¤º¸ ÀÔ·ÂÇÏ±â
+        	//íšŒì›ê°€ì… ì •ë³´ ì…ë ¥í•˜ê¸°
             function fnInputJoinInfo()
             {
-        		// ID&´Ğ³×ÀÓ Áßº¹Ã¼Å© ¿À·ù¹æÁö
+        		// ID&ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬ ì˜¤ë¥˜ë°©ì§€
             	if(!chkID)
            		{
             		return false;
@@ -30,7 +30,7 @@
             		return false;
            		}
             	
-            	// È¸¿øÁ¤º¸ °ø¹é Ã¼Å©
+            	// íšŒì›ì •ë³´ ê³µë°± ì²´í¬
             	var user_id = $(".join_ID").find("input").val();
                 var user_name = $(".join_name").find("input").val();
                 var user_nickname = $(".join_nickname").find("input").val();
@@ -38,26 +38,26 @@
                 
                 if(!user_id)
                 {
-                	alert("ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+                	alert("IDë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
                 	return false;
                 }
                 if(!user_name)
                 {
-                	alert("¼º¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+                	alert("ì„±ëª…ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
                 	return false;
                 }
                 if(!user_nickname)
                 {
-                	alert("´Ğ³×ÀÓÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+                	alert("ë‹‰ë„¤ì„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
                 	return false;
                 }
                 if(!user_pw)
                 {
-                	alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+                	alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
                 	return false;
                 }
 
-                // È¸¿øÁ¤º¸ ÀÔ·Â ajax json
+                // íšŒì›ì •ë³´ ì…ë ¥ ajax json
             	var joinInfo =
 	                {
 	                    'user_id' : $(".join_ID").find("input").val()
@@ -70,7 +70,7 @@
                 
                 //GET
                 //"/setJoinInfo.do?user_id=123&user_name=123..."
-                //url¿¡ ¸ğµç Á¤º¸°¡ ³ëÃâµÇ¾î º¸¾È Ãë¾à
+                //urlì— ëª¨ë“  ì •ë³´ê°€ ë…¸ì¶œë˜ì–´ ë³´ì•ˆ ì·¨ì•½
                 
            		//POST
                 $.ajax({
@@ -80,28 +80,28 @@
                 	success : function(p)
 		            {
               			console.log(p);
-		               	console.log("¼º°ø");
+		               	console.log("ì„±ê³µ");
 		               	if(p == "JOIN_OK")
 	            	   	{
-		               		alert("È¸¿ø°¡ÀÔ¿¡ ¼º°øÇÏ¼Ì½À´Ï´Ù.");
+		               		alert("íšŒì›ê°€ì…ì— ì„±ê³µí•˜ì…¨ìŠµë‹ˆë‹¤.");
 		               		window.location.href = "/instagram.do";
 	            	   	}
 		               	else
 		               	{
-		            	   	alert("È¸¿øÁ¤º¸¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
+		            	   	alert("íšŒì›ì •ë³´ë¥¼ ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
 		               	}
 		            },
 	               	error : function(p)
 	               	{
-			           console.log("È¸¿ø°¡ÀÔ½ÇÆĞ");		                  
+			           console.log("íšŒì›ê°€ì…ì‹¤íŒ¨");		                  
 	               	}
                 });
             }
             
-            //È¸¿ø°¡ÀÔ Á¤º¸ À¯È¿¼º °Ë»ç
+            //íšŒì›ê°€ì… ì •ë³´ ìœ íš¨ì„± ê²€ì‚¬
             var fnValidation = function(obj)
             {
-            	//1. focus out ½ÃÁ¡¿¡ ÇÔ¼ö È£Ãâ
+            	//1. focus out ì‹œì ì— í•¨ìˆ˜ í˜¸ì¶œ
             	var type = $(obj).attr("vtype");
             	var value = $(obj).val();
             	
@@ -111,10 +111,10 @@
             		$(obj).val(value);
             	}
             	
-            	//2. °ªÀÌ ÀÖÀ» °æ¿ì¿¡¸¸ validation Ã¼Å©
+            	//2. ê°’ì´ ìˆì„ ê²½ìš°ì—ë§Œ validation ì²´í¬
             	if(!value) return false;
             	
-            	//ID À¯È¿¼º °Ë»ç
+            	//ID ìœ íš¨ì„± ê²€ì‚¬
             	if(type == "id")
             	{
             		var idInfo =
@@ -122,7 +122,7 @@
                			'user_id' : $(".join_ID").find("input").val(),
 	                }
             		
-            		//ID Áßº¹È®ÀÎ
+            		//ID ì¤‘ë³µí™•ì¸
             		$.ajax({
                     	url : "/getIdDuplCheck.do",
                     	type : "POST",
@@ -133,7 +133,7 @@
     		               	if(p == "ID_FAIL")
     	            	   	{
     		               		chkID = false;
-    		               		alert("Áßº¹µÈ ID¸¦ ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
+    		               		alert("ì¤‘ë³µëœ IDë¥¼ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
     		               		$(".join_ID").find("input").css("color", "red");
     		               		$(".join_ID").find(".confirm").find(".confirm_check").hide();
     	            			$(".join_ID").find(".confirm").find(".confirm_error").show();
@@ -149,31 +149,31 @@
     		            },
     	               	error : function(p)
     	               	{
-    			           console.log("IDÃ¼Å©½ÇÆĞ");		                  
+    			           console.log("IDì²´í¬ì‹¤íŒ¨");		                  
     	               	}
                     });
             		
-	            	//case 1. ¿µ¹®ÀÌ Æ÷ÇÔµÇ¾î ÀÖÀ» °æ¿ì ÀÌ¸ŞÀÏ À¯È¿¼º °Ë»ç
+	            	//case 1. ì˜ë¬¸ì´ í¬í•¨ë˜ì–´ ìˆì„ ê²½ìš° ì´ë©”ì¼ ìœ íš¨ì„± ê²€ì‚¬
 	            	const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 	            	if(pattern.test(value) === true)
 	            	{
-	            		//alert("ÀÌ¸ŞÀÏÁÖ¼Ò");
+	            		//alert("ì´ë©”ì¼ì£¼ì†Œ");
 	            		$(".join_ID").find("input").css("color", "black");
 	            		$(".join_ID").find(".confirm").find(".confirm_check").show();
 	            		$(".join_ID").find(".confirm").find(".confirm_error").hide();
 	            	}
 	            	else if(!isNaN(value))
             		{
-	            		//¾ç¼ö Ã¼Å©
+	            		//ì–‘ìˆ˜ ì²´í¬
             			if(Math.sign(value)==1)
             			{
-            				//case 2. ¼ıÀÚ¸¸ ÀÖÀ» °æ¿ì ÈŞ´ëÆù¹øÈ£ À¯È¿¼º Ã¼Å©
+            				//case 2. ìˆ«ìë§Œ ìˆì„ ê²½ìš° íœ´ëŒ€í°ë²ˆí˜¸ ìœ íš¨ì„± ì²´í¬
             				var phoneNumberPattern = /^01([0-9])-?([0-9]{3,4})-?([0-9]{4})$/;
             				var phoneNumber = value;
             				
 	            			if(phoneNumberPattern.test(phoneNumber))
 	            			{
-	            				//alert("ÈŞ´ëÆù¹øÈ£");
+	            				//alert("íœ´ëŒ€í°ë²ˆí˜¸");
 	            				chkID = true;
 	            				$(".join_ID").find("input").css("color", "black");
 	            				$(".join_ID").find(".confirm").find(".confirm_check").show();
@@ -181,7 +181,7 @@
 	            			}
 	            			else
 	            			{
-	            			    alert("id´Â ÈŞ´ëÆù¹øÈ£ ¶Ç´Â ÀÌ¸ŞÀÏÁÖ¼Ò¸¸ °¡´ÉÇÕ´Ï´Ù.");
+	            			    alert("idëŠ” íœ´ëŒ€í°ë²ˆí˜¸ ë˜ëŠ” ì´ë©”ì¼ì£¼ì†Œë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 	            			    $(".join_ID").find("input").css("color", "red");
     		               		$(".join_ID").find(".confirm").find(".confirm_check").hide();
     	            			$(".join_ID").find(".confirm").find(".confirm_error").show();
@@ -190,16 +190,16 @@
             		}
 	            	else
             		{
-	            		//case 3. ³ª¸ÓÁö´Â ¸ğµÎ ¿À·ù
+	            		//case 3. ë‚˜ë¨¸ì§€ëŠ” ëª¨ë‘ ì˜¤ë¥˜
 	            		chkID = false;
-            			alert("id´Â ÈŞ´ëÆù¹øÈ£ ¶Ç´Â ÀÌ¸ŞÀÏÁÖ¼Ò¸¸ °¡´ÉÇÕ´Ï´Ù.");
+            			alert("idëŠ” íœ´ëŒ€í°ë²ˆí˜¸ ë˜ëŠ” ì´ë©”ì¼ì£¼ì†Œë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
             			$(".join_ID").find("input").css("color", "red");
             			$(".join_ID").find(".confirm").find(".confirm_check").hide();
             			$(".join_ID").find(".confirm").find(".confirm_error").show();
             		}
             	}
             	
-            	//´Ğ³×ÀÓ À¯È¿¼º °Ë»ç
+            	//ë‹‰ë„¤ì„ ìœ íš¨ì„± ê²€ì‚¬
             	if(type == "nickname")
            		{
             		var nicknameInfo =
@@ -207,7 +207,7 @@
                			'user_nickname' : $(".join_nickname").find("input").val()
 	                }
             		
-            		//´Ğ³×ÀÓ Áßº¹È®ÀÎ
+            		//ë‹‰ë„¤ì„ ì¤‘ë³µí™•ì¸
             		$.ajax({
                     	url : "/getNicknameDuplCheck.do",
                     	type : "POST",
@@ -217,7 +217,7 @@
                   			console.log(p);
     		               	if(p == "NN_FAIL")
     	            	   	{
-    		               		alert("Áßº¹µÈ ´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.");
+    		               		alert("ì¤‘ë³µëœ ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë‹¤ì‹œ í™•ì¸í•˜ì„¸ìš”.");
     		               		$(".join_nickname").find("input").css("color", "red");
     		               		$(".join_nickname").find(".confirm").find(".confirm_check").hide();
     	            			$(".join_nickname").find(".confirm").find(".confirm_error").show();
@@ -233,13 +233,13 @@
     		            },
     	               	error : function(p)
     	               	{
-    			           console.log("´Ğ³×ÀÓÃ¼Å©½ÇÆĞ");		                  
+    			           console.log("ë‹‰ë„¤ì„ì²´í¬ì‹¤íŒ¨");		                  
     	               	}
                     });
            		}
             }
             
-            //ºñ¹Ğ¹øÈ£ Ã¼Å© btn
+            //ë¹„ë°€ë²ˆí˜¸ ì²´í¬ btn
             var fnPwToggle = function(p)
             {
             	if(p)
@@ -266,52 +266,52 @@
                         <div class="login_logo">
                             <img class="login_logo_img" src="images\icon\logo.png">
                         </div>
-                        <div id="join_text">Ä£±¸µéÀÇ »çÁø°ú µ¿¿µ»óÀ» º¸·Á¸é</br>Áö±İ °¡ÀÔÇÏ¼¼¿ä.</div>
+                        <div id="join_text">ì¹œêµ¬ë“¤ì˜ ì‚¬ì§„ê³¼ ë™ì˜ìƒì„ ë³´ë ¤ë©´</br>ì§€ê¸ˆ ê°€ì…í•˜ì„¸ìš”.</div>
                         <div class="login_fb_btn">
                             <img class="login_fb_icon" src="images\icon\fb_logo_wt.png">
-                            FacebookÀ¸·Î ·Î±×ÀÎ
+                            Facebookìœ¼ë¡œ ë¡œê·¸ì¸
                         </div>
                         <div class="login_info_text">
-                            ----------------------- ¶Ç´Â -----------------------
+                            ----------------------- ë˜ëŠ” -----------------------
                         </div>
                         <div class="join_ID">
-                            <input type="text" placeholder="ÈŞ´ëÆù ¹øÈ£ ¶Ç´Â ÀÌ¸ŞÀÏ ÁÖ¼Ò" vtype="id" onfocusout="fnValidation(this)"/>
+                            <input type="text" placeholder="íœ´ëŒ€í° ë²ˆí˜¸ ë˜ëŠ” ì´ë©”ì¼ ì£¼ì†Œ" vtype="id" onfocusout="fnValidation(this)"/>
                             <div class="confirm">
                                 <img class="confirm_check" src="images\icon\check.png">
                                 <img class="confirm_error" src="images\icon\error.png">
                             </div>
                         </div>
                         <div class="join_name">
-                            <input type="text" placeholder="¼º¸í"/>
+                            <input type="text" placeholder="ì„±ëª…"/>
                         </div>
                         <div class="join_nickname">
-                            <input type="text" placeholder="´Ğ³×ÀÓ" vtype="nickname" onfocusout="fnValidation(this)"/>
+                            <input type="text" placeholder="ë‹‰ë„¤ì„" vtype="nickname" onfocusout="fnValidation(this)"/>
                             <div class="confirm">
                                 <img class="confirm_check" src="images\icon\check.png">
                                 <img class="confirm_error" src="images\icon\error.png">
                             </div>
                         </div>
                         <div class="join_PW">
-                            <input type="password" placeholder="ºñ¹Ğ¹øÈ£"/>
+                            <input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸"/>
                             <div class="confirm">
                                 <img class="confirm_show" onclick="fnPwToggle(false);" src="images\icon\show.png">
                                 <img class="confirm_hide" onclick="fnPwToggle(true);" src="images\icon\hide.png">
                             </div>
                         </div>
-					<div class="login_btn" onclick="fnInputJoinInfo();">È¸¿ø°¡ÀÔ</div>
+					<div class="login_btn" onclick="fnInputJoinInfo();">íšŒì›ê°€ì…</div>
 					<div id="join_info_text">
-                            	ÀúÈñ ¼­ºñ½º¸¦ ÀÌ¿ëÇÏ´Â »ç¶÷ÀÌ È¸¿ø´ÔÀÇ ¿¬¶ôÃ³ Á¤º¸¸¦ Instagram¿¡ ¾÷·ÎµåÇßÀ» ¼öµµ ÀÖ½À´Ï´Ù.
+                            	ì €í¬ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•˜ëŠ” ì‚¬ëŒì´ íšŒì›ë‹˜ì˜ ì—°ë½ì²˜ ì •ë³´ë¥¼ Instagramì— ì—…ë¡œë“œí–ˆì„ ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤.
                             <div id="join_info_more">
-                            	´õ ¾Ë¾Æº¸±â
+                            	ë” ì•Œì•„ë³´ê¸°
                             </div>
                         </div>
                     </div>
                     <div class="join_login">
-                        	°èÁ¤ÀÌ ÀÖÀ¸½Å°¡¿ä?
-                        <div id="join_login_btn" onclick="goPage('login');">·Î±×ÀÎ</div>
+                        	ê³„ì •ì´ ìˆìœ¼ì‹ ê°€ìš”?
+                        <div id="join_login_btn" onclick="goPage('login');">ë¡œê·¸ì¸</div>
                     </div>
                     <div class="info_download">
-                        <div class="download_text">¾ÛÀ» ´Ù¿î·ÎµåÇÏ¼¼¿ä.</div>
+                        <div class="download_text">ì•±ì„ ë‹¤ìš´ë¡œë“œí•˜ì„¸ìš”.</div>
                         <div class="download_btn">
                             <div id="googleplay_btn">
                                 <img id='googleplay_btn_img' src="images\login_img\googleplay_btn.png"/>
