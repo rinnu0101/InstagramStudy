@@ -7,15 +7,18 @@
 <mapper namespace="LoginDAO">
 	<!-- 로그인 정보 가져오기 -->
  	<select id="getLoginInfo" parameterType="userinfo" resultType="userinfo">
-		SELECT USER_IDX
-			 , USER_ID
-			 , USER_NAME
-			 , USER_NICKNAME
-			 , USER_PW
-			 , USER_INTRO
-			 , USER_INFO
-			 , REGDATE
-		  FROM INSTAGRAM.USER_INFO
+		SELECT UI.USER_IDX
+			 , UI.USER_ID
+			 , UI.USER_NAME
+			 , UI.USER_NICKNAME
+			 , UI.USER_PW
+			 , UI.USER_INTRO
+			 , UI.USER_INFO
+			 , UI.REGDATE
+			 , UP.FILE_NAME
+		  FROM INSTAGRAM.USER_INFO UI
+		  LEFT JOIN INSTAGRAM.USER_PHOTO UP 
+		  ON UI.USER_IDX = UP.USER_IDX
 		 WHERE USER_ID = #{user_id}
 		   AND USER_PW = #{user_pw}
  	</select>

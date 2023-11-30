@@ -296,6 +296,7 @@ public class InstagramController {
 						vo2.setUser_idx(user_idx);
 						vo2.setFile_name(savedFileName);
 						Service.setProfileImgFile(vo2);
+						session.setAttribute("file_name", "images\\profile_img\\" + savedFileName);
 						
 					} catch (Exception e) {
 						//파일삭제

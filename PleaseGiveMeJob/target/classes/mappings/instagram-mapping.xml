@@ -247,11 +247,29 @@
 	</update>
 	
 	<!-- 프로필 이미지 저장 -->
-	<insert id="setProfileImgFile" parameterType="userinfo">
+	<insert id="insertProfileImgFile" parameterType="userphoto">
 	 	<!-- 기존값 없을때는 insert -->
+	 	INSERT INTO instagram.user_photo
+			(
+				user_idx
+				, file_name
+				, file_path
+			)
+		VALUES
+			(
+				#{user_idx}
+				, #{file_name}
+				, NULL
+			)
 	</insert>
-	<update id="setProfileImgFile" parameterType="userinfo">
+	<update id="updateProfileImgFile" parameterType="userphoto">
 	 	<!-- 기존값 있을때는 update -->
+	 	UPDATE instagram.user_photo
+		SET file_name = #{file_name}
+		WHERE user_idx = #{user_idx}
 	</update>
- 	
+ 	<select id="selectProfileImgFile" parameterType="userphoto" resultType="userphoto">
+ 		SELECT file_name FROM instagram.user_photo
+		WHERE user_idx = #{user_idx}
+ 	</select>
 </mapper>

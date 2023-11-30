@@ -115,6 +115,13 @@ public class InstagramServiceImpl implements InstagramService{
 	
 	//프로필 이미지 저장
 	public void setProfileImgFile(UserPhotoVO vo) {
-		InstagramDAO.setProfileImgFile(vo);		
+		UserPhotoVO result = InstagramDAO.selectProfileImgFile(vo);
+		if(result != null) {
+			InstagramDAO.updateProfileImgFile(vo);	
+		}
+		else {
+			InstagramDAO.insertProfileImgFile(vo);	
+		}
+			
 	}
 }

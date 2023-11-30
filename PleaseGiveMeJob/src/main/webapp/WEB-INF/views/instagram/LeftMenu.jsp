@@ -39,7 +39,7 @@
                   <div id="menu_upload">만들기</div>
               </li>
               <li onclick="goPage('profile');">
-                  <img class='main_menu_profile' src="images\profile_img\my_profile.jpg"/>
+                  <img class='main_menu_profile' src="${file_name}"/>
                   <!-- todo : 
                       - DB에서 내 프로필 이미지 가져오기
                       - 프로필 이미지 없으면 "icon\profile.png" 자동으로 띄우기 -->

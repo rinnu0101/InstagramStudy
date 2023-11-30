@@ -68,12 +68,10 @@
                     <div id="upload_options">
                         <div id="upload_profile">
                             <div id="upload_profile_img">
-                                <img src="images\profile_img\my_profile.jpg">
-                                <!-- todo : 계정 이미지 불러오기 -->
+                                <img src="${file_name}">
                             </div>
                             <div id="upload_profile_id">
-                                asdfasdfasdfasdf
-                                <!-- todo : 계정 ID 불러오기 -->
+                                ${user_nickname}
                             </div>
                         </div>
                         <div id="upload_text">
@@ -108,13 +106,13 @@
                         <div id="profile_TopImgArea">
                             <!-- todo : 내 계정에서만 클릭 활성화, 프로필사진 바꾸기 등 기능 넣기 -->
                             <div style="text-align: center;">
-                                <img id='profile_TopImg' src="images\profile_img\my_profile.jpg">
+                                <img id='profile_TopImg' src="${file_name}"/>
                             </div>
                         </div>
                         <div id="profile_TopInfo">
                             <div id="Info_ID">
                                 <!-- todo : 내ID불러오기 -->
-                                <div id="Info_ID_name">계정ID</div>
+                                <div id="Info_ID_name">${user_nickname}</div>
                                 <div id="Info_ID_option" onclick="goPage('profileChange');">
                                     <img src="images\icon\setting.png"/>
                                 </div>

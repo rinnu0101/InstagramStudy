@@ -93,7 +93,15 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 		getSqlSession().update("InstagramDAO.setProfileInfo", vo);
 	}
 	//프로필 이미지 저장
-	public void setProfileImgFile(UserPhotoVO vo) {
-		getSqlSession().insert("InstagramDAO.setProfileImgFile", vo);		
+	public void insertProfileImgFile(UserPhotoVO vo) {
+		getSqlSession().insert("InstagramDAO.insertProfileImgFile", vo);		
+	}
+	//프로필 이미지 수정
+	public void updateProfileImgFile(UserPhotoVO vo) {
+		getSqlSession().update("InstagramDAO.updateProfileImgFile", vo);		
+	}
+	//프로필 이미지 조회
+	public UserPhotoVO selectProfileImgFile(UserPhotoVO vo) {		
+		return getSqlSession().selectOne("InstagramDAO.selectProfileImgFile", vo);
 	}
 }

@@ -364,10 +364,10 @@
 	                        <div id="main_recommend">
 	                            <div id="recommend_myAccount">
 	                                <div class="myAccount_img">
-	                                    <img class='myAccount_img_class' src="images\profile_img\my_profile.jpg">
+	                                    <img class='myAccount_img_class' src="${file_name}"/>
 	                                </div>
 	                                <div class="Account_ID">
-	                                    <div id="Account_myID">계정명</div>
+	                                    <div id="Account_myID">${user_nickname}</div>
 	                                    <div id="Account_myIntro">계정한줄소개</div>
 	                                </div>
 	                                <div id="myAccount_switch">전환</div>
