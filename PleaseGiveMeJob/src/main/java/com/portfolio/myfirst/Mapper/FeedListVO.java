@@ -15,6 +15,7 @@ public class FeedListVO {
 	
 	//JOIN
 	//FEED_PHOTO
+	private String file_name;
 	private String file_names;
 
 	//USER_INFO
@@ -25,6 +26,7 @@ public class FeedListVO {
 	private int like_count;
 	
 	//FEED_REPLY
-	private String feed_reply_list;
+	private int comment_count;
+	private String feed_reply_list;	
 }
  

@@ -15,6 +15,7 @@
 		<typeAlias type="com.portfolio.myfirst.Mapper.JsonArrayVO" alias="jsonarray"></typeAlias>
 		<typeAlias type="com.portfolio.myfirst.Mapper.FeedLikeVO" alias="feedlike"></typeAlias>
 		<typeAlias type="com.portfolio.myfirst.Mapper.FeedReplyVO" alias="feedreply"></typeAlias>
+		<typeAlias type="com.portfolio.myfirst.Mapper.FollowVO" alias="follow"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/instagram-mapping.xml" />

@@ -72,6 +72,14 @@ li, ul, ol {
   cursor: pointer;
 }
 
+#Info_follow{
+  cursor: pointer;
+}
+
+#Info_message{
+  cursor: pointer;
+}
+
 #Info_ID_option img{
   width: 20px;
   height: 20px;

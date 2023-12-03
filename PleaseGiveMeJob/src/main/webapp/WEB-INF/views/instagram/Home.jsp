@@ -11,7 +11,9 @@
         <link rel="stylesheet" href="css/LeftMenu.css">
         <link rel="stylesheet" href="css/Home.css">
         <link rel="stylesheet" href="css/LayerPopup.css">
-        
+        <!-- 공통js 적용 -->
+        <script src="js/common.js"></script>
+        <!-- vue.js 적용 -->
         <script type="importmap">
             {
               "imports": {
@@ -19,7 +21,6 @@
               }
             }
         </script>
-        <script src="js/common.js"></script>
         
     </head>
     <body>
@@ -31,211 +32,13 @@
 	        <jsp:include page="FeedPop.jsp"></jsp:include>
 	        
 	    	<!-- 새 게시물 업로드 레이어팝업 html-->
-	        <div id="upload_feed">
-	            <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
-	                <div class="layerPopupClose_btn">
-	                    <img src="images\icon\close_WT.png">
-	                </div>
-	            </div>
-	
-	            <!-- 새 게시물 업로드 레이어팝업 콘텐츠 html-->
-	            <div id="upload_layerPopup_contents">
-	                <div id="upload_top">
-	                    <div id="upload_backstep">
-	                        <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
-	                    </div>
-	                    <div id="new_upload">
-	                        	새 게시물 만들기
-	                    </div>
-	                    <div id="upload_btn" onclick="fnSaveNewFeed();">
-	                        	공유하기
-	                    </div>
-	                </div>
-	                <div id="upload_main">
-	                    <div id="upload_contents">
-	                        <div id="file_insert">
-		                    	<div class="file_insert_info">
-		                    		사진과 동영상을 여기에 끌어다 놓으세요
-		                    	</div>
-		                    	<div class="file_insert_btn" onclick="fnFileSelect();">
-		                    		컴퓨터에서 선택
-		                    	</div>
-	                            <div style="display: none;">
-	                                <input id="input_file_feed" type="file" multiple="multiple"/>
-	                            </div>
-	                    	</div>
-	                        <!-- upload file li 받는 ul -->
-	                    	<ul class="upload_contents_ul" style="display:none;">
-	                        </ul>
-	                        <!-- li 슬라이드 버튼 -->
-	                        <!-- todo : li 수량이 2개 이상일 때만 버튼 show, 맨 왼쪽/오른쪽 도달시 한쪽 버튼 hide -->
-	                        <div class="upload_contents_arrow" style="display:none;">
-	                            <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
-	                                <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
-	                            </a>
-	                            <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
-	                                <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
-	                            </a>
-	                        </div>
-	                        <!-- todo : 파일 선택 후 활성화 -->
-	                    	<!-- <ul class="upload_contents_ul">
-	                            <li>
-	                            	<img class='upload_contents_img' src="images\feed_img\feed1.jpg">
-	                            </li>
-	                            <li>
-	                            	<img class='upload_contents_img' src="images\feed_img\feed2.jpg">
-	                            </li>
-	                            <li>
-	                            	<img class='upload_contents_img' src="images\feed_img\feed3.jpg">
-	                            </li>
-	                            <li>
-	                            	<img class='upload_contents_img' src="images\feed_img\feed4.jpg">
-	                            </li>
-	                            <li>
-	                            	<img class='upload_contents_img' src="images\feed_img\feed5.jpg">
-	                            </li>
-	                        </ul>
-	                        <div class="upload_contents_arrow">
-	                            <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
-	                                <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
-	                            </a>
-	                            <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
-	                                <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
-	                            </a>
-	                        </div> -->
-	                    </div>
-	                    <div id="upload_options">
-	                        <div id="upload_profile">
-	                            <div id="upload_profile_img">
-	                                <img src="images\profile_img\my_profile.jpg">
-	                                <!-- todo : 계정 이미지 불러오기 -->
-	                            </div>
-	                            <div id="upload_profile_id">
-	                                asdfasdfasdfasdf
-	                                <!-- todo : 계정 ID 불러오기 -->
-	                            </div>
-	                        </div>
-	                        <div id="upload_text">
-	                            <textarea  placeholder="문구를 입력하세요..."></textarea>
-	                        </div>
-	                        <div id="upload_emoji">
-	                            <div id="upload_emoji_btn">
-	                                <img src="images\icon\emoji.png">
-	                            </div>
-	                            <div id="upload_text_charnum"></div>
-	                        </div>
-	                        <div id="upload_file">
-	                            <!-- todo : 파일업로드 구현 -->
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+	        <jsp:include page="UploadFeed.jsp"></jsp:include>
 	
 	        <!-- 새 스토리 업로드 레이어팝업 html-->
-	        <div id="upload_story">
-	            <div class="upload_layerPopup_bg" onclick="fnStoryUploadClose();">
-	                <div class="layerPopupClose_btn">
-	                    <img src="images\icon\close_WT.png">
-	                </div>
-	            </div>
-	
-	            <!-- 새 스토리 콘텐츠 html-->
-	            <div id="upload_story_contents">
-	                <div id="story_file_insert">
-	                    <div class="file_insert_info">
-	                        	사진과 동영상을 여기에 끌어다 놓으세요
-	                    </div>
-	                    <div class="file_insert_btn" onclick="fnStoryFileSelect();">
-	                        	컴퓨터에서 선택
-	                    </div>
-	                    <div style="display:none;">
-	                        <input id="input_file_story" type="file" multiple="multiple" />
-	                    </div>
-	                </div>
-	                <!-- upload file li 받는 ul -->
-	                <ul class="upload_story_contents_ul" style="display:none;">
-	                </ul>
-	                <!-- li 슬라이드 버튼 -->
-	                <!-- todo : li 수량이 2개 이상일 때만 버튼 show, 맨 왼쪽/오른쪽 도달시 한쪽 버튼 hide -->
-	                <div class="upload_story_arrow" style="display:none;">
-	                    <a href="javascript:;" class="prev" onclick="fnStoryMoveUploadSlide(this);">
-	                        <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
-	                    </a>
-	                    <a href="javascript:;" class="next" onclick="fnStoryMoveUploadSlide(this);">
-	                        <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
-	                    </a>
-	                </div>
-	                <div id="upload_story_btn" style="display:none;" onclick="fnSaveNewStory();">
-	                    	내 스토리
-	                </div>
-	            </div>
-	        </div>
+	        <jsp:include page="UploadStory.jsp"></jsp:include>
 	    	
 	        <!-- 스토리 레이어팝업 html-->
-	        <div id="layerPopup_story">
-	            <div id="story_layerPopup_bg" onclick="fnLayerPopupClose();">
-	                <div class="layerPopupClose_btn">
-	                    <img src="images\icon\close_WT.png">
-	                </div>
-	            </div>
-	
-	            <!-- 스토리 레이어팝업 좌우버튼-->
-	            <div class="Story_Next_btn_L">
-	                <img class="Story_Next_btn" src="images\icon\next_WT_L.png">
-	            </div>
-	            <div class="Story_Next_btn_R">
-	                <img class="Story_Next_btn" src="images\icon\next_WT_R.png">
-	            </div>
-	
-	            <!-- 스토리 레이어팝업 콘텐츠 html-->
-	            <div id="story_layerPopup_contents">
-	                <div class="SP_contents_header">
-	                    <div class="SP_contents_length">
-	                        <!-- todo : 스토리 갯수에 따라 칸 일정하게 나눠져 증가하는 바 생성-->
-	                    </div>
-	                    <div class="SP_contents_account">
-	                        <div class="SP_account_profile">
-	                            <!-- todo : 클릭한 story 계정의 프로필 img 뜨게하기-->
-	                            <img class='SP_profile_img' src="images\profile_img\1.jpg">
-	                        </div>
-	                        <div class="SP_account_ID">asdfasdfasdf</div>
-	                        <div class="SP_contents_play">
-	                            <img class="SP_contents_play_btn" src="images\icon\play.png">
-	                            <img class="SP_contents_stop_btn" src="images\icon\stop.png" style="display: none;">
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="SP_contents_reaction">
-	                    <div class="SP_reaction_effect">
-	                        <!-- todo : 이모지 누르면 이펙트 구현-->
-	                    </div>
-	                    <div class="SP_contents_reaction_area">
-	                        <div class="SP_reaction_reply">
-	                            <div class="SP_reaction_reply_text">
-	                                <input type="text" placeholder="님에게 답장하기..."/>
-	                            </div>                            
-	                        </div>
-	                        <div class="SP_reaction_like">
-	                            <img class="SP_reaction_btn" src="images\icon\notice_lw.png">
-	                        </div>
-	                        <div class="SP_reaction_direct">
-	                            <img class="SP_reaction_btn" src="images\icon\direct_w.png">
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="SP_contents_img">
-	                    <ul>
-	                        <!-- todo : 클릭한 story의 img 뜨게하기-->
-	                        <li>
-	                            <img src="images\stroy_img\a.jpg">
-	                        </li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
-	
-	        
+	        <jsp:include page="StoryPop.jsp"></jsp:include>
 	
 	        <!-- 메인페이지 html-->
 	        <div id="main">
@@ -296,7 +99,7 @@
 	                                <div class="comp_account">
 	                                    <div class="comp_account_img">
 	                                        <!-- todo : 계정 이미지&계정명 DB에서 받아오도록 하기 -->
-	                                        <img class='feed_profile' src="images\profile_img\my_profile.jpg">
+	                                        <img class='feed_profile' src="images\profile_img\my_profile.jpg" @click="fnGoProfile(f.user_idx);">
 	                                        <div class="comp_account_name">{{f.user_nickname}}</div>
 	                                        <div class="comp_account_option">
 	                                            <img class='comp_option_icon' src="images\icon\option.png"/>
@@ -630,8 +433,11 @@
 						console.log("실패");		                  
 					}
 				});
-
-			}	
+			},
+			fnGoProfile : function(user_idx)
+			{				
+				window.location.href = "/profile.do?user_idx=" + user_idx;
+			}
 		}
     }).mount('#app');
 </script>

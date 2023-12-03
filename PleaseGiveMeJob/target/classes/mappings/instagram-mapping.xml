@@ -128,6 +128,7 @@
 			, FL.REGDATE 
 			, FL.FILE_NAMES
 			, FL.USER_NICKNAME
+			, FL.USER_IDX
 			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
 			, COUNT(FL2.LIKE_TYPE) AS LIKE_COUNT
 		FROM (
@@ -136,6 +137,7 @@
 				, FL.REGDATE 
 				, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
 				, UI.USER_NICKNAME
+				, UI.USER_IDX
 			 FROM FEED_LIST FL
 			INNER JOIN FEED_PHOTO FP
 			ON FL.FEED_IDX = FP.FEED_IDX 
@@ -232,6 +234,50 @@
 			)
 	</insert>
 	
+	<!-- 프로필 피드 리스트 가져오기 -->
+ 	<select id="getProfileFeedList" parameterType="feedlist" resultType="feedlist">
+   	  SELECT FL.FEED_IDX 
+		   , FL.FEED_CONTENTS 
+		   , FL.REGDATE 
+		   , FP.FILE_NAME
+		   , UI.USER_NICKNAME
+		   , FL2.LIKE_COUNT
+		   , FR.COMMENT_COUNT
+	    FROM FEED_LIST FL
+	   INNER JOIN (
+		   SELECT FP2.FEED_IDX
+				, FP2.FEED_PHOTO_IDX
+				, FP2.FILE_NAME AS FILE_NAME
+			FROM (
+					SELECT MIN(FEED_PHOTO_IDX) AS FEED_PHOTO_IDX
+					     , FEED_IDX
+						FROM FEED_PHOTO
+					GROUP BY FEED_IDX
+			) FP
+			INNER JOIN FEED_PHOTO FP2
+			ON FP.FEED_PHOTO_IDX = FP2.FEED_PHOTO_IDX
+	   ) FP
+	   ON FL.FEED_IDX = FP.FEED_IDX 
+	   INNER JOIN USER_INFO UI 
+	   ON FL.USER_IDX = UI.USER_IDX
+	   LEFT JOIN (
+		   SELECT COUNT(LIKE_TYPE) AS LIKE_COUNT
+		         ,FEED_IDX
+		       FROM FEED_LIKE FL2
+		   GROUP BY FEED_IDX 
+	   ) FL2
+	   ON FL.FEED_IDX = FL2.FEED_IDX 
+	   LEFT JOIN (
+		   SELECT COUNT(FEED_REPLY_IDX) AS COMMENT_COUNT
+		        , FEED_IDX
+		   FROM FEED_REPLY FR
+		   GROUP BY FEED_IDX 
+	   ) FR 
+	   ON FL.FEED_IDX = FR.FEED_IDX 
+	   WHERE FL.USER_IDX = #{user_idx}
+	   ORDER BY FL.REGDATE DESC
+ 	</select>
+	
 	<!-- 프로필 정보 저장(&수정) -->
 	<update id="setProfileInfo" parameterType="userinfo">
 		UPDATE instagram.user_info
@@ -271,5 +317,52 @@
  	<select id="selectProfileImgFile" parameterType="userphoto" resultType="userphoto">
  		SELECT file_name FROM instagram.user_photo
 		WHERE user_idx = #{user_idx}
+ 	</select>
+ 	
+ 	<!-- 팔로우 -->
+ 	<insert id="setInsertFollow" parameterType="follow">
+	 	INSERT INTO instagram.follow
+			(
+				following_user_idx
+				, follower_user_idx
+			)
+		VALUES
+			(
+				#{following_user_idx}
+				, #{follower_user_idx}
+			)
+ 	</insert>
+ 	
+ 	<!-- 언팔로우 -->
+ 	<delete id="setDeleteFollow" parameterType="follow">
+	 	DELETE FROM instagram.follow
+		WHERE following_user_idx = #{following_user_idx}
+		  AND follower_user_idx = #{follower_user_idx}
+ 	</delete>
+ 	
+ 	<!-- 팔로잉 리스트 가져오기 -->
+ 	<select id="getfollowing" parameterType="follow" resultType="follow">
+	 	select f.following_user_idx
+		      , ui.user_nickname
+		      , up.file_name 
+		from follow f
+		inner join user_info ui
+		on ui.user_idx = f.follower_user_idx 
+		left join user_photo up
+		on ui.user_idx = up.user_idx 
+		where following_user_idx = #{following_user_idx}
+ 	</select>
+ 	
+ 	<!-- 팔로워 리스트 가져오기 -->
+ 	<select id="getfollower" parameterType="follow" resultType="follow">
+	 	select f.follower_user_idx
+		      , ui.user_nickname
+		      , up.file_name 
+		from follow f
+		inner join user_info ui
+		on ui.user_idx = f.following_user_idx 
+		left join user_photo up
+		on ui.user_idx = up.user_idx 
+		where follower_user_idx = #{follower_user_idx}
  	</select>
 </mapper>

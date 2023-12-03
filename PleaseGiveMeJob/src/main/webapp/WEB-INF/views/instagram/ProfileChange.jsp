@@ -91,8 +91,8 @@
 						console.log("성공");
 						if(p == "OK")
 						{
-							//alert("회원정보가 변경되었습니다.");
-							//window.location.href = "/profile.do";
+							alert("회원정보가 변경되었습니다.");
+							window.location.href = "/profile.do";
 						}
 						else if(p == "DUPL")
 						{
@@ -171,3 +171,10 @@
 </html>
 
 <script src="js/upload.js"></script>
+<script>
+	//화면 초기화 및 기본 기능 적용
+	$(document).ready(function(){
+		// 프로필 이미지 파일 첨부시 fnProfileImgPrint 함수 실행
+		$("#input_file_Profile").on("change", fnProfileImgPrint); 
+	});
+</script>

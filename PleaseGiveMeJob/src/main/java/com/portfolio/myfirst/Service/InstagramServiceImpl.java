@@ -9,6 +9,7 @@ import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.FeedReplyVO;
+import com.portfolio.myfirst.Mapper.FollowVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -92,6 +93,11 @@ public class InstagramServiceImpl implements InstagramService{
 		InstagramDAO.setFeedReply(vo);		
 	}
 	
+	//프로필 피드 리스트 가져오기
+	public List<FeedListVO> getProfileFeedList(FeedListVO vo) {
+		return InstagramDAO.getProfileFeedList(vo);		
+	}
+	
 	//프로필 정보 저장(&수정)
 	public String setProfileInfo(UserInfoVO vo) {
 		
@@ -123,5 +129,29 @@ public class InstagramServiceImpl implements InstagramService{
 			InstagramDAO.insertProfileImgFile(vo);	
 		}
 			
+	}
+	
+	//피드 좋아요 처리
+	public void setfollow(FollowVO vo) {
+		String type = vo.getFollow_yn();
+		if("Y".equals(type))
+		{
+			//팔로우
+			InstagramDAO.setInsertFollow(vo);
+		}
+		else
+		{
+			//언팔로우
+			InstagramDAO.setDeleteFollow(vo);
+		}
+	}
+
+	//팔로잉 리스트(팔로워) 가져오기
+	public List<FollowVO> getfollowing(FollowVO vo) {
+		return InstagramDAO.getfollowing(vo);		
+	}
+	//팔로워 리스트(팔로우) 가져오기
+	public List<FollowVO> getfollower(FollowVO vo) {
+		return InstagramDAO.getfollower(vo);		
 	}
 }

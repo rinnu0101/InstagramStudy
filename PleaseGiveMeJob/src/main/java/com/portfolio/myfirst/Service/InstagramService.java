@@ -6,6 +6,7 @@ import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.FeedReplyVO;
+import com.portfolio.myfirst.Mapper.FollowVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -50,4 +51,15 @@ public interface InstagramService {
 	
 	//프로필 이미지 저장
 	public void setProfileImgFile(UserPhotoVO vo);
+	
+	//프로필 피드 리스트 불러오기
+	public List<FeedListVO> getProfileFeedList(FeedListVO vo);
+	
+	//팔로우 기능 실행
+	public void setfollow(FollowVO vo);
+
+	//팔로잉 리스트 가져오기
+	public List<FollowVO> getfollowing(FollowVO vo);
+	//팔로워 리스트 가져오기
+	public List<FollowVO> getfollower(FollowVO vo);
 }

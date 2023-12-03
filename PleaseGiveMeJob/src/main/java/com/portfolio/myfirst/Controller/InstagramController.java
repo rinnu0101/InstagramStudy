@@ -30,6 +30,7 @@ import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.FeedReplyVO;
+import com.portfolio.myfirst.Mapper.FollowVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -65,8 +66,9 @@ public class InstagramController {
 	}
 	
 	@RequestMapping(value="/profile.do")
-	public ModelAndView instagramProfile(ModelAndView mav) {		
+	public ModelAndView instagramProfile(ModelAndView mav, Integer user_idx) {		
 		mav.setViewName("/instagram/Profile");
+		mav.addObject("pUser_idx", user_idx == null ? "" : user_idx);
 		return mav;
 	}
 	
@@ -240,6 +242,13 @@ public class InstagramController {
 		return "OK";
 	}
 	
+	//프로필 피드 리스트 가져오기
+	@RequestMapping(value="/getProfileFeedList.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<FeedListVO> getProfileFeedList(FeedListVO vo, HttpSession session) {
+		return Service.getProfileFeedList(vo);
+	}
+	
 	//프로필 정보 저장 (&변경)
 	@ResponseBody
 	@RequestMapping(value = "/setProfileInfo.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
@@ -312,7 +321,29 @@ public class InstagramController {
 		return result;
 	}
 	
-	
+	//팔로우 기능 실행
+	@RequestMapping(value="/setfollow.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String setfollow(FollowVO vo, HttpSession session) throws JsonProcessingException {
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
+		vo.setFollower_user_idx(user_idx);
+		Service.setfollow(vo);
+		return "OK";
+	}
+
+	//팔로잉 리스트 가져오기
+	@RequestMapping(value="/getfollowing.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<FollowVO> getfollowing(FollowVO vo) {
+		return Service.getfollowing(vo);
+	}
+	//팔로워 리스트 가져오기
+	@RequestMapping(value="/getfollower.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<FollowVO> getfollower(FollowVO vo) {
+		return Service.getfollower(vo);
+	}
+
 	
 	
 	
@@ -350,8 +381,6 @@ public class InstagramController {
 		return json;
 	}
 	
-
-
 	
 	
 	

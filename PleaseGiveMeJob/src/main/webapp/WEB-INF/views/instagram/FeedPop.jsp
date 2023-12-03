@@ -10,10 +10,10 @@
     </div>
 
     <!-- 레이어팝업 좌우버튼-->
-    <div class="Next_btn_L">
+    <div class="Next_btn_L" @click="fnPopFeedSlide('prev')">
         <img class="Next_btn" src="images\icon\next_WT_L.png">
     </div>
-    <div class="Next_btn_R">
+    <div class="Next_btn_R" @click="fnPopFeedSlide('next')">
         <img class="Next_btn" src="images\icon\next_WT_R.png">
     </div>
 

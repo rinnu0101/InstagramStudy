@@ -11,6 +11,7 @@ import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.FeedReplyVO;
+import com.portfolio.myfirst.Mapper.FollowVO;
 import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
@@ -80,12 +81,17 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	}
 	//피드 좋아요 삭제
 	public void setDeleteFeedLike(FeedLikeVO vo) {
-		getSqlSession().insert("InstagramDAO.setDeleteFeedLike", vo);
+		getSqlSession().delete("InstagramDAO.setDeleteFeedLike", vo);
 	}
 	
 	//피드 댓글 저장
 	public void setFeedReply(FeedReplyVO vo) {
 		getSqlSession().insert("InstagramDAO.setFeedReply", vo);
+	}
+	
+	//프로필 피드 리스트 가져오기
+	public List<FeedListVO> getProfileFeedList(FeedListVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getProfileFeedList", vo);		
 	}
 
 	//프로필 정보 저장(&수정)
@@ -103,5 +109,23 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	//프로필 이미지 조회
 	public UserPhotoVO selectProfileImgFile(UserPhotoVO vo) {		
 		return getSqlSession().selectOne("InstagramDAO.selectProfileImgFile", vo);
+	}
+	
+	//팔로우
+	public void setInsertFollow(FollowVO vo) {
+		getSqlSession().insert("InstagramDAO.setInsertFollow", vo);
+	}
+	//언팔로우
+	public void setDeleteFollow(FollowVO vo) {
+		getSqlSession().delete("InstagramDAO.setDeleteFollow", vo);
+	}
+
+	//팔로잉 리스트 가져오기
+	public List<FollowVO> getfollowing(FollowVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getfollowing", vo);
+	}
+	//팔로워 리스트 가져오기
+	public List<FollowVO> getfollower(FollowVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getfollower", vo);
 	}
 }

@@ -1,27 +1,25 @@
 body {
   min-width: 1920px;
   min-height: 923px;
-  overflow:hidden;
+  overflow-x: hidden;
 }
 
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ï¿½ï¿½ï¿½ï¿½Æ® ï¿½âº» ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ó¼ï¿½ ï¿½Ê±ï¿½È­*/
 li, ul, ol {
   list-style: none;
   padding: 0px;
   margin: 0px;
 }
 
-/*±¸È¹ ³ª´©±â*/
+/*ï¿½ï¿½È¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 #main{
   background-image: url('example_Home.png');
 }
 
 #main_middle{
   margin-left: 335px;
-  width: 1584px;
+  width: 1500px;
   height: 920px;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 #middle_area{
@@ -46,13 +44,13 @@ li, ul, ol {
   color: #C7C7C7;
 }
 
-/*¸ÞÀÎ ÄÜÅÙÃ÷*/
+/*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 #main_contents{
     width: 630px;
     float: left;
 }
 
-/*½ºÅä¸®*/
+/*ï¿½ï¿½ï¿½ä¸®*/
 #main_contents_story{
   width: 630px;
   height: 85px;
@@ -119,8 +117,8 @@ li, ul, ol {
   font-size: 12px;
   text-align: center;
   overflow: hidden;
-  text-overflow: ellipsis;  /*... ¸¸µé±â*/
-  white-space: nowrap; 	/*ÁÙ¹Ù²ñ ¹æÁö*/
+  text-overflow: ellipsis;  /*... ï¿½ï¿½ï¿½ï¿½ï¿½*/
+  white-space: nowrap; 	/*ï¿½Ù¹Ù²ï¿½ ï¿½ï¿½ï¿½ï¿½*/
   cursor: pointer;
 }
 
@@ -149,7 +147,7 @@ li, ul, ol {
   cursor: pointer;
 }
 
-/*ÇÇµå*/
+/*ï¿½Çµï¿½*/
 #main_contents_feed{
   width: 630px;
   height: 100%;
@@ -308,7 +306,7 @@ li, ul, ol {
   height: 18px;
 }
 
-/*°èÁ¤ ÃßÃµ ¿µ¿ª*/
+/*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½ï¿½*/
 #main_recommend{
   width: 310px;
   height: 430px;

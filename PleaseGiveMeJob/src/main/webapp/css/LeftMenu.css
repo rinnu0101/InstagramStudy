@@ -10,7 +10,7 @@ li, ul, ol {
     width : 335px;
     height: 100%;
     border-right : 1px solid #DBDBDB;
-    float: left;
+    position: fixed;
 }
 
 #left_area{

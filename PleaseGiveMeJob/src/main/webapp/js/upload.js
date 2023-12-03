@@ -17,11 +17,8 @@ function init()
     $("#input_file_feed").on("change", fnPrintFileLiFeed);
 
     // 스토리 파일 첨부시 fnPrintFileLiStory 함수 실행
-    $("#input_file_story").on("change", fnPrintFileLiStory);    
-    
-    // 프로필 이미지 파일 첨부시 fnProfileImgPrint 함수 실행
-    $("#input_file_Profile").on("change", fnProfileImgPrint);    
-}
+    $("#input_file_story").on("change", fnPrintFileLiStory);
+ }
 
 //프로필&홈 화면에서의 피드 레이어팝업 함수
 function fnPopFeed()

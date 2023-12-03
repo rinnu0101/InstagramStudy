@@ -11,88 +11,29 @@
         <link rel="stylesheet" href="css/LeftMenu.css">
         <link rel="stylesheet" href="css/Profile.css">
         <link rel="stylesheet" href="css/LayerPopup.css">
+        <link rel="stylesheet" href="css/FollowListPop.css">
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
-        
+        <!-- vue.js 적용 -->
+        <script type="importmap">
+            {
+              "imports": {
+                "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+              }
+            }
+        </script>
     </head>
 
     <body>
-    	<!-- 새 게시물 업로드 레이어팝업 html-->
-        <div id="upload_feed">
-            <div class="upload_layerPopup_bg" onclick="fnUploadClose();">
-                <div class="layerPopupClose_btn">
-                    <img src="images\icon\close_WT.png">
-                </div>
-            </div>
-
-            <!-- 새 게시물 업로드 레이어팝업 콘텐츠 html-->
-            <div id="upload_layerPopup_contents">
-                <div id="upload_top">
-                    <div id="upload_backstep">
-                        <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
-                    </div>
-                    <div id="new_upload">
-                        	새 게시물 만들기
-                    </div>
-                    <div id="upload_btn" onclick="fnSaveNewFeed();">
-                        	공유하기
-                    </div>
-                </div>
-                <div id="upload_main">
-                    <div id="upload_contents">
-                    	<div id="file_insert">
-	                    	<div class="file_insert_info">
-	                    		사진과 동영상을 여기에 끌어다 놓으세요
-	                    	</div>
-	                    	<div class="file_insert_btn" onclick="fnFileSelect();">
-	                    		컴퓨터에서 선택
-	                    	</div>
-                            <div style="display: none;">
-                                <input id="input_file_feed" type="file" multiple="multiple"/>
-                            </div>
-                    	</div>
-                        <!-- upload file li 받는 ul -->
-                    	<ul class="upload_contents_ul" style="display:none;">
-                        </ul>
-                        <!-- li 슬라이드 버튼 -->
-                        <!-- todo : li 수량이 2개 이상일 때만 버튼 show, 맨 왼쪽/오른쪽 도달시 한쪽 버튼 hide -->
-                        <div class="upload_contents_arrow" style="display:none;">
-                            <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
-                                <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
-                            </a>
-                            <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
-                                <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
-                            </a>
-                        </div>
-                    </div>
-                    <div id="upload_options">
-                        <div id="upload_profile">
-                            <div id="upload_profile_img">
-                                <img src="${file_name}">
-                            </div>
-                            <div id="upload_profile_id">
-                                ${user_nickname}
-                            </div>
-                        </div>
-                        <div id="upload_text">
-                            <textarea  placeholder="문구를 입력하세요..."></textarea>
-                        </div>
-                        <div id="upload_emoji">
-                            <div id="upload_emoji_btn">
-                                <img src="images\icon\emoji.png">
-                            </div>
-                            <div id="upload_text_charnum"></div>
-                        </div>
-                        <div id="upload_file">
-                            <!-- todo : 파일업로드 구현 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 피드 공통 팝업 추가 -->
+    <div id="app">
+    	<!-- 피드 공통 팝업 추가 -->
         <jsp:include page="FeedPop.jsp"></jsp:include>
+        
+        <!-- 새 게시물 업로드 레이어팝업 html-->
+        <jsp:include page="UploadFeed.jsp"></jsp:include>
+        
+        <!-- 팔로우 리스트 팝업 추가 -->
+	    <jsp:include page="FollowListPop.jsp"></jsp:include>
         
         <!-- 메인페이지 html-->
         <div id="main">
@@ -113,6 +54,13 @@
                             <div id="Info_ID">
                                 <!-- todo : 내ID불러오기 -->
                                 <div id="Info_ID_name">${user_nickname}</div>
+                                <div id="Info_follow" @click="fnFollow();">
+                                	<div v-if="follow == false">[팔로우]</div>
+                                	<div v-if="follow == true">[팔로잉]</div>
+                                </div>
+                                <div id="Info_message" v-if="follow != 'ME'">
+                                	[메시지 보내기]
+                                </div>
                                 <div id="Info_ID_option" onclick="goPage('profileChange');">
                                     <img src="images\icon\setting.png"/>
                                 </div>
@@ -124,12 +72,12 @@
                                         	게시물<span></span>
                                     </li>
                                     <li>
-                                        <div id="follower" style="cursor: pointer;">
+                                        <div id="follower" @click="fnPopFollowing();" style="cursor: pointer;">
                                            	 팔로워<span></span>
                                         </div>
                                     </li>
                                     <li>
-                                        <div id="follow" style="cursor: pointer;">
+                                        <div id="follow" @click="fnPopFollower();" style="cursor: pointer;">
                                             	팔로우<span></span>
                                         </div>
                                     </li>
@@ -150,57 +98,20 @@
                     </div>
 
                     <div id="profile_feedContents">
-                        <ul class="feedContents_line">
-                            <li onclick="fnPopFeed();">
-                                <div class="feedContents_log">
+                        <ul class="feedContents_line" v-if="feed_show == true">
+                            <li v-for="(f, index) in feed_list">
+                                <div class="feedContents_log" @click="fnFeedPopup(f.feed_idx);">
                                     <div class="log_img">
-                                        <img src="images\feed_img\feed1.jpg">
+                                        <img :src="'images/feed_img/' + f.file_name">
                                     </div>
                                     <div class="feedContents_PIS">
-                                        <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
                                         <div class="log_heart">
                                             <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
-                                            <span>0</span>
+                                            <span>{{f.like_count}}</span>
                                         </div>
                                         <div class="log_comment">
                                             <img class="log_PIS_icon" src="images\icon\comment_w.png"/>
-                                            <span>0</span>
-                                        </div>                                    
-                                    </div>
-                                </div>
-                            </li>
-                            <li onclick="fnPopFeed();">
-                                <div class="feedContents_log">
-                                    <div class="log_img">
-                                        <img src="images\feed_img\feed2.jpg">
-                                    </div>
-                                    <div class="feedContents_PIS">
-                                        <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
-                                        <div class="log_heart">
-                                            <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
-                                            <span>0</span>
-                                        </div>
-                                        <div class="log_comment">
-                                            <img class="log_PIS_icon" src="images\icon\comment_w.png"/>
-                                            <span>0</span>
-                                        </div>                                    
-                                    </div>
-                                </div>
-                            </li>
-                            <li onclick="fnPopFeed();">
-                                <div class="feedContents_log">
-                                    <div class="log_img">
-                                        <img src="images\feed_img\feed3.jpg">
-                                    </div>
-                                    <div class="feedContents_PIS">
-                                        <!-- todo : 좋아요, 댓글 숫자 불러오기 -->
-                                        <div class="log_heart">
-                                            <img class="log_PIS_icon" src="images\icon\notice_w.png"/>
-                                            <span>0</span>
-                                        </div>
-                                        <div class="log_comment">
-                                            <img class="log_PIS_icon" src="images\icon\comment_w.png"/>
-                                            <span>0</span>
+                                            <span>{{f.comment_count == null ? 0 : f.comment_count}}</span>
                                         </div>                                    
                                     </div>
                                 </div>
@@ -210,7 +121,321 @@
                 </div>
             </div>
         </div>
+    </div>
+    <input id="pUser_idx" type="hidden" value="${pUser_idx}" />
+    <input id="session_user_idx" type="hidden" value="${user_idx}" />
     </body>
 </html>
 
+<!-- 파일 업로드 js 적용 -->
 <script src="js/upload.js"></script>
+
+<!-- vue.js 적용  -->
+<script type="module">
+	import { createApp } from 'vue'
+    createApp({
+        data(){
+            return {
+                feed_list : [],
+                file_names : [],
+                feed_pop_info: [],
+                feed_show : false,
+				now_feed_idx : 0,
+				feed_idx_list : [],
+				pUser_idx : 0,
+				follow : false,
+				following_list : [],
+				follower_list : [],
+				follow_pop_show : false           
+            }
+        },
+        mounted: function()
+        {
+            this.fnGetFeedList();
+        },
+        methods: {
+            //프로필 화면의 피드 리스트 불러오기 처리함수
+            fnGetFeedList: function(){
+				if($("#pUser_idx").val() == "")
+				{
+					this.pUser_idx = $("#session_user_idx").val();
+					$("#pUser_idx").val($("#session_user_idx").val());
+					this.follow = "ME";
+				}
+				else
+				{
+					this.pUser_idx = $("#pUser_idx").val();
+				}
+
+                $.ajax({
+					url : "/getProfileFeedList.do",
+					type : "POST",
+					data : {
+						"user_idx" : this.pUser_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						this.feed_list = p;
+						this.feed_show = true;
+						//todo
+						//this.loading_progress = false;
+					},
+					error : function(p)
+					{
+					    console.log("실패");		                  
+					}
+				});
+            },
+			//선택 피드 팝업 함수
+			fnFeedPopup : function(feed_idx)
+			{			
+				this.now_feed_idx = feed_idx;
+				$.ajax({
+					url : "/getFeedPopup.do",
+					type : "POST",
+					data : {
+						"feed_idx" : feed_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						$("#popFileList").css("margin-left", "0px");
+						//DB에서 파일 정보 가져오기
+						p.file_names = JSON.parse(p.file_names);
+						p.file_index = 0;
+						p.file_length = p.file_names.length;
+						//댓글 배열에 값 있을때만 feed_reply_list 띄우기
+						var jsonReply = JSON.parse(p.feed_reply_list);
+						if(jsonReply[0].user_idx != null)
+						{
+							p.feed_reply_list = jsonReply.sort(function(a, b)
+												{ return a.feed_reply_idx - b.feed_reply_idx });
+						}
+						else
+						{
+							p.feed_reply_list = [];
+						}
+						//feed_pop_info에 DB에서 가져온 모든 p값을 넣어준다
+						this.feed_pop_info = p;
+						$("#layerPopup_feed").show();
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+				fnPopFeed();
+			},
+			//팝업 피드의 사진 슬라이드 처리 함수
+			fnPopMovefeedSlide : function(target)
+			{
+				var f = this.feed_pop_info;
+				if (target == 'next')
+				{
+					if (f.file_index != f.file_length)
+					{
+						f.file_index = f.file_index + 1;
+						var trs = (875 * f.file_index) * -1;
+						$("#popFileList").animate({marginLeft : trs});
+					}
+				}
+				else if (target == 'prev')
+				{
+					if (f.file_index != 0)
+					{
+						f.file_index = f.file_index -1;
+						var trs = (875 * f.file_index) * -1;
+						$("#popFileList").animate({marginLeft : trs});
+					}
+				}
+			},
+			//팝업 피드의 좋아요 처리 함수
+			fnPopLikeClick: function(feed_idx, like_type)
+			{
+				var f = this.feed_pop_info;
+				$.ajax({
+					url : "/setLikeClick.do",
+					type : "POST",
+					data : {
+						"feed_idx" : f.feed_idx,
+						"like_type" : !f.like_type ? "0" : f.like_type,
+					},
+					context: this,
+					success : function(p)
+					{
+
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+				if(f.like_type == null)
+				{
+					f.like_count = f.like_count + 1;
+				}
+				else
+				{
+					f.like_count = f.like_count - 1;
+				}
+				f.like_type = f.like_type == null ? "1" : null;
+			},
+            //팝업 피드의 댓글 처리 함수
+			fnSaveReply : function()
+			{
+				var reply = $("#FPCP_reply_text").find("input").val();
+				this.feed_pop_info.feed_reply_list.push({ "feed_reply_contents" : reply , "user_nickname" : "테스트" });
+				$("#FPCP_reply_text").find("input").val("");
+				//ajax Insert 처리
+				$.ajax({
+					url : "/setFeedReply.do",
+					type : "POST",
+					data : {
+						"feed_idx" : this.now_feed_idx,
+						"feed_reply_contents" : reply,
+					},
+					context: this,
+					success : function(p)
+					{
+
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+			},
+            //팝업 피드 슬라이드 처리 함수
+            fnPopFeedSlide : function(type){
+
+				var cnt = this.feed_list.length;
+				var target = 0;
+				for(var i = 0; i<cnt; i++)
+				{
+					if(this.feed_list[i].feed_idx == this.now_feed_idx)
+					{
+						target = i;
+					}
+				}
+
+				if(type == "next")
+				{
+					if(target == cnt)
+					{
+						alert("마지막임");
+					}
+					else
+					{
+						target = target + 1;
+						this.fnFeedPopup(this.feed_list[target].feed_idx);
+					}
+				}
+				else if(type == "prev")
+				{
+					if(target <= 0)
+					{
+						alert("가장 처음임");
+					}
+					else
+					{
+						target = target - 1;
+						this.fnFeedPopup(this.feed_list[target].feed_idx);
+					}
+				}
+			},
+			fnFollow : function()
+			{
+				var followYN = "N"; 
+				if(this.follow == false)
+				{
+					//팔로우
+					followYN = "Y";
+				}
+				else
+				{
+					//언팔로우
+				}
+
+				$.ajax({
+					url : "/setfollow.do",
+					type : "POST",
+					data : {
+						"follow_yn" : followYN,
+						"following_user_idx" : $("#pUser_idx").val()
+					},
+					context: this,
+					success : function(p)
+					{
+						if(this.follow == true)
+						{
+							//언팔로우
+							this.follow = false;
+						}
+						else
+						{
+							//팔로우
+							this.follow = true;
+						}
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+			},
+			fnPopFollowing : function(){
+
+				$.ajax({
+					url : "/getfollowing.do",
+					type : "POST",
+					data : {
+						"following_user_idx" : this.pUser_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						this.following_list = p;
+						this.follow_pop_show = true;
+						this.follow_pop_title = "팔로워";
+						this.follow_pop_display_css = "flex";
+						
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+			},
+			fnPopFollower : function(){
+				$.ajax({
+					url : "/getfollower.do",
+					type : "POST",
+					data : {
+						"follower_user_idx" : this.pUser_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						this.following_list = p;
+						this.follow_pop_show = true;
+						this.follow_pop_title = "팔로우";
+						this.follow_pop_display_css = "flex";
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+			},
+			fnFollwerDelete : function()
+			{
+				//todo
+			},
+			fnPopFollowClose : function()
+			{
+				this.follow_pop_show = false;
+			}
+        }
+    }).mount('#app');
+</script>
