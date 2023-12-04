@@ -93,6 +93,11 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public List<FeedListVO> getProfileFeedList(FeedListVO vo) {
 		return getSqlSession().selectList("InstagramDAO.getProfileFeedList", vo);		
 	}
+	
+	//프로필 상단 계정정보 가져오기
+	public List<UserInfoVO> getProfileInfo(UserInfoVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getProfileInfo", vo);
+	}
 
 	//프로필 정보 저장(&수정)
 	public void setProfileInfo(UserInfoVO vo) {
@@ -128,4 +133,5 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public List<FollowVO> getfollower(FollowVO vo) {
 		return getSqlSession().selectList("InstagramDAO.getfollower", vo);
 	}
+	
 }

@@ -98,9 +98,9 @@
 	                            <div class="feed_component"> 
 	                                <div class="comp_account">
 	                                    <div class="comp_account_img">
-	                                        <!-- todo : 계정 이미지&계정명 DB에서 받아오도록 하기 -->
-	                                        <img class='feed_profile' src="images\profile_img\my_profile.jpg" @click="fnGoProfile(f.user_idx);">
-	                                        <div class="comp_account_name">{{f.user_nickname}}</div>
+	                                        <img class='feed_profile' :src="f.file_name == null ? 'images\\icon\\profile.png'
+	                                        													: 'images\\profile_img\\' + f.file_name" @click="fnGoProfile(f.user_idx);">
+	                                        <div class="comp_account_name" @click="fnGoProfile(f.user_idx);">{{f.user_nickname}}</div>
 	                                        <div class="comp_account_option">
 	                                            <img class='comp_option_icon' src="images\icon\option.png"/>
 	                                        </div>
@@ -222,11 +222,11 @@
     createApp({
         data() {
             return {
-				feed_list : [],
-				feed_show : false,
-				file_margin : [],
-				feed_pop_info : {},
-				now_feed_idx : 0
+				feed_list : []
+				, feed_show : false
+				, file_margin : []
+				, feed_pop_info : {}
+				, now_feed_idx : 0
             }
         },
 		mounted: function() 
@@ -293,8 +293,8 @@
 					url : "/setLikeClick.do",
 					type : "POST",
 					data : {
-						"feed_idx" : feed_idx,
-						"like_type" : !like_type ? "0" : like_type,
+						"feed_idx" : feed_idx
+					  , "like_type" : !like_type ? "0" : like_type
 					},
 					context: this,
 					success : function(p)
@@ -331,7 +331,7 @@
 					{
 						$("#popFileList").css("margin-left", "0px");
 						//DB에서 파일 정보 가져오기
-						p.file_names = JSON.parse(p.file_names);
+						p.file_names = JSON.parse(p.file_names); // js 객체를 문자열로 변환
 						p.file_index = 0;
 						p.file_length = p.file_names.length;
 						//댓글 배열에 값 있을때만 feed_reply_list 띄우기

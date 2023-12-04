@@ -249,6 +249,13 @@ public class InstagramController {
 		return Service.getProfileFeedList(vo);
 	}
 	
+	//프로필 상단 계정정보 가져오기
+	@RequestMapping(value="/getProfileInfo.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<UserInfoVO> getProfileInfo(UserInfoVO vo, HttpSession session) {
+		return Service.getProfileInfo(vo);
+	}
+	
 	//프로필 정보 저장 (&변경)
 	@ResponseBody
 	@RequestMapping(value = "/setProfileInfo.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")

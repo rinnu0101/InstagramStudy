@@ -43,17 +43,17 @@
 			<!-- 메인 프로필 영역 -->
             <div id="main_middle">
                 <div id="profile_middle_area">
-                    <div id="profile_Top">
+                    <div id="profile_Top" v-for="u in pUser_info">
                         <div id="profile_TopImgArea">
                             <!-- todo : 내 계정에서만 클릭 활성화, 프로필사진 바꾸기 등 기능 넣기 -->
                             <div style="text-align: center;">
-                                <img id='profile_TopImg' src="${file_name}"/>
+                                <img id='profile_TopImg' :src="u.file_name == null ? 'images\\icon\\profile.png' 
+																				   : 'images\\profile_img\\' + u.file_name">
                             </div>
                         </div>
                         <div id="profile_TopInfo">
                             <div id="Info_ID">
-                                <!-- todo : 내ID불러오기 -->
-                                <div id="Info_ID_name">${user_nickname}</div>
+                                <div id="Info_ID_name">{{u.user_nickname}}</div>
                                 <div id="Info_follow" @click="fnFollow();">
                                 	<div v-if="follow == false">[팔로우]</div>
                                 	<div v-if="follow == true">[팔로잉]</div>
@@ -136,24 +136,58 @@
     createApp({
         data(){
             return {
-                feed_list : [],
-                file_names : [],
-                feed_pop_info: [],
-                feed_show : false,
-				now_feed_idx : 0,
-				feed_idx_list : [],
-				pUser_idx : 0,
-				follow : false,
-				following_list : [],
-				follower_list : [],
-				follow_pop_show : false           
+                feed_list : []
+                , file_names : []
+                , feed_pop_info: []
+                , feed_show : false
+				, now_feed_idx : 0
+				, feed_idx_list : []
+				, pUser_idx : 0
+				, pUser_info : []
+				, follow : false
+				, following_list : []
+				, follower_list : []
+				, follow_pop_show : false           
             }
         },
         mounted: function()
         {
+			this.fnGetProfileInfo();
             this.fnGetFeedList();
         },
         methods: {
+			//상단 프로필 정보 불러오기
+            fnGetProfileInfo: function(p){
+				if($("#pUser_idx").val() == "")
+				{
+					this.pUser_idx = $("#session_user_idx").val();
+					$("#pUser_idx").val($("#session_user_idx").val());
+					this.follow = "ME";
+				}
+				else
+				{
+					this.pUser_idx = $("#pUser_idx").val();
+				}
+
+                $.ajax({
+					url : "/getProfileInfo.do",
+					type : "POST",
+					data : {
+						"user_idx" : this.pUser_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						console.log("성공");
+						//pUser_info에 DB에서 가져온 모든 p값을 넣어준다
+						this.pUser_info = p;					
+					},
+					error : function(p)
+					{
+					    console.log("실패");		                  
+					}
+				});
+            },
             //프로필 화면의 피드 리스트 불러오기 처리함수
             fnGetFeedList: function(){
 				if($("#pUser_idx").val() == "")

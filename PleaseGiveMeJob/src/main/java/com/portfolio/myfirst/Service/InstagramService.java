@@ -55,6 +55,9 @@ public interface InstagramService {
 	//프로필 피드 리스트 불러오기
 	public List<FeedListVO> getProfileFeedList(FeedListVO vo);
 	
+	//프로필 상단 계정정보 가져오기
+	public List<UserInfoVO> getProfileInfo(UserInfoVO vo);
+	
 	//팔로우 기능 실행
 	public void setfollow(FollowVO vo);
 
@@ -62,4 +65,5 @@ public interface InstagramService {
 	public List<FollowVO> getfollowing(FollowVO vo);
 	//팔로워 리스트 가져오기
 	public List<FollowVO> getfollower(FollowVO vo);
+	
 }

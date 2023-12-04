@@ -98,6 +98,11 @@ public class InstagramServiceImpl implements InstagramService{
 		return InstagramDAO.getProfileFeedList(vo);		
 	}
 	
+	//프로필 상단 계정정보 가져오기
+	public List<UserInfoVO> getProfileInfo(UserInfoVO vo) {
+		return InstagramDAO.getProfileInfo(vo);	
+	}
+	
 	//프로필 정보 저장(&수정)
 	public String setProfileInfo(UserInfoVO vo) {
 		

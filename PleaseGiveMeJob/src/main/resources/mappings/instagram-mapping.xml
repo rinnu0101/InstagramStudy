@@ -129,6 +129,7 @@
 			, FL.FILE_NAMES
 			, FL.USER_NICKNAME
 			, FL.USER_IDX
+			, UP.FILE_NAME
 			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
 			, COUNT(FL2.LIKE_TYPE) AS LIKE_COUNT
 		FROM (
@@ -143,12 +144,14 @@
 			ON FL.FEED_IDX = FP.FEED_IDX 
 			INNER JOIN USER_INFO UI 
 			ON FL.USER_IDX = UI.USER_IDX
-			GROUP BY FL.FEED_IDX 
+			GROUP BY FL.FEED_IDX
 		) FL
 		LEFT JOIN FEED_LIKE FL2 
-		ON FL.FEED_IDX = FL2.FEED_IDX 
-		GROUP BY FL.FEED_IDX 
-		ORDER BY FL.REGDATE desc			
+		ON FL.FEED_IDX = FL2.FEED_IDX
+		LEFT JOIN USER_PHOTO UP 
+		ON FL.USER_IDX = UP.USER_IDX 
+		GROUP BY FL.FEED_IDX, UP.FILE_NAME 
+		ORDER BY FL.REGDATE DESC	
  	</select>
  	
  	<!-- 선택한 홈 피드 팝업 -->
@@ -277,6 +280,20 @@
 	   WHERE FL.USER_IDX = #{user_idx}
 	   ORDER BY FL.REGDATE DESC
  	</select>
+ 	
+ 	<!-- 프로필 정보 가져오기 -->
+	<select id="getProfileInfo" parameterType="userinfo" resultType="userinfo">
+		SELECT UI.USER_IDX
+		     , UI.USER_ID
+			 , UI.USER_NICKNAME 
+		 	 , UI.USER_INTRO 
+			 , UI.USER_INFO
+			 , UP.FILE_NAME 
+		FROM USER_INFO UI 
+		LEFT JOIN USER_PHOTO UP 
+		ON UI.USER_IDX = UP.USER_IDX
+		WHERE UI.USER_IDX = #{user_idx}
+	</select>
 	
 	<!-- 프로필 정보 저장(&수정) -->
 	<update id="setProfileInfo" parameterType="userinfo">
