@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- 좌측 공통 메뉴 html-->
-<div id="main_left">
+<div id="main_left" v-if="menu_type == 'normal'">
   <div id="left_area">
       <div id="main_logo">
           <img onclick="goPage('logo');" src="images\icon\logo.png">
@@ -10,11 +10,11 @@
 
       <div id="main_menu">
           <ul>
-              <li onclick="goPage('home');">
+              <li @click="fnChangePage('home');">
                   <img class='main_menu_icon' src="images\icon\home.png"/>
                   <div id="menu_home">홈</div>
               </li>
-              <li>
+              <li @click="fnChangeMenu('search');">
                   <img class='main_menu_icon' src="images\icon\search.png"/>
                   <div id="menu_search">검색</div>
               </li>
@@ -38,7 +38,7 @@
                   <img class='main_menu_icon' src="images\icon\upload.png"/>
                   <div id="menu_upload">만들기</div>
               </li>
-              <li onclick="goPage('profile');">
+              <li @click="fnChangePage('profile');">
                   <img class='main_menu_profile' src="${file_name}"/>
                   <!-- todo : 
                       - DB에서 내 프로필 이미지 가져오기

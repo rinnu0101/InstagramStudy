@@ -95,8 +95,9 @@ textarea{
 }
 
 .feed_pop_contents_arrow{
-  width: 875px;
+  width: 850px;
   height: 875px;
+  margin-left: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -328,8 +329,6 @@ textarea{
   display: none;
   position: fixed;
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   z-index: 100;
@@ -343,13 +342,18 @@ textarea{
   position: absolute;
 }
 
+#story_layerPopup_area{
+  width: 100%;
+  height: 100%;
+}
+
 .Story_Next_btn_L{
   width: 30px;
   height: 30px;
   position: absolute;
   display: flex;
   margin-top: 420px;
-  margin-left: 670px;
+  margin-left: 660px;
 }
 
 .Story_Next_btn_R{
@@ -358,7 +362,7 @@ textarea{
   position: absolute;
   display: flex; 
   margin-top:  420px;
-  margin-left: 1215px;
+  margin-left: 1210px;
 }
 
 .Story_Next_btn{
@@ -376,6 +380,7 @@ textarea{
 #story_layerPopup_contents{
   width: 490px;
   height: 880px;
+  margin: 0px;
   border-radius: 20px;
   background-color: white;
   z-index: 10;

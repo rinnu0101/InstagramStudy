@@ -5,6 +5,17 @@
 
 <!-- mapper 자체가 DAO 분리되어 나온 개념이기 때문에 namespace는 DAO 명을 따라가는 경우가 일반적임 -->
 <mapper namespace="InstagramDAO">
+	<!-- 검색 데이터 가져오기 가져오기 -->
+	<select id="getSearchList" resultType="userinfo">
+		SELECT UI.USER_IDX
+			 , UI.USER_NICKNAME
+			 , UI.USER_INTRO
+			 , UP.FILE_NAME
+		  FROM INSTAGRAM.USER_INFO UI
+		  LEFT JOIN INSTAGRAM.USER_PHOTO UP 
+		  ON UI.USER_IDX = UP.USER_IDX
+ 	</select>
+ 	
 	<!-- 인스타 스토리 가져오기 -->
  	<select id="getStoryList" parameterType="userinfo" resultType="userinfo">
 		SELECT idx

@@ -27,6 +27,11 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
+	
+	//검색 데이터 가져오기 가져오기
+	public List<UserInfoVO> getSearchList() {
+		return getSqlSession().selectList("InstagramDAO.getSearchList", null);
+	}
 
 	//인스타 스토리 가져오기
 	public List<UserInfoVO> getStoryList(UserInfoVO vo) {
@@ -95,8 +100,8 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	}
 	
 	//프로필 상단 계정정보 가져오기
-	public List<UserInfoVO> getProfileInfo(UserInfoVO vo) {
-		return getSqlSession().selectList("InstagramDAO.getProfileInfo", vo);
+	public UserInfoVO getProfileInfo(UserInfoVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getProfileInfo", vo);
 	}
 
 	//프로필 정보 저장(&수정)

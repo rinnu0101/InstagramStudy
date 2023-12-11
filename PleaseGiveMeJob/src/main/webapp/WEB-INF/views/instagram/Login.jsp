@@ -44,7 +44,7 @@
                 	   }
                 	   else{
                 		   //alert("로그인 성공");
-                		   window.location.href = "/home.do";
+                		   window.location.href = "/main.do";
                 	   }
  		               console.log(p);
 		               console.log("성공");
@@ -71,7 +71,7 @@
                 	   }
                 	   else{
                 		   alert("로그인 성공");
-                		   window.location.href = "/home.do";
+                		   window.location.href = "/main.do";
                 	   }
  		               console.log(p);
 		               console.log("성공");

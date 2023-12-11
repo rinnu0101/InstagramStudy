@@ -15,6 +15,9 @@ import com.portfolio.myfirst.Mapper.UserInfoVO;
 import com.portfolio.myfirst.Mapper.UserPhotoVO;
 
 public interface InstagramService {
+	//검색 데이터 가져오기
+	public List<UserInfoVO> getSearchList();
+	
 	//인스타 스토리 가져오기
 	public List<UserInfoVO> getStoryList(UserInfoVO vo);
 	public List<StoryVO> getStory(StoryVO vo);
@@ -56,7 +59,7 @@ public interface InstagramService {
 	public List<FeedListVO> getProfileFeedList(FeedListVO vo);
 	
 	//프로필 상단 계정정보 가져오기
-	public List<UserInfoVO> getProfileInfo(UserInfoVO vo);
+	public UserInfoVO getProfileInfo(UserInfoVO vo);
 	
 	//팔로우 기능 실행
 	public void setfollow(FollowVO vo);

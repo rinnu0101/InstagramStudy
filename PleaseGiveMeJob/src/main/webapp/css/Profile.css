@@ -11,11 +11,7 @@ li, ul, ol {
 }
 
 /*±¸È¹ ³ª´©±â*/
-#main{
-    background-image: url('example_Profile.png');
-  }
-
-#main_middle{
+#profile_main_middle{
   margin-left: 335px;
   width: 1567px;
   height: 100%;
@@ -73,18 +69,40 @@ li, ul, ol {
 }
 
 #Info_follow{
+  width: 80px;
+  height: 32px;
+  margin-left: 30px;
+  border-radius: 5px;
+  background-color: #0095F6;
+  font-size: 14px;
+  font-weight: bolder;
+  color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #Info_message{
+  width: 120px;
+  height: 32px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #DBDBDB;
+  font-size: 14px;
+  font-weight: bolder;
+  color: black;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #Info_ID_option img{
   width: 20px;
   height: 20px;
   object-fit: cover;
-  margin: 5px 0px 0px 5px;
+  margin: 5px 0px 0px 10px;
   cursor: pointer;
 }
 

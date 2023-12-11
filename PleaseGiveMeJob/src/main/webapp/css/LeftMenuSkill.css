@@ -1,0 +1,295 @@
+/*리스트 기본 스타일 속성 초기화*/
+li, ul, ol {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*구획 나누기*/
+.main_left_area{
+  width : 470px;
+  height: 100%;
+  position: fixed;
+}
+
+.left_icon_area{
+  width : 73px;
+  height: 923px;
+  float: left;
+}
+
+#search_area{
+	width : 397px;
+  height: 923px;
+  margin-left: 73px;
+  border-right : 1px solid #DBDBDB;
+}
+
+/*좌측 메뉴 아이콘 영역*/
+.left_icon{
+  width: 48px;
+  height: 895px;
+  padding: 8px 12px 20px 12px;
+  border-right : 1px solid #DBDBDB;
+}
+
+.icon_logo_area{
+  width: 48px;
+  height: 32px;
+  margin-top: 12px;
+  padding: 26px 0px 23px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon_logo{
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon_logo:hover{
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+
+.icon_logo img{
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/*메인 메뉴*/
+.icon_menu{
+    width: 48px;
+    height: 755px;
+}
+
+.icon_menu_img{
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.icon_menu ul li{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    padding: 12px;
+    margin: 8px 0px;
+    cursor: pointer;
+}
+
+.icon_menu ul li img{
+    float: left;
+  }
+
+.icon_menu ul li:hover{
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+
+
+.icon_menu_profile{
+  width: 25px;
+  height: 25px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+.icon_menu_profile:hover{
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+
+/*메뉴 더 보기*/
+.icon_menu_moreMenu{
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon_menu_moreMenu ul li{
+  width: 24px;
+  height: 24px;
+  padding: 12px;
+  margin: 8px 0px;
+  cursor: pointer;
+}
+.icon_menu_moreMenu ul li:hover{
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  transform: scale(1.1);
+  transition: transform.2s;
+}
+
+.icon_menu_moreMenu ul li img{
+  float: left;
+}
+
+/*검색 영역*/
+#search_area_div{
+  width: 396px;
+  height: 907px;
+  padding: 8px 0px 8px 0px;
+}
+
+#search_title{
+  width: 358px;
+  height: 21px;
+  margin: 8px 0px 8px 0px;
+  padding: 12px 14px 36px 24px;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+#search_function{
+  width: 364px;
+  height: 40px;
+  margin: 0px 16px 0px 16px;
+}
+#search_function input{
+  width: 330px;
+  height: 40px;
+  padding: 3px 16px 3px 16px;
+  float: left;
+  border-radius: 5px;
+  background-color: #EFEFEF;
+  border: none;
+  outline: none;
+}
+
+#search_list{
+  width: 396px;
+  height: 746px;
+  padding-top: 24px;
+  overflow-y: hidden;
+}
+
+#search_list_text{
+  width: 331px;
+  height: 20px;
+  margin: 6px 24px 8px 24px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+/*검색 이력*/
+#search_history{
+  width: 396px;
+  height: 780px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#search_history li{
+  width: 345px;
+  height: 44px;
+  padding: 8px 24px 8px 24px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#search_history li:hover{
+  background-color: #F2F2F2;
+  border-radius: 8px;
+}
+
+/*검색 결과*/
+#search_result{
+  display: none;
+  width: 396px;
+  height: 780px;
+  margin-top: 15px;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#search_result li{
+  width: 345px;
+  height: 44px;
+  padding: 8px 24px 8px 24px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#search_result li:hover{
+  background-color: #F2F2F2;
+  border-radius: 8px;
+}
+
+.search_profile_img{
+  width: 52px;
+  height: 52px;
+  margin-right: 10px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search_profile_img img{
+  width: 44px;
+  height: 44px;
+  border-radius: 70%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.search_profile_info{
+  width: 250px;
+  height: 36px;
+  float: left;
+}
+
+.search_id{
+  width: 223px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.search_info_text{
+  width: 223px;
+  height: 18px;
+  margin-top: 2px;
+  font-size: 14px;
+  color: #737373;
+  overflow-x: hidden;
+}
+
+.search_profile_btn{
+  width: 32px;
+  height: 32px;
+  float: left;
+}
+
+#search_delete_btn{
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search_delete_btn img{
+  width: 14px;
+  height: 14px;
+  object-fit: cover;
+  cursor: pointer;
+}

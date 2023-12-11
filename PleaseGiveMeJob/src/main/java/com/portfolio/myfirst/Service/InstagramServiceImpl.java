@@ -24,7 +24,12 @@ public class InstagramServiceImpl implements InstagramService{
 
 	@Autowired
 	private LoginDAOMybatis LoginDAO;
-
+	
+	//검색 데이터 가져오기
+	public List<UserInfoVO> getSearchList() {
+		return InstagramDAO.getSearchList();
+	}
+	
 	//인스타 스토리 가져오기
 	public List<UserInfoVO> getStoryList(UserInfoVO vo) {
 		return InstagramDAO.getStoryList(vo);
@@ -99,7 +104,7 @@ public class InstagramServiceImpl implements InstagramService{
 	}
 	
 	//프로필 상단 계정정보 가져오기
-	public List<UserInfoVO> getProfileInfo(UserInfoVO vo) {
+	public UserInfoVO getProfileInfo(UserInfoVO vo) {
 		return InstagramDAO.getProfileInfo(vo);	
 	}
 	

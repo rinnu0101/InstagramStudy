@@ -2,7 +2,11 @@ var goPage = function(type)
 {
     if(type == "logo")
     {
-        window.location.href = "/home.do"
+        window.location.href = "/main.do"
+    }
+    else if(type == "main")
+    {
+        window.location.href = "/main.do"
     }
     else if(type == "home")
     {

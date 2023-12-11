@@ -58,9 +58,16 @@ public class InstagramController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/main.do")
+	public ModelAndView instagramMain(ModelAndView mav, HttpSession session) {	
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
+		
+		mav.setViewName("/instagram/Main");
+		return mav;
+	}
+	
 	@RequestMapping(value="/home.do")
-	public ModelAndView instagramHome(ModelAndView mav, HttpSession session) {	
-		String loginUserId = (String) session.getAttribute("user_id");
+	public ModelAndView instagramHome(ModelAndView mav) {		
 		mav.setViewName("/instagram/Home");
 		return mav;
 	}
@@ -82,6 +89,13 @@ public class InstagramController {
 	public ModelAndView instagramFindPW(ModelAndView mav) {		
 		mav.setViewName("/instagram/FindPW");
 		return mav;
+	}
+	
+	//검색 데이터 가져오기
+	@RequestMapping(value="/getSearchList.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<UserInfoVO> getSearchList() {
+		return Service.getSearchList();
 	}
 	
 	
@@ -252,7 +266,7 @@ public class InstagramController {
 	//프로필 상단 계정정보 가져오기
 	@RequestMapping(value="/getProfileInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<UserInfoVO> getProfileInfo(UserInfoVO vo, HttpSession session) {
+	public UserInfoVO getProfileInfo(UserInfoVO vo, HttpSession session) {
 		return Service.getProfileInfo(vo);
 	}
 	

@@ -18,8 +18,6 @@
                <!-- todo : li 갯수 10개씩 불러오기 (스크롤바 최하단 도달시) -->
                <li class="follow_li" v-for="f in following_list">
                    <div class="follow_profile_img">
-                      <img :src="f.file_name == null ? 'images\\icon\\profile.png' 
-													 : 'images\\profile_img\\' + f.file_name">
                     </div>
                     <div class="follow_profile_info">
                         <div class="info_id">{{f.user_nickname}}</div>

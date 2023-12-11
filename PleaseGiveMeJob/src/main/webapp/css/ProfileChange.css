@@ -14,6 +14,7 @@ li, ul, ol {
 #profile_Change {
   width: 1567px;
   height: 100%;
+  margin-left: 335px;
   padding-top: 150px;
   display: flex;
   justify-content: center;
