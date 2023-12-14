@@ -18,11 +18,6 @@ public interface InstagramService {
 	//검색 데이터 가져오기
 	public List<UserInfoVO> getSearchList();
 	
-	//인스타 스토리 가져오기
-	public List<UserInfoVO> getStoryList(UserInfoVO vo);
-	public List<StoryVO> getStory(StoryVO vo);
-	public void setViewStory(StoryVO vo);
-	
 	//새 피드 저장하기
 	public void setSaveNewFeed(FeedListVO vo);
 	public int getNewFeedIdx(FeedListVO vo);
@@ -39,6 +34,9 @@ public interface InstagramService {
 	
 	//홈 피드 리스트 가져오기
 	public List<FeedListVO> getFeedTemp();
+	
+	//홈 스토리 리스트 가져오기
+	public List<StoryListVO> getStoryList(StoryListVO vo);
 	
 	//선택한 홈 피드 팝업
 	public FeedListVO getFeedPopup(FeedListVO vo);

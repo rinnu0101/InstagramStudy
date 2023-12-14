@@ -222,6 +222,13 @@ public class InstagramController {
 		return "OK";
 	}
 	
+	//홈 스토리 리스트 가져오기
+	@RequestMapping(value="/getStoryList.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<StoryListVO> getStoryList(StoryListVO vo) {
+		return Service.getStoryList(vo);
+	}
+	
 	//피드 좋아요 처리
 	@RequestMapping(value="/setLikeClick.do", produces = "application/text; charset=utf8")
 	@ResponseBody
@@ -231,6 +238,7 @@ public class InstagramController {
 		Service.setLikeClick(vo);
 		return "OK";
 	}
+	
 
 	//홈 피드 리스트 가져오기
 	@RequestMapping(value="/getFeedTemp.do", produces = "application/json; charset=utf8")
@@ -267,6 +275,8 @@ public class InstagramController {
 	@RequestMapping(value="/getProfileInfo.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public UserInfoVO getProfileInfo(UserInfoVO vo, HttpSession session) {
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
+		vo.setSession_user_idx(user_idx);
 		return Service.getProfileInfo(vo);
 	}
 	
@@ -274,7 +284,7 @@ public class InstagramController {
 	@ResponseBody
 	@RequestMapping(value = "/setProfileInfo.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public String setProfileInfo(
-			@RequestParam("file") MultipartFile file
+			@RequestParam("file") List<MultipartFile> fileList
 			, @RequestParam("profile_img_chg") String profile_img_chg
 			, @RequestParam("user_nickname_chg") String user_nickname_chg
 			, @RequestParam("user_pw_chg") String user_pw_chg
@@ -307,7 +317,9 @@ public class InstagramController {
 			String fileRoot;
 			try {
 				// 파일이 있을때 탄다.
-				if(file != null) {
+				if(fileList != null) {
+					//fileList의 첫번째 값을 file에 할당
+					MultipartFile file = fileList.get(0);
 					
 					fileRoot = "C:\\mygit\\PleaseGiveMeJob\\src\\main\\webapp\\images\\profile_img\\";
 					
@@ -338,7 +350,6 @@ public class InstagramController {
 				e.printStackTrace();
 			}
 		}
-		
 		return result;
 	}
 	
@@ -364,45 +375,4 @@ public class InstagramController {
 	public List<FollowVO> getfollower(FollowVO vo) {
 		return Service.getfollower(vo);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	//나중에 갖다쓰기
-	@RequestMapping(value="/getStoryList.do", produces = "application/text; charset=utf8")
-	@ResponseBody
-	public String getStoryList(UserInfoVO vo) throws JsonProcessingException {
-		//자바에서 JSON 객체로 변환해주는 라이브러리
-		List<UserInfoVO> story = Service.getStoryList(vo);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("list", story); //null
-		
-		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(hashMap);
-		return json;
-	}
-
-	@RequestMapping(value="/getStory.do", produces = "application/text; charset=utf8")
-	@ResponseBody
-	public String getStory(StoryVO vo) throws JsonProcessingException {
-		//자바에서 JSON 객체로 변환해주는 라이브러리
-		List<StoryVO> story = Service.getStory(vo);
-		Service.setViewStory(vo);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("list", story); //null
-		
-		String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(hashMap);
-		return json;
-	}
-	
-	
-	
-	
 }

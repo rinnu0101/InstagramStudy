@@ -8,14 +8,6 @@ var goPage = function(type)
     {
         window.location.href = "/main.do"
     }
-    else if(type == "home")
-    {
-        window.location.href = "/home.do"
-    }
-    else if(type == "profile")
-    {
-        window.location.href = "/profile.do"
-    }
     else if(type == "login")
     {
         window.location.href = "/instagram.do"
@@ -27,9 +19,5 @@ var goPage = function(type)
     else if(type == "findPW")
     {
         window.location.href = "/findPW.do"
-    }
-    else if(type == "profileChange")
-    {
-        window.location.href = "/profileChange.do"
     }
 }

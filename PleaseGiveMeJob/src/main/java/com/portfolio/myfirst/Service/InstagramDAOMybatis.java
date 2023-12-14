@@ -32,17 +32,6 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public List<UserInfoVO> getSearchList() {
 		return getSqlSession().selectList("InstagramDAO.getSearchList", null);
 	}
-
-	//인스타 스토리 가져오기
-	public List<UserInfoVO> getStoryList(UserInfoVO vo) {
-		return getSqlSession().selectList("InstagramDAO.getStoryList", vo);
-	}
-	public List<StoryVO> getStory(StoryVO vo) {
-		return getSqlSession().selectList("InstagramDAO.getStory", vo);
-	}
-	public void setViewStory(StoryVO vo) {
-		getSqlSession().insert("InstagramDAO.setViewStory", vo);
-	}
 	
 	//새 피드 저장하기
 	public void setSaveNewFeed(FeedListVO vo) {
@@ -73,6 +62,11 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	//홈 피드 리스트 가져오기
 	public List<FeedListVO> getFeedTemp() {
 		return getSqlSession().selectList("InstagramDAO.getFeedTemp", null);		
+	}
+	
+	//홈 피드 리스트 가져오기
+	public List<StoryListVO> getStoryList(StoryListVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getStoryList", null);		
 	}
 	
 	//선택한 홈 피드 팝업

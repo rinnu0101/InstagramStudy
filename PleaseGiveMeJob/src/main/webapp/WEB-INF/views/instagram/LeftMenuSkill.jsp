@@ -35,7 +35,7 @@
                     <li onclick="fnUploadOpen();">
                         <img class='icon_menu_img' src="images\icon\upload.png"/>
                     </li>
-                    <li @click="fnChangePage('profile');">
+                    <li @click="fnGoProfile('');">
                         <img class='icon_menu_profile' src="${file_name}"/>
                         <!-- todo : 
                             - DB에서 내 프로필 이미지 가져오기

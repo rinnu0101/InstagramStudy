@@ -16,46 +16,6 @@
 		  ON UI.USER_IDX = UP.USER_IDX
  	</select>
  	
-	<!-- 인스타 스토리 가져오기 -->
- 	<select id="getStoryList" parameterType="userinfo" resultType="userinfo">
-		SELECT idx
- 			 , user_name
- 			 , regdate
- 			 , img_path
- 			 , IFNULL (( select 1 from instagram.story_log sl where view_user_idx = 99 and story_idx = A.idx ), 0) as view_yn 
-		  FROM instagram.user_info A		  	 
- 	</select>
- 	<select id="getStory" parameterType="story" resultType="story">
- 		SELECT idx
-	 		 , content
-	 		 , regdate
-	 		 , img_path
-	 		 , user_idx
-	      FROM instagram.story	 
-	     WHERE user_idx = #{user_idx}
- 	</select>
- 	<insert id="setViewStory" parameterType="story">
- 		INSERT INTO instagram.story_log
-			( 
-				story_user_idx
-				, view_user_idx
-				, regdate
-				, story_idx
-			)
-		VALUES(	
-				#{user_idx}
-				, 99	<!-- 로그인기능 구현 후 수정 필요 -->
-				, now()
-				, (				
-				  select MIN(idx) from instagram.story s 
-				   where user_idx = #{user_idx}
-				     and idx not in (select story_idx from instagram.story_log sl where view_user_idx = 99 and user_idx = #{user_idx}) 
-				   group by user_idx 
-				)				
-			)
-		 		
- 	</insert>
- 	
  	<!-- 새 피드 저장하기 -->
  	<insert id="setSaveNewFeed" parameterType="feedlist">
 	 	INSERT INTO instagram.feed_list
@@ -163,6 +123,26 @@
 		ON FL.USER_IDX = UP.USER_IDX 
 		GROUP BY FL.FEED_IDX, UP.FILE_NAME 
 		ORDER BY FL.REGDATE DESC	
+ 	</select>
+ 	
+ 	<!-- 홈 스토리 리스트 가져오기 -->
+ 	<select id="getStoryList" parameterType="storylist" resultType="storylist">
+   	   <!-- WITH : 임시테이블 SL 생성 -->
+   	   WITH SL AS (
+			SELECT MIN(SL.STORY_IDX) AS STORY_IDX 
+			     , SL.USER_IDX
+			FROM STORY_LIST SL
+			GROUP BY SL.USER_IDX 
+		)
+		SELECT SL.STORY_IDX 
+			 , SL.USER_IDX
+			 , UI.USER_NICKNAME 
+		     , UP.FILE_NAME 
+		  FROM SL
+		LEFT JOIN USER_INFO UI
+		ON SL.USER_IDX = UI.USER_IDX
+		LEFT JOIN USER_PHOTO UP 
+		ON SL.USER_IDX = UP.USER_IDX 
  	</select>
  	
  	<!-- 선택한 홈 피드 팝업 -->
@@ -300,9 +280,13 @@
 		 	 , UI.USER_INTRO 
 			 , UI.USER_INFO
 			 , UP.FILE_NAME 
+			 , F.FOLLOWER_USER_IDX
 		FROM USER_INFO UI 
 		LEFT JOIN USER_PHOTO UP 
 		ON UI.USER_IDX = UP.USER_IDX
+		LEFT JOIN FOLLOW F 
+		ON UI.USER_IDX = F.FOLLOWING_USER_IDX 
+		AND F.FOLLOWER_USER_IDX = #{session_user_idx}
 		WHERE UI.USER_IDX = #{user_idx}
 	</select>
 	

@@ -112,7 +112,7 @@ li, ul, ol {
   background-color: #FAFAFA;
 }
 .profile_nickname input{
-  width: 230px;
+  width: 220px;
   height: 34px;
   padding-left: 8px;
   font-size: 12px;
@@ -174,7 +174,6 @@ li, ul, ol {
   position: absolute;
   object-fit: cover;
   float: left;
-  display: none;
 }
 
 .confirm_error{
@@ -184,7 +183,6 @@ li, ul, ol {
   position: absolute;
   object-fit: cover;
   float: left;
-  display: none;
 }
 
 .confirm_show{

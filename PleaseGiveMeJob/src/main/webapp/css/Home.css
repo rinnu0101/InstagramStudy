@@ -57,9 +57,9 @@ li, ul, ol {
   overflow: hidden;
 }
 
-/* .story_friend_ul{
-  width: 50000px;
-} */
+.story_friend_ul{
+  width: auto;
+}
 
 .story_upload{
   width: 80px;

@@ -30,18 +30,6 @@ public class InstagramServiceImpl implements InstagramService{
 		return InstagramDAO.getSearchList();
 	}
 	
-	//인스타 스토리 가져오기
-	public List<UserInfoVO> getStoryList(UserInfoVO vo) {
-		return InstagramDAO.getStoryList(vo);
-	}	
-	public List<StoryVO> getStory(StoryVO vo) {
-		return InstagramDAO.getStory(vo);
-	}	
-	public void setViewStory(StoryVO vo)
-	{
-		InstagramDAO.setViewStory(vo);
-	}
-	
 	//새 피드 저장하기
 	public void setSaveNewFeed(FeedListVO vo) {
 		InstagramDAO.setSaveNewFeed(vo);		
@@ -71,6 +59,11 @@ public class InstagramServiceImpl implements InstagramService{
 	//홈 피드 리스트 가져오기
 	public List<FeedListVO> getFeedTemp() {
 		return InstagramDAO.getFeedTemp();		
+	}
+	
+	//홈 스토리 리스트 가져오기
+	public List<StoryListVO> getStoryList(StoryListVO vo) {
+		return InstagramDAO.getStoryList(vo);		
 	}
 	
 	//선택한 홈 피드 팝업
@@ -141,7 +134,7 @@ public class InstagramServiceImpl implements InstagramService{
 			
 	}
 	
-	//피드 좋아요 처리
+	//계정 팔로우 처리
 	public void setfollow(FollowVO vo) {
 		String type = vo.getFollow_yn();
 		if("Y".equals(type))

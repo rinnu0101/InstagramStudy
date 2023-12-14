@@ -18,7 +18,7 @@
 					<div id="Info_follow" @click="fnFollow();">
 						<div v-if="follow == false">팔로우</div>
 						<div v-if="follow == true">팔로잉</div>
-						<div v-if="follow == 'ME'" onclick="goPage('profileChange');">
+						<div v-if="follow == 'ME'" @click="fnChangePage('profileChange');">
 							프로필 편집
 						</div>
 					</div>

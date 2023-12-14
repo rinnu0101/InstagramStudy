@@ -5,6 +5,7 @@
 <div id="home_main_middle" v-if="view_page == 'home'">
 	<div id="home_middle_area">
 		<div id="home_main_contents">
+			<!-- 홈 스토리 리스트 -->
 			<div id="main_contents_story">
 				<ul class="story_friend_ul">
 					<li class="story_upload" onclick="fnStoryUpload();">
@@ -13,23 +14,14 @@
 						</div>
 						<div class="story_accountName">새 스토리</div>
 					</li>
-					<li onclick="fnLayerPopupOpen();">
+					
+					<li v-for="(s, index) in home_story_list" v-if="story_list_show == true" @click="fnLayerPopupOpen();">
 						<div class="story_profile">
-							<img class='story_profile_img' src="images\profile_img\1.jpg">
+							<img class='story_profile_img' :src="s.file_name == null ? 'images\\icon\\profile.png'
+																				     : 'images\\profile_img\\' + s.file_name">
 						</div>
-						<div class="story_accountName">asdfasdfasdfasdf</div>
+						<div class="story_accountName">{{s.user_nickname}}</div>
 					</li>
-					<li>친구2</li>
-					<li>친구3</li>
-					<li>친구4</li>
-					<li>친구5</li>
-					<li>친구6</li>
-					<li>친구7</li>
-					<li>친구8</li>
-					<li>친구9</li>
-					<li>친구10</li>
-					<li>친구11</li>
-					<li>친구12</li>
 				</ul>
 				<div class="story_arrow_prev">
 					<a href="javascript:;" class="prev" onclick="fnMoveStorySlide(this);">
@@ -50,6 +42,7 @@
 					</a>
 				</div> -->
 			</div>
+			<!-- 홈 피드 리스트 -->
 			<div id="main_contents_feed" v-for="(f, index) in home_feed_list" v-if="feed_show == true">
 				<div class="feed_component"> 
 					<div class="comp_account">

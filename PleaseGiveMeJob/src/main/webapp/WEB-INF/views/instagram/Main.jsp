@@ -10,12 +10,14 @@
         <!-- 스타일시트 적용 -->
         <link rel="stylesheet" href="css/Home.css">
 		<link rel="stylesheet" href="css/Profile.css">
+		<link rel="stylesheet" href="css/ProfileChange.css">
         <link rel="stylesheet" href="css/LeftMenu.css">
         <link rel="stylesheet" href="css/LeftMenuSkill.css">        
         <link rel="stylesheet" href="css/LayerPopup.css">
         <link rel="stylesheet" href="css/FollowListPop.css">        
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
+        <script src="js/upload.js"></script>
         <!-- vue.js 적용 -->
         <script type="importmap">
             {
@@ -55,7 +57,10 @@
 				<jsp:include page="Home.jsp"></jsp:include>
 				
 				<!-- 프로필 피드 화면 html-->
-				<jsp:include page="Profile.jsp"></jsp:include>         
+				<jsp:include page="Profile.jsp"></jsp:include>
+				
+				<!-- 프로필 정보 변경 화면 html-->
+				<jsp:include page="ProfileChange.jsp"></jsp:include>    
 	        </div>   
         </div>
         
@@ -72,33 +77,40 @@
     createApp({
         data() {
             return {
-				home_feed_list : []
-				, profile_feed_list : []
-				, feed_pop_info: []
-				, feed_show : false
-				, now_feed_idx : 0
-				, feed_idx_list : []
-				, file_names : []
-				, file_margin : []
-				, popupSlide_btn : false
-				, pUser_idx : 0
-				, pUser_info : {}
-				, follow : false
-				, following_list : []
-				, follower_list : []
-				, follow_pop_show : false
-				, view_page : "home"
-				, menu_type : "normal"
-				, search_list : []
-				, search_list_original : []
-				, search_keyword : "N"
-				, search_css_display : "none"
+				home_feed_list : []                // 메인 홈 피드 정보 리스트
+				, home_story_list : []			   // 메인 홈 스토리 정보 리스트
+				, story_view_list : []			   // 선택한 스토리 컨텐츠 리스트
+				, profile_feed_list : []           // 프로필 피드 정보 리스트
+				, profileImgChg : "N"              // 프로필 이미지 변경 여부 체크
+				, profileImgFile : ""              // 프로필 이미지 변경시 파일명
+				, profileNickDuplChk : ""          // 프로필 닉네임 중복 체크				
+				, feed_pop_info: []                // 선택한 피드 팝업의 정보값
+				, feed_show : false                // 홈 or 프로필 화면의 피드 show 조건
+				, story_list_show : false          // 홈 화면의 스토리 리스트 show 조건 
+				, now_feed_idx : 0                 // 선택한 피드 키값(idx)
+				, feed_idx_list : []               //
+				, file_names : []                  //
+				, file_margin : []                 //
+				, popupSlide_btn : false           //
+				, pUser_idx : 0                    // 내가 클릭한 계정의 키값(idx)
+				, pUser_info : {}                  // 내가 클릭한 계정정보 json
+				, follow : false                   // 선택 계정의 팔로우 여부 체크 (팔로우, 언팔로우, 내 계정)
+				, following_list : []              // 내가 팔로우 한 계정 리스트
+				, follower_list : []               // 나를 팔로우 한 계정 리스트
+				, follow_pop_show : false          // 팔로우 리스트 팝업 화면 show/hide
+				, view_page : "home"               // 메인 영역에 보여질 화면 체크
+				, menu_type : "normal"             // 좌측 공통 메뉴 상태 체크 (기본, 검색, DM, 알림 등)
+				, search_list : []                 // 검색 결과 리스트
+				, search_list_original : []        // 검색 키워드 비교를 위한 계정 전체 리스트
+				, search_keyword : "N"             // 좌측 검색창 내 input 값 유무 체크
+				, search_css_display : "none"      // 좌측 검색창 화면 show/hide
             }
         },
 		mounted: function() 
 		{
 			//document.(ready) 와 동일한 역할
 			this.fnGetHomeFeedList();
+			this.fnGetHomeStoryList();
 			this.fnGetSearchList();
 		},			
 		methods: {
@@ -142,6 +154,27 @@
 					error : function(p)
 					{
 					console.log("실패");		                  
+					}
+				});
+			},
+			//홈 화면의 스토리 리스트 불러오기 처리함수
+			fnGetHomeStoryList: function(){						
+				//POST
+				$.ajax({
+					url : "/getStoryList.do",
+					type : "POST",
+					data : {},
+					context: this,
+					success : function(p)
+					{
+						this.home_story_list = p;
+						this.story_list_show = true;
+						//todo
+						//this.loading_progress = false;
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
 					}
 				});
 			},
@@ -357,7 +390,15 @@
 			//계정 프로필 이동
 			fnGoProfile : function(user_idx)
 			{
-				this.pUser_idx = user_idx;
+				if(user_idx == $("#session_user_idx").val())
+				{
+					this.pUser_idx = "";
+				}
+				else
+				{
+					this.pUser_idx = user_idx;
+				}
+
 				this.fnChangePage('profile');
 			},
 			//계정 프로필의 상단 정보 불러오기
@@ -367,9 +408,10 @@
 					this.pUser_idx = $("#session_user_idx").val();
 					$("#pUser_idx").val($("#session_user_idx").val());
 					this.follow = "ME";
-					$("#Info_follow").css("width", "100px");
-					$("#Info_follow").css("background-color", "#DBDBDB");
-					$("#Info_follow").css("color", "black");
+				}
+				else
+				{
+					this.follow = "";
 				}
 
                 $.ajax({
@@ -384,6 +426,25 @@
 						console.log("성공");
 						//pUser_info에 DB에서 가져온 모든 p값을 넣어준다
 						this.pUser_info = p;
+						if(this.follow == "ME")
+						{
+							$("#Info_follow").css("width", "100px");
+							$("#Info_follow").css("background-color", "#DBDBDB");
+							$("#Info_follow").css("color", "black");
+						}
+						else if(p.follower_user_idx == 0)
+						{
+							this.follow = false;							
+							$("#Info_follow").css("background-color", "#0095F6");
+							$("#Info_follow").css("color", "white");
+						}
+						else
+						{
+							this.follow = true;							
+							$("#Info_follow").css("background-color", "#DBDBDB");
+							$("#Info_follow").css("color", "black");
+						}
+
 						//if(p != null)
 						//{
  	  					//	this.pUser_info = p[0];
@@ -471,10 +532,6 @@
 					//팔로우
 					followYN = "Y";
 				}
-				else
-				{
-					//언팔로우
-				}
 
 				$.ajax({
 					url : "/setfollow.do",
@@ -493,14 +550,14 @@
 							$("#Info_follow").css("background-color", "#0095F6");
 							$("#Info_follow").css("color", "white");
 						}
-						if(this.follow == flase)
+						else if(this.follow == false)
 						{
 							//팔로우
 							this.follow = true;
 							$("#Info_follow").css("background-color", "#DBDBDB");
 							$("#Info_follow").css("color", "black");
 						}
-						if(this.follow == "ME")
+						else if(this.follow == "ME")
 						{
 							//내 계정인 경우
 						}
@@ -563,6 +620,115 @@
 			fnPopFollowClose : function()
 			{
 				this.follow_pop_show = false;
+			},
+			//프로필 이미지 파일 선택 함수
+			fnProfileImgSelect : function()
+			{
+				$('#input_file_Profile').click();
+			},
+			//선택한 프로필 이미지 반영 함수
+			fnProfileImgPrint : function(e)
+			{
+				this.profileImgFile = e.target.files;
+				
+				//선택한 이미지 미리보기
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$('#profile_img img').attr('src', e.target.result);
+				};
+				reader.readAsDataURL(this.profileImgFile[0]);
+				
+				this.profileImgChg = "Y";
+			},
+			//프로필 정보 중복 체크
+			fnProfileDuplChk : function(e)
+			{
+				var duplChk = this.search_list_original.filter(function(p){
+					return p.user_nickname == e.target.value;
+				});
+
+				if(duplChk == 0)
+				{
+					//중복 아님
+					this.profileNickDuplChk = "check";	
+
+				}
+				else
+				{
+					//중복
+					this.profileNickDuplChk = "error";	
+				}
+			},
+			//프로필 정보 저장 함수
+			fnSaveProfile : function()
+			{
+				if(this.profileNickDuplChk == "error")
+				{					
+					alert("닉네임이 중복입니다.");
+					return false;
+				}
+
+				//파일 업로드
+				var form = $("form")[0];
+				var formData = new FormData(form);
+				
+				var nickname = $(".profile_nickname").find("input").val().replace(/\s/gi, "");
+				var pw = $(".profile_PW").find("input").val().replace(/\s/gi, "");
+				//.replace(/\s/gi, "") --> 입력값의 모든 공백 제거
+
+				var userNicknameChg = "N"; //닉네임 변경 여부 체크				
+				var userPWChg = "N"; // 비밀번호 변경 여부 체크				
+
+				if(nickname != "")
+				{
+					userNicknameChg = "Y";	
+				}
+				
+				if(pw != "")
+				{
+					userPWChg = "Y";
+				}				
+
+				formData.append("profile_img_chg", this.profileImgChg);
+				formData.append("user_nickname_chg", userNicknameChg);
+				formData.append("user_pw_chg", userPWChg);
+
+				formData.append("file", this.profileImgFile != null ? this.profileImgFile[0] : null);
+				formData.append("user_nickname", nickname);
+				formData.append("user_pw", pw);
+
+				$.ajax({
+					type: "POST",
+					enctype: "multipart/form-data",
+					//url: "/file-upload.do",
+					url: "/setProfileInfo.do",
+					data : formData,
+					context: this,
+					processData: false,
+					contentType: false,
+					success : function(p)
+					{
+						console.log(p);
+						console.log("성공");
+						if(p == "OK")
+						{
+							alert("회원정보가 변경되었습니다.");
+							this.fnGoProfile($("#session_user_idx").val());
+						}
+						else if(p == "DUPL")
+						{
+							alert("닉네임이 중복입니다.");
+						}
+						else
+						{
+							alert("회원정보를 다시 확인하세요.");
+						}
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
 			},
 			//좌측 메뉴 기능 타입 변경
 			fnChangeMenu : function(p)

@@ -38,7 +38,7 @@
                   <img class='main_menu_icon' src="images\icon\upload.png"/>
                   <div id="menu_upload">만들기</div>
               </li>
-              <li @click="fnChangePage('profile');">
+              <li @click="fnGoProfile('');">
                   <img class='main_menu_profile' src="${file_name}"/>
                   <!-- todo : 
                       - DB에서 내 프로필 이미지 가져오기
