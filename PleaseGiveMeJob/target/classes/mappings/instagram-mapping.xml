@@ -92,8 +92,47 @@
 			)
  	</insert>
  	
+ 	<!-- 홈 스토리 리스트 가져오기 -->
+ 	<select id="getStoryList" parameterType="storylist" resultType="storylist">
+   	   <!-- WITH : 임시테이블 SL 생성 -->
+   	   WITH SL AS (
+			SELECT MIN(SL.STORY_IDX) AS STORY_IDX 
+			     , SL.USER_IDX
+			FROM STORY_LIST SL
+			GROUP BY SL.USER_IDX 
+		)
+		SELECT SL.STORY_IDX 
+			 , SL.USER_IDX
+			 , UI.USER_NICKNAME 
+		     , UP.FILE_NAME 
+		  FROM SL
+		LEFT JOIN USER_INFO UI
+		ON SL.USER_IDX = UI.USER_IDX
+		LEFT JOIN USER_PHOTO UP 
+		ON SL.USER_IDX = UP.USER_IDX 
+ 	</select>
+ 	
+ 	<!-- 선택한 홈 피드 팝업 -->
+ 	<select id="getStoryPopup" parameterType="storylist" resultType="storylist">
+   	    SELECT SL.STORY_IDX
+			 , SL.USER_IDX
+			 , SL.REGDATE
+			 , SP.FILE_NAME as story_file_name
+			 , UI.USER_NICKNAME 
+			 , UP.FILE_NAME
+		  FROM STORY_LIST SL
+		  INNER JOIN STORY_PHOTO SP 
+		  ON SL.STORY_IDX = SP.STORY_IDX
+		  INNER JOIN USER_INFO UI 
+		  ON UI.USER_IDX = SL.USER_IDX 
+		  LEFT JOIN USER_PHOTO UP 
+		  ON UI.USER_IDX = UP.USER_IDX 
+		  WHERE SL.STORY_IDX = #{story_idx}
+		  ORDER BY SL.STORY_IDX 
+ 	</select>
+ 	
  	<!-- 홈 피드 리스트 가져오기 -->
- 	<select id="getFeedTemp" parameterType="feedlist" resultType="feedlist">
+ 	<select id="getFeedList" parameterType="feedlist" resultType="feedlist">
    	   SELECT FL.FEED_IDX 
 			, FL.FEED_CONTENTS 
 			, FL.REGDATE 
@@ -123,26 +162,6 @@
 		ON FL.USER_IDX = UP.USER_IDX 
 		GROUP BY FL.FEED_IDX, UP.FILE_NAME 
 		ORDER BY FL.REGDATE DESC	
- 	</select>
- 	
- 	<!-- 홈 스토리 리스트 가져오기 -->
- 	<select id="getStoryList" parameterType="storylist" resultType="storylist">
-   	   <!-- WITH : 임시테이블 SL 생성 -->
-   	   WITH SL AS (
-			SELECT MIN(SL.STORY_IDX) AS STORY_IDX 
-			     , SL.USER_IDX
-			FROM STORY_LIST SL
-			GROUP BY SL.USER_IDX 
-		)
-		SELECT SL.STORY_IDX 
-			 , SL.USER_IDX
-			 , UI.USER_NICKNAME 
-		     , UP.FILE_NAME 
-		  FROM SL
-		LEFT JOIN USER_INFO UI
-		ON SL.USER_IDX = UI.USER_IDX
-		LEFT JOIN USER_PHOTO UP 
-		ON SL.USER_IDX = UP.USER_IDX 
  	</select>
  	
  	<!-- 선택한 홈 피드 팝업 -->

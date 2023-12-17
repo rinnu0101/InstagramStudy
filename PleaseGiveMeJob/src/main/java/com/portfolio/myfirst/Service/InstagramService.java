@@ -32,11 +32,14 @@ public interface InstagramService {
 	//새 스토리 이미지 파일 저장하기
 	public void setSaveNewStoryFile(StoryPhotoVO vo);
 	
-	//홈 피드 리스트 가져오기
-	public List<FeedListVO> getFeedTemp();
-	
 	//홈 스토리 리스트 가져오기
 	public List<StoryListVO> getStoryList(StoryListVO vo);
+	
+	//선택한 홈 스토리 팝업
+	public List<StoryListVO> getStoryPopup(StoryListVO vo);
+		
+	//홈 피드 리스트 가져오기
+	public List<FeedListVO> getFeedList();
 	
 	//선택한 홈 피드 팝업
 	public FeedListVO getFeedPopup(FeedListVO vo);

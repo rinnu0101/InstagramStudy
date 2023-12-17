@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- 스토리 레이어팝업 html-->
-<div id="layerPopup_story">
-	<div id="story_layerPopup_bg" onclick="fnLayerPopupClose();">
+<div id="layerPopup_story" v-if="story_popup_show == true">
+	<div id="story_layerPopup_bg" @click="fnLayerPopupClose();">
 	    <div class="layerPopupClose_btn">
 	        <img src="images\icon\close_WT.png">
 	    </div>
@@ -23,13 +23,20 @@
 		    <div class="SP_contents_header">
 		        <div class="SP_contents_length">
 		            <!-- todo : 스토리 갯수에 따라 칸 일정하게 나눠져 증가하는 바 생성-->
+					<ul class="SP_contents_length_ul">
+						<li v-for="p in story_view_list.story_file_list" :style="{width:story_view_list.progress_eq_width + 'px'}">
+							<div class="SP_contents_background_progress"></div>
+							<div class="SP_contents_background"></div>
+						</li>
+					</ul>
 		        </div>
 		        <div class="SP_contents_account">
 		            <div class="SP_account_profile">
 		                <!-- todo : 클릭한 story 계정의 프로필 img 뜨게하기-->
-		                <img class='SP_profile_img' src="images\profile_img\1.jpg">
+		                <img class='SP_profile_img' :src="story_view_list.file_name == null ? 'images\\icon\\profile.png'
+																			                : 'images\\profile_img\\' + story_view_list.file_name">
 		            </div>
-		            <div class="SP_account_ID">asdfasdfasdf</div>
+		            <div class="SP_account_ID">{{story_view_list.user_nickname}}</div>
 		            <div class="SP_contents_play">
 		                <img class="SP_contents_play_btn" src="images\icon\play.png">
 		                <img class="SP_contents_stop_btn" src="images\icon\stop.png" style="display: none;">
@@ -57,8 +64,8 @@
 		    <div class="SP_contents_img">
 		        <ul>
 	            <!-- todo : 클릭한 story의 img 뜨게하기-->
-	                <li>
-	                    <img src="images\stroy_img\a.jpg">
+	                <li v-for="s in story_view_list.story_file_list">
+	                    <img :src="'images\\story_img\\' + s.story_file_name">
 	                </li>
 	            </ul>
 			</div>

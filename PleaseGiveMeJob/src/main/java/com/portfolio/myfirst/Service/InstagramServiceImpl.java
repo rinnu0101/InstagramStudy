@@ -56,14 +56,19 @@ public class InstagramServiceImpl implements InstagramService{
 		InstagramDAO.setSaveNewStoryFile(vo);		
 	}
 	
-	//홈 피드 리스트 가져오기
-	public List<FeedListVO> getFeedTemp() {
-		return InstagramDAO.getFeedTemp();		
-	}
-	
 	//홈 스토리 리스트 가져오기
 	public List<StoryListVO> getStoryList(StoryListVO vo) {
 		return InstagramDAO.getStoryList(vo);		
+	}
+	
+	//선택한 홈 스토리 팝업
+	public List<StoryListVO> getStoryPopup(StoryListVO vo) {
+		return InstagramDAO.getStoryPopup(vo);		
+	}
+		
+	//홈 피드 리스트 가져오기
+	public List<FeedListVO> getFeedList() {
+		return InstagramDAO.getFeedList();		
 	}
 	
 	//선택한 홈 피드 팝업

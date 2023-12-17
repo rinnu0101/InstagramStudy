@@ -229,6 +229,13 @@ public class InstagramController {
 		return Service.getStoryList(vo);
 	}
 	
+	//선택한 스토리 팝업
+	@RequestMapping(value="/getStoryPopup.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<StoryListVO> getStoryPopup(StoryListVO vo) {
+		return Service.getStoryPopup(vo);
+	}
+	
 	//피드 좋아요 처리
 	@RequestMapping(value="/setLikeClick.do", produces = "application/text; charset=utf8")
 	@ResponseBody
@@ -241,10 +248,10 @@ public class InstagramController {
 	
 
 	//홈 피드 리스트 가져오기
-	@RequestMapping(value="/getFeedTemp.do", produces = "application/json; charset=utf8")
+	@RequestMapping(value="/getFeedList.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public List<FeedListVO> getFeedTemp() {
-		return Service.getFeedTemp();
+	public List<FeedListVO> getFeedList() {
+		return Service.getFeedList();
 	}
 	
 	//선택한 피드 팝업

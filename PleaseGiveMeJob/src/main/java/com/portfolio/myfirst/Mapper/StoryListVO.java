@@ -10,6 +10,9 @@ public class StoryListVO {
 	private String use_yn;
 	
 	//JOIN
+	//STORY_PHOTO
+	private String story_file_name; //컬럼명 중복으로 story_ 추가		
+	
 	//USER_INFO
 	private String user_nickname;
 	

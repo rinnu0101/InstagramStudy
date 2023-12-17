@@ -58,15 +58,20 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public void setSaveNewStoryFile(StoryPhotoVO vo) {
 		getSqlSession().insert("InstagramDAO.setSaveNewStoryFile", vo);		
 	}
+
+	//홈 스토리 리스트 가져오기
+	public List<StoryListVO> getStoryList(StoryListVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getStoryList", null);		
+	}
 	
-	//홈 피드 리스트 가져오기
-	public List<FeedListVO> getFeedTemp() {
-		return getSqlSession().selectList("InstagramDAO.getFeedTemp", null);		
+	//선택한 홈 스토리 팝업
+	public List<StoryListVO> getStoryPopup(StoryListVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getStoryPopup", vo);		
 	}
 	
 	//홈 피드 리스트 가져오기
-	public List<StoryListVO> getStoryList(StoryListVO vo) {
-		return getSqlSession().selectList("InstagramDAO.getStoryList", null);		
+	public List<FeedListVO> getFeedList() {
+		return getSqlSession().selectList("InstagramDAO.getFeedList", null);		
 	}
 	
 	//선택한 홈 피드 팝업

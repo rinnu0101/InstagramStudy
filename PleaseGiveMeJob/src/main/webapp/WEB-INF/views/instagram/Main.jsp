@@ -32,12 +32,12 @@
     	<div id="app">
 		    <!-- 파일 전송용 form -->
 	    	<form name="tempForm" id="tempForm"></form>
-	    
-	        <!-- 피드 공통 팝업 추가 -->
-	        <jsp:include page="FeedPop.jsp"></jsp:include>
 	        
 	    	<!-- 새 게시물 업로드 레이어팝업 html-->
 	        <jsp:include page="UploadFeed.jsp"></jsp:include>
+
+			<!-- 피드 공통 팝업 추가 -->
+	        <jsp:include page="FeedPop.jsp"></jsp:include>
 	
 	        <!-- 새 스토리 업로드 레이어팝업 html-->
 	        <jsp:include page="UploadStory.jsp"></jsp:include>
@@ -80,6 +80,8 @@
 				home_feed_list : []                // 메인 홈 피드 정보 리스트
 				, home_story_list : []			   // 메인 홈 스토리 정보 리스트
 				, story_view_list : []			   // 선택한 스토리 컨텐츠 리스트
+				, story_popup_show : false    	   // 스토리 팝업 show 조건
+				, now_story_index : 0			   // 현재 선택한 스토리 index
 				, profile_feed_list : []           // 프로필 피드 정보 리스트
 				, profileImgChg : "N"              // 프로필 이미지 변경 여부 체크
 				, profileImgFile : ""              // 프로필 이미지 변경시 파일명
@@ -89,7 +91,7 @@
 				, story_list_show : false          // 홈 화면의 스토리 리스트 show 조건 
 				, now_feed_idx : 0                 // 선택한 피드 키값(idx)
 				, feed_idx_list : []               //
-				, file_names : []                  //
+				//, file_names : []                  //
 				, file_margin : []                 //
 				, popupSlide_btn : false           //
 				, pUser_idx : 0                    // 내가 클릭한 계정의 키값(idx)
@@ -133,7 +135,7 @@
 			fnGetHomeFeedList: function(){						
 				//POST
 				$.ajax({
-					url : "/getFeedTemp.do",
+					url : "/getFeedList.do",
 					type : "POST",
 					data : {},
 					context: this,
@@ -386,6 +388,66 @@
 						console.log("실패");		                  
 					}
 				});
+			},
+			//선택 스토리 팝업 함수
+			fnStoryPopup : function(story_index)
+			{	
+				var story_idx = this.home_story_list[story_index].story_idx;
+				this.now_story_index = story_index;
+
+				$.ajax({
+					url : "/getStoryPopup.do",
+					type : "POST",
+					data : {
+						"story_idx" : story_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						this.story_view_list.story_file_list = p;
+						this.story_view_list.user_nickname = p[0].user_nickname;
+						this.story_view_list.file_name = p[0].file_name; 
+
+						var file_cnt = this.story_view_list.story_file_list.length;
+						this.story_view_list.file_cnt = file_cnt				
+						var progress = (458-(2 * file_cnt)) / file_cnt ; //486 : 전체 사이즈, 2:margin-left
+
+						this.story_view_list.progress_eq_width = progress;				
+						this.story_popup_show = true;
+
+						var i = 1;
+						var progress_target = ".SP_contents_background_progress";
+						var progress_start = function(i)
+						{
+							$(progress_target).eq(i).animate({width:progress}, 10000);
+						};
+
+						let interval = setInterval(() => {
+							if(i<file_cnt)
+							{
+								progress_start(i);
+								i = i + 1;
+							}
+							else
+							{
+								clearInterval(interval);
+							}
+						}, 10000);
+
+						setTimeout(() => {
+							progress_start(0);
+						}, 500);
+
+					},
+					error : function(p)
+					{							                  
+					}
+				});
+			},
+			//선택한 스토리 닫기
+			fnLayerPopupClose : function()
+			{
+				this.story_popup_show = false;
 			},
 			//계정 프로필 이동
 			fnGoProfile : function(user_idx)

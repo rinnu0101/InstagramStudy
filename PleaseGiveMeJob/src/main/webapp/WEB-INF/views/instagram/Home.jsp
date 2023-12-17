@@ -8,14 +8,14 @@
 			<!-- 홈 스토리 리스트 -->
 			<div id="main_contents_story">
 				<ul class="story_friend_ul">
-					<li class="story_upload" onclick="fnStoryUpload();">
+					<li class="story_upload" @click="fnStoryUpload();">
 						<div class="story_upload_btn">
 							<img class='story_upload_btn_img' src="images\icon\upload.png">
 						</div>
 						<div class="story_accountName">새 스토리</div>
 					</li>
 					
-					<li v-for="(s, index) in home_story_list" v-if="story_list_show == true" @click="fnLayerPopupOpen();">
+					<li v-for="(s, index) in home_story_list" v-if="story_list_show == true" @click="fnStoryPopup(index);">
 						<div class="story_profile">
 							<img class='story_profile_img' :src="s.file_name == null ? 'images\\icon\\profile.png'
 																				     : 'images\\profile_img\\' + s.file_name">

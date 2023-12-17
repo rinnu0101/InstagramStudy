@@ -198,12 +198,6 @@ function fnLayerPopupOpen()
     $("#layerPopup_story").show();
 }
 
-function fnLayerPopupClose()
-{
-    $("#layerPopup_story").hide();
-}
-
-
 function fn_story_btn_toggle()
 {  
     if($(".SP_contents_play_btn").css("display") == "none")
