@@ -393,6 +393,7 @@ textarea{
   position: absolute;
   top: 0;
   z-index: 15;
+  background: linear-gradient(to top, transparent, black);
 }
 
 .SP_contents_length{
@@ -479,6 +480,7 @@ textarea{
   position: absolute;
   bottom: 0;
   z-index: 15;
+  background: linear-gradient(to bottom, transparent, black);
 }
 
 .SP_reaction_effect{

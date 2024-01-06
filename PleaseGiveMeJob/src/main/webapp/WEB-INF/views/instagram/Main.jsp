@@ -82,6 +82,8 @@
 				, story_view_list : []			   // 선택한 스토리 컨텐츠 리스트
 				, story_popup_show : false    	   // 스토리 팝업 show 조건
 				, now_story_index : 0			   // 현재 선택한 스토리 index
+				, view_story_img : ""              // 현재 선택한 스토리 내 이미지 경로
+				, view_story_img_index : 0         // 현재 선택한 스토리 내 이미지 index
 				, profile_feed_list : []           // 프로필 피드 정보 리스트
 				, profileImgChg : "N"              // 프로필 이미지 변경 여부 체크
 				, profileImgFile : ""              // 프로필 이미지 변경시 파일명
@@ -90,10 +92,10 @@
 				, feed_show : false                // 홈 or 프로필 화면의 피드 show 조건
 				, story_list_show : false          // 홈 화면의 스토리 리스트 show 조건 
 				, now_feed_idx : 0                 // 선택한 피드 키값(idx)
-				, feed_idx_list : []               //
-				//, file_names : []                  //
-				, file_margin : []                 //
-				, popupSlide_btn : false           //
+				//, feed_idx_list : []               // 
+				//, file_names : []                  // 파일 슬라이드 처리를 위한 리스트
+				//, file_margin : []                 //
+				, popupSlide_btn : false           // 슬라이드 버튼 활성화 (양 끝단에 다다를 경우 해당 버튼 hide)
 				, pUser_idx : 0                    // 내가 클릭한 계정의 키값(idx)
 				, pUser_info : {}                  // 내가 클릭한 계정정보 json
 				, follow : false                   // 선택 계정의 팔로우 여부 체크 (팔로우, 언팔로우, 내 계정)
@@ -407,6 +409,7 @@
 						this.story_view_list.story_file_list = p;
 						this.story_view_list.user_nickname = p[0].user_nickname;
 						this.story_view_list.file_name = p[0].file_name; 
+						this.view_story_img_index = 0;
 
 						var file_cnt = this.story_view_list.story_file_list.length;
 						this.story_view_list.file_cnt = file_cnt				
@@ -417,27 +420,18 @@
 
 						var i = 1;
 						var progress_target = ".SP_contents_background_progress";
-						var progress_start = function(i)
-						{
-							$(progress_target).eq(i).animate({width:progress}, 10000);
-						};
-
-						let interval = setInterval(() => {
-							if(i<file_cnt)
-							{
-								progress_start(i);
-								i = i + 1;
-							}
-							else
-							{
-								clearInterval(interval);
-							}
-						}, 10000);
-
+						var that = this;
 						setTimeout(() => {
-							progress_start(0);
+							$(progress_target).eq(0).animate({width:progress}, 10000, function()
+								{
+									if(file_cnt > 1){
+										that.fnMoveStorySlide("next");
+									}
+								});
 						}, 500);
 
+						this.view_story_img = p[0].story_file_name;
+						$('body').css("overflow-y", "hidden");
 					},
 					error : function(p)
 					{							                  
@@ -448,6 +442,75 @@
 			fnLayerPopupClose : function()
 			{
 				this.story_popup_show = false;
+				$('body').css("overflow-y", "auto");
+			},
+			//스토리 사진 슬라이드 처리 함수
+			//1. 클릭시 선택 스토리 내 이미지 순차 노출
+			//2. 스토리 내 이미지 index 마지막에 도달하면 다음 스토리 index 호출
+			fnMoveStorySlide: function(target)
+			{
+				var s = this.now_story_index; // 현재 선택한 스토리 index
+				var i = this.view_story_img_index; // 선택 스토리 내 이미지 index
+
+				// 상단 스토리 진행 바 갯수 나누기 = (전체길이-(좌우 border * 파일 갯수)/파일 갯수)
+				var progress = (458-(2 * this.story_view_list.file_cnt)) / this.story_view_list.file_cnt;				
+				var progress_target = ".SP_contents_background_progress";
+
+				if (target == 'next')
+				{
+					if ((i+1) < this.story_view_list.file_cnt)
+					{
+						var that = this;
+						
+						$(progress_target).eq(i).stop();
+						$(progress_target).eq(i).css("width", progress + "px");
+						$(progress_target).eq(i+1).animate({width:progress}, 10000, function()
+							{
+								that.fnMoveStorySlide("next");
+							}
+						);
+						
+						this.view_story_img_index = this.view_story_img_index + 1;
+						this.view_story_img = this.story_view_list.story_file_list[this.view_story_img_index].story_file_name;
+					}
+					else
+					{
+						if(s+1 < this.home_story_list.length)
+						{							
+							this.fnStoryPopup(s+1);
+							$(progress_target).eq(i).stop();
+							$(progress_target).css("width", 0 + "px");
+						}					
+					}
+				}
+				else if (target == 'prev')
+				{
+					if (i != 0)
+					{
+						var that = this;
+
+						$(progress_target).eq(i).stop();
+						$(progress_target).eq(i).css("width", 0 + "px");
+						$(progress_target).eq(i-1).css("width", 0 + "px");
+						$(progress_target).eq(i-1).animate({width:progress}, 10000, function()
+							{
+								that.fnMoveStorySlide("next");
+							}
+						);
+
+						this.view_story_img_index = this.view_story_img_index -1;
+						this.view_story_img = this.story_view_list.story_file_list[this.view_story_img_index].story_file_name;
+					}
+					else
+					{
+						if(s != 0)
+						{							
+							this.fnStoryPopup(s-1);
+							$(progress_target).eq(i).stop();
+							$(progress_target).css("width", 0 + "px");
+						}					
+					}
+				}
 			},
 			//계정 프로필 이동
 			fnGoProfile : function(user_idx)

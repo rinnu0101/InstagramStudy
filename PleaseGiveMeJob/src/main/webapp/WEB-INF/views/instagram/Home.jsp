@@ -8,7 +8,7 @@
 			<!-- 홈 스토리 리스트 -->
 			<div id="main_contents_story">
 				<ul class="story_friend_ul">
-					<li class="story_upload" @click="fnStoryUpload();">
+					<li class="story_upload" onclick="fnStoryUpload();">
 						<div class="story_upload_btn">
 							<img class='story_upload_btn_img' src="images\icon\upload.png">
 						</div>

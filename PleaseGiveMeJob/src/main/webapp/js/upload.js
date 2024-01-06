@@ -34,11 +34,13 @@ function fnPopFeed()
     $("#feed_layerPopup_contents").css("margin-left", ml);
     $("#feed_layerPopup_contents").css("margin-top", mt);
     $("#layerPopup_feed").css("margin-top", window.scrollY);
+    $('body').css("overflow-y", "hidden");
 }
 
 function fnPopFeedClose()
 {
     $("#layerPopup_feed").hide();
+    $('body').css("overflow-y", "auto");
 }
 
 //새 게시물 레이어팝업 함수
@@ -56,12 +58,14 @@ function fnUploadOpen()
     $("#upload_layerPopup_contents").css("margin-top", mt);
     $("#upload_feed").css("margin-top", window.scrollY);
     $("#upload_feed").show();
+    $('body').css("overflow-y", "hidden");
 }
 
 function fnUploadClose()
 {
     $("#upload_feed").hide();
     fnFileReset();
+    $('body').css("overflow-y", "auto");
 }
 
 //새 게시물 저장 함수
@@ -116,12 +120,14 @@ function fnStoryUpload()
     
     $("#upload_story").css("margin-top", window.scrollY);
     $("#upload_story").show();
+    $('body').css("overflow-y", "hidden");
 }
 
 function fnStoryUploadClose()
 {
     $("#upload_story").hide();
     fnStoryFileReset();
+    $('body').css("overflow-y", "auto");
 }
 
 //새 스토리 저장 함수
@@ -196,6 +202,7 @@ function fnLayerPopupOpen()
     $("#story_layerPopup_contents").css("margin-top", mt);
     $("#layerPopup_story").css("margin-top", window.scrollY);
     $("#layerPopup_story").show();
+    $('body').css("overflow-y", "hidden");
 }
 
 function fn_story_btn_toggle()

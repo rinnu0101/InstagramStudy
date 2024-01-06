@@ -12,17 +12,16 @@
 	<div id="story_layerPopup_area">
 		<!-- 스토리 레이어팝업 좌우버튼-->
 		<div class="Story_Next_btn_L">
-		    <img class="Story_Next_btn" src="images\icon\next_WT_L.png">
+		    <img class="Story_Next_btn" src="images\icon\next_WT_L.png" @click="fnMoveStorySlide('prev')">
 		</div>
 		<div class="Story_Next_btn_R">
-		    <img class="Story_Next_btn" src="images\icon\next_WT_R.png">
+		    <img class="Story_Next_btn" src="images\icon\next_WT_R.png" @click="fnMoveStorySlide('next')">
 		</div>
 		
 		<!-- 스토리 레이어팝업 콘텐츠 html-->
 		<div id="story_layerPopup_contents">
 		    <div class="SP_contents_header">
 		        <div class="SP_contents_length">
-		            <!-- todo : 스토리 갯수에 따라 칸 일정하게 나눠져 증가하는 바 생성-->
 					<ul class="SP_contents_length_ul">
 						<li v-for="p in story_view_list.story_file_list" :style="{width:story_view_list.progress_eq_width + 'px'}">
 							<div class="SP_contents_background_progress"></div>
@@ -32,7 +31,6 @@
 		        </div>
 		        <div class="SP_contents_account">
 		            <div class="SP_account_profile">
-		                <!-- todo : 클릭한 story 계정의 프로필 img 뜨게하기-->
 		                <img class='SP_profile_img' :src="story_view_list.file_name == null ? 'images\\icon\\profile.png'
 																			                : 'images\\profile_img\\' + story_view_list.file_name">
 		            </div>
@@ -63,9 +61,8 @@
 		    </div>
 		    <div class="SP_contents_img">
 		        <ul>
-	            <!-- todo : 클릭한 story의 img 뜨게하기-->
-	                <li v-for="s in story_view_list.story_file_list">
-	                    <img :src="'images\\story_img\\' + s.story_file_name">
+	                <li>
+	                    <img :src="'images\\story_img\\' + view_story_img">
 	                </li>
 	            </ul>
 			</div>
