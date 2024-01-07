@@ -17,15 +17,21 @@
            <ul>
                <!-- todo : li 갯수 10개씩 불러오기 (스크롤바 최하단 도달시) -->
                <li class="follow_li" v-for="f in following_list">
-                   <div class="follow_profile_img">
-                    </div>
-                    <div class="follow_profile_info">
-                        <div class="info_id">{{f.user_nickname}}</div>
-                        <div class="info_text">한줄소개글</div>
-                    </div>
-                    <div class="follow_profile_btn">
-                        <div id="follower_delete_btn" @click="fnFollwerDelete();">삭제</div>
-                    </div>
+                   <div class="follow_profile_img" @click="fnGoProfile(f.user_idx);">
+                   		<img :src="f.file_name == null ? 'images\\icon\\profile.png'
+													   : 'images\\profile_img\\' + f.file_name" @click="fnPopFollowClose();">
+                   </div>
+                   <div class="follow_profile_info">
+                       <div class="info_id" @click="fnGoProfile(f.user_idx);">
+	                       <div @click="fnPopFollowClose();">
+	                       		{{f.user_nickname}}
+	                       </div>
+                       </div>
+                       <div class="info_text">한줄소개글</div>
+                   </div>
+                   <div class="follow_profile_btn">
+                       <div id="follower_delete_btn" @click="fnFollwerDelete();">삭제</div>
+                   </div>
                 </li>
             </ul>
         </div>
