@@ -3,14 +3,14 @@ body {
     min-height: 923px;
 }
 
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ë¦¬ìŠ¤íŠ¸ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì†ì„± ì´ˆê¸°í™”*/
 li, ul, ol {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-/*±¸È¹ ³ª´©±â*/
+/*êµ¬íš ë‚˜ëˆ„ê¸°*/
 #main{
     min-width: 1903px;
     min-height: 923px;
@@ -31,7 +31,7 @@ li, ul, ol {
     padding: 0px 16px 0px 16px;
 }
 
-/*È¸¿ø°¡ÀÔ ¿µ¿ª*/
+/*íšŒì›ê°€ì… ì˜ì—­*/
 #join_area{
     width: 350px;
     height: 760px;
@@ -259,7 +259,7 @@ li, ul, ol {
     cursor: pointer;
 }
 
-/*·Î±×ÀÎ È¨À¸·Î ÀÌµ¿*/
+/*ë¡œê·¸ì¸ í™ˆìœ¼ë¡œ ì´ë™*/
 .join_login{
     width: 348px;
     height: 41px;
@@ -282,7 +282,7 @@ li, ul, ol {
     padding-left: 3px;
 }
 
-/*¾Û´Ù¿î·Îµå ¹öÆ° ¿µ¿ª*/
+/*ì•±ë‹¤ìš´ë¡œë“œ ë²„íŠ¼ ì˜ì—­*/
 .info_download{
     width: 350px;
     height: 95px;

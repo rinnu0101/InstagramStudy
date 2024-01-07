@@ -1,11 +1,11 @@
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ë¦¬ìŠ¤íŠ¸ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì†ì„± ì´ˆê¸°í™”*/
 li, ul, ol {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-/*±¸È¹ ³ª´©±â*/
+/*êµ¬íš ë‚˜ëˆ„ê¸°*/
 .main_left_area{
   width : 470px;
   height: 100%;
@@ -25,7 +25,7 @@ li, ul, ol {
   border-right : 1px solid #DBDBDB;
 }
 
-/*ÁÂÃø ¸Ş´º ¾ÆÀÌÄÜ ¿µ¿ª*/
+/*ì¢Œì¸¡ ë©”ë‰´ ì•„ì´ì½˜ ì˜ì—­*/
 .left_icon{
   width: 48px;
   height: 895px;
@@ -64,7 +64,7 @@ li, ul, ol {
   cursor: pointer;
 }
 
-/*¸ŞÀÎ ¸Ş´º*/
+/*ë©”ì¸ ë©”ë‰´*/
 .icon_menu{
     width: 48px;
     height: 755px;
@@ -108,7 +108,7 @@ li, ul, ol {
   transition: transform.2s;
 }
 
-/*¸Ş´º ´õ º¸±â*/
+/*ë©”ë‰´ ë” ë³´ê¸°*/
 .icon_menu_moreMenu{
   width: 48px;
   height: 48px;
@@ -135,7 +135,7 @@ li, ul, ol {
   float: left;
 }
 
-/*°Ë»ö ¿µ¿ª*/
+/*ê²€ìƒ‰ ì˜ì—­*/
 #search_area_div{
   width: 396px;
   height: 907px;
@@ -182,7 +182,7 @@ li, ul, ol {
   font-weight: bolder;
 }
 
-/*°Ë»ö ÀÌ·Â*/
+/*ê²€ìƒ‰ ì´ë ¥*/
 #search_history{
   width: 396px;
   height: 780px;
@@ -207,7 +207,7 @@ li, ul, ol {
   border-radius: 8px;
 }
 
-/*°Ë»ö °á°ú*/
+/*ê²€ìƒ‰ ê²°ê³¼*/
 #search_result{
   display: none;
   width: 396px;

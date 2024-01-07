@@ -1,11 +1,11 @@
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ë¦¬ìŠ¤íŠ¸ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì†ì„± ì´ˆê¸°í™”*/
 li, ul, ol {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-/*±¸È¹ ³ª´©±â*/
+/*êµ¬íš ë‚˜ëˆ„ê¸°*/
 #main_left{
     width : 335px;
     height: 100%;
@@ -32,7 +32,7 @@ li, ul, ol {
   padding-top: 7px;
 }
 
-/*¸ŞÀÎ ¸Ş´º*/
+/*ë©”ì¸ ë©”ë‰´*/
 #main_menu{
     width: 311px;
     height: 747px;
@@ -81,7 +81,7 @@ li, ul, ol {
   padding-top: 3px;
 }  
 
-/*¸Ş´º ´õ º¸±â*/
+/*ë©”ë‰´ ë” ë³´ê¸°*/
 #main_moreMenu{
   width: 311px;
   height: 56px;

@@ -3,14 +3,14 @@ body {
   min-height: 923px;
 }
 
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ë¦¬ìŠ¤íŠ¸ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì†ì„± ì´ˆê¸°í™”*/
 li, ul, ol {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-/*±¸È¹ ³ª´©±â*/
+/*êµ¬íš ë‚˜ëˆ„ê¸°*/
 #profile_main_middle{
   margin-left: 335px;
   width: 1567px;
@@ -25,7 +25,7 @@ li, ul, ol {
   margin: 0 auto;
 }
 
-/*ÇÁ·ÎÇÊ »ó´Ü*/
+/*í”„ë¡œí•„ ìƒë‹¨*/
 #profile_Top{
   width: 935px;
   height: 150px;
@@ -135,7 +135,7 @@ li, ul, ol {
   height: auto;
 }
 
-/*ÇÁ·ÎÇÊ ÇÇµå*/
+/*í”„ë¡œí•„ í”¼ë“œ*/
 #profile_feedMenu{
   width: 935px;
   height: 52px;

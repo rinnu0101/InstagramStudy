@@ -47,6 +47,9 @@
 	        
 	        <!-- 팔로우 리스트 레이어팝업 html-->
 	        <jsp:include page="FollowListPop.jsp"></jsp:include>
+	        
+	        <!-- 팔로우 리스트 레이어팝업 html-->
+	        <jsp:include page="MoreMenuPop.jsp"></jsp:include>
 	
 	        <!-- 메인페이지 html-->
 	        <div id="main">

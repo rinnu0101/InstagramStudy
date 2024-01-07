@@ -3,14 +3,14 @@ body {
     min-height: 923px;
 }
 
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ë¦¬ìŠ¤íŠ¸ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì†ì„± ì´ˆê¸°í™”*/
 li, ul, ol {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-/*ÆÈ·Î¿ö ·¹ÀÌ¾îÆË¾÷*/
+/*íŒ”ë¡œì›Œ ë ˆì´ì–´íŒì—…*/
 .Popup_follow {
     display: none;
     position: fixed;

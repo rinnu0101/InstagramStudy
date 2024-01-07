@@ -4,14 +4,14 @@ body {
     /* background-image: url('example_FindPW.png') */
 }
 
-/*¸®½ºÆ® ±âº» ½ºÅ¸ÀÏ ¼Ó¼º ÃÊ±âÈ­*/
+/*ë¦¬ìŠ¤íŠ¸ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì†ì„± ì´ˆê¸°í™”*/
 li, ul, ol {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
 
-/*±¸È¹ ³ª´©±â*/
+/*êµ¬íš ë‚˜ëˆ„ê¸°*/
 #main{
     min-width: 1903px;
     min-height: 923px;
@@ -26,7 +26,7 @@ li, ul, ol {
     border-bottom: 1px solid #DBDBDB
 }
 
-/*»ó´Ü ·Î°í ¿µ¿ª*/
+/*ìƒë‹¨ ë¡œê³  ì˜ì—­*/
 .logo_area{
     width: 952px;
     height: 60px;
@@ -47,7 +47,7 @@ li, ul, ol {
     cursor: pointer;
 }
 
-/*Áß°£ ºñ¹Ğ¹øÈ£ Ã£±â ¿µ¿ª*/
+/*ì¤‘ê°„ ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ì˜ì—­*/
 .middle_area{
     width: 1903px;
     height: 700px;
