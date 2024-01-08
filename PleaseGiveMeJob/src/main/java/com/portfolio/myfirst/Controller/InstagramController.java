@@ -382,4 +382,13 @@ public class InstagramController {
 	public List<FollowVO> getfollower(FollowVO vo) {
 		return Service.getfollower(vo);
 	}
+	
+	//계정 추천 리스트 가져오기
+	@RequestMapping(value="/getRecommendList.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public List<UserInfoVO> getRecommendList(UserInfoVO vo, HttpSession session) {
+		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
+		vo.setUser_idx(user_idx);
+		return Service.getRecommendList(vo);
+	}
 }

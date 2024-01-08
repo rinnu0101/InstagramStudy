@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="css/LeftMenu.css">
         <link rel="stylesheet" href="css/LeftMenuSkill.css">        
         <link rel="stylesheet" href="css/LayerPopup.css">
-        <link rel="stylesheet" href="css/FollowListPop.css">        
+        <link rel="stylesheet" href="css/FollowListPop.css">
+        <link rel="stylesheet" href="css/OptionPop.css">
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
         <script src="js/upload.js"></script>
@@ -114,6 +115,8 @@
 				, search_list_original : []        // 검색 키워드 비교를 위한 계정 전체 리스트
 				, search_keyword : "N"             // 좌측 검색창 내 input 값 유무 체크
 				, search_css_display : "none"      // 좌측 검색창 화면 show/hide
+				, moreMenu_popup_show : false      // 더보기 메뉴 팝업 show 조건
+				, recommend_list : []              // 계정 추천 리스트
             }
         },
 		mounted: function() 
@@ -122,6 +125,7 @@
 			this.fnGetHomeFeedList();
 			this.fnGetHomeStoryList();
 			this.fnGetSearchList();
+			this.fnGetRecommendList();
 		},			
 		methods: {
 			//페이지 이동
@@ -869,7 +873,36 @@
 				{
 					this.fnChangePage('home');
 				}
-			}
+			},
+			//더보기 메뉴 팝업 & 닫기
+			fnMoreMenuPop : function()
+			{
+				this.moreMenu_popup_show = true;
+				this.MoreMenu_display_css = "flex";
+			},
+			fnMoreMenuClose : function()
+			{
+				this.moreMenu_popup_show = false;
+				this.MoreMenu_display_css = "none";
+			},
+			//홈 화면의 계정 추천 리스트 불러오기
+			fnGetRecommendList: function(){						
+				//POST
+				$.ajax({
+					url : "/getRecommendList.do",
+					type : "POST",
+					data : {},
+					context: this,
+					success : function(p)
+					{
+						this.recommend_list = p;
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+			},
 		}
     }).mount('#app');
 </script>

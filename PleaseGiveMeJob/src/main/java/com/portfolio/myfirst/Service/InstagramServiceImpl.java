@@ -162,4 +162,9 @@ public class InstagramServiceImpl implements InstagramService{
 	public List<FollowVO> getfollower(FollowVO vo) {
 		return InstagramDAO.getfollower(vo);		
 	}
+	
+	//계정 추천 리스트 가져오기
+	public List<UserInfoVO> getRecommendList(UserInfoVO vo) {
+		return InstagramDAO.getRecommendList(vo);		
+	}
 }

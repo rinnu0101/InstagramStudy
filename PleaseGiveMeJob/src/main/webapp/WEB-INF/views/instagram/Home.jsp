@@ -133,20 +133,17 @@
 					<div id="recommend_otherAccount_list">
 						<ul class="recommend_randomList">
 							<!-- todo : 어떤 기준으로 랜덤하게 계정을 추천할 것인가? -->
-							<li>
+							<li v-for="r in recommend_list">
 								<div class="otherAccount_img">
-									<img class='otherAccount_img_class' src="images\\icon\\profile.png">
+									<img class='otherAccount_img_class' :src="r.file_name == null ? 'images\\icon\\profile.png' 
+																								  : 'images\\profile_img\\' + r.file_name">
 								</div>
 								<div class="Account_ID">
-									<div class="Account_otherID">계정 닉네임</div>
-									<div class="Account_otherIntro">계정한줄소개</div>
+									<div class="Account_otherID">{{r.user_nickname}}</div>
+									<div class="Account_otherIntro">{{r.user_intro}}</div>
 								</div>
 								<div class="otherAccount_follow">팔로우</div>
 							</li>
-							<li>계정추천2</li>
-							<li>계정추천3</li>
-							<li>계정추천4</li>
-							<li>계정추천5</li>
 						</ul>
 					</div>
 				</div>

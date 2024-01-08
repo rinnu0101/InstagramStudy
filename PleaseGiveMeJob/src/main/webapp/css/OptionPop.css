@@ -11,3 +11,48 @@ li, ul, ol {
 }
 
 /*더보기 레이어팝업*/
+.Popup_moreMenu {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+}
+
+.Popup_moreMenu_bg{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0.5;
+    z-index: 0;
+    position: absolute;
+}
+
+.Popup_moreMenu_contents{
+    width: 250px;
+    height: auto;
+    padding: 8px;
+    top : 740px;
+    left: 15px;
+    position: absolute;
+    z-index: 10;
+    border-radius: 5%;
+    background-color: white;
+    box-shadow: 2px 2px 5px 5px #F4F4F4;
+}
+
+.moreMenu_menu{
+    width: 250px;
+    height: 50px;
+}
+
+.moreMenu_css{
+    width: 218px;
+    height: 18px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.moreMenu_css:hover{
+    background-color: #F2F2F2;
+    border-radius: 8px;
+}

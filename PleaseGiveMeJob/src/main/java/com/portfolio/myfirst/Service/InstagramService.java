@@ -70,4 +70,6 @@ public interface InstagramService {
 	//팔로워 리스트 가져오기
 	public List<FollowVO> getfollower(FollowVO vo);
 	
+	//계정 추천 리스트 가져오기
+	public List<UserInfoVO> getRecommendList(UserInfoVO vo);
 }

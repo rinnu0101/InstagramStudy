@@ -138,4 +138,8 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 		return getSqlSession().selectList("InstagramDAO.getfollower", vo);
 	}
 	
+	//계정 추천 리스트 가져오기
+	public List<UserInfoVO> getRecommendList(UserInfoVO vo) {
+		return getSqlSession().selectList("InstagramDAO.getRecommendList", vo);
+	}
 }

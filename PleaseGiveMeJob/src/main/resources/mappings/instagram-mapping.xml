@@ -396,4 +396,20 @@
 		on ui.user_idx = up.user_idx 
 		where follower_user_idx = #{follower_user_idx}
  	</select>
+ 	
+ 	<!-- 계정 추천 리스트 가져오기 -->
+ 	<select id="getRecommendList" resultType="userinfo">
+		SELECT UI.USER_IDX
+			 , UI.USER_NICKNAME
+			 , UI.USER_INTRO
+			 , UP.FILE_NAME
+		  FROM INSTAGRAM.USER_INFO UI
+		  LEFT JOIN INSTAGRAM.USER_PHOTO UP 
+		  ON UI.USER_IDX = UP.USER_IDX
+		  WHERE UI.USER_IDX NOT IN (SELECT F.FOLLOWING_USER_IDX 
+									FROM FOLLOW F 
+									WHERE F.FOLLOWER_USER_IDX = #{user_idx})
+		  AND UI.USER_IDX <![CDATA[<>]]> #{user_idx}					
+		  ORDER BY RAND() LIMIT 5 
+ 	</select>
 </mapper>

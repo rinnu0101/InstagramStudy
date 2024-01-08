@@ -48,16 +48,16 @@
           </ul>
       </div>
 
-      <div id="main_moreMenu">
+      <div id="main_moreMenu" @click="fnMoreMenuPop();">
           <ul>
               <li>
                   <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                   <div id="moreMenu">
-                      <!-- todo : 더보기 내 메뉴 구현하기 -->
-                        	더 보기
-                    </div>
-                </li>
-            </ul>
-        </div>
+                    <!-- todo : 더보기 내 메뉴 구현하기 -->
+                        더 보기
+                  </div>
+              </li>
+          </ul>
+      </div>
     </div>
 </div>

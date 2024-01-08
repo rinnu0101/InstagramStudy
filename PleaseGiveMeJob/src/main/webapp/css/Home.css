@@ -116,8 +116,8 @@ li, ul, ol {
   font-size: 12px;
   text-align: center;
   overflow: hidden;
-  text-overflow: ellipsis;  /*... �����*/
-  white-space: nowrap; 	/*�ٹٲ� ����*/
+  text-overflow: ellipsis;  /*넘어가는 텍스트 ... 처리*/
+  white-space: nowrap; 	/*텍스트 공백 병합*/
   cursor: pointer;
 }
 
