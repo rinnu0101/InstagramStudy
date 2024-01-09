@@ -380,7 +380,7 @@
 			fnSaveReply : function()
 			{
 				var reply = $("#FPCP_reply_text").find("input").val();
-				this.feed_pop_info.feed_reply_list.push({ "feed_reply_contents" : reply , "user_nickname" : "테스트" });
+				//this.feed_pop_info.feed_reply_list.push({ "feed_reply_contents" : reply , "user_nickname" : "테스트" });
 				$("#FPCP_reply_text").find("input").val("");
 				//ajax Insert 처리
 				$.ajax({
@@ -902,7 +902,7 @@
 						console.log("실패");		                  
 					}
 				});
-			},
+			}, 
 		}
     }).mount('#app');
 </script>

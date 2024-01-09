@@ -21,6 +21,9 @@ public class FeedListVO {
 	//USER_INFO
 	private String user_nickname;
 	
+	//USER_PHOTO
+	private String user_profile;
+	
 	//FEED_LIKE
 	private String like_type; 
 	private int like_count;

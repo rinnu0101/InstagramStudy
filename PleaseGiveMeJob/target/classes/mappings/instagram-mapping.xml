@@ -112,7 +112,7 @@
 		ON SL.USER_IDX = UP.USER_IDX 
  	</select>
  	
- 	<!-- 선택한 홈 피드 팝업 -->
+ 	<!-- 선택한 홈 스토리 팝업 -->
  	<select id="getStoryPopup" parameterType="storylist" resultType="storylist">
    	    SELECT SL.STORY_IDX
 			 , SL.USER_IDX
@@ -171,35 +171,58 @@
 			, FL.REGDATE 
 			, FL.FILE_NAMES
 			, FL.USER_NICKNAME
+			, FL.USER_PROFILE
 			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
 			, COUNT(FL2.LIKE_TYPE) AS LIKE_COUNT
 			, FL.FEED_REPLY_LIST
 		FROM (
-		   SELECT FL.FEED_IDX 
-				, FL.FEED_CONTENTS 
-				, FL.REGDATE 
-				, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
-				, JSON_ARRAYAGG(
-					JSON_OBJECT(
-				        'feed_reply_idx', FR.FEED_REPLY_IDX ,
-				        'user_idx', FR.USER_IDX ,
-				        'feed_reply_contents', FR.FEED_REPLY_CONTENTS,
-				        'user_nickname', UI2.USER_NICKNAME
-			      	)
-				) AS FEED_REPLY_LIST
-				, UI.USER_NICKNAME
-			 FROM FEED_LIST FL
-			INNER JOIN FEED_PHOTO FP
-			ON FL.FEED_IDX = FP.FEED_IDX 
-			INNER JOIN USER_INFO UI 
-			ON FL.USER_IDX = UI.USER_IDX
-			LEFT JOIN FEED_REPLY FR 
-			ON FL.FEED_IDX = FR.FEED_IDX	
-			LEFT JOIN USER_INFO UI2
-			ON UI2.USER_IDX = FR.USER_IDX 			
-			WHERE FL.FEED_IDX = #{feed_idx}
-			GROUP BY FL.FEED_IDX 
+			SELECT FL.FEED_IDX 
+					, FL.FEED_CONTENTS 
+					, FL.REGDATE
+					, FL.FILE_NAMES
+					, FL.USER_PROFILE
+					<!-- 피드 리플 리스트 구성요소 JSON ARRAY -->
+					, JSON_ARRAYAGG(
+						JSON_OBJECT(
+						        'feed_reply_idx', FR.FEED_REPLY_IDX ,
+						        'user_idx', FR.USER_IDX ,
+						        'feed_reply_contents', FR.FEED_REPLY_CONTENTS,
+						        'user_nickname', UI.USER_NICKNAME,
+						        'user_profile', UP.FILE_NAME 
+				      	)
+					) AS FEED_REPLY_LIST
+					, FL.USER_NICKNAME
+				FROM (
+					<!-- 피드 컨텐츠 구성요소 세팅 -->
+					SELECT FL.FEED_IDX 
+						, FL.FEED_CONTENTS 
+						, FL.REGDATE
+						, FL.USER_IDX
+						, MAX(UP.FILE_NAME) AS USER_PROFILE
+						, JSON_ARRAYAGG(FP.FILE_NAME) AS FILE_NAMES
+						, UI.USER_NICKNAME
+					 FROM FEED_LIST FL
+					INNER JOIN FEED_PHOTO FP
+					ON FL.FEED_IDX = FP.FEED_IDX
+					<!-- 피드에 대한 유저 정보를 가져오기 위한 INNER JOIN -->
+					INNER JOIN USER_INFO UI 
+					ON FL.USER_IDX = UI.USER_IDX
+					LEFT JOIN USER_PHOTO UP 
+					ON FL.USER_IDX = UP.USER_IDX		
+					WHERE FL.FEED_IDX = #{feed_idx}
+					GROUP BY FL.FEED_IDX 
+				) FL
+				<!-- 피드 댓글 리스트 LEFT JOIN -->
+				LEFT JOIN FEED_REPLY FR 
+				ON FL.FEED_IDX = FR.FEED_IDX
+				<!-- 댓글에 대한 유저 정보를 가져오기 위한 INNER JOIN -->
+				LEFT JOIN USER_INFO UI 
+				ON FR.USER_IDX = UI.USER_IDX
+				LEFT JOIN USER_PHOTO UP 
+				ON FR.USER_IDX = UP.USER_IDX	
+				GROUP BY FL.FEED_IDX 
 		) FL
+		<!-- 피드 좋아요 정보 LEFT JOIN -->
 		LEFT JOIN FEED_LIKE FL2 
 		ON FL.FEED_IDX = FL2.FEED_IDX 
 		GROUP BY FL.FEED_IDX 

@@ -38,7 +38,8 @@
             <div id="FPCP_account">
                 <div id="FPCP_account_area">
                     <div class="FPCP_account_profile">
-                        <img src="images\profile_img\my_profile.jpg">
+                        <img :src="feed_pop_info.user_profile == null ? 'images\\icon\\profile.png' 
+													   			  	  : 'images\\profile_img\\' + feed_pop_info.user_profile">
                     </div>
                     <div class="FPCP_account_ID">
                         {{feed_pop_info.user_nickname}}
@@ -51,7 +52,8 @@
             <div id="FPCP_body">
                 <div id="FPCP_body_log">
                     <div class="FPCP_account_profile">
-                        <img src="images\profile_img\my_profile.jpg">
+                        <img :src="feed_pop_info.user_profile == null ? 'images\\icon\\profile.png' 
+													   			  	  : 'images\\profile_img\\' + feed_pop_info.user_profile">
                     </div>
                     <div class="FPCP_account_ID">
                         {{feed_pop_info.user_nickname}}
@@ -64,7 +66,8 @@
                 	<ul>
                 		<li v-for="(r, index) in feed_pop_info.feed_reply_list"> 
 		                    <div class="FPCP_account_profile">
-		                        <img src="images\profile_img\1.jpg">
+		                        <img :src="r.user_profile == null ? 'images\\icon\\profile.png' 
+													   		  	  : 'images\\profile_img\\' + r.user_profile">
 		                    </div>
 		                    <div class="FPCP_account_ID">
 		                     	{{ r.user_nickname }}
