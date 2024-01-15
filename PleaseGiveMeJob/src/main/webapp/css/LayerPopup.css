@@ -194,6 +194,19 @@ textarea{
   word-break: break-all;
 }
 
+.Reply_delet{
+  font-size: 12px;
+  font-weight: bolder;
+  color: #747474;
+  display: flex;
+  justify-content: flex-end;
+  margin: 7px 10px 0px 0px;
+  cursor: pointer;
+}
+.Reply_delet:hover{
+  color: black;
+}
+
 .FPCP_body_comment{
   width: 467px;
   height: auto;
@@ -457,7 +470,8 @@ textarea{
   width: 16px;
   height: 16px;
   padding: 8px 8px 8px 8px;
-  margin-left: 70px;
+  margin-left: 38px;
+  /* 내 스토리 아닐땐 margin-left: 70px; */
   float: left;
 }
 .SP_contents_play_btn{
@@ -470,6 +484,24 @@ textarea{
   width: 16px;
   height: 16px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.SP_option{
+  width: 16px;
+  height: 16px;
+  padding: 8px 8px 8px 8px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SP_option_icon{
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  float: right;
   cursor: pointer;
 }
 

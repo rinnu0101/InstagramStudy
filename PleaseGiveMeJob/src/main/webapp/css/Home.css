@@ -325,7 +325,7 @@ li, ul, ol {
 }
 
 .Account_ID{
-  width: 195px;
+  width: 185px;
   height: 44px;
   margin: 5px 0px 0px 10px;
   float: left;
@@ -399,14 +399,14 @@ li, ul, ol {
 }
 
 .otherAccount_follow{
-  width: 36px;
+  width: 48px;
   height: 44px;
   font-size: 12px;
   font-weight: bolder;
   color: #0095F6;
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   float: right;
 }

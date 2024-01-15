@@ -50,7 +50,7 @@
 							<img class='feed_profile' :src="f.file_name == null ? 'images\\icon\\profile.png'
 																				: 'images\\profile_img\\' + f.file_name" @click="fnGoProfile(f.user_idx);">
 							<div class="comp_account_name" @click="fnGoProfile(f.user_idx);">{{f.user_nickname}}</div>
-							<div class="comp_account_option">
+							<div class="comp_account_option" @click="fnFeedOptionPop();">
 								<img class='comp_option_icon' src="images\icon\option.png"/>
 							</div>
 						</div>
@@ -133,16 +133,21 @@
 					<div id="recommend_otherAccount_list">
 						<ul class="recommend_randomList">
 							<!-- todo : 어떤 기준으로 랜덤하게 계정을 추천할 것인가? -->
-							<li v-for="r in recommend_list">
+							<li v-for="(r, index) in recommend_list">
 								<div class="otherAccount_img">
 									<img class='otherAccount_img_class' :src="r.file_name == null ? 'images\\icon\\profile.png' 
 																								  : 'images\\profile_img\\' + r.file_name">
 								</div>
-								<div class="Account_ID">
-									<div class="Account_otherID">{{r.user_nickname}}</div>
-									<div class="Account_otherIntro">{{r.user_intro}}</div>
+								<div>
+									<div class="Account_ID">
+										<div class="Account_otherID">{{r.user_nickname}}</div>
+										<div class="Account_otherIntro">{{r.user_intro}}</div>
+									</div>
+									<div class="otherAccount_follow" @click="fnRecommFollow(r.user_idx, index);">
+										<div v-if="r.follow != true" style="color : #0095F6">팔로우</div>
+										<div v-if="r.follow == true" style="color : #262626">언팔로우</div>
+									</div>
 								</div>
-								<div class="otherAccount_follow">팔로우</div>
 							</li>
 						</ul>
 					</div>

@@ -116,6 +116,8 @@
 				, search_keyword : "N"             // 좌측 검색창 내 input 값 유무 체크
 				, search_css_display : "none"      // 좌측 검색창 화면 show/hide
 				, moreMenu_popup_show : false      // 더보기 메뉴 팝업 show 조건
+				, Feed_Option_show : false        // 피드 옵션 팝업 show 조건
+				, Story_Option_show : false       // 스토리 옵션 팝업 show 조건
 				, recommend_list : []              // 계정 추천 리스트
             }
         },
@@ -703,6 +705,43 @@
 					}
 				});
 			},
+			//추천 리스트 팔로우&언팔로우 처리 함수
+			fnRecommFollow : function(pUser_idx, index)
+			{
+				var followYN = "N"; 
+				if(this.recommend_list[index].follow == null)
+				{
+					//팔로우
+					followYN = "Y";
+				}
+
+				$.ajax({
+					url : "/setfollow.do",
+					type : "POST",
+					data : {
+						"follow_yn" : followYN,
+						"following_user_idx" : pUser_idx
+					},
+					context: this,
+					success : function(p)
+					{
+						if(this.recommend_list[index].follow == true)
+						{
+							//언팔로우
+							this.recommend_list[index].follow = null;
+						}
+						else if(this.recommend_list[index].follow == null)
+						{
+							//팔로우
+							this.recommend_list[index].follow = true;
+						}
+					},
+					error : function(p)
+					{
+						console.log("실패");		                  
+					}
+				});
+			},
 			//팔로잉 리스트 팝업
 			fnPopFollowing : function(){
 				$.ajax({
@@ -725,7 +764,7 @@
 						console.log("실패");		                  
 					}
 				});
-			},
+			},			
 			//팔로워 리스트 팝업
 			fnPopFollower : function(){
 				$.ajax({
@@ -884,6 +923,28 @@
 			{
 				this.moreMenu_popup_show = false;
 				this.MoreMenu_display_css = "none";
+			},
+			//피드 옵션 팝업 & 닫기
+			fnFeedOptionPop : function()
+			{
+				this.Feed_Option_show = true;
+				this.Feed_Option_css = "flex";
+			},
+			fnFeedOptionPopClose : function()
+			{
+				this.Feed_Option_show = false;
+				this.Feed_Option_css = "none";
+			},
+			//스토리 옵션 팝업 & 닫기
+			fnStoryOptionPop : function()
+			{
+				this.Story_Option_show = true;
+				this.Story_Option_css = "flex";
+			},
+			fnStoryOptionPopClose : function()
+			{
+				this.Story_Option_show = false;
+				this.Story_Option_css = "none";
 			},
 			//홈 화면의 계정 추천 리스트 불러오기
 			fnGetRecommendList: function(){						

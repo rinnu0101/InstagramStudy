@@ -75,6 +75,7 @@
 		                    <div class="FPCP_text">
 		                    	{{ r.feed_reply_contents }}
 		                    </div>
+                            <div class="Reply_delet">삭제</div>
 	                    </li>
                     </ul>
                 </div>
