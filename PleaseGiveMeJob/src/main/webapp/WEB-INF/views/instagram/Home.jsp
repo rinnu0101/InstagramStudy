@@ -50,7 +50,7 @@
 							<img class='feed_profile' :src="f.file_name == null ? 'images\\icon\\profile.png'
 																				: 'images\\profile_img\\' + f.file_name" @click="fnGoProfile(f.user_idx);">
 							<div class="comp_account_name" @click="fnGoProfile(f.user_idx);">{{f.user_nickname}}</div>
-							<div class="comp_account_option" @click="fnFeedOptionPop();">
+							<div class="comp_account_option" @click="fnFeedOptionPop(f.feed_idx);">
 								<img class='comp_option_icon' src="images\icon\option.png"/>
 							</div>
 						</div>

@@ -167,4 +167,9 @@ public class InstagramServiceImpl implements InstagramService{
 	public List<UserInfoVO> getRecommendList(UserInfoVO vo) {
 		return InstagramDAO.getRecommendList(vo);		
 	}
+	
+	//피드 삭제
+	public void deleteFeed(FeedListVO vo) {
+		InstagramDAO.deleteFeed(vo);		
+	}
 }

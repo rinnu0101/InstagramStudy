@@ -142,4 +142,9 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public List<UserInfoVO> getRecommendList(UserInfoVO vo) {
 		return getSqlSession().selectList("InstagramDAO.getRecommendList", vo);
 	}
+	
+	//피드 삭제
+	public void deleteFeed(FeedListVO vo) {
+		getSqlSession().delete("InstagramDAO.deleteFeed", vo);
+	}
 }

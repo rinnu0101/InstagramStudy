@@ -45,7 +45,7 @@
                         {{feed_pop_info.user_nickname}}
                     </div>
                 </div>
-                <div id="FPCP_account_option">
+                <div id="FPCP_account_option" @click="fnFeedOptionPop(feed_pop_info.feed_idx);">
                     <img src="images\icon\option.png"/>
                 </div>
             </div>

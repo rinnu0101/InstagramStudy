@@ -190,7 +190,7 @@ public class InstagramController {
 			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
 				
 				for(MultipartFile file : multipartFile) {
-					fileRoot = "C:\\mygit\\PleaseGiveMeJob\\src\\main\\webapp\\images\\stroy_img\\";
+					fileRoot = "C:\\mygit\\PleaseGiveMeJob\\src\\main\\webapp\\images\\story_img\\";
 					
 					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
 					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
@@ -390,5 +390,13 @@ public class InstagramController {
 		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
 		vo.setUser_idx(user_idx);
 		return Service.getRecommendList(vo);
+	}
+	
+	//피드 삭제
+	@RequestMapping(value="/deleteFeed.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String deleteFeed(FeedListVO vo, HttpSession session) throws JsonProcessingException {
+		Service.deleteFeed(vo);
+		return "Feed Delete Confirm";
 	}
 }

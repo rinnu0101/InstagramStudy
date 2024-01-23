@@ -27,7 +27,7 @@
         <div class="Contents_option">
             <div class="Option_menu">
                 <div class="Option_css">
-                    <div id="Feed_delete">피드 삭제</div>                        
+                    <div id="Feed_delete" @click="fnDeleteFeed();">피드 삭제</div>                        
                 </div>
             </div>
         </div>

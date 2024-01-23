@@ -93,12 +93,16 @@ function fnSaveNewFeed()
         contentType: false,
         success: function (p) {
           if(p == "OK"){
-              alert("파일업로드 성공");
-       } else
-           alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+            alert("파일업로드 성공");
+            }
+            else
+            {
+                alert("서버내 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주세요");
+            }           
+           fnUploadClose();
         },
         error: function (xhr, status, error) {
-            alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+            alert("서버 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
             return false;
         }
       });
@@ -153,11 +157,15 @@ function fnSaveNewStory()
         success: function (p) {
           if(p == "OK"){
               alert("파일업로드 성공");
-       } else
-           alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+            }
+          else
+          {
+            alert("서버내 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주세요");
+          }           
+           fnStoryUploadClose();
         },
         error: function (xhr, status, error) {
-            alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+            alert("서버 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
             return false;
         }
       });
@@ -205,6 +213,7 @@ function fnLayerPopupOpen()
     $('body').css("overflow-y", "hidden");
 }
 
+//스토리 재생&멈춤 버튼 변경
 function fn_story_btn_toggle()
 {  
     if($(".SP_contents_play_btn").css("display") == "none")

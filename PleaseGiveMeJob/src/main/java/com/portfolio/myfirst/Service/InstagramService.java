@@ -72,4 +72,7 @@ public interface InstagramService {
 	
 	//계정 추천 리스트 가져오기
 	public List<UserInfoVO> getRecommendList(UserInfoVO vo);
+	
+	//피드 삭제
+	public void deleteFeed(FeedListVO vo);
 }

@@ -169,7 +169,7 @@
 					},
 					error : function(p)
 					{
-					console.log("실패");		                  
+					console.log("피드 리스트 불러오기 실패");		                  
 					}
 				});
 			},
@@ -190,7 +190,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("스토리 리스트 불러오기 실패");		                  
 					}
 				});
 			},
@@ -209,7 +209,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("검색 데이터 불러오기 실패");		                  
 					}
 				});
 			},
@@ -271,7 +271,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("피드 좋아요 실패");		                  
 					}
 				});
 				if(this.home_feed_list[index].like_type == null)
@@ -319,7 +319,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("선택 피드 팝업 실패");		                  
 					}
 				});
 				fnPopFeed();
@@ -365,7 +365,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("피드 좋아요 실패");		                  
 					}
 				});
 				if(f.like_type == null)
@@ -399,21 +399,21 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("댓글 저장 실패");		                  
 					}
 				});
 			},
 			//선택 스토리 팝업 함수
 			fnStoryPopup : function(story_index)
 			{	
-				var story_idx = this.home_story_list[story_index].story_idx;
+				var user_idx = this.home_story_list[story_index].user_idx;
 				this.now_story_index = story_index;
 
 				$.ajax({
 					url : "/getStoryPopup.do",
 					type : "POST",
 					data : {
-						"story_idx" : story_idx
+						"user_idx" : user_idx
 					},
 					context: this,
 					success : function(p)
@@ -589,7 +589,7 @@
 					},
 					error : function(p)
 					{
-					    console.log("실패");		                  
+					    console.log("프로필 정보 불러오기 실패");		                  
 					}
 				});
             },
@@ -618,7 +618,7 @@
 					},
 					error : function(p)
 					{
-					    console.log("실패");		                  
+					    console.log("피드 리스트 불러오기 실패");		                  
 					}
 				});
             },
@@ -701,7 +701,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("팔로우 or 언팔로우 실패");		                  
 					}
 				});
 			},
@@ -738,7 +738,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("추천리스트 팔로우 or 언팔로우 실패");		                  
 					}
 				});
 			},
@@ -761,7 +761,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("팔로잉 리스트 불러오기 실패");		                  
 					}
 				});
 			},			
@@ -783,7 +783,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("팔로워 리스트 불러오기 실패");		                  
 					}
 				});
 			},
@@ -900,7 +900,7 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("프로필 정보 저장 실패");		                  
 					}
 				});
 			},
@@ -925,8 +925,9 @@
 				this.MoreMenu_display_css = "none";
 			},
 			//피드 옵션 팝업 & 닫기
-			fnFeedOptionPop : function()
+			fnFeedOptionPop : function(feed_idx)
 			{
+				this.delete_feed_idx = feed_idx;
 				this.Feed_Option_show = true;
 				this.Feed_Option_css = "flex";
 			},
@@ -960,10 +961,50 @@
 					},
 					error : function(p)
 					{
-						console.log("실패");		                  
+						console.log("추천리스트 세팅 실패");		                  
 					}
 				});
-			}, 
+			},
+			//피드 삭제
+			fnDeleteFeed: function(){
+				//POST
+				$.ajax({
+					url : "/deleteFeed.do",
+					type : "POST",
+					data : {
+						"feed_idx" : this.delete_feed_idx //삭제버튼 팝업 띄웠을 때 피드 저장값 idx
+					},
+					context: this,
+					success : function(p)
+					{
+						this.fnFeedOptionPopClose();
+						if(this.view_page == "home")
+						{
+							this.fnGetHomeFeedList();
+						}
+						if(this.view_page == "profile")
+						{
+							fnPopFeedClose();
+							this.fnGetProfileInfo();
+							this.fnGetProfileFeedList();
+							this.menu_type = 'normal';
+						}
+						console.log("피드 삭제 성공");
+					},
+					error : function(p)
+					{
+						console.log("피드 삭제 실패");		                  
+					}
+				});
+			},
+			//스토리 삭제
+			fnDeleteStory: function(){
+
+			},
+			//댓글 삭제
+			fnDeleteReply: function(){
+
+			},
 		}
     }).mount('#app');
 </script>

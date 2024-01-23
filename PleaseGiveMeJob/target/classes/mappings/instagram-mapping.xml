@@ -5,7 +5,7 @@
 
 <!-- mapper 자체가 DAO 분리되어 나온 개념이기 때문에 namespace는 DAO 명을 따라가는 경우가 일반적임 -->
 <mapper namespace="InstagramDAO">
-	<!-- 검색 데이터 가져오기 가져오기 -->
+	<!-- 검색 데이터 가져오기 -->
 	<select id="getSearchList" resultType="userinfo">
 		SELECT UI.USER_IDX
 			 , UI.USER_NICKNAME
@@ -127,8 +127,8 @@
 		  ON UI.USER_IDX = SL.USER_IDX 
 		  LEFT JOIN USER_PHOTO UP 
 		  ON UI.USER_IDX = UP.USER_IDX 
-		  WHERE SL.STORY_IDX = #{story_idx}
-		  ORDER BY SL.STORY_IDX 
+		  WHERE SL.USER_IDX = #{user_idx}
+		  ORDER BY SL.STORY_IDX
  	</select>
  	
  	<!-- 홈 피드 리스트 가져오기 -->
@@ -410,6 +410,7 @@
  	<!-- 팔로워 리스트 가져오기 -->
  	<select id="getfollower" parameterType="follow" resultType="follow">
 	 	select f.follower_user_idx
+	 		  , ui.user_idx
 		      , ui.user_nickname
 		      , up.file_name 
 		from follow f
@@ -435,4 +436,10 @@
 		  AND UI.USER_IDX <![CDATA[<>]]> #{user_idx}					
 		  ORDER BY RAND() LIMIT 5 
  	</select>
+ 	
+ 	<!-- 피드 삭제 -->
+ 	<delete id="deleteFeed" parameterType="feedlist">
+	 	DELETE FROM instagram.feed_list
+		WHERE feed_idx = #{feed_idx}
+ 	</delete>
 </mapper>
