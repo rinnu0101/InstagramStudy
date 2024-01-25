@@ -42,7 +42,7 @@
         <div class="Contents_option">
             <div class="Option_menu">
                 <div class="Option_css">
-                    <div id="Story_delete">스토리 삭제</div>                        
+                    <div id="Story_delete" @click="fnDeleteStory();">스토리 삭제</div>                        
                 </div>
             </div>
         </div>

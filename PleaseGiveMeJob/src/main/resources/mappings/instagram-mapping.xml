@@ -170,6 +170,7 @@
 			, FL.FEED_CONTENTS 
 			, FL.REGDATE 
 			, FL.FILE_NAMES
+			, FL.USER_IDX
 			, FL.USER_NICKNAME
 			, FL.USER_PROFILE
 			, MAX(FL2.LIKE_TYPE) AS LIKE_TYPE
@@ -179,6 +180,7 @@
 			SELECT FL.FEED_IDX 
 					, FL.FEED_CONTENTS 
 					, FL.REGDATE
+					, FL.USER_IDX
 					, FL.FILE_NAMES
 					, FL.USER_PROFILE
 					<!-- 피드 리플 리스트 구성요소 JSON ARRAY -->
@@ -194,7 +196,7 @@
 					, FL.USER_NICKNAME
 				FROM (
 					<!-- 피드 컨텐츠 구성요소 세팅 -->
-					SELECT FL.FEED_IDX 
+					SELECT FL.FEED_IDX
 						, FL.FEED_CONTENTS 
 						, FL.REGDATE
 						, FL.USER_IDX
@@ -441,5 +443,17 @@
  	<delete id="deleteFeed" parameterType="feedlist">
 	 	DELETE FROM instagram.feed_list
 		WHERE feed_idx = #{feed_idx}
+ 	</delete>
+ 	
+ 	<!-- 스토리 삭제 -->
+ 	<delete id="deleteStory" parameterType="storylist">
+	 	DELETE FROM instagram.story_list
+		WHERE story_idx = #{story_idx}
+ 	</delete>
+ 	
+ 	<!-- 피드 댓글 삭제 -->
+ 	<delete id="deleteReply" parameterType="feedreply">
+	 	DELETE FROM instagram.feed_reply
+		WHERE feed_reply_idx = #{feed_reply_idx}
  	</delete>
 </mapper>

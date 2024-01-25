@@ -1,78 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- css 리셋 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-        <!-- 제이쿼리 불러오기 -->
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- 스타일시트 적용 -->
-        <link rel="stylesheet" href="css/Home.css">
-		<link rel="stylesheet" href="css/Profile.css">
-		<link rel="stylesheet" href="css/ProfileChange.css">
-        <link rel="stylesheet" href="css/LeftMenu.css">
-        <link rel="stylesheet" href="css/LeftMenuSkill.css">        
-        <link rel="stylesheet" href="css/LayerPopup.css">
-        <link rel="stylesheet" href="css/FollowListPop.css">
-        <link rel="stylesheet" href="css/OptionPop.css">
-        <!-- 공통js 적용 -->
-        <script src="js/common.js"></script>
-        <script src="js/upload.js"></script>
-        <!-- vue.js 적용 -->
-        <script type="importmap">
+<head>
+<!-- css 리셋 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+<!-- 제이쿼리 불러오기 -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+<!-- 스타일시트 적용 -->
+<link rel="stylesheet" href="css/Home.css">
+<link rel="stylesheet" href="css/Profile.css">
+<link rel="stylesheet" href="css/ProfileChange.css">
+<link rel="stylesheet" href="css/LeftMenu.css">
+<link rel="stylesheet" href="css/LeftMenuSkill.css">
+<link rel="stylesheet" href="css/LayerPopup.css">
+<link rel="stylesheet" href="css/FollowListPop.css">
+<link rel="stylesheet" href="css/OptionPop.css">
+<!-- 공통js 적용 -->
+<script src="js/common.js"></script>
+<script src="js/upload.js"></script>
+<!-- vue.js 적용 -->
+<script type="importmap">
             {
               "imports": {
                 "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
               }
             }
         </script>
-        
-    </head>
-    <body>
-    	<div id="app">
-		    <!-- 파일 전송용 form -->
-	    	<form name="tempForm" id="tempForm"></form>
-	        
-	    	<!-- 새 게시물 업로드 레이어팝업 html-->
-	        <jsp:include page="UploadFeed.jsp"></jsp:include>
 
-			<!-- 피드 공통 팝업 추가 -->
-	        <jsp:include page="FeedPop.jsp"></jsp:include>
-	
-	        <!-- 새 스토리 업로드 레이어팝업 html-->
-	        <jsp:include page="UploadStory.jsp"></jsp:include>
-	    	
-	        <!-- 스토리 레이어팝업 html-->
-	        <jsp:include page="StoryPop.jsp"></jsp:include>
-	        
-	        <!-- 팔로우 리스트 레이어팝업 html-->
-	        <jsp:include page="FollowListPop.jsp"></jsp:include>
-	        
-	        <!-- 팔로우 리스트 레이어팝업 html-->
-	        <jsp:include page="MoreMenuPop.jsp"></jsp:include>
-	
-	        <!-- 메인페이지 html-->
-	        <div id="main">
-	            <!-- 좌측 공통 메뉴영역 추가 -->
-	        	<jsp:include page="LeftMenu.jsp"></jsp:include>
-	        	
-	        	<!-- 좌측 공통 메뉴영역 : 기능실행시 -->
-	        	<jsp:include page="LeftMenuSkill.jsp"></jsp:include>
+</head>
+<body>
+	<div id="app">
+		<!-- 파일 전송용 form -->
+		<form name="tempForm" id="tempForm"></form>
 
-				<!-- 메인 홈 피드 화면 html-->
-				<jsp:include page="Home.jsp"></jsp:include>
-				
-				<!-- 프로필 피드 화면 html-->
-				<jsp:include page="Profile.jsp"></jsp:include>
-				
-				<!-- 프로필 정보 변경 화면 html-->
-				<jsp:include page="ProfileChange.jsp"></jsp:include>    
-	        </div>   
-        </div>
-        
-        <input id="session_user_idx" type="hidden" value="${user_idx}" />            
-    </body>
+		<!-- 새 게시물 업로드 레이어팝업 html-->
+		<jsp:include page="UploadFeed.jsp"></jsp:include>
+
+		<!-- 피드 공통 팝업 추가 -->
+		<jsp:include page="FeedPop.jsp"></jsp:include>
+
+		<!-- 새 스토리 업로드 레이어팝업 html-->
+		<jsp:include page="UploadStory.jsp"></jsp:include>
+
+		<!-- 스토리 레이어팝업 html-->
+		<jsp:include page="StoryPop.jsp"></jsp:include>
+
+		<!-- 팔로우 리스트 레이어팝업 html-->
+		<jsp:include page="FollowListPop.jsp"></jsp:include>
+
+		<!-- 팔로우 리스트 레이어팝업 html-->
+		<jsp:include page="MoreMenuPop.jsp"></jsp:include>
+
+		<!-- 메인페이지 html-->
+		<div id="main">
+			<!-- 좌측 공통 메뉴영역 추가 -->
+			<jsp:include page="LeftMenu.jsp"></jsp:include>
+
+			<!-- 좌측 공통 메뉴영역 : 기능실행시 -->
+			<jsp:include page="LeftMenuSkill.jsp"></jsp:include>
+
+			<!-- 메인 홈 피드 화면 html-->
+			<jsp:include page="Home.jsp"></jsp:include>
+
+			<!-- 프로필 피드 화면 html-->
+			<jsp:include page="Profile.jsp"></jsp:include>
+
+			<!-- 프로필 정보 변경 화면 html-->
+			<jsp:include page="ProfileChange.jsp"></jsp:include>
+		</div>
+	</div>
+
+	<input id="session_user_idx" type="hidden" value="${user_idx}" />
+</body>
 </html>
 
 <!-- 파일 업로드 js 적용 -->
@@ -124,6 +127,7 @@
 		mounted: function() 
 		{
 			//document.(ready) 와 동일한 역할
+			this.session_user_idx = $("#session_user_idx").val();
 			this.fnGetHomeFeedList();
 			this.fnGetHomeStoryList();
 			this.fnGetSearchList();
@@ -288,6 +292,7 @@
 			fnFeedPopup : function(feed_idx)
 			{			
 				this.now_feed_idx = feed_idx;
+				console.log("feed_idx : " + feed_idx);
 				$.ajax({
 					url : "/getFeedPopup.do",
 					type : "POST",
@@ -395,7 +400,7 @@
 					context: this,
 					success : function(p)
 					{
-
+						this.fnFeedPopup(this.now_feed_idx);
 					},
 					error : function(p)
 					{
@@ -420,6 +425,7 @@
 					{
 						this.story_view_list.story_file_list = p;
 						this.story_view_list.user_nickname = p[0].user_nickname;
+						this.story_view_list.user_idx = p[0].user_idx;
 						this.story_view_list.file_name = p[0].file_name; 
 						this.view_story_img_index = 0;
 
@@ -939,6 +945,7 @@
 			//스토리 옵션 팝업 & 닫기
 			fnStoryOptionPop : function()
 			{
+				this.delete_Story_idx = this.story_view_list.story_file_list[this.view_story_img_index].story_idx;
 				this.Story_Option_show = true;
 				this.Story_Option_css = "flex";
 			},
@@ -948,8 +955,7 @@
 				this.Story_Option_css = "none";
 			},
 			//홈 화면의 계정 추천 리스트 불러오기
-			fnGetRecommendList: function(){						
-				//POST
+			fnGetRecommendList: function(){		
 				$.ajax({
 					url : "/getRecommendList.do",
 					type : "POST",
@@ -967,7 +973,6 @@
 			},
 			//피드 삭제
 			fnDeleteFeed: function(){
-				//POST
 				$.ajax({
 					url : "/deleteFeed.do",
 					type : "POST",
@@ -999,11 +1004,44 @@
 			},
 			//스토리 삭제
 			fnDeleteStory: function(){
-
+				$.ajax({
+					url : "/deleteStory.do",
+					type : "POST",
+					data : {
+						"story_idx" : this.delete_Story_idx //삭제버튼 팝업 띄웠을 때 스토리 저장값 idx						
+					},
+					context: this,
+					success : function(p)
+					{
+						this.fnStoryOptionPopClose();
+						this.fnLayerPopupClose();						
+						console.log("피드 삭제 성공");
+					},
+					error : function(p)
+					{
+						console.log("피드 삭제 실패");		                  
+					}
+				});
 			},
 			//댓글 삭제
-			fnDeleteReply: function(){
-
+			fnDeleteReply: function(feed_reply_idx){
+				$.ajax({
+					url : "/deleteReply.do",
+					type : "POST",
+					data : {
+						"feed_reply_idx" : feed_reply_idx					
+					},
+					context: this,
+					success : function(p)
+					{
+						this.fnFeedPopup(this.now_feed_idx);		
+						console.log("피드 댓글 삭제 성공");
+					},
+					error : function(p)
+					{
+						console.log("피드 댓글 삭제 실패");		                  
+					}
+				});
 			},
 		}
     }).mount('#app');

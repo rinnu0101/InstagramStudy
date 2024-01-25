@@ -75,7 +75,7 @@
 		                    <div class="FPCP_text">
 		                    	{{ r.feed_reply_contents }}
 		                    </div>
-                            <div class="Reply_delet">삭제</div>
+                            <div class="Reply_delet" v-if="feed_pop_info.user_idx == session_user_idx || r.user_idx == session_user_idx" @click="fnDeleteReply(r.feed_reply_idx);">삭제</div>
 	                    </li>
                     </ul>
                 </div>

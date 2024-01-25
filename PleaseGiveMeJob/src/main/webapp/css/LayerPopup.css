@@ -466,13 +466,29 @@ textarea{
   cursor: pointer;
 }
 
+.SP_option{
+  width: 16px;
+  height: 16px;
+  padding: 8px 8px 8px 8px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SP_option_icon{
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  float: right;
+  cursor: pointer;
+}
+
 .SP_contents_play{
   width: 16px;
   height: 16px;
   padding: 8px 8px 8px 8px;
-  margin-left: 38px;
-  /* 내 스토리 아닐땐 margin-left: 70px; */
-  float: left;
+  float: right;
 }
 .SP_contents_play_btn{
   width: 16px;
@@ -484,24 +500,6 @@ textarea{
   width: 16px;
   height: 16px;
   object-fit: cover;
-  cursor: pointer;
-}
-
-.SP_option{
-  width: 16px;
-  height: 16px;
-  padding: 8px 8px 8px 8px;
-  float: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.SP_option_icon{
-  width: 24px;
-  height: 24px;
-  object-fit: cover;
-  float: right;
   cursor: pointer;
 }
 

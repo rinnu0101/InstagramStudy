@@ -35,14 +35,14 @@
 																			                : 'images\\profile_img\\' + story_view_list.file_name">
 		            </div>
 		            <div class="SP_account_ID">{{story_view_list.user_nickname}}</div>
+					<div class="SP_option" v-if="story_view_list.user_idx == session_user_idx" @click="fnStoryOptionPop();">
+						<img class='SP_option_icon' src="images\icon\option_w.png"/>
+					</div>
 		            <div class="SP_contents_play">
 						<!-- 내 스토리 아닐땐 SP_contents_play, margin-left: 70px; -->
 		                <img class="SP_contents_play_btn" src="images\icon\play.png">
 		                <img class="SP_contents_stop_btn" src="images\icon\stop.png" style="display: none;">
-		            </div>
-					<div class="SP_option" @click="fnStoryOptionPop();">
-						<img class='SP_option_icon' src="images\icon\option_w.png"/>
-					</div>
+		            </div>					
 		        </div>
 		    </div>
 		    <div class="SP_contents_reaction">

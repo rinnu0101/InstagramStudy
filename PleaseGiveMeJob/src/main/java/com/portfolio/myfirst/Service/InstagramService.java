@@ -75,4 +75,10 @@ public interface InstagramService {
 	
 	//피드 삭제
 	public void deleteFeed(FeedListVO vo);
+	
+	//스토리 삭제
+	public void deleteStory(StoryListVO vo);
+	
+	//피드 댓글 삭제
+	public void deleteReply(FeedReplyVO vo);
 }

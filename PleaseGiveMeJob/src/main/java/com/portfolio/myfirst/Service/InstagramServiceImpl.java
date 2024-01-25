@@ -172,4 +172,14 @@ public class InstagramServiceImpl implements InstagramService{
 	public void deleteFeed(FeedListVO vo) {
 		InstagramDAO.deleteFeed(vo);		
 	}
+	
+	//스토리 삭제
+	public void deleteStory(StoryListVO vo) {
+		InstagramDAO.deleteStory(vo);		
+	}
+	
+	//피드 댓글 삭제
+	public void deleteReply(FeedReplyVO vo) {
+		InstagramDAO.deleteReply(vo);		
+	}
 }

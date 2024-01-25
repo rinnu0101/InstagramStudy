@@ -399,4 +399,20 @@ public class InstagramController {
 		Service.deleteFeed(vo);
 		return "Feed Delete Confirm";
 	}
+	
+	//스토리 삭제
+	@RequestMapping(value="/deleteStory.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String deleteStory(StoryListVO vo, HttpSession session) throws JsonProcessingException {
+		Service.deleteStory(vo);
+		return "Story Delete Confirm";
+	}
+	
+	//피드 댓글 삭제
+	@RequestMapping(value="/deleteReply.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String deleteReply(FeedReplyVO vo, HttpSession session) throws JsonProcessingException {
+		Service.deleteReply(vo);
+		return "Feed Reply Delete Confirm";
+	}
 }

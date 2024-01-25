@@ -147,4 +147,14 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public void deleteFeed(FeedListVO vo) {
 		getSqlSession().delete("InstagramDAO.deleteFeed", vo);
 	}
+	
+	//스토리 삭제
+	public void deleteStory(StoryListVO vo) {
+		getSqlSession().delete("InstagramDAO.deleteStory", vo);
+	}
+	
+	//피드 댓글 삭제
+	public void deleteReply(FeedReplyVO vo) {
+		getSqlSession().delete("InstagramDAO.deleteReply", vo);
+	}
 }
