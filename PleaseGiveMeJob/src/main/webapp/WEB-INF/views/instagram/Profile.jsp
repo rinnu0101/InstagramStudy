@@ -33,16 +33,16 @@
 					<ul>
 						<!-- todo : 게시물, 팔로워, 팔로우 숫자 불러오기 -->
 						<li>
-								게시물<span></span>
+								게시물  <span>{{pUser_info.feed_cnt}}</span>
 						</li>
 						<li>
 							<div id="follower" @click="fnPopFollowing();" style="cursor: pointer;">
-									팔로워<span></span>
+									팔로워  <span>{{pUser_info.follower_cnt}}</span>
 							</div>
 						</li>
 						<li>
 							<div id="follow" @click="fnPopFollower();" style="cursor: pointer;">
-									팔로우<span></span>
+									팔로우&nbsp;<span>{{pUser_info.follow_cnt}}</span>
 							</div>
 						</li>
 					</ul>

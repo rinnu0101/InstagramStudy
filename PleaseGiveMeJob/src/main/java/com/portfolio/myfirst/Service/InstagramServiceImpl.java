@@ -103,7 +103,14 @@ public class InstagramServiceImpl implements InstagramService{
 	
 	//프로필 상단 계정정보 가져오기
 	public UserInfoVO getProfileInfo(UserInfoVO vo) {
-		return InstagramDAO.getProfileInfo(vo);	
+		UserInfoVO result = InstagramDAO.getProfileInfo(vo);
+		//피드 갯수 카운트
+		result.setFeed_cnt(InstagramDAO.getProfileFeedCnt(vo));
+		//팔로워 카운트
+		result.setFollower_cnt(InstagramDAO.getProfileFollowerCnt(vo));
+		//팔로우 카운트
+		result.setFollow_cnt(InstagramDAO.getProfileFollowCnt(vo));
+		return result;
 	}
 	
 	//프로필 정보 저장(&수정)

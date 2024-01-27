@@ -334,6 +334,27 @@
 		WHERE UI.USER_IDX = #{user_idx}
 	</select>
 	
+ 	<!-- 프로필 상단 피드 갯수 가져오기 -->
+	<select id="getProfileFeedCnt" parameterType="userinfo" resultType="int">
+		SELECT COUNT(FEED_IDX) 
+		FROM FEED_LIST
+		WHERE USER_IDX = #{user_idx}
+	</select>
+	
+	<!-- 프로필 상단 팔로워 갯수 가져오기 -->
+	<select id="getProfileFollowerCnt" parameterType="userinfo" resultType="int">
+		SELECT COUNT(FOLLOW_IDX)
+		FROM FOLLOW
+		WHERE FOLLOWING_USER_IDX = #{user_idx}
+	</select>
+	
+	<!-- 프로필 상단 팔로우 갯수 가져오기 -->
+	<select id="getProfileFollowCnt" parameterType="userinfo" resultType="int">
+		SELECT COUNT(FOLLOW_IDX)
+		FROM FOLLOW
+		WHERE FOLLOWER_USER_IDX = #{user_idx}
+	</select>
+	
 	<!-- 프로필 정보 저장(&수정) -->
 	<update id="setProfileInfo" parameterType="userinfo">
 		UPDATE instagram.user_info

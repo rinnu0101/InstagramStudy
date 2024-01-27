@@ -102,6 +102,18 @@ public class InstagramDAOMybatis extends SqlSessionDaoSupport {
 	public UserInfoVO getProfileInfo(UserInfoVO vo) {
 		return getSqlSession().selectOne("InstagramDAO.getProfileInfo", vo);
 	}
+	//피드 갯수 카운트
+	public int getProfileFeedCnt(UserInfoVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getProfileFeedCnt", vo);
+	}
+	//팔로워 카운트
+	public int getProfileFollowerCnt(UserInfoVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getProfileFollowerCnt", vo);
+	}
+	//팔로우 카운트
+	public int getProfileFollowCnt(UserInfoVO vo) {
+		return getSqlSession().selectOne("InstagramDAO.getProfileFollowCnt", vo);
+	}
 
 	//프로필 정보 저장(&수정)
 	public void setProfileInfo(UserInfoVO vo) {

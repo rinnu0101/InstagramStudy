@@ -21,5 +21,10 @@ public class UserInfoVO {
 	
 	//프로필 사진 파일명 가져오기
 	private String file_name;	
+	
+	//프로필 상단 피드 갯수, 팔로우&팔로워 수 카운트
+	private int feed_cnt;
+	private int follow_cnt;
+	private int follower_cnt;
 }
  
