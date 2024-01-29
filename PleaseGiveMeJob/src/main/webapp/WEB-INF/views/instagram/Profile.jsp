@@ -48,8 +48,8 @@
 					</ul>
 				</div>
 				<div id="Info_Text">
-					<div id="Info_Text1">한줄소개글</div>
-					<div id="Info_Text2">상세설명글</div>
+					<div id="Info_Text1">{{pUser_info.user_name}}</div>
+					<div id="Info_Text2">{{pUser_info.user_intro}}</div>
 				</div>
 			</div>
 		</div>

@@ -21,10 +21,10 @@
                 ID : <span> ${ user_id } </span>
             </div>
             <div class="profile_name">
-                NAME : <span> ${ user_name } </span>
+                <input type="text" :placeholder="'이름 : ' + session_user_info.user_name" />
             </div>
             <div class="profile_nickname">
-                <input type="text" @keyup="fnProfileDuplChk" placeholder="현재 닉네임 : ${ user_nickname }" />
+                <input type="text" @keyup="fnProfileDuplChk" :placeholder="'닉네임 : '+ session_user_info.user_nickname " />
                 <div class="confirm">
                     <img class="confirm_check" v-if="profileNickDuplChk == 'check'" src="images\icon\check.png">
                     <img class="confirm_error" v-if="profileNickDuplChk == 'error'" src="images\icon\error.png">
@@ -39,6 +39,9 @@
                     <img class="confirm_hide" src="images\icon\hide.png">
                 </div>
             </div>
+            <div class="profile_intro">
+                <textarea placeholder="소개">{{ session_user_info.user_intro }}</textarea>
+            </div>            
             <div class="profile_btn" @click="fnSaveProfile();">
                 	내 프로필 변경하기
             </div>

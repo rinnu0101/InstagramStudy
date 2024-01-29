@@ -320,6 +320,7 @@
 	<select id="getProfileInfo" parameterType="userinfo" resultType="userinfo">
 		SELECT UI.USER_IDX
 		     , UI.USER_ID
+		     , UI.USER_NAME
 			 , UI.USER_NICKNAME 
 		 	 , UI.USER_INTRO 
 			 , UI.USER_INFO
@@ -359,7 +360,9 @@
 	<update id="setProfileInfo" parameterType="userinfo">
 		UPDATE instagram.user_info
 		SET user_intro = #{user_intro}
-			, user_info = #{user_info}
+			<if test='"Y".equals(user_name_chg)'>
+				, user_name = #{user_name}
+			</if>
 			<if test='"Y".equals(user_nickname_chg)'>
 				, user_nickname = #{user_nickname}
 			</if>
@@ -448,6 +451,7 @@
  	<select id="getRecommendList" resultType="userinfo">
 		SELECT UI.USER_IDX
 			 , UI.USER_NICKNAME
+			 , UI.USER_NAME
 			 , UI.USER_INTRO
 			 , UP.FILE_NAME
 		  FROM INSTAGRAM.USER_INFO UI

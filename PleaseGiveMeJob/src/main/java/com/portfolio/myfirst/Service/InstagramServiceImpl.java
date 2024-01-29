@@ -117,10 +117,12 @@ public class InstagramServiceImpl implements InstagramService{
 	public String setProfileInfo(UserInfoVO vo) {
 		
 		String result = "OK";
-		UserInfoVO check = new UserInfoVO();
+		UserInfoVO check = null;
+		
+		//닉네임 중복체크
 		if("Y".equals(vo.getUser_nickname_chg())) {
 			check = LoginDAO.getNicknameDuplCheck(vo);
-		}
+		}		
 		
 		if(check == null)
 		{		

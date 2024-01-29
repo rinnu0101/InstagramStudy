@@ -133,6 +133,7 @@ li, ul, ol {
 #Info_Text2{
   width: 615px;
   height: auto;
+  margin-top: 5px;
 }
 
 /*프로필 피드*/

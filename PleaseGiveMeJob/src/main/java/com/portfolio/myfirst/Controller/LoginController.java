@@ -93,6 +93,7 @@ public class LoginController {
 			session.setAttribute("user_idx", result.getUser_idx());
 			session.setAttribute("user_name", result.getUser_name());
 			session.setAttribute("user_nickname", result.getUser_nickname());
+			session.setAttribute("user_intro", result.getUser_intro());
 			if(result.getFile_name() == null)
 			{
 				session.setAttribute("file_name", "images\\profile_img\\profile.png");

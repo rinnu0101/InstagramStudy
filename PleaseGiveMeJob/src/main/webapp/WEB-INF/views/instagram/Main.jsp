@@ -94,6 +94,7 @@
 				, now_story_index : 0			   // 현재 선택한 스토리 index
 				, view_story_img : ""              // 현재 선택한 스토리 내 이미지 경로
 				, view_story_img_index : 0         // 현재 선택한 스토리 내 이미지 index
+				, session_user_info : []		   // 내 세션 정보 저장
 				, profile_feed_list : []           // 프로필 피드 정보 리스트
 				, profileImgChg : "N"              // 프로필 이미지 변경 여부 체크
 				, profileImgFile : ""              // 프로필 이미지 변경시 파일명
@@ -128,6 +129,7 @@
 		{
 			//document.(ready) 와 동일한 역할
 			this.session_user_idx = $("#session_user_idx").val();
+			this.fnGetProfileInfo();
 			this.fnGetHomeFeedList();
 			this.fnGetHomeStoryList();
 			this.fnGetSearchList();
@@ -568,9 +570,11 @@
 					{
 						console.log("성공");
 						//pUser_info에 DB에서 가져온 모든 p값을 넣어준다
-						this.pUser_info = p;
+						this.pUser_info = p;						
+
 						if(this.follow == "ME")
 						{
+							this.session_user_info = p;	
 							$("#Info_follow").css("width", "100px");
 							$("#Info_follow").css("background-color", "#DBDBDB");
 							$("#Info_follow").css("color", "black");
@@ -852,13 +856,22 @@
 				var form = $("form")[0];
 				var formData = new FormData(form);
 				
+				var name = $(".profile_name").find("input").val().replace(/\s/gi, "");
 				var nickname = $(".profile_nickname").find("input").val().replace(/\s/gi, "");
 				var pw = $(".profile_PW").find("input").val().replace(/\s/gi, "");
 				//.replace(/\s/gi, "") --> 입력값의 모든 공백 제거
+				var intro = $(".profile_intro").find("textarea").val();				
 
 				var userNicknameChg = "N"; //닉네임 변경 여부 체크				
-				var userPWChg = "N"; // 비밀번호 변경 여부 체크				
+				var userPWChg = "N"; // 비밀번호 변경 여부 체크
+				var introChg = "N"; // 한줄소개글 변경 여부 체크
+				var userNameChg = "N";	// 상세소개글 변경 여부 체크
 
+				if(name != "")
+				{
+					userNameChg = "Y";	
+				}
+				
 				if(nickname != "")
 				{
 					userNicknameChg = "Y";	
@@ -870,12 +883,15 @@
 				}				
 
 				formData.append("profile_img_chg", this.profileImgChg);
+				formData.append("user_name_chg", userNameChg);
 				formData.append("user_nickname_chg", userNicknameChg);
 				formData.append("user_pw_chg", userPWChg);
 
 				formData.append("file", this.profileImgFile != null ? this.profileImgFile[0] : null);
+				formData.append("user_name", name);
 				formData.append("user_nickname", nickname);
 				formData.append("user_pw", pw);
+				formData.append("user_intro", intro);
 
 				$.ajax({
 					type: "POST",

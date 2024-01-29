@@ -293,9 +293,12 @@ public class InstagramController {
 	public String setProfileInfo(
 			@RequestParam("file") List<MultipartFile> fileList
 			, @RequestParam("profile_img_chg") String profile_img_chg
+			, @RequestParam("user_name_chg") String user_name_chg
 			, @RequestParam("user_nickname_chg") String user_nickname_chg
 			, @RequestParam("user_pw_chg") String user_pw_chg
+			, @RequestParam("user_name") String user_name
 			, @RequestParam("user_nickname") String user_nickname
+			, @RequestParam("user_intro") String user_intro
 			, @RequestParam("user_pw") String user_pw
 			, HttpSession session
 			, HttpServletRequest request)
@@ -304,19 +307,19 @@ public class InstagramController {
 		UserInfoVO vo = new UserInfoVO();
 		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
 		vo.setUser_idx(user_idx);
+		vo.setUser_name(user_name);
 		vo.setUser_nickname(user_nickname);
 		vo.setUser_pw(user_pw);
+		vo.setUser_name_chg(user_name_chg);
 		vo.setUser_nickname_chg(user_nickname_chg);
 		vo.setUser_pw_chg(user_pw_chg);
+		vo.setUser_intro(user_intro);
 		
-		if("Y".equals(user_nickname_chg) || "Y".equals(user_pw_chg))
+		result = Service.setProfileInfo(vo);
+		
+		if("Y".equals(user_nickname_chg))
 		{
-			result = Service.setProfileInfo(vo);
-			
-			if("Y".equals(user_nickname_chg))
-			{
-				session.setAttribute("user_nickname", user_nickname);
-			}
+			session.setAttribute("user_nickname", user_nickname);
 		}
 		
 		if("Y".equals(profile_img_chg))

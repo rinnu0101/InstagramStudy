@@ -119,8 +119,8 @@
 						<img class='myAccount_img_class' src="${file_name}"/>
 					</div>
 					<div class="Account_ID">
-						<div id="Account_myID" @click="fnChangePage('profile');">${user_nickname}</div>
-						<div id="Account_myIntro">계정한줄소개</div>
+						<div id="Account_myID" @click="fnChangePage('profile');">{{session_user_info.user_nickname}}</div>
+						<div id="Account_myIntro">{{session_user_info.user_name}}</div>
 					</div>
 					<div id="myAccount_switch">전환</div>
 				</div>
@@ -141,7 +141,7 @@
 								<div>
 									<div class="Account_ID">
 										<div class="Account_otherID">{{r.user_nickname}}</div>
-										<div class="Account_otherIntro">{{r.user_intro}}</div>
+										<div class="Account_otherIntro">{{r.user_name}}</div>
 									</div>
 									<div class="otherAccount_follow" @click="fnRecommFollow(r.user_idx, index);">
 										<div v-if="r.follow != true" style="color : #0095F6">팔로우</div>
@@ -154,7 +154,9 @@
 				</div>
 			</div>
 			<div id="main_information_area">
-					약관 및 정보 텍스트 영역
+					@suh_herin </br>
+					010-3937-9000 </br>
+					shr_0101@naver.com </br>
 			</div>
 		</div>
 	</div>

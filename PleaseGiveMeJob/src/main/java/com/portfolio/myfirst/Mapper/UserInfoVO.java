@@ -15,7 +15,8 @@ public class UserInfoVO {
 	private int session_user_idx;
 	private int follower_user_idx;
 	
-	//프로필 닉네임&패스워드 변경값 있는지 chk
+	//프로필 이름&닉네임&패스워드 변경값 있는지 chk
+	private String user_name_chg;
 	private String user_nickname_chg;	
 	private String user_pw_chg;
 	
