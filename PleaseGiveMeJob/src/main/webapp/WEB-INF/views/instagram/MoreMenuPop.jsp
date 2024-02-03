@@ -21,9 +21,9 @@
 
 <!-- 피드 옵션 버튼 레이어팝업 html-->
 <div class="Feed_option" v-if="this.Feed_Option_show == true" :style="{display:Feed_Option_css}">
-    <div class="Option_bg" @click="fnFeedOptionPopClose();"></div>
+    <div class="Option_bg" @click="fnFeedOptionPopClose();" :style="{marginTop:Feed_Option_margin_css + 'px'}"></div>
 
-    <div class="option_area">
+    <div class="option_area"  :style="{marginTop:Feed_Option_margin_css + 'px'}">
         <div class="Contents_option">
             <div class="Option_menu">
                 <div class="Option_css">

@@ -10,7 +10,7 @@
 
       <div id="main_menu">
           <ul>
-              <li @click="fnChangePage('home');">
+              <li @click="fnChangePage('home');" id="home">
                   <img class='main_menu_icon' src="images\icon\home.png"/>
                   <div id="menu_home">홈</div>
               </li>
@@ -38,7 +38,7 @@
                   <img class='main_menu_icon' src="images\icon\upload.png"/>
                   <div id="menu_upload">만들기</div>
               </li>
-              <li @click="fnGoProfile('');">
+              <li @click="fnGoProfile('');" id="profile">
                   <img class='main_menu_profile' src="${file_name}"/>
                   <!-- todo : 
                       - DB에서 내 프로필 이미지 가져오기

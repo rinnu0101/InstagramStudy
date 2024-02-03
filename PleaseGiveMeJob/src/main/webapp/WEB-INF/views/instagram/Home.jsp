@@ -43,7 +43,7 @@
 				</div> -->
 			</div>
 			<!-- 홈 피드 리스트 -->
-			<div id="main_contents_feed" v-for="(f, index) in home_feed_list" v-if="feed_show == true">
+			<div id="main_contents_feed" v-for="(f, index) in home_feed_list" v-if="feed_show == true" :key="version">
 				<div class="feed_component"> 
 					<div class="comp_account">
 						<div class="comp_account_img">
@@ -91,23 +91,19 @@
 							좋아요 <span>{{f.like_count}}</span>개
 					</div>
 					<div class="comp_text">
-						<!-- todo
-							- 계정명 DB에서 받아오도록 하기
-							- 본문 1줄 이상 길어지면 [더 보기]버튼 활성화하여 접어두기 -->
-							본문 텍스트 영역
-							{{f.feed_contents}}
-							<div v-if="f.feed_contents.length > 4">더 보기</div>
-					</div>
-					<div class="comp_comment">
-						<!-- todo
-							- 댓글 1개 발생시 [댓글 1개 보기]버튼 활성화, 클릭시 팝업 피드에서 댓글 확인
-							- 댓글 1개 이상 길어지면 [댓글 N개 모두 보기]버튼으로 변경하기
-							- 댓글 작성자 계정명 기록하기 -->
-								댓글 읽기 영역
-					</div>
-					<div class="comp_comment_writing">
-							댓글 쓰기 영역
-					</div>
+						<!-- 계정명 DB에서 받아오도록 하기 -->
+						<div class="comp_userName" @click="fnGoProfile(f.user_idx);">{{f.user_nickname}}</div>
+						<!-- 본문 1줄 이상 길어지면 [더 보기]버튼 활성화하여 접어두기 -->							
+						<pre v-if="!f.feed_contents_multi">{{f.feed_contents}}</pre>
+						<pre v-if="f.feed_contents_multi">{{f.feed_contents_simple}}</div>
+						<div class="text_togle" v-if="f.feed_contents_multi" @click="feed_content_togle(index)">...더 보기</div>
+						<div class="comp_comment" v-if="f.comment_count != 0" @click="fnFeedPopup(f.feed_idx);">
+							댓글 <span>{{f.comment_count}}</span>개 보기
+						</div>
+						<div class="comp_comment_writing">   
+							<input type="text" placeholder="댓글 달기"/>
+						</div>
+					</div>					
 				</div>	                        
 			</div>
 		</div>

@@ -84,10 +84,11 @@
 <!-- vue.js 적용  -->
 <script type="module">
     import { createApp } from 'vue'
-    createApp({
+    window.app = createApp({
         data() {
             return {
 				home_feed_list : []                // 메인 홈 피드 정보 리스트
+				, home_feed_list_temp : []		   // 메인 홈 피드 정보 리스트 업데이트 후 임시 리스트
 				, home_story_list : []			   // 메인 홈 스토리 정보 리스트
 				, story_view_list : []			   // 선택한 스토리 컨텐츠 리스트
 				, story_popup_show : false    	   // 스토리 팝업 show 조건
@@ -120,9 +121,11 @@
 				, search_keyword : "N"             // 좌측 검색창 내 input 값 유무 체크
 				, search_css_display : "none"      // 좌측 검색창 화면 show/hide
 				, moreMenu_popup_show : false      // 더보기 메뉴 팝업 show 조건
-				, Feed_Option_show : false        // 피드 옵션 팝업 show 조건
-				, Story_Option_show : false       // 스토리 옵션 팝업 show 조건
+				, Feed_Option_show : false         // 피드 옵션 팝업 show 조건
+				, Story_Option_show : false        // 스토리 옵션 팝업 show 조건
 				, recommend_list : []              // 계정 추천 리스트
+				, version : 0				       //img 새로고침 version 체크
+				, Feed_Option_margin_css : 0	   //img 새로고침 version 체크
             }
         },
 		mounted: function() 
@@ -151,6 +154,10 @@
 				}
 				this.view_page = p;
 			},
+			//홈 피드 contents text 길이 체크
+			feed_content_togle: function(index){
+				this.home_feed_list[index].feed_contents_multi = false;
+			},
 			//홈 화면의 피드 리스트 불러오기 처리함수
 			fnGetHomeFeedList: function(){						
 				//POST
@@ -167,11 +174,69 @@
 							p[i].file_names = JSON.parse(p[i].file_names);
 							p[i].file_index = 0;
 							p[i].file_length = p[i].file_names.length;
+							if(p[i].feed_contents.includes("\r") || p[i].feed_contents.length > 27)
+							{
+								//개행있거나 text length 너무 길 경우 더보기 표시
+								p[i].feed_contents_multi = true;
+								p[i].feed_contents_simple = p[i].feed_contents.substr(0, 27);
+							}
+							else
+							{
+								//아닐 경우 한줄 표시
+								p[i].feed_contents_multi = false;
+							}
 						}
 						this.home_feed_list = p;
 						this.feed_show = true;
+
+						this.view_page = "home";
 						//todo
 						//this.loading_progress = false;
+					},
+					error : function(p)
+					{
+					console.log("피드 리스트 불러오기 실패");		                  
+					}
+				});
+			},
+			//홈 화면의 피드 저장후 리스트 업데이트
+			fnGetHomeFeedUpdate: function(){						
+				//POST
+				$.ajax({
+					url : "/getFeedList.do",
+					type : "POST",
+					data : {},
+					context: this,
+					success : function(p)
+					{
+						var cnt = p.length;
+						for(var i=0; i<cnt; i++)
+						{
+							p[i].file_names = JSON.parse(p[i].file_names);
+							p[i].file_index = 0;
+							p[i].file_length = p[i].file_names.length;
+							if(p[i].feed_contents.includes("\r") || p[i].feed_contents.length > 12)
+							{
+								//개행있거나 너무 길경우 경우 더보기 표시
+								p[i].feed_contents_multi = true;
+								p[i].feed_contents_simple = p[i].feed_contents.substr(0, 12);
+							}
+							else
+							{
+								//아닐 경우 한줄 표시
+								p[i].feed_contents_multi = false;
+							}
+						}
+						this.home_feed_list_temp = p;
+						
+						var that = this;
+						setTimeout(() => {
+							that.home_feed_list = that.home_feed_list_temp;
+                    		$("#upload_loading").css("display", "none");
+            				fnUploadClose();
+						}, 6000);
+
+						this.view_page = "home";
 					},
 					error : function(p)
 					{
@@ -952,11 +1017,16 @@
 				this.delete_feed_idx = feed_idx;
 				this.Feed_Option_show = true;
 				this.Feed_Option_css = "flex";
+
+				this.Feed_Option_margin_css = window.scrollY;
+				$('body').css("overflow-y", "hidden");
+
 			},
 			fnFeedOptionPopClose : function()
 			{
 				this.Feed_Option_show = false;
 				this.Feed_Option_css = "none";
+				$('body').css("overflow-y", "auto");
 			},
 			//스토리 옵션 팝업 & 닫기
 			fnStoryOptionPop : function()

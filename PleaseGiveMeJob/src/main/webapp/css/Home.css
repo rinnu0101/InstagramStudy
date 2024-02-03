@@ -93,7 +93,7 @@ li, ul, ol {
 
 .story_friend_ul li{
   width: 80px;
-  height: 85px;
+  height: 88px;
   padding-right: 12px;
   float: left;
   display: flex;
@@ -182,6 +182,7 @@ li, ul, ol {
   height: 18px;
   padding-top: 7px;
   margin-left: 7px;
+  font-weight: bold;
   cursor: pointer;
   float: left;
 }
@@ -289,17 +290,46 @@ li, ul, ol {
 
 .comp_text{
   width: 470px;
-  height: 36px;
+  height: auto;
+}
+
+.comp_userName{
+  margin-right: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  float: left;
+}
+
+.comp_text pre{
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  font-family: auto;
+  white-space: normal;  
+}
+
+.text_togle{
+  font-size: 14px;
+  font-weight: bold;
+  color: #737373;
+  cursor: pointer;
 }
 
 .comp_comment{
   width: 470px;
   height: 18px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #737373;
+  cursor: pointer;
 }
 
 .comp_comment_writing{
   width: 470px;
   height: 18px;
+  margin-top: 8px;
+  font-size: 14px;
 }
 
 /*댓글*/

@@ -82,6 +82,7 @@ function fnSaveNewFeed()
 
     //본문 텍스트 업로드
     formData.append("feed_contents", $("#upload_text").find("textarea").val());
+    $("#upload_loading").css("display", "flex");
 
     $.ajax({
         type: "POST",
@@ -92,14 +93,17 @@ function fnSaveNewFeed()
         processData: false,
         contentType: false,
         success: function (p) {
-          if(p == "OK"){
-            alert("파일업로드 성공");
+            if(p == "OK"){
+                //alert("파일업로드 성공");
+
+                //window.app.$root -> vuejs 저장값 경로
+                window.app.$root.fnGetHomeFeedUpdate();
             }
             else
             {
                 alert("서버내 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주세요");
-            }           
-           fnUploadClose();
+            }            
+
         },
         error: function (xhr, status, error) {
             alert("서버 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
@@ -155,14 +159,15 @@ function fnSaveNewStory()
         processData: false,
         contentType: false,
         success: function (p) {
-          if(p == "OK"){
-              alert("파일업로드 성공");
+            if(p == "OK"){
+              //alert("파일업로드 성공");
+              window.app.$root.fnGetHomeStoryList();
             }
-          else
-          {
-            alert("서버내 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주세요");
-          }           
-           fnStoryUploadClose();
+            else
+            {
+                alert("서버내 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주세요");
+            }                      
+            fnStoryUploadClose();
         },
         error: function (xhr, status, error) {
             alert("서버 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
@@ -379,7 +384,8 @@ function fnFileReset()
     totalCount = 10;
     fileNum = 0;
 	content_files = new Array();
-	
+    
+    $("#upload_text").find("textarea").val(""); // 본문 텍스트 초기화
 	$("#file_insert").show();
     $(".upload_contents_ul").hide();
     $(".upload_contents_arrow").hide();

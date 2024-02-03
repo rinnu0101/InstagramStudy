@@ -10,9 +10,12 @@
 	</div>
 	
 	<!-- 새 게시물 업로드 레이어팝업 콘텐츠 html-->
-	<div id="upload_layerPopup_contents">
+	<div id="upload_layerPopup_contents">		
+		<div id="upload_loading">
+			<img src="images\icon\loading.gif">
+		</div>
 	    <div id="upload_top">
-	        <div id="upload_backstep">
+	        <div id="upload_backstep" onclick="fnUploadClose();">
 	            <img class="upload_backstep_btn" src="images\icon\arrow-left.png">
 	        </div>
 	        <div id="new_upload">

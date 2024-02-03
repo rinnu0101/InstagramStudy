@@ -63,7 +63,7 @@
 
 		<div id="profile_feedContents">
 			<ul class="feedContents_line" v-if="feed_show == true">
-				<li v-for="(f, index) in profile_feed_list">
+				<li v-for="(f, index) in profile_feed_list" :key="version">
 					<div class="feedContents_log" @click="fnFeedPopup(f.feed_idx);">
 						<div class="log_img">
 							<img :src="'images/feed_img/' + f.file_name">
