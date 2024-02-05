@@ -174,9 +174,25 @@
 							p[i].file_names = JSON.parse(p[i].file_names);
 							p[i].file_index = 0;
 							p[i].file_length = p[i].file_names.length;
-							if(p[i].feed_contents.includes("\r") || p[i].feed_contents.length > 27)
+							if(p[i].feed_contents.includes("\r\n"))
 							{
-								//개행있거나 text length 너무 길 경우 더보기 표시
+								//개행 있을 경우 더보기 표시
+								//case.1 개행 전 text length 너무 길 경우
+								if(p[i].feed_contents.split('\r\n', 1)[0].length > 27)
+								{
+									p[i].feed_contents_multi = true;
+									p[i].feed_contents_simple = p[i].feed_contents.substr(0, 27);
+								}
+								//case.2 개행 전 text length 짧을 경우
+								else if (p[i].feed_contents.split('\r\n', 1)[0].length < 27)
+								{									
+									p[i].feed_contents_multi = true;
+									p[i].feed_contents_simple = p[i].feed_contents.split('\r\n', 1)[0];
+								}								
+							}
+							else if (p[i].feed_contents.length > 27)
+							{
+								//text length 너무 길 경우 더보기 표시
 								p[i].feed_contents_multi = true;
 								p[i].feed_contents_simple = p[i].feed_contents.substr(0, 27);
 							}
@@ -215,11 +231,27 @@
 							p[i].file_names = JSON.parse(p[i].file_names);
 							p[i].file_index = 0;
 							p[i].file_length = p[i].file_names.length;
-							if(p[i].feed_contents.includes("\r") || p[i].feed_contents.length > 12)
+							if(p[i].feed_contents.includes("\r\n"))
 							{
-								//개행있거나 너무 길경우 경우 더보기 표시
+								//개행 있을 경우 더보기 표시
+								//case.1 개행 전 text length 너무 길 경우
+								if(p[i].feed_contents.split('\r\n', 1)[0].length > 27)
+								{
+									p[i].feed_contents_multi = true;
+									p[i].feed_contents_simple = p[i].feed_contents.substr(0, 27);
+								}
+								//case.2 개행 전 text length 짧을 경우
+								else if (p[i].feed_contents.split('\r\n', 1)[0].length < 27)
+								{									
+									p[i].feed_contents_multi = true;
+									p[i].feed_contents_simple = p[i].feed_contents.split('\r\n', 1)[0];
+								}								
+							}
+							else if (p[i].feed_contents.length > 27)
+							{
+								//text length 너무 길 경우 더보기 표시
 								p[i].feed_contents_multi = true;
-								p[i].feed_contents_simple = p[i].feed_contents.substr(0, 12);
+								p[i].feed_contents_simple = p[i].feed_contents.substr(0, 27);
 							}
 							else
 							{
@@ -450,12 +482,12 @@
 				}
 				f.like_type = f.like_type == null ? "1" : null;
 			},
-			//피드의 댓글 저장
+			//팝업 피드의 댓글 저장
 			fnSaveReply : function()
 			{
 				var reply = $("#FPCP_reply_text").find("input").val();
-				//this.feed_pop_info.feed_reply_list.push({ "feed_reply_contents" : reply , "user_nickname" : "테스트" });
 				$("#FPCP_reply_text").find("input").val("");
+
 				//ajax Insert 처리
 				$.ajax({
 					url : "/setFeedReply.do",
@@ -468,6 +500,30 @@
 					success : function(p)
 					{
 						this.fnFeedPopup(this.now_feed_idx);
+					},
+					error : function(p)
+					{
+						console.log("댓글 저장 실패");		                  
+					}
+				});
+			},
+			//메인 홈 피드 리스트에서의 댓글 저장
+			fnSaveReplyHome : function(feed_idx)
+			{
+				var reply_home = $(".comp_comment_writing").find("input").val();
+
+				//ajax Insert 처리
+				$.ajax({
+					url : "/setFeedReply.do",
+					type : "POST",
+					data : {
+						"feed_idx" : feed_idx,
+						"feed_reply_contents" : reply_home,
+					},
+					context: this,
+					success : function(p)
+					{
+						$(".comp_comment_writing").find("input").val("");
 					},
 					error : function(p)
 					{
