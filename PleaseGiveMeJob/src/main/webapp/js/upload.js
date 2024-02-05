@@ -39,6 +39,7 @@ function fnPopFeed()
 
 function fnPopFeedClose()
 {
+    $("#FPCP_reply_text").find("input").val("");
     $("#layerPopup_feed").hide();
     $('body').css("overflow-y", "auto");
 }

@@ -59,7 +59,7 @@
                         {{feed_pop_info.user_nickname}}
                     </div>
                     <div class="FPCP_text">
-                        {{feed_pop_info.feed_contents}}
+                        <pre>{{feed_pop_info.feed_contents}}</pre>
                     </div>
                 </div>
                 <div class="FPCP_body_comment">
@@ -97,15 +97,10 @@
                         </ul>
                     </div>
                 </div>
-                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count > 1">
-                    <span></span>님 외 <span>{{feed_pop_info.like_count - 1}}</span>명이 좋아합니다
+                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count >= 1">
+                    <span>{{feed_pop_info.like_count}}</span>명이 좋아합니다
                 </div>
-                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count == 1">
-                    <span>"todo : 닉네임불러오기"</span>님이 좋아합니다
-                </div>
-                <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count <= 0">
-                </div>
-                <div id="FPCP_PIS_date">{{feed_pop_info.regdate}} 몇일전 한시간전 개발필요</div>
+                <div id="FPCP_PIS_date"><span>{{feed_pop_info.regdate}}</span> 게시됨</div>
             </div>
             <div id="FPCP_reply">
                 <div id="FPCP_reply_emoji">

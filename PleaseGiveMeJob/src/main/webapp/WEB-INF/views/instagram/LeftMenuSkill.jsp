@@ -65,7 +65,7 @@
             </div>
             <div id="search_list">
                 <div id="search_list_text">
-                    	최근 검색 항목
+                    검색 항목
                 </div>
                 <ul id="search_history" v-if="search_keyword == 'N'">
                 <!-- todo : 검색 이력(쿠키) 있으면 show(display: flex;) -->
@@ -86,7 +86,7 @@
                     </li>
                 </ul>
                 <ul id="search_result" v-if="search_keyword == 'Y'" :style="{display:search_css_display}">
-                    <li v-for="s in search_list">
+                    <li v-for="s in search_list" @click="fnGoProfile(s.user_idx);">
                         <div class="search_profile_img">
                             <img :src="s.file_name == null ? 'images\\icon\\profile.png' 
                                                            : 'images\\profile_img\\' + s.file_name">

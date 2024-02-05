@@ -508,10 +508,10 @@
 				});
 			},
 			//메인 홈 피드 리스트에서의 댓글 저장
-			fnSaveReplyHome : function(feed_idx)
+			fnSaveReplyHome : function(feed_idx, index)
 			{
-				var reply_home = $(".comp_comment_writing").find("input").val();
-
+				var reply_home = $(".comp_comment_writing").eq(index).find("input").val();
+				
 				//ajax Insert 처리
 				$.ajax({
 					url : "/setFeedReply.do",

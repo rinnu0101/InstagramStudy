@@ -102,7 +102,7 @@
 						</div>
 						<div class="comp_comment_writing">   
 							<input type="text" placeholder="댓글 달기"/>
-							<div id="comp_comment_btn" @click="fnSaveReplyHome(f.feed_idx);">
+							<div id="comp_comment_btn" @click="fnSaveReplyHome(f.feed_idx, index);">
 								<!-- todo : 텍스트 없으면 비활성화-->
 									게시
 							</div>
