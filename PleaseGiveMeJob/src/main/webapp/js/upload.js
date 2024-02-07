@@ -18,6 +18,34 @@ function init()
 
     // 스토리 파일 첨부시 fnPrintFileLiStory 함수 실행
     $("#input_file_story").on("change", fnPrintFileLiStory);
+
+    setTimeout(() => {        
+        //이모지 라이브러리 활성화
+        //vue.js와의 시간차로 인해 setTimeout 설정
+        $(".input_reply_home").emojioneArea({
+            pickerPosition: "top",
+            tones: false,
+            autocomplete: false,
+            inline: true,
+            hidePickerOnBlur: false
+        });
+        
+        $("#input_upload_text").emojioneArea({
+            pickerPosition: "right",
+            tones: false,
+            autocomplete: false,
+            inline: true,
+            hidePickerOnBlur: false
+        });
+
+        $(".input_reply_feed").emojioneArea({
+            pickerPosition: "top",
+            tones: false,
+            autocomplete: false,
+            inline: true,
+            hidePickerOnBlur: false
+        });
+    }, 10);
  }
 
 //프로필&홈 화면에서의 피드 레이어팝업 함수
@@ -103,14 +131,13 @@ function fnSaveNewFeed()
             else
             {
                 alert("서버내 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주세요");
-            }            
-
+            }
         },
         error: function (xhr, status, error) {
             alert("서버 오류로 처리가 지연되고 있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
             return false;
         }
-      });
+    });
 }
 
 //새 스토리 레이어팝업 함수
@@ -162,7 +189,7 @@ function fnSaveNewStory()
         success: function (p) {
             if(p == "OK"){
               //alert("파일업로드 성공");
-              window.app.$root.fnGetHomeStoryList();
+              window.app.$root.fnGetHomeStoryList();              
             }
             else
             {

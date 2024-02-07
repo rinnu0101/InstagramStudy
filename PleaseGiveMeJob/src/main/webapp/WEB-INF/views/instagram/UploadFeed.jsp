@@ -88,14 +88,14 @@
                     </div>
 	            </div>
 	            <div id="upload_text">
-	                <textarea  placeholder="문구를 입력하세요..."></textarea>
+	                <textarea id="input_upload_text" placeholder="문구를 입력하세요..."></textarea>
 	            </div>
-	            <div id="upload_emoji">
-	                <div id="upload_emoji_btn">
+	            <!-- <div id="upload_emoji">
+	                <div class="emoji_btn_upload">
 	                    <img src="images\icon\emoji.png">
 	                </div>
 	                <div id="upload_text_charnum"></div>
-	            </div>
+	            </div> -->
 	            <div id="upload_file">
 	                <!-- todo : 파일업로드 구현 -->
 	                </div>

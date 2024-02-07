@@ -38,7 +38,7 @@
 					<div class="SP_option" v-if="story_view_list.user_idx == session_user_idx" @click="fnStoryOptionPop();">
 						<img class='SP_option_icon' src="images\icon\option_w.png"/>
 					</div>
-		            <div class="SP_contents_play">
+		            <div class="SP_contents_play" onclick="fn_story_btn_toggle();">
 						<!-- 내 스토리 아닐땐 SP_contents_play, margin-left: 70px; -->
 		                <img class="SP_contents_play_btn" src="images\icon\play.png">
 		                <img class="SP_contents_stop_btn" src="images\icon\stop.png" style="display: none;">

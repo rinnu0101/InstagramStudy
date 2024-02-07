@@ -103,11 +103,11 @@
                 <div id="FPCP_PIS_date"><span>{{feed_pop_info.regdate}}</span> 게시됨</div>
             </div>
             <div id="FPCP_reply">
-                <div id="FPCP_reply_emoji">
+                <!-- <div class="emoji_btn_FPCP">
                     <img src="images\icon\emoji.png">
-                </div>
-                <div id="FPCP_reply_text">                            
-                    <input type="text" placeholder="댓글 달기"/>
+                </div> -->
+                <div id="FPCP_reply_text">                    
+                    <input class="input_reply_feed" type="text" placeholder="댓글 달기"/>
                 </div>
                 <div id="FPCP_reply_btn" @click="fnSaveReply();">
                     <!-- todo : 텍스트 없으면 비활성화-->

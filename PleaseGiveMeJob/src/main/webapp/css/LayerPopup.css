@@ -297,11 +297,11 @@ textarea{
 #FPCP_reply{
   width: 483px;
   height: 40px;
-  padding: 4px 16px 4px 0px;
+  padding: 4px 0px 4px 0px;
   border-top: 1px solid #EFEFEF;
 }
 
-#FPCP_reply_emoji img{
+.emoji_btn_FPCP img{
   width: 24px;
   height: 24px;
   padding: 8px 16px 8px 16px;
@@ -310,13 +310,14 @@ textarea{
   float: left;
 }
 
-#FPCP_reply_emoji img:hover{
+.emoji_btn_FPCP img:hover{
   opacity: 0.5;
 }
 
-#FPCP_reply_text, #FPCP_reply_text input{
-  width: 390px;
+#FPCP_reply_text{
+  width: 435px;
   height: 40px;
+  margin-left: 10px;
   font-size: 14px;
   display: flex;
   align-items: center;
@@ -818,14 +819,14 @@ textarea{
 
 #upload_text, #upload_text textarea{
   width: 320px;
-  height: 168px;
+  height: 220px;
   padding-left: 8px;
   font-size: 14px;
   float: left;
   border: 0px;
 }
 
-#upload_emoji_btn img{
+.emoji_btn_upload img{
   width: 20px;
   height: 20px;
   padding: 8px 8px 8px 8px;
@@ -834,7 +835,7 @@ textarea{
   float: left;
 }
 
-#upload_emoji_btn img:hover{
+.emoji_btn_upload img:hover{
   opacity: 0.5;
 }
 

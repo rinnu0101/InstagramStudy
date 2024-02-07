@@ -5,11 +5,16 @@
 <head>
 <!-- css 리셋 -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-<!-- 제이쿼리 불러오기 -->
+	  href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+ <!-- 제이쿼리 불러오기 -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"
-	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+		crossorigin="anonymous">
+</script>
+<!-- 이모지 리스트 라이브러리 -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.js"></script>
+<link rel="stylesheet" type="text/css" href="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.css">
 <!-- 스타일시트 적용 -->
 <link rel="stylesheet" href="css/Home.css">
 <link rel="stylesheet" href="css/Profile.css">
@@ -24,13 +29,12 @@
 <script src="js/upload.js"></script>
 <!-- vue.js 적용 -->
 <script type="importmap">
-            {
-              "imports": {
-                "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-              }
-            }
-        </script>
-
+	{
+		"imports": {
+		"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+		}
+	}
+</script>
 </head>
 <body>
 	<div id="app">
@@ -139,12 +143,20 @@
 			this.fnGetRecommendList();
 		},			
 		methods: {
+			//스크롤 최상단으로 이동
+			fnScrollTop: function()
+			{
+				window.scrollTo(0, 0); // 수직 스크롤을 0(상단)으로 이동
+			},
 			//페이지 이동
 			fnChangePage: function(p)
 			{
 				if(p == "home")
 				{
 					this.fnGetHomeFeedList();
+					this.fnGetHomeStoryList();
+					this.fnGetRecommendList();
+					this.fnScrollTop();
 				}
 				if(p == "profile")
 				{
@@ -266,6 +278,7 @@
 							that.home_feed_list = that.home_feed_list_temp;
                     		$("#upload_loading").css("display", "none");
             				fnUploadClose();
+							this.fnScrollTop();
 						}, 6000);
 
 						this.view_page = "home";

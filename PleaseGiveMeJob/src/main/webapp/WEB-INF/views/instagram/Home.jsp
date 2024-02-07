@@ -100,8 +100,11 @@
 						<div class="comp_comment" v-if="f.comment_count != 0" @click="fnFeedPopup(f.feed_idx);">
 							댓글 <span>{{f.comment_count}}</span>개 보기
 						</div>
-						<div class="comp_comment_writing">   
-							<input type="text" placeholder="댓글 달기"/>
+						<div class="comp_comment_writing">
+							<input class="input_reply_home" type="text" placeholder="  댓글 달기"/>
+							<!-- <div class="emoji_btn_home">
+								<img src="images\icon\emoji.png" >						
+							</div> -->
 							<div id="comp_comment_btn" @click="fnSaveReplyHome(f.feed_idx, index);">
 								<!-- todo : 텍스트 없으면 비활성화-->
 									게시
@@ -134,13 +137,13 @@
 						<ul class="recommend_randomList">
 							<!-- todo : 어떤 기준으로 랜덤하게 계정을 추천할 것인가? -->
 							<li v-for="(r, index) in recommend_list">
-								<div class="otherAccount_img">
+								<div class="otherAccount_img" @click="fnGoProfile(r.user_idx);">
 									<img class='otherAccount_img_class' :src="r.file_name == null ? 'images\\icon\\profile.png' 
 																								  : 'images\\profile_img\\' + r.file_name">
 								</div>
 								<div>
 									<div class="Account_ID">
-										<div class="Account_otherID">{{r.user_nickname}}</div>
+										<div class="Account_otherID" @click="fnGoProfile(r.user_idx);">{{r.user_nickname}}</div>
 										<div class="Account_otherIntro">{{r.user_name}}</div>
 									</div>
 									<div class="otherAccount_follow" @click="fnRecommFollow(r.user_idx, index);">
