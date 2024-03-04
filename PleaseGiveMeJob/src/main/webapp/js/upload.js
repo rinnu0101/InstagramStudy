@@ -32,10 +32,7 @@ function init()
         
         $("#input_upload_text").emojioneArea({
             pickerPosition: "right",
-            tones: false,
-            autocomplete: false,
-            inline: true,
-            hidePickerOnBlur: false
+            tonesStyle: "bullet"
         });
 
         $(".input_reply_feed").emojioneArea({

@@ -26,23 +26,26 @@
             function fnInputLoginInfo(){
             	var loginInfo =
 	           		{
-	           			'user_id' : $(".login_ID").find("input").val()
-	   	            ,   'user_pw' : $(".login_PW").find("input").val()
+	           			'user_id' : $(".login_ID").find("input").val() //ID입력값
+	   	            ,   'user_pw' : $(".login_PW").find("input").val() //PW입력값
 	           		};
             	
-            	//POST
+            	//DB에서 ID, PW 일치값 존재 유무 확인
                 $.ajax({
                 	url : "/getLoginInfo.do",
                 	type : "POST",
                 	data : loginInfo,
                 	success : function(p)
 		            {
+						//p = user_id, user_pw 모두 충족 여부 체크
                 	   if(p==""){
+						//일치값 없을 경우 계정 정보 재확인 문구 노출
                 		   $(".pw_miss").show();
                 		   $(".info_login").css("height", "400px");
                 		   $(".login_forgot").css("margin-top", "0px");
                 	   }
                 	   else{
+						//일치하는 계정 있을 경우 해당 계정으로 로그인 및 메인 화면으로 이동
                 		   //alert("로그인 성공");
                 		   window.location.href = "/main.do";
                 	   }
@@ -64,7 +67,8 @@
                 	data : loginInfo,
                 	success : function(p)
 		            {
-                	   if(p==""){
+						
+                	   if(p==""){						
                 		   $(".pw_miss").show();
                 		   $(".info_login").css("height", "400px");
                 		   $(".login_forgot").css("margin-top", "0px");

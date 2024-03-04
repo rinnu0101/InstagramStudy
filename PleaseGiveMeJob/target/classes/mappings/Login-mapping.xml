@@ -50,25 +50,13 @@
  	<select id="getIdDuplCheck" parameterType="userinfo" resultType="userinfo">
 		SELECT USER_IDX
 			 , USER_ID
-			 , USER_NAME
-			 , USER_NICKNAME
-			 , USER_PW
-			 , USER_INTRO
-			 , USER_INFO
-			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_ID = #{user_id}
  	</select>
  	<!-- 닉네임 중복 체크하기 -->
  	<select id="getNicknameDuplCheck" parameterType="userinfo" resultType="userinfo">
 		SELECT USER_IDX
-			 , USER_ID
-			 , USER_NAME
 			 , USER_NICKNAME
-			 , USER_PW
-			 , USER_INTRO
-			 , USER_INFO
-			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_NICKNAME = #{user_nickname}
  	</select>
@@ -76,12 +64,7 @@
  	<select id="getFindPwInfo" parameterType="userinfo" resultType="userinfo">
 		SELECT USER_IDX
 			 , USER_ID
-			 , USER_NAME
-			 , USER_NICKNAME
 			 , USER_PW
-			 , USER_INTRO
-			 , USER_INFO
-			 , REGDATE
 		  FROM INSTAGRAM.USER_INFO
 		 WHERE USER_ID = #{user_id}
  	</select>
