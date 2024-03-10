@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- mapper DTD 선언 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- mapper 자체가 DAO 분리되어 나온 개념이기 때문에 namespace는 DAO 명을 따라가는 경우가 일반적임 -->
 <mapper namespace="InstagramDAO">
 	<!-- 검색 데이터 가져오기 -->
 	<select id="getSearchList" resultType="userinfo">
+		/*InstagramDAO.getSearchList*/
 		SELECT UI.USER_IDX
 			 , UI.USER_NICKNAME
 			 , UI.USER_INTRO
@@ -18,12 +17,13 @@
  	
  	<!-- 새 피드 저장하기 -->
  	<insert id="setSaveNewFeed" parameterType="feedlist">
+		/*InstagramDAO.setSaveNewFeed*/
 	 	INSERT INTO instagram.feed_list
 			(
-				user_idx
-				, feed_contents
-				, regdate
-				, use_yn
+				USER_IDX
+				, FEED_CONTENTS
+				, REGDATE
+				, USE_YN
 			)
 		VALUES
 			(
@@ -35,17 +35,19 @@
  	</insert>
  	
  	<select id="getNewFeedIdx" parameterType="feedlist" resultType="int">
-		SELECT MAX(feed_idx) FROM instagram.feed_list
-		 WHERE user_idx = #{user_idx} 	 
+		/*InstagramDAO.getNewFeedIdx*/
+		SELECT MAX(FEED_IDX) FROM INSTAGRAM.FEED_LIST
+		 WHERE USER_IDX = #{user_idx} 	 
  	</select>
  	
  	<!-- 새  피드 이미지 파일 저장하기 -->
  	<insert id="setSaveNewFeedFile" parameterType="feedphoto">
-	 	INSERT INTO instagram.feed_photo
+		/*InstagramDAO.setSaveNewFeedFile*/
+	 	INSERT INTO INSTAGRAM.FEED_PHOTO
 			(
-				feed_idx
-				, file_name
-				, file_path
+				FEED_IDX
+				, FILE_NAME
+				, FILE_PATH
 			)
 		VALUES
 			(
@@ -57,11 +59,12 @@
  	
  	<!-- 새 스토리 저장하기 -->
  	<insert id="setSaveNewStory" parameterType="storylist">
-	 	INSERT INTO instagram.story_list
+		/*InstagramDAO.setSaveNewStory*/
+	 	INSERT INTO INSTAGRAM.STORY_LIST
 			(
-				user_idx
-				, regdate
-				, use_yn
+				USER_IDX
+				, REGDATE
+				, USE_YN
 			)
 		VALUES
 			(
@@ -72,17 +75,18 @@
  	</insert>
  	
  	<select id="getNewStoryIdx" parameterType="storylist" resultType="int">
-		SELECT MAX(story_idx) FROM instagram.story_list
-		 WHERE user_idx = #{user_idx}  	 
+		/*InstagramDAO.getNewStoryIdx*/
+		SELECT MAX(STORY_IDX) FROM INSTAGRAM.STORY_LIST
+		 WHERE USER_IDX = #{user_idx}  	 
  	</select>
  	
  	<!-- 새 스토리 이미지 파일 저장하기 -->
  	<insert id="setSaveNewStoryFile" parameterType="storyphoto">
-	 	INSERT INTO instagram.story_photo
+	 	INSERT INTO INSTAGRAM.STORY_PHOTO
 			(
-				story_idx
-				, file_name
-				, file_path
+				STORY_IDX
+				, FILE_NAME
+				, FILE_PATH
 			)
 		VALUES
 			(
@@ -118,7 +122,7 @@
    	    SELECT SL.STORY_IDX
 			 , SL.USER_IDX
 			 , SL.REGDATE
-			 , SP.FILE_NAME as story_file_name
+			 , SP.FILE_NAME AS STORY_FILE_NAME
 			 , UI.USER_NICKNAME 
 			 , UP.FILE_NAME
 		  FROM STORY_LIST SL
@@ -251,11 +255,11 @@
  	
  	<!-- 피드 좋아요 저장 -->
  	<insert id="setInsertFeedLike" parameterType="feedlike">
-	 	INSERT INTO instagram.feed_like
+	 	INSERT INTO INSTAGRAM.FEED_LIKE
 			(
-				feed_idx
-				, user_idx
-				, like_type
+				FEED_IDX
+				, USER_IDX
+				, LIKE_TYPE
 			)
 		VALUES
 			(
@@ -267,19 +271,19 @@
  	
  	<!-- 피드 좋아요 삭제 -->
  	<delete id="setDeleteFeedLike" parameterType="feedlike">
-	 	DELETE FROM instagram.feed_like
-		WHERE feed_idx = #{feed_idx}
-		  AND user_idx = #{user_idx}
+	 	DELETE FROM INSTAGRAM.FEED_LIKE
+		WHERE FEED_IDX = #{feed_idx}
+		  AND USER_IDX = #{user_idx}
  	</delete>
  	
  	<!-- 피드 댓글 저장 -->
  	<insert id="setFeedReply" parameterType="feedreply">
-	 	INSERT INTO instagram.feed_reply
+	 	INSERT INTO INSTAGRAM.FEED_REPLY
 			(
-				feed_idx
-				, user_idx
-				, feed_reply_contents
-				, pidx
+				FEED_IDX
+				, USER_IDX
+				, FEED_REPLY_CONTENTS
+				, PIDX
 			)
 		VALUES
 			(
@@ -355,49 +359,49 @@
 	
  	<!-- 프로필 상단 피드 갯수 가져오기 -->
 	<select id="getProfileFeedCnt" parameterType="userinfo" resultType="int">
-		SELECT COUNT(FEED_IDX) 
-		FROM FEED_LIST
-		WHERE USER_IDX = #{user_idx}
+		SELECT 	COUNT(FEED_IDX) 
+		FROM 	FEED_LIST
+		WHERE 	USER_IDX = #{user_idx}
 	</select>
 	
 	<!-- 프로필 상단 팔로워 갯수 가져오기 -->
 	<select id="getProfileFollowerCnt" parameterType="userinfo" resultType="int">
-		SELECT COUNT(FOLLOW_IDX)
-		FROM FOLLOW
-		WHERE FOLLOWING_USER_IDX = #{user_idx}
+		SELECT 	COUNT(FOLLOW_IDX)
+		FROM 	FOLLOW
+		WHERE 	FOLLOWING_USER_IDX = #{user_idx}
 	</select>
 	
 	<!-- 프로필 상단 팔로우 갯수 가져오기 -->
 	<select id="getProfileFollowCnt" parameterType="userinfo" resultType="int">
-		SELECT COUNT(FOLLOW_IDX)
-		FROM FOLLOW
-		WHERE FOLLOWER_USER_IDX = #{user_idx}
+		SELECT 	COUNT(FOLLOW_IDX)
+		FROM 	FOLLOW
+		WHERE 	FOLLOWER_USER_IDX = #{user_idx}
 	</select>
 	
 	<!-- 프로필 정보 저장(&수정) -->
 	<update id="setProfileInfo" parameterType="userinfo">
-		UPDATE instagram.user_info
-		SET user_intro = #{user_intro}
+		UPDATE INSTAGRAM.USER_INFO
+		SET USER_INTRO = #{user_intro}
 			<if test='"Y".equals(user_name_chg)'>
-				, user_name = #{user_name}
+				, USER_NAME = #{user_name}
 			</if>
 			<if test='"Y".equals(user_nickname_chg)'>
-				, user_nickname = #{user_nickname}
+				, USER_NICKNAME = #{user_nickname}
 			</if>
 			<if test='"Y".equals(user_pw_chg)'>
-				, user_pw = #{user_pw}
+				, USER_PW = #{user_pw}
 			</if>
-		WHERE user_idx= #{user_idx}
+		WHERE USER_IDX= #{user_idx}
 	</update>
 	
 	<!-- 프로필 이미지 저장 -->
 	<insert id="insertProfileImgFile" parameterType="userphoto">
 	 	<!-- 기존값 없을때는 insert -->
-	 	INSERT INTO instagram.user_photo
+	 	INSERT INTO INSTAGRAM.USER_PHOTO
 			(
-				user_idx
-				, file_name
-				, file_path
+				USER_IDX
+				, FILE_NAME
+				, FILE_PATH
 			)
 		VALUES
 			(
@@ -408,61 +412,64 @@
 	</insert>
 	<update id="updateProfileImgFile" parameterType="userphoto">
 	 	<!-- 기존값 있을때는 update -->
-	 	UPDATE instagram.user_photo
-		SET file_name = #{file_name}
-		WHERE user_idx = #{user_idx}
+	 	UPDATE 	INSTAGRAM.USER_PHOTO
+		SET 	FILE_NAME = #{file_name}
+		WHERE 	USER_IDX = #{user_idx}
 	</update>
  	<select id="selectProfileImgFile" parameterType="userphoto" resultType="userphoto">
- 		SELECT file_name FROM instagram.user_photo
-		WHERE user_idx = #{user_idx}
+ 		SELECT 	FILE_NAME FROM INSTAGRAM.USER_PHOTO
+		WHERE 	USER_IDX = #{user_idx}
  	</select>
  	
  	<!-- 팔로우 -->
  	<insert id="setInsertFollow" parameterType="follow">
-	 	INSERT INTO instagram.follow
-			(
-				following_user_idx
-				, follower_user_idx
-			)
+	 	INSERT INTO INSTAGRAM.FOLLOW
+		(
+				FOLLOWING_USER_IDX
+				, FOLLOWER_USER_IDX
+		)
 		VALUES
-			(
+		(
 				#{following_user_idx}
 				, #{follower_user_idx}
-			)
+		)
  	</insert>
  	
  	<!-- 언팔로우 -->
  	<delete id="setDeleteFollow" parameterType="follow">
-	 	DELETE FROM instagram.follow
-		WHERE following_user_idx = #{following_user_idx}
-		  AND follower_user_idx = #{follower_user_idx}
+	 	DELETE FROM INSTAGRAM.FOLLOW
+		WHERE FOLLOWING_USER_IDX = #{following_user_idx}
+		  AND FOLLOWER_USER_IDX = #{follower_user_idx}
  	</delete>
  	
  	<!-- 팔로잉 리스트 가져오기 -->
  	<select id="getfollowing" parameterType="follow" resultType="follow">
-	 	select f.following_user_idx
-		      , ui.user_nickname
-		      , up.file_name 
-		from follow f
-		inner join user_info ui
-		on ui.user_idx = f.follower_user_idx 
-		left join user_photo up
-		on ui.user_idx = up.user_idx 
-		where following_user_idx = #{following_user_idx}
+	 	SELECT 		F.FOLLOWING_USER_IDX	 	
+		      , 	UI.USER_NAME
+		      , 	UI.USER_NICKNAME
+		      , 	UP.FILE_NAME 
+		FROM 		FOLLOW F
+		INNER JOIN 
+					USER_INFO UI ON UI.USER_IDX = F.FOLLOWER_USER_IDX 
+		LEFT JOIN 
+					USER_PHOTO UP ON UI.USER_IDX = UP.USER_IDX 
+		WHERE 		
+					FOLLOWING_USER_IDX = #{following_user_idx}
  	</select>
  	
  	<!-- 팔로워 리스트 가져오기 -->
  	<select id="getfollower" parameterType="follow" resultType="follow">
-	 	select f.follower_user_idx
-	 		  , ui.user_idx
-		      , ui.user_nickname
-		      , up.file_name 
-		from follow f
-		inner join user_info ui
-		on ui.user_idx = f.following_user_idx 
-		left join user_photo up
-		on ui.user_idx = up.user_idx 
-		where follower_user_idx = #{follower_user_idx}
+	 	SELECT F.FOLLOWER_USER_IDX
+	 		  , UI.USER_IDX		      
+	 		  , UI.USER_NAME
+		      , UI.USER_NICKNAME
+		      , UP.FILE_NAME 
+		FROM FOLLOW F
+		INNER JOIN USER_INFO UI
+		ON UI.USER_IDX = F.FOLLOWING_USER_IDX 
+		LEFT JOIN USER_PHOTO UP
+		ON UI.USER_IDX = UP.USER_IDX 
+		WHERE FOLLOWER_USER_IDX = #{follower_user_idx}
  	</select>
  	
  	<!-- 계정 추천 리스트 가져오기 -->
@@ -484,19 +491,19 @@
  	
  	<!-- 피드 삭제 -->
  	<delete id="deleteFeed" parameterType="feedlist">
-	 	DELETE FROM instagram.feed_list
-		WHERE feed_idx = #{feed_idx}
+	 	DELETE FROM INSTAGRAM.FEED_LIST
+		WHERE FEED_IDX = #{feed_idx}
  	</delete>
  	
  	<!-- 스토리 삭제 -->
  	<delete id="deleteStory" parameterType="storylist">
-	 	DELETE FROM instagram.story_list
-		WHERE story_idx = #{story_idx}
+	 	DELETE FROM INSTAGRAM.STORY_LIST
+		WHERE STORY_IDX = #{story_idx}
  	</delete>
  	
  	<!-- 피드 댓글 삭제 -->
  	<delete id="deleteReply" parameterType="feedreply">
-	 	DELETE FROM instagram.feed_reply
-		WHERE feed_reply_idx = #{feed_reply_idx}
+	 	DELETE FROM INSTAGRAM.FEED_REPLY
+		WHERE FEED_REPLY_IDX = #{feed_reply_idx}
  	</delete>
 </mapper>

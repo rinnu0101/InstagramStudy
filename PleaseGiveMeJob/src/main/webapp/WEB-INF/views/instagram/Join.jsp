@@ -12,8 +12,7 @@
         <!-- 공통js 적용 -->
         <script src="js/common.js"></script>
         
-        <script>
-        
+        <script>        
         	var chkID = false;
         	var chkNN = false;
         	//회원가입 정보 입력하기
@@ -30,7 +29,7 @@
             		return false;
            		}
             	
-            	// 회원정보 공백 체크
+            	// 필수 회원정보 미입력 체크
             	var user_id = $(".join_ID").find("input").val();
                 var user_name = $(".join_name").find("input").val();
                 var user_nickname = $(".join_nickname").find("input").val();
@@ -259,6 +258,7 @@
     </head>
 
     <body>
+		<!-- 회원가입 페이지 html -->
         <div id="main">
             <div class="main_top">
                 <div id="join_area">
@@ -267,6 +267,7 @@
                             <img class="login_logo_img" src="images\icon\logo.png">
                         </div>
                         <div id="join_text">친구들의 사진과 동영상을 보려면</br>지금 가입하세요.</div>
+						<!-- todo : 페이스북 플랫폼 연계 자동 회원가입 -->
                         <div class="login_fb_btn">
                             <img class="login_fb_icon" src="images\icon\fb_logo_wt.png">
                             Facebook으로 로그인
@@ -274,6 +275,7 @@
                         <div class="login_info_text">
                             ----------------------- 또는 -----------------------
                         </div>
+						<!-- 회원 정보 입력을 통한 직접 회원가입 -->
                         <div class="join_ID">
                             <input type="text" placeholder="휴대폰 번호 또는 이메일 주소" vtype="id" onfocusout="fnValidation(this)"/>
                             <div class="confirm">
@@ -293,11 +295,13 @@
                         </div>
                         <div class="join_PW">
                             <input type="password" placeholder="비밀번호"/>
+							<!-- 비밀번호 입력값 확인 show/hide -->
                             <div class="confirm">
                                 <img class="confirm_show" onclick="fnPwToggle(false);" src="images\icon\show.png">
                                 <img class="confirm_hide" onclick="fnPwToggle(true);" src="images\icon\hide.png">
                             </div>
                         </div>
+					<!-- 회원가입 btn -->
 					<div class="login_btn" onclick="fnInputJoinInfo();">회원가입</div>
 					<div id="join_info_text">
                             	저희 서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram에 업로드했을 수도 있습니다.
@@ -306,10 +310,12 @@
                             </div>
                         </div>
                     </div>
+					<!-- 로그인 페이지로 이동 -->
                     <div class="join_login">
                         	계정이 있으신가요?
                         <div id="join_login_btn" onclick="goPage('login');">로그인</div>
                     </div>
+					<!-- 앱 다운로드 페이지로 이동 -->
                     <div class="info_download">
                         <div class="download_text">앱을 다운로드하세요.</div>
                         <div class="download_btn">

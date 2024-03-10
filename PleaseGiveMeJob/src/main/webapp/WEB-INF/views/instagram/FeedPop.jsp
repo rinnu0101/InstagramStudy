@@ -20,11 +20,13 @@
     <!-- 피드 레이어팝업 콘텐츠 html-->
     <div id="feed_layerPopup_contents">
         <div id="FP_contents_img">
+            <!-- 피드 이미지 List -->
             <ul id="popFileList">
                 <li v-for="file_path in feed_pop_info.file_names">
                     <img class='post' :src="'images/feed_img/' + file_path">
                 </li>
             </ul>
+            <!-- 피드 이미지 1개 이상일 경우 슬라이드 화살표 -->
             <div class="feed_pop_contents_arrow">
                 <a href="javascript:;" class="prev">
                     <img class='upload_arrow_img' v-if="feed_pop_info.file_length != 1 && feed_pop_info.file_index != 0" src="images\icon\next_WT_L.png"  @click="fnPopMovefeedSlide('prev')">
@@ -34,7 +36,9 @@
                 </a>
             </div>
         </div>
+        <!-- 피드 본문 -->
         <div id="FP_contents_post">
+            <!-- 최상단 피드 작성자 계정정보 영역 -->
             <div id="FPCP_account">
                 <div id="FPCP_account_area">
                     <div class="FPCP_account_profile">
@@ -49,7 +53,9 @@
                     <img src="images\icon\option.png"/>
                 </div>
             </div>
+            <!-- 피드 본문 text & 댓글 영역 -->
             <div id="FPCP_body">
+                <!-- 본문 text -->
                 <div id="FPCP_body_log">
                     <div class="FPCP_account_profile">
                         <img :src="feed_pop_info.user_profile == null ? 'images\\icon\\profile.png' 
@@ -62,6 +68,7 @@
                         <pre>{{feed_pop_info.feed_contents}}</pre>
                     </div>
                 </div>
+                <!-- 댓글 -->
                 <div class="FPCP_body_comment">
                 	<ul>
                 		<li v-for="(r, index) in feed_pop_info.feed_reply_list"> 
@@ -80,32 +87,36 @@
                     </ul>
                 </div>
             </div>
+            <!-- 좋아요 / 댓글 / 저장 영역-->
             <div id="FPCP_PIS">
                 <div id="FPCP_PIS_btn">
                     <div class="FPCP_PIS_btn_L">
                         <ul>
+                            <!-- 좋아요 -->
                             <li @click="fnPopLikeClick(feed_pop_info.feed_idx, feed_pop_info.like_type);">
                             	<img class='FPCP_PIS_btn_icon' :src="feed_pop_info.like_type == null ? 'images\\icon\\notice.png' 
 																						 : 'images\\icon\\notice_r.png'">
                             </li>
+                            <!-- 댓글 -->
                             <li><img class='FPCP_PIS_btn_icon' src="images\icon\comment.png"/></li>
                         </ul>
                     </div>
                     <div class="FPCP_PIS_btn_R">
                         <ul>
+                            <!-- 저장 -->
                             <li><img class='FPCP_PIS_btn_icon' src="images\icon\bookmark.png"/></li>
                         </ul>
                     </div>
                 </div>
+                <!-- 피드 좋아요 수량 check -->
                 <div id="FPCP_PIS_like" v-if="feed_pop_info.like_count >= 1">
                     <span>{{feed_pop_info.like_count}}</span>명이 좋아합니다
                 </div>
+                <!-- 피드 게시일 check -->
                 <div id="FPCP_PIS_date"><span>{{feed_pop_info.regdate}}</span> 게시됨</div>
             </div>
+            <!-- 새 댓글 작성 영역 -->
             <div id="FPCP_reply">
-                <!-- <div class="emoji_btn_FPCP">
-                    <img src="images\icon\emoji.png">
-                </div> -->
                 <div id="FPCP_reply_text">                    
                     <input class="input_reply_feed" type="text" placeholder="댓글 달기"/>
                 </div>

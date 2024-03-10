@@ -16,6 +16,7 @@ public class FollowVO {
 	//JOIN
 	//USER_INFO
 	private int user_idx;
+	private String user_name;
 	private String user_nickname;
 	
 	//USER_PHOTO

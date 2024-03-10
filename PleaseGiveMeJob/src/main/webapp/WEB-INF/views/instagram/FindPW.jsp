@@ -13,7 +13,7 @@
         <script src="js/common.js"></script>
         
         <script>
-        <!-- 비밀번호찾기 정보 입력하기 -->
+        // 비밀번호찾기 정보 입력
         function fnInputFindPWInfo()
         {
             var findPwInfo =
@@ -23,7 +23,6 @@
 
             console.log(findPwInfo);
             
-       		//POST
             $.ajax({
 	            	url : "/getFindPwInfo.do",
 	            	type : "POST",

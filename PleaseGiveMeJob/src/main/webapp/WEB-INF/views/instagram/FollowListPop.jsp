@@ -8,14 +8,16 @@
    <!-- 팔로워 레이어팝업 콘텐츠 html-->
    <div id="Popup_follower_contents">
        <div class="PF_top">
+            <!-- follow_pop_title 값에 따라 리스트 상단 팔로워 / 팔로우 텍스트 구분 -->
            <div class="PF_top_text"> {{follow_pop_title}} </div>
            <div class="PF_top_btn" @click="fnPopFollowClose();">
                <img src="images\icon\close_BK.png">
            </div>
        </div>
        <div class="PF_bottom">
+            <!-- 팔로워 / 팔로우 리스트 ul-->
            <ul>
-               <!-- todo : li 갯수 10개씩 불러오기 (스크롤바 최하단 도달시) -->
+               <!-- todo : 데이터 처리 수량이 많아질 경우 li 10개씩 불러오기 (스크롤바 최하단 도달시) -->
                <li class="follow_li" v-for="f in following_list">
                    <div class="follow_profile_img" @click="fnGoProfile(f.user_idx);">
                    		<img :src="f.file_name == null ? 'images\\icon\\profile.png'
@@ -27,7 +29,7 @@
 	                       		{{f.user_nickname}}
 	                       </div>
                        </div>
-                       <div class="info_text">한줄소개글</div>
+                       <div class="info_text">{{f.user_name}}</div>
                    </div>
                    <div class="follow_profile_btn">
                        <div id="follower_delete_btn" @click="fnFollwerDelete();">삭제</div>

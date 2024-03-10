@@ -1,14 +1,10 @@
 package com.portfolio.myfirst.Service;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.portfolio.myfirst.Mapper.InstagramVO;
-import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 
 @Repository
@@ -20,23 +16,26 @@ public class LoginDAOMybatis extends SqlSessionDaoSupport {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 	
-	
+	//로그인 정보 가져오기
 	public UserInfoVO getLoginInfo(UserInfoVO vo) {
 		System.out.println("DAO 시작");
 		return getSqlSession().selectOne("LoginDAO.getLoginInfo", vo);		
 	}
 	
+	//회원가입 정보 저장하기
 	public void setJoinInfo(UserInfoVO vo) {
 		getSqlSession().insert("LoginDAO.setJoinInfo", vo);		
 	}
+	//ID 중복 체크
 	public UserInfoVO getIdDuplCheck(UserInfoVO vo) {
 		return getSqlSession().selectOne("LoginDAO.getIdDuplCheck", vo);		
 	}
+	//닉네임 중복 체크
 	public UserInfoVO getNicknameDuplCheck(UserInfoVO vo) {
 		return getSqlSession().selectOne("LoginDAO.getNicknameDuplCheck", vo);		
 	}
 	
-	
+	//비밀번호 찾기
 	public UserInfoVO getFindPwInfo(UserInfoVO vo) {
 		return getSqlSession().selectOne("LoginDAO.getFindPwInfo", vo);		
 	}

@@ -51,32 +51,6 @@
 	                    <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
 	                </a>
 	            </div>
-	            <!-- todo : 파일 선택 후 활성화 -->
-	        	<!-- <ul class="upload_contents_ul">
-	                <li>
-	                	<img class='upload_contents_img' src="images\feed_img\feed1.jpg">
-	                </li>
-	                <li>
-	                	<img class='upload_contents_img' src="images\feed_img\feed2.jpg">
-	                </li>
-	                <li>
-	                	<img class='upload_contents_img' src="images\feed_img\feed3.jpg">
-	                </li>
-	                <li>
-	                	<img class='upload_contents_img' src="images\feed_img\feed4.jpg">
-	                </li>
-	                <li>
-	                	<img class='upload_contents_img' src="images\feed_img\feed5.jpg">
-	                </li>
-	            </ul>
-	            <div class="upload_contents_arrow">
-	                <a href="javascript:;" class="prev" onclick="fnMoveUploadSlide(this);">
-	                    <img class='upload_arrow_img' src="images\icon\next_WT_L.png">
-	                </a>
-	                <a href="javascript:;" class="next" onclick="fnMoveUploadSlide(this);">
-	                    <img class='upload_arrow_img' src="images\icon\next_WT_R.png">
-	                </a>
-	            </div> -->
 	        </div>
 	        <div id="upload_options">
 	            <div id="upload_profile">
@@ -90,14 +64,8 @@
 	            <div id="upload_text">
 	                <textarea id="input_upload_text" placeholder="문구를 입력하세요..."></textarea>
 	            </div>
-	            <!-- <div id="upload_emoji">
-	                <div class="emoji_btn_upload">
-	                    <img src="images\icon\emoji.png">
-	                </div>
-	                <div id="upload_text_charnum"></div>
-	            </div> -->
 	            <div id="upload_file">
-	                <!-- todo : 파일업로드 구현 -->
+	                <!-- todo : 파일 추가 업로드 구현 -->
 	                </div>
 	            </div>
 	        </div>

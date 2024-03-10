@@ -1,5 +1,4 @@
 package com.portfolio.myfirst.Mapper;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 

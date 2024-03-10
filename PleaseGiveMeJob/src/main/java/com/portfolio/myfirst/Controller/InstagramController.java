@@ -2,20 +2,14 @@ package com.portfolio.myfirst.Controller;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,16 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.myfirst.Mapper.FeedLikeVO;
 import com.portfolio.myfirst.Mapper.FeedListVO;
 import com.portfolio.myfirst.Mapper.FeedPhotoVO;
 import com.portfolio.myfirst.Mapper.FeedReplyVO;
 import com.portfolio.myfirst.Mapper.FollowVO;
-import com.portfolio.myfirst.Mapper.InstagramVO;
 import com.portfolio.myfirst.Mapper.StoryListVO;
 import com.portfolio.myfirst.Mapper.StoryPhotoVO;
-import com.portfolio.myfirst.Mapper.StoryVO;
 import com.portfolio.myfirst.Mapper.UserInfoVO;
 import com.portfolio.myfirst.Mapper.UserPhotoVO;
 import com.portfolio.myfirst.Service.InstagramService;
@@ -45,13 +36,14 @@ public class InstagramController {
 	@Autowired
 	InstagramService Service;
 
-	
+	//로그인으로 이동
 	@RequestMapping(value="/instagram.do")
 	public ModelAndView instagramLogin(ModelAndView mav) {
 		mav.setViewName("/instagram/Login");
 		return mav;
 	}
 	
+	//
 	@RequestMapping(value="/join.do")
 	public ModelAndView instagramJoin(ModelAndView mav) {		
 		mav.setViewName("/instagram/Join");
@@ -59,9 +51,7 @@ public class InstagramController {
 	}
 	
 	@RequestMapping(value="/main.do")
-	public ModelAndView instagramMain(ModelAndView mav, HttpSession session) {	
-		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
-		
+	public ModelAndView instagramMain(ModelAndView mav) {	
 		mav.setViewName("/instagram/Main");
 		return mav;
 	}
@@ -72,6 +62,10 @@ public class InstagramController {
 		return mav;
 	}
 	
+	/**
+	 * 
+	 * @param user_idx	클릭한 프로필 유저 IDX
+	 */
 	@RequestMapping(value="/profile.do")
 	public ModelAndView instagramProfile(ModelAndView mav, Integer user_idx) {		
 		mav.setViewName("/instagram/Profile");
@@ -79,12 +73,14 @@ public class InstagramController {
 		return mav;
 	}
 	
+	//
 	@RequestMapping(value="/profileChange.do")
 	public ModelAndView profileChange(ModelAndView mav) {		
 		mav.setViewName("/instagram/ProfileChange");
 		return mav;
 	}
 	
+	//
 	@RequestMapping(value="/findPW.do")
 	public ModelAndView instagramFindPW(ModelAndView mav) {		
 		mav.setViewName("/instagram/FindPW");
@@ -98,24 +94,20 @@ public class InstagramController {
 		return Service.getSearchList();
 	}
 	
-	
-	//새 게시물 저장
-	/* 
-	 * @RequestMapping(value="/setSaveNewFeed.do", produces =
-	 * "application/text; charset=utf8")
+	/**
 	 * 
-	 * @ResponseBody public String setSaveNewFeed(FeedListVO vo, HttpSession
-	 * session) throws JsonProcessingException { //자바에서 JSON 객체로 변환해주는 라이브러리 int
-	 * user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
-	 * vo.setUser_idx(user_idx); Service.setSaveNewFeed(vo); return "OK"; }
+	 * @param multipartFile		피드 이미지 리스트 MAX 10개
+	 * @param feed_contents
+	 * @param request
+	 * @return
 	 */
+	//새 게시물 저장
 	@ResponseBody
 	@RequestMapping(value = "/setSaveNewFeed.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	public String setSaveNewFeed(
-			@RequestParam("feed_file") List<MultipartFile> multipartFile
-			, @RequestParam("feed_contents") String feed_contents
-			, HttpSession session
-			, HttpServletRequest request)
+	public String setSaveNewFeed(@RequestParam("feed_file") List<MultipartFile> multipartFile
+									, @RequestParam("feed_contents") String feed_contents
+									, HttpSession session
+									, HttpServletRequest request)
 	{
 		FeedListVO vo = new FeedListVO();
 		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());		
@@ -163,21 +155,11 @@ public class InstagramController {
 	}
 	
 	//새 스토리 저장
-	/*
-	 * @RequestMapping(value="/setSaveNewStory.do", produces =
-	 * "application/text; charset=utf8")
-	 * 
-	 * @ResponseBody public String setSaveNewStory(StoryListVO vo, HttpSession
-	 * session) throws JsonProcessingException { //자바에서 JSON 객체로 변환해주는 라이브러리 int
-	 * user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
-	 * vo.setUser_idx(user_idx); Service.setSaveNewStory(vo); return "OK"; }
-	 */	
 	@ResponseBody
 	@RequestMapping(value = "/setSaveNewStory.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	public String setSaveNewStory(
-			@RequestParam("story_file") List<MultipartFile> multipartFile
-			, HttpSession session
-			, HttpServletRequest request)
+	public String setSaveNewStory(@RequestParam("story_file") List<MultipartFile> multipartFile
+									, HttpSession session
+									, HttpServletRequest request)
 	{
 		StoryListVO vo = new StoryListVO();
 		int user_idx = Integer.parseInt(session.getAttribute("user_idx").toString());
@@ -287,6 +269,21 @@ public class InstagramController {
 		return Service.getProfileInfo(vo);
 	}
 	
+	/**
+	 * 
+	 * @param fileList
+	 * @param profile_img_chg 		a
+	 * @param user_name_chg			b
+	 * @param user_nickname_chg		c	
+	 * @param user_pw_chg			d
+	 * @param user_name				e
+	 * @param user_nickname
+	 * @param user_intro
+	 * @param user_pw
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	//프로필 정보 저장 (&변경)
 	@ResponseBody
 	@RequestMapping(value = "/setProfileInfo.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")

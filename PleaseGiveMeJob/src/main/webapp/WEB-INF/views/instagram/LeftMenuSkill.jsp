@@ -11,45 +11,49 @@
                     <img src="images\icon\logo_icon.png">
                 </div>
             </div>
-
+            <!-- 메뉴 타입 : 아이콘형 -->
             <div class="icon_menu">
                 <ul>
+                    <!-- 홈 아이콘 클릭시 메뉴 타입 : 기본형 으로 전환 -->
                     <li @click="fnChangeMenu('normal');">
                         <img class='icon_menu_img' src="images\icon\home.png"/>
                     </li>
+                    <!-- 검색 -->
                     <li @click="fnChangeMenu('search');">
                         <img class='icon_menu_img' src="images\icon\search.png"/>
                     </li>
+                    <!-- todo : 탐색 기능 추가 -->
                     <!-- <li>
                         <img class='icon_menu_img' src="images\icon\explore.png"/>
                     </li> -->
+                    <!-- todo : 릴스 기능 추가 -->
                     <!-- <li>
                         <img class='icon_menu_img' src="images\icon\reels.png"/>
                     </li> -->
+                    <!-- 메시지 -->
                     <li>
                         <img class='icon_menu_img' src="images\icon\direct.png"/>
                     </li>
+                    <!-- 알림 -->
                     <li>
                         <img class='icon_menu_img' src="images\icon\notice.png"/>
                     </li>
+                    <!-- 새 피드 만들기 -->
                     <li onclick="fnUploadOpen();">
                         <img class='icon_menu_img' src="images\icon\upload.png"/>
                     </li>
+                    <!-- 프로필 -->
                     <li @click="fnGoProfile('');">
                         <img class='icon_menu_profile' src="${file_name}"/>
-                        <!-- todo : 
-                            - DB에서 내 프로필 이미지 가져오기
-                            - 프로필 이미지 없으면 "icon\profile.png" 자동으로 띄우기 -->
                     </li>
                 </ul>
             </div>
 
-            <div class="icon_menu_moreMenu">
+            <div class="icon_menu_moreMenu" @click="fnMoreMenuPop();">
                 <ul>
                     <li>
                         <img class='icon_menu_img' src="images\icon\moreMenu.png"/>
                         <div id="moreMenu">
-                            <!-- todo : 더보기 내 메뉴 구현하기 -->
                         </div>
                     </li>
                 </ul>
@@ -67,12 +71,13 @@
                 <div id="search_list_text">
                     검색 항목
                 </div>
-                <ul id="search_history" v-if="search_keyword == 'N'">
-                <!-- todo : 검색 이력(쿠키) 있으면 show(display: flex;) -->
+                <!-- 기존 검색 이력 -->
+                <ul id="search_history" v-if="search_keyword == 'Y'">
+                <!-- todo : 검색 이력(쿠키) 저장하기 -->
                     <li>
                         <div class="search_profile_img">
                             <img src="images\profile_img\my_profile.jpg">
-                            <!-- todo : 계정 이미지 불러오기 -->
+                            <!-- todo : 검색 이력 있는 계정 이미지 불러오기 -->
                         </div>
                         <div class="search_profile_info">
                             <div class="search_id">유저ID</div>
@@ -85,6 +90,7 @@
                         </div>
                     </li>
                 </ul>
+                <!-- 검색 결과 -->
                 <ul id="search_result" v-if="search_keyword == 'Y'" :style="{display:search_css_display}">
                     <li v-for="s in search_list" @click="fnGoProfile(s.user_idx);">
                         <div class="search_profile_img">

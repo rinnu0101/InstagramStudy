@@ -37,6 +37,7 @@
 </script>
 </head>
 <body>
+	<!-- Vue instance 부착을 위한 html element ID 설정 : app -->
 	<div id="app">
 		<!-- 파일 전송용 form -->
 		<form name="tempForm" id="tempForm"></form>
@@ -78,6 +79,7 @@
 		</div>
 	</div>
 
+	<!-- 초기 세션 유저 정보 확인을 위한 idx값 -->
 	<input id="session_user_idx" type="hidden" value="${user_idx}" />
 </body>
 </html>
@@ -134,13 +136,14 @@
         },
 		mounted: function() 
 		{
-			//document.(ready) 와 동일한 역할
-			this.session_user_idx = $("#session_user_idx").val();
-			this.fnGetProfileInfo();
-			this.fnGetHomeFeedList();
-			this.fnGetHomeStoryList();
-			this.fnGetSearchList();
-			this.fnGetRecommendList();
+			//document.(ready) 와 동일한 역할			
+			this.session_user_idx = $("#session_user_idx").val();	//user 정보 확인을 위한 세션의 user_idx값
+			//하기 함수 초기화
+			this.fnGetProfileInfo();								//계정 프로필의 상단 정보
+			this.fnGetHomeFeedList();								//홈 화면의 피드 리스트
+			this.fnGetHomeStoryList();								//홈 화면의 스토리 리스트
+			this.fnGetSearchList();									//검색 데이터 리스트
+			this.fnGetRecommendList();								//홈 화면의 계정 추천 리스트
 		},			
 		methods: {
 			//스크롤 최상단으로 이동
@@ -153,15 +156,21 @@
 			{
 				if(p == "home")
 				{
-					this.fnGetHomeFeedList();
-					this.fnGetHomeStoryList();
-					this.fnGetRecommendList();
+					//홈 버튼 클릭시 하기 함수 초기화 실행
+					this.fnGetHomeFeedList();			//홈 화면의 피드 리스트
+					this.fnGetHomeStoryList();			//홈 화면의 스토리 리스트
+					this.fnGetRecommendList();			//홈 화면의 계정 추천 리스트
+
+					//스크롤 최상단으로 이동
 					this.fnScrollTop();
 				}
 				if(p == "profile")
 				{
-					this.fnGetProfileInfo();
-					this.fnGetProfileFeedList();
+					//프로필 버튼 클릭시 하기 함수 초기화 실행
+					this.fnGetProfileInfo();			//계정 프로필의 상단 정보
+					this.fnGetProfileFeedList();		//프로필 화면의 피드 리스트
+
+					//좌측 메뉴 타입 : 기본형 으로 전환
 					this.menu_type = 'normal';
 				}
 				this.view_page = p;
@@ -170,9 +179,8 @@
 			feed_content_togle: function(index){
 				this.home_feed_list[index].feed_contents_multi = false;
 			},
-			//홈 화면의 피드 리스트 불러오기 처리함수
-			fnGetHomeFeedList: function(){						
-				//POST
+			//홈 화면의 피드 리스트 불러오기
+			fnGetHomeFeedList: function(){
 				$.ajax({
 					url : "/getFeedList.do",
 					type : "POST",
@@ -186,6 +194,7 @@
 							p[i].file_names = JSON.parse(p[i].file_names);
 							p[i].file_index = 0;
 							p[i].file_length = p[i].file_names.length;
+
 							if(p[i].feed_contents.includes("\r\n"))
 							{
 								//개행 있을 경우 더보기 표시
@@ -218,18 +227,15 @@
 						this.feed_show = true;
 
 						this.view_page = "home";
-						//todo
-						//this.loading_progress = false;
 					},
 					error : function(p)
 					{
-					console.log("피드 리스트 불러오기 실패");		                  
+						console.log("피드 리스트 불러오기 실패");		                  
 					}
 				});
 			},
 			//홈 화면의 피드 저장후 리스트 업데이트
-			fnGetHomeFeedUpdate: function(){						
-				//POST
+			fnGetHomeFeedUpdate: function(){
 				$.ajax({
 					url : "/getFeedList.do",
 					type : "POST",
@@ -243,6 +249,7 @@
 							p[i].file_names = JSON.parse(p[i].file_names);
 							p[i].file_index = 0;
 							p[i].file_length = p[i].file_names.length;
+
 							if(p[i].feed_contents.includes("\r\n"))
 							{
 								//개행 있을 경우 더보기 표시
@@ -273,6 +280,7 @@
 						}
 						this.home_feed_list_temp = p;
 						
+						//피드 업로드 딜레이에 따른 로딩 화면 타이며 적용
 						var that = this;
 						setTimeout(() => {
 							that.home_feed_list = that.home_feed_list_temp;
@@ -289,9 +297,8 @@
 					}
 				});
 			},
-			//홈 화면의 스토리 리스트 불러오기 처리함수
-			fnGetHomeStoryList: function(){						
-				//POST
+			//홈 화면의 스토리 리스트 불러오기
+			fnGetHomeStoryList: function(){
 				$.ajax({
 					url : "/getStoryList.do",
 					type : "POST",
@@ -301,8 +308,6 @@
 					{
 						this.home_story_list = p;
 						this.story_list_show = true;
-						//todo
-						//this.loading_progress = false;
 					},
 					error : function(p)
 					{
@@ -390,6 +395,8 @@
 						console.log("피드 좋아요 실패");		                  
 					}
 				});
+
+				//버튼 클릭에 따른 해당 피드 내 좋아요 수량 가감 처리
 				if(this.home_feed_list[index].like_type == null)
 				{
 					this.home_feed_list[index].like_count = this.home_feed_list[index].like_count + 1;
@@ -415,21 +422,23 @@
 					success : function(p)
 					{
 						$("#popFileList").css("margin-left", "0px");
+
 						//DB에서 파일 정보 가져오기
 						p.file_names = JSON.parse(p.file_names); // js 객체를 문자열로 변환
 						p.file_index = 0;
 						p.file_length = p.file_names.length;
+
 						//댓글 배열에 값 있을때만 feed_reply_list 띄우기
 						var jsonReply = JSON.parse(p.feed_reply_list);
 						if(jsonReply[0].user_idx != null)
 						{
-							p.feed_reply_list = jsonReply.sort(function(a, b)
-												{ return a.feed_reply_idx - b.feed_reply_idx });
+							p.feed_reply_list = jsonReply.sort(function(a, b){ return a.feed_reply_idx - b.feed_reply_idx });
 						}
 						else
 						{
 							p.feed_reply_list = [];
 						}
+
 						//feed_pop_info에 DB에서 가져온 모든 p값을 넣어준다
 						this.feed_pop_info = p;
 						$("#layerPopup_feed").show();
@@ -571,7 +580,8 @@
 
 						this.story_view_list.progress_eq_width = progress;				
 						this.story_popup_show = true;
-
+						
+						//스토리 리스트 내 이미지 자동 전환 시점 : 10초
 						var i = 1;
 						var progress_target = ".SP_contents_background_progress";
 						var that = this;
@@ -671,10 +681,12 @@
 			{
 				if(user_idx == $("#session_user_idx").val())
 				{
+					// 내 계정(session_user_idx)의 프로필로 이동
 					this.pUser_idx = "";
 				}
 				else
 				{
+					// 클릭한 계정(pUser_idx)의 프로필로 이동
 					this.pUser_idx = user_idx;
 				}
 
@@ -682,12 +694,14 @@
 			},
 			//계정 프로필의 상단 정보 불러오기
             fnGetProfileInfo: function(p){
+				// 내 계정일 경우의 세팅값
 				if(this.pUser_idx == "")
 				{
 					this.pUser_idx = $("#session_user_idx").val();
 					$("#pUser_idx").val($("#session_user_idx").val());
 					this.follow = "ME";
 				}
+				// 타 계정일 경우의 세팅값
 				else
 				{
 					this.follow = "";
@@ -706,6 +720,7 @@
 						//pUser_info에 DB에서 가져온 모든 p값을 넣어준다
 						this.pUser_info = p;						
 
+						// 내 계정일 경우 프로필 상단 btn [프로필 편집] 노출
 						if(this.follow == "ME")
 						{
 							this.session_user_info = p;	
@@ -713,23 +728,21 @@
 							$("#Info_follow").css("background-color", "#DBDBDB");
 							$("#Info_follow").css("color", "black");
 						}
+						// 타 계정일 경우 프로필 상단 btn [팔로우 / 메시지 보내기] 노출
+						// 팔로우 하지 않은 계정일 경우
 						else if(p.follower_user_idx == 0)
 						{
 							this.follow = false;							
 							$("#Info_follow").css("background-color", "#0095F6");
 							$("#Info_follow").css("color", "white");
 						}
+						// 팔로우 한 계정일 경우
 						else
 						{
 							this.follow = true;							
 							$("#Info_follow").css("background-color", "#DBDBDB");
 							$("#Info_follow").css("color", "black");
-						}
-
-						//if(p != null)
-						//{
- 	  					//	this.pUser_info = p[0];
-						//}					
+						}			
 					},
 					error : function(p)
 					{
@@ -739,6 +752,7 @@
             },
 			//프로필 화면의 피드 리스트 불러오기 처리함수
             fnGetProfileFeedList: function(){
+				// 내 계정일 경우의 세팅값
 				if(this.pUser_idx == "")
 				{
 					this.pUser_idx = $("#session_user_idx").val();
@@ -757,8 +771,6 @@
 					{
 						this.profile_feed_list = p;
 						this.feed_show = true;
-						//todo
-						//this.loading_progress = false;
 					},
 					error : function(p)
 					{
@@ -768,41 +780,40 @@
             },
 			//프로필 화면에서 팝업 피드 슬라이드 처리 함수
             fnPopFeedSlide : function(type){
+				var cnt = this.profile_feed_list.length;
+				var target = 0;
+				for(var i = 0; i<cnt; i++)
+				{
+					if(this.profile_feed_list[i].feed_idx == this.now_feed_idx)
+					{
+						target = i;
+					}
+				}
 
-			var cnt = this.profile_feed_list.length;
-			var target = 0;
-			for(var i = 0; i<cnt; i++)
-			{
-				if(this.profile_feed_list[i].feed_idx == this.now_feed_idx)
+				if(type == "next")
 				{
-					target = i;
+					if(target == cnt)
+					{
+						alert("마지막임");
+					}
+					else
+					{
+						target = target + 1;
+						this.fnFeedPopup(this.profile_feed_list[target].feed_idx);
+					}
 				}
-			}
-
-			if(type == "next")
-			{
-				if(target == cnt)
+				else if(type == "prev")
 				{
-					alert("마지막임");
+					if(target <= 0)
+					{
+						alert("가장 처음임");
+					}
+					else
+					{
+						target = target - 1;
+						this.fnFeedPopup(this.profile_feed_list[target].feed_idx);
+					}
 				}
-				else
-				{
-					target = target + 1;
-					this.fnFeedPopup(this.profile_feed_list[target].feed_idx);
-				}
-			}
-			else if(type == "prev")
-			{
-				if(target <= 0)
-				{
-					alert("가장 처음임");
-				}
-				else
-				{
-					target = target - 1;
-					this.fnFeedPopup(this.profile_feed_list[target].feed_idx);
-				}
-			}
 			},
 			//팔로우&언팔로우 처리 함수
 			fnFollow : function()
@@ -935,6 +946,7 @@
 			{
 				//todo
 			},
+			//팔로워 리스트 팝업 닫기
 			fnPopFollowClose : function()
 			{
 				this.follow_pop_show = false;
@@ -980,6 +992,7 @@
 			//프로필 정보 저장 함수
 			fnSaveProfile : function()
 			{
+				//정보 저장 전 중복 및 변경값 체크
 				if(this.profileNickDuplChk == "error")
 				{					
 					alert("닉네임이 중복입니다.");
@@ -990,16 +1003,16 @@
 				var form = $("form")[0];
 				var formData = new FormData(form);
 				
+				//.replace(/\s/gi, "") --> 입력값의 모든 공백 제거
 				var name = $(".profile_name").find("input").val().replace(/\s/gi, "");
 				var nickname = $(".profile_nickname").find("input").val().replace(/\s/gi, "");
 				var pw = $(".profile_PW").find("input").val().replace(/\s/gi, "");
-				//.replace(/\s/gi, "") --> 입력값의 모든 공백 제거
 				var intro = $(".profile_intro").find("textarea").val();				
 
-				var userNicknameChg = "N"; //닉네임 변경 여부 체크				
-				var userPWChg = "N"; // 비밀번호 변경 여부 체크
-				var introChg = "N"; // 한줄소개글 변경 여부 체크
-				var userNameChg = "N";	// 상세소개글 변경 여부 체크
+				var userNicknameChg = "N"; 	//닉네임 변경 여부 체크				
+				var userPWChg = "N"; 		// 비밀번호 변경 여부 체크
+				var introChg = "N"; 		// 한줄소개글 변경 여부 체크
+				var userNameChg = "N";		// 상세소개글 변경 여부 체크
 
 				if(name != "")
 				{

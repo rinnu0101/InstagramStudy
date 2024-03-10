@@ -17,6 +17,7 @@ public class LoginServiceImpl implements LoginService{
 		return LoginDAO.getLoginInfo(vo);
 	}
 	
+	//회원가입 정보 저장하기
 	@Override
 	public String setJoinInfo(UserInfoVO vo) {
 		// TODO Auto-generated method stub
@@ -39,6 +40,7 @@ public class LoginServiceImpl implements LoginService{
 		return result;
 	}
 	
+	//ID 중복 체크
 	@Override
 	public String getIdDuplCheck(UserInfoVO vo) {
 		// TODO Auto-generated method stub
@@ -58,6 +60,7 @@ public class LoginServiceImpl implements LoginService{
 		return result;
 	}
 	
+	//닉네임 중복 체크
 	@Override
 	public String getNicknameDuplCheck(UserInfoVO vo) {
 		// TODO Auto-generated method stub
@@ -77,6 +80,7 @@ public class LoginServiceImpl implements LoginService{
 		return result;
 	}
 	
+	//비밀번호 찾기
 	@Override
 	public UserInfoVO getFindPwInfo(UserInfoVO vo) {
 		// TODO Auto-generated method stub

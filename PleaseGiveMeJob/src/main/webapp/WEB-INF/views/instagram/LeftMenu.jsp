@@ -7,7 +7,7 @@
       <div id="main_logo">
           <img onclick="goPage('logo');" src="images\icon\logo.png">
       </div>
-
+      <!-- 메뉴 타입 : 기본형 -->
       <div id="main_menu">
           <ul>
               <li @click="fnChangePage('home');" id="home">
@@ -18,10 +18,12 @@
                   <img class='main_menu_icon' src="images\icon\search.png"/>
                   <div id="menu_search">검색</div>
               </li>
+              <!-- todo : 탐색 기능 추가 -->
               <!-- <li>
                   <img class='main_menu_icon' src="images\icon\explore.png"/>
                   <div id="menu_explore">탐색 탭</div>
               </li> -->
+              <!-- todo : 릴스 기능 추가 -->
               <!-- <li>
                   <img class='main_menu_icon' src="images\icon\reels.png"/>
                   <div id="menu_reels">릴스</div>
@@ -53,7 +55,6 @@
               <li>
                   <img class='main_menu_icon' src="images\icon\moreMenu.png"/>
                   <div id="moreMenu">
-                    <!-- todo : 더보기 내 메뉴 구현하기 -->
                         더 보기
                   </div>
               </li>

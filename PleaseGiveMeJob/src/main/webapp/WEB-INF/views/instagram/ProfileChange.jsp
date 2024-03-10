@@ -6,7 +6,7 @@
     <div id="profile_area">
         <div id="profile_info">
             <div id="profile_img">
-       <!-- todo : 계정 기존 이미지 없으면 하단 기본 프로필 적용 -->
+                <!-- todo : 계정 기존 이미지 없으면 하단 기본 프로필 적용 -->
                 <img src="${file_name}" style="object-fit: cover;">	                            
                 <div id="profile_img_change" @click="fnProfileImgSelect();"> 프로필 사진 변경 </div>
                 <!-- todo : onclick시 프로필 이미지 변경 & DB변경 -->

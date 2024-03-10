@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- 메인 프로필 영역 -->
+<!-- 메인 프로필 영역 html -->
 <div id="profile_main_middle" v-if="view_page == 'profile'">
 	<div id="profile_middle_area">
 		<div id="profile_Top">
@@ -16,22 +16,27 @@
 				<div id="Info_ID">
 					<div id="Info_ID_name">{{pUser_info.user_nickname}}</div>
 					<div id="Info_follow" @click="fnFollow();">
+						<!-- 팔로우하지 않은 계정일 경우 노출 -->
 						<div v-if="follow == false">팔로우</div>
+						<!-- 팔로우 한 계정일 경우 노출 -->
 						<div v-if="follow == true">팔로잉</div>
+						<!-- 내 계정일 경우 노출 -->
 						<div v-if="follow == 'ME'" @click="fnChangePage('profileChange');">
 							프로필 편집
 						</div>
 					</div>
+					<!-- 내 계정이 아닐 경우에만 노출 -->
 					<div id="Info_message" v-if="follow != 'ME'">
 						메시지 보내기
 					</div>
+					<!-- 내 계정일 경우에만 노출 -->
 					<div id="Info_ID_option" v-if="follow == 'ME'">
 						<img src="images\icon\setting.png"/>
 					</div>
 				</div>
+				<!-- 계정 정보 요약 -->
 				<div id="Info_Account">
 					<ul>
-						<!-- todo : 게시물, 팔로워, 팔로우 숫자 불러오기 -->
 						<li>
 								게시물  <span>{{pUser_info.feed_cnt}}</span>
 						</li>
@@ -61,6 +66,7 @@
 			</div>
 		</div>
 
+		<!-- 프로필 피드 리스트 -->
 		<div id="profile_feedContents">
 			<ul class="feedContents_line" v-if="feed_show == true">
 				<li v-for="(f, index) in profile_feed_list" :key="version">
